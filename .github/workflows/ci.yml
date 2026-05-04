@@ -1,0 +1,50 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Verify application starts
+      run: timeout 5 npm start || true
+
+    - name: Check health endpoint
+      run: |
+        npm start > /dev/null 2>&1 &
+        sleep 2
+        curl -f http://localhost:3000/health || exit 1
+        pkill -f "node src/index.js" || true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Deploy to production
+      run: |
+        echo "Deployment step: Configure your deployment target here"
+        echo "Examples: Docker push, Heroku deploy, AWS Lambda, etc."
