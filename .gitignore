@@ -9,3 +9,13 @@ yarn-error.log
 dist/
 build/
 *.log
+
+# Next.js build output
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
