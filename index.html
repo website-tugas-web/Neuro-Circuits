@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedReflexed - Medical Reflex Training</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1a202c;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #64748b;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        nav button:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        nav button.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 2rem 2rem;
+        }
+
+        /* Sections */
+        section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+        }
+
+        section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Intro Section */
+        #intro {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #intro h1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #intro p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        button.start-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 2rem;
+        }
+
+        button.start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        button.start-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .quiz-progress {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .quiz-timer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #f0f4ff;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .quiz-timer.warning {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .quiz-timer.critical {
+            background: #fee2e2;
+            color: #dc2626;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .timer-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .question-content {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question-number {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Answer Options */
+        .options {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .option {
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #e0e7ff;
+            color: #667eea;
+        }
+
+        .option.correct {
+            border-color: #10b981;
+            background: #ecfdf5;
+            color: #10b981;
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            color: #ef4444;
+        }
+
+        .option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Exam Tracking */
+        .exam-tracking {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f0f4ff;
+            border-radius: 10px;
+        }
+
+        .exam-tracking h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .reflex-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .reflex-btn {
+            padding: 0.75rem 1rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .reflex-btn:hover:not(:disabled) {
+            border-color: #667eea;
+            background: #e0e7ff;
+            color: #667eea;
+        }
+
+        .reflex-btn.completed {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-color: #059669;
+        }
+
+        .reflex-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .exam-requirement {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        .exam-requirement.met {
+            background: #ecfdf5;
+            color: #10b981;
+            border-left: 4px solid #10b981;
+            padding-left: 1rem;
+        }
+
+        .exam-requirement.not-met {
+            background: #fef2f2;
+            color: #ef4444;
+            border-left: 4px solid #ef4444;
+            padding-left: 1rem;
+        }
+
+        /* Pomodoro Timer Section */
+        .pomodoro-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .pomodoro-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pomodoro-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .session-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .pomodoro-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .mode-btn {
+            padding: 0.75rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .mode-btn:hover {
+            border-color: #667eea;
+            background: #e0e7ff;
+            color: #667eea;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .pomodoro-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button.control-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.2s ease;
+        }
+
+        button.control-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Diagnosis Section */
+        .diagnosis-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .diagnosis-message {
+            padding: 2rem;
+            background: #e0e7ff;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .diagnosis-message.unlocked {
+            background: #ecfdf5;
+            border-left-color: #10b981;
+        }
+
+        .diagnosis-message.locked {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        /* Result Section */
+        .result-container {
+            text-align: center;
+        }
+
+        .score-display {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #667eea;
+            margin: 2rem 0;
+        }
+
+        .result-message {
+            font-size: 1.5rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .result-item {
+            padding: 1.5rem;
+            background: #f0f4ff;
+            border-radius: 10px;
+        }
+
+        .result-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-item p {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        button.restart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 2rem;
+        }
+
+        button.restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Placeholder for Web Designer HTML and Animator SVG */
+        .svg-placeholder {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            color: #94a3b8;
+            margin: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav button {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .timer-display {
+                font-size: 2.5rem;
+            }
+
+            .score-display {
+                font-size: 2.5rem;
+            }
+
+            main {
+                padding: 70px 1rem 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+                min-height: auto;
+            }
+
+            .quiz-container {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul id="nav-menu">
+            <li><button class="nav-btn active" data-section="intro">Start</button></li>
+            <li><button class="nav-btn" data-section="quiz">Quiz</button></li>
+            <li><button class="nav-btn" data-section="diagnosis">Diagnosis</button></li>
+            <li><button class="nav-btn" data-section="result">Results</button></li>
+            <li><button class="nav-btn" data-section="pomodoro">Focus Timer</button></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Intro Section -->
+        <section id="intro" class="active">
+            <h1>MedReflexed</h1>
+            <p>Master your medical reflexes with our interactive training platform</p>
+            <div class="intro-grid">
+                <div class="info-card">
+                    <h3>📋 Quiz Training</h3>
+                    <p>Test your knowledge with timed medical reflex questions</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔄 Exam Tracking</h3>
+                    <p>Complete 3+ reflex exams to unlock detailed diagnosis</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏱️ Focus Sessions</h3>
+                    <p>Use Pomodoro timer for productive study breaks</p>
+                </div>
+            </div>
+            <button class="start-btn" onclick="app.startQuiz()">Start Training</button>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        Question <span id="current-question">1</span> / <span id="total-questions">10</span>
+                    </div>
+                    <div class="quiz-timer" id="timer-display">
+                        <span class="timer-value" id="timer-seconds">60</span>s
+                    </div>
+                </div>
+
+                <!-- Web Designer HTML integration point -->
+                <div id="designer-html" class="svg-placeholder">
+                    [Web Designer HTML will be integrated here]
+                </div>
+
+                <div class="question-content">
+                    <div class="question-number">Question</div>
+                    <div class="question-text" id="question-text">Loading question...</div>
+                    <div class="options" id="options-container"></div>
+                </div>
+
+                <!-- Exam Tracking -->
+                <div class="exam-tracking">
+                    <h3>✓ Exam Progress</h3>
+                    <div class="reflex-buttons" id="reflex-buttons-container"></div>
+                    <div class="exam-requirement" id="exam-status">
+                        Complete at least 3 reflex exams to unlock diagnosis
+                    </div>
+                </div>
+
+                <!-- Animator SVG integration point -->
+                <div id="animator-svg" class="svg-placeholder">
+                    [Animator SVG components will be integrated here]
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagnosis Section -->
+        <section id="diagnosis">
+            <h2>Medical Diagnosis</h2>
+            <div class="diagnosis-container">
+                <div class="diagnosis-message locked" id="diagnosis-message">
+                    <p>Complete at least 3 reflex examinations to unlock detailed diagnosis information.</p>
+                </div>
+                <div id="diagnosis-content" style="display: none;">
+                    <!-- Detailed diagnosis will be shown here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result">
+            <div class="result-container">
+                <h2>Training Complete</h2>
+                <div class="score-display" id="final-score">0%</div>
+                <p class="result-message" id="result-message">Great job on completing the training!</p>
+                <div class="result-details">
+                    <div class="result-item">
+                        <h4>Questions Answered</h4>
+                        <p id="result-answered">0</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>Correct Answers</h4>
+                        <p id="result-correct">0</p>
+                    </div>
+                    <div class="result-item">
+                        <h4>Exams Completed</h4>
+                        <p id="result-exams">0</p>
+                    </div>
+                </div>
+                <button class="restart-btn" onclick="app.restart()">Restart Training</button>
+            </div>
+        </section>
+
+        <!-- Pomodoro Timer Section -->
+        <section id="pomodoro">
+            <h2>Focus Timer - Pomodoro</h2>
+            <div class="pomodoro-container">
+                <div class="pomodoro-display">
+                    <div class="session-label" id="session-label">Focus</div>
+                    <div class="timer-display" id="pomodoro-timer">25:00</div>
+                    <p id="session-count">Session 1</p>
+                </div>
+                <div>
+                    <h3>Select Duration</h3>
+                    <div class="pomodoro-modes" id="modes-container"></div>
+                    <div class="pomodoro-controls">
+                        <button class="control-btn" onclick="app.pomodoroStart()">Start</button>
+                        <button class="control-btn" onclick="app.pomodoroPause()">Pause</button>
+                        <button class="control-btn" onclick="app.pomodoroReset()">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Application State Machine
+        const app = {
+            // State
+            state: {
+                currentSection: 'intro',
+                quizStarted: false,
+                currentQuestionIndex: 0,
+                score: 0,
+                totalQuestions: 10,
+                answers: [],
+                completedExams: new Set(),
+                selectedAnswer: null,
+                quizTimeRemaining: 60,
+                quizTimerRunning: false,
+                pomodoroMode: 'focus',
+                pomodoroDurations: {
+                    focus: 25 * 60,
+                    shortBreak: 5 * 60,
+                    longBreak: 10 * 60,
+                    deep: 50 * 60
+                },
+                pomodoroTimeRemaining: 25 * 60,
+                pomodoroRunning: false,
+                pomodoroSession: 1
+            },
+
+            // Quiz Questions (placeholder - will be populated from Medical Specialist)
+            questions: [
+                {
+                    id: 1,
+                    text: 'What is the normal patellar reflex response?',
+                    examType: 'patellar',
+                    options: [
+                        'A) Plantar flexion of the foot',
+                        'B) Extension of the knee',
+                        'C) Dorsiflexion of the foot',
+                        'D) Contraction of the hamstring'
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    id: 2,
+                    text: 'Which reflex is tested by stroking the sole of the foot?',
+                    examType: 'babinski',
+                    options: [
+                        'A) Patellar reflex',
+                        'B) Achilles reflex',
+                        'C) Plantar (Babinski) reflex',
+                        'D) Biceps reflex'
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    id: 3,
+                    text: 'What does an abnormal Babinski sign indicate?',
+                    examType: 'babinski',
+                    options: [
+                        'A) Normal finding in adults',
+                        'B) Upper motor neuron lesion',
+                        'C) Lower motor neuron lesion',
+                        'D) Normal reflex response'
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    id: 4,
+                    text: 'The corneal reflex tests which cranial nerves?',
+                    examType: 'corneal',
+                    options: [
+                        'A) CN V and VII',
+                        'B) CN II and III',
+                        'C) CN VI and VIII',
+                        'D) CN IX and X'
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    id: 5,
+                    text: 'Which reflex is elicited by tapping the biceps tendon?',
+                    examType: 'biceps',
+                    options: [
+                        'A) L4 reflex',
+                        'B) C5-C6 reflex',
+                        'C) S1 reflex',
+                        'D) L2-L3 reflex'
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    id: 6,
+                    text: 'What is the normal response to the Achilles reflex?',
+                    examType: 'achilles',
+                    options: [
+                        'A) Knee extension',
+                        'B) Ankle plantarflexion',
+                        'C) Ankle dorsiflexion',
+                        'D) Hip flexion'
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    id: 7,
+                    text: 'Which spinal nerve root is tested with the patellar reflex?',
+                    examType: 'patellar',
+                    options: [
+                        'A) L1-L2',
+                        'B) L2-L4',
+                        'C) L5-S1',
+                        'D) C5-C6'
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    id: 8,
+                    text: 'The gag reflex tests which cranial nerves?',
+                    examType: 'gag',
+                    options: [
+                        'A) CN V and VII',
+                        'B) CN VII and XII',
+                        'C) CN IX and X',
+                        'D) CN XI and XII'
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    id: 9,
+                    text: 'What grading scale is typically used for reflex responses?',
+                    examType: 'assessment',
+                    options: [
+                        'A) 0-3+',
+                        'B) 0-4+ or 0-5+',
+                        'C) 1-10',
+                        'D) A-F'
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    id: 10,
+                    text: 'Hyperreflexia is typically associated with:',
+                    examType: 'assessment',
+                    options: [
+                        'A) Peripheral neuropathy',
+                        'B) Lower motor neuron disease',
+                        'C) Upper motor neuron disease',
+                        'D) Spinal nerve root compression'
+                    ],
+                    correctAnswer: 2
+                }
+            ],
+
+            // Initialize application
+            init() {
+                this.setupEventListeners();
+                this.renderReflex Buttons();
+                this.renderPomodoro Modes();
+                this.loadQuestion();
+            },
+
+            setupEventListeners() {
+                // Navigation
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const section = e.target.dataset.section;
+                        if (section === 'quiz' && !this.state.quizStarted) {
+                            console.log('Quiz not started yet');
+                            return;
+                        }
+                        this.navigate(section);
+                    });
+                });
+
+                // Option selection
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('option')) {
+                        if (!this.state.quizTimerRunning) return;
+                        this.selectAnswer(Array.from(document.querySelectorAll('.option')).indexOf(e.target));
+                    }
+                });
+            },
+
+            // Navigation
+            navigate(section) {
+                document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+                document.getElementById(section).classList.add('active');
+
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`[data-section="${section}"]`).classList.add('active');
+
+                this.state.currentSection = section;
+
+                // Scroll to top with smooth behavior
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            // Quiz Logic
+            startQuiz() {
+                this.state.quizStarted = true;
+                this.state.currentQuestionIndex = 0;
+                this.state.score = 0;
+                this.state.answers = [];
+                this.state.selectedAnswer = null;
+                this.state.completedExams.clear();
+                this.navigate('quiz');
+                this.loadQuestion();
+                this.startQuizTimer();
+            },
+
+            loadQuestion() {
+                if (this.state.currentQuestionIndex >= this.state.questions.length) {
+                    this.endQuiz();
+                    return;
+                }
+
+                const question = this.questions[this.state.currentQuestionIndex];
+                document.getElementById('current-question').textContent = this.state.currentQuestionIndex + 1;
+                document.getElementById('question-text').textContent = question.text;
+
+                const optionsContainer = document.getElementById('options-container');
+                optionsContainer.innerHTML = '';
+
+                question.options.forEach((option, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option';
+                    btn.textContent = option;
+                    btn.addEventListener('click', () => this.selectAnswer(index));
+                    optionsContainer.appendChild(btn);
+                });
+
+                this.state.selectedAnswer = null;
+                this.state.quizTimeRemaining = 60;
+                this.resetQuizTimer();
+                this.startQuizTimer();
+            },
+
+            selectAnswer(optionIndex) {
+                if (this.state.selectedAnswer !== null) return; // Already answered
+
+                const question = this.questions[this.state.currentQuestionIndex];
+                const isCorrect = optionIndex === question.correctAnswer;
+
+                this.state.selectedAnswer = optionIndex;
+                this.state.answers.push({
+                    questionIndex: this.state.currentQuestionIndex,
+                    selected: optionIndex,
+                    correct: isCorrect
+                });
+
+                if (isCorrect) {
+                    this.state.score++;
+                    this.state.completedExams.add(question.examType);
+                }
+
+                // Show correct/incorrect feedback
+                const options = document.querySelectorAll('.option');
+                options.forEach((opt, idx) => {
+                    opt.disabled = true;
+                    if (idx === question.correctAnswer) {
+                        opt.classList.add('correct');
+                    } else if (idx === optionIndex && !isCorrect) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+
+                this.updateExamTracking();
+
+                // Auto-advance after 2 seconds or allow manual next
+                setTimeout(() => this.nextQuestion(), 2000);
+            },
+
+            nextQuestion() {
+                this.state.currentQuestionIndex++;
+                this.stopQuizTimer();
+                this.loadQuestion();
+            },
+
+            startQuizTimer() {
+                if (this.state.quizTimerRunning) return;
+                this.state.quizTimerRunning = true;
+
+                this.quizTimerId = setInterval(() => {
+                    this.state.quizTimeRemaining--;
+                    this.updateTimerDisplay();
+
+                    if (this.state.quizTimeRemaining <= 0) {
+                        this.stopQuizTimer();
+                        this.nextQuestion();
+                    }
+                }, 1000);
+            },
+
+            stopQuizTimer() {
+                clearInterval(this.quizTimerId);
+                this.state.quizTimerRunning = false;
+            },
+
+            resetQuizTimer() {
+                this.stopQuizTimer();
+                this.state.quizTimeRemaining = 60;
+                this.updateTimerDisplay();
+            },
+
+            updateTimerDisplay() {
+                const timerElement = document.getElementById('timer-seconds');
+                const timerContainer = document.getElementById('timer-display');
+
+                timerElement.textContent = this.state.quizTimeRemaining;
+
+                timerContainer.classList.remove('warning', 'critical');
+                if (this.state.quizTimeRemaining <= 10) {
+                    timerContainer.classList.add('critical');
+                } else if (this.state.quizTimeRemaining <= 20) {
+                    timerContainer.classList.add('warning');
+                }
+            },
+
+            endQuiz() {
+                this.stopQuizTimer();
+                this.navigate('result');
+                this.displayResults();
+            },
+
+            // Exam Tracking
+            renderReflexButtons() {
+                const container = document.getElementById('reflex-buttons-container');
+                const exams = ['Patellar', 'Babinski', 'Corneal', 'Biceps', 'Achilles', 'Gag'];
+
+                container.innerHTML = '';
+                exams.forEach((exam, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'reflex-btn';
+                    btn.textContent = `${idx + 1}. ${exam}`;
+                    btn.disabled = true; // Disabled until integrated with quiz
+                    container.appendChild(btn);
+                });
+            },
+
+            updateExamTracking() {
+                const completed = this.state.completedExams.size;
+                const requirement = document.getElementById('exam-status');
+                const exams = Array.from(this.state.completedExams);
+
+                if (completed >= 3) {
+                    requirement.classList.add('met');
+                    requirement.classList.remove('not-met');
+                    requirement.innerHTML = `
+                        <strong>✓ Unlocked!</strong> You've completed ${completed} exams and unlocked diagnosis.
+                        <br><em>${exams.join(', ')}</em>
+                    `;
+                } else {
+                    requirement.classList.add('not-met');
+                    requirement.classList.remove('met');
+                    requirement.innerHTML = `
+                        <strong>${completed}/3</strong> exams completed. ${3 - completed} more needed for diagnosis.
+                        <br><em>${exams.length > 0 ? 'Completed: ' + exams.join(', ') : 'No exams completed yet'}</em>
+                    `;
+                }
+
+                // Update diagnosis status
+                const diagnosisMsg = document.getElementById('diagnosis-message');
+                if (completed >= 3) {
+                    diagnosisMsg.classList.remove('locked');
+                    diagnosisMsg.classList.add('unlocked');
+                    diagnosisMsg.innerHTML = `
+                        <strong>✓ Diagnosis Unlocked!</strong> You've completed enough reflex exams.
+                        <br>Review your results below for detailed diagnosis information.
+                    `;
+                }
+            },
+
+            // Results
+            displayResults() {
+                const percentage = Math.round((this.state.score / this.state.totalQuestions) * 100);
+                document.getElementById('final-score').textContent = `${percentage}%`;
+                document.getElementById('result-answered').textContent = this.state.answers.length;
+                document.getElementById('result-correct').textContent = this.state.score;
+                document.getElementById('result-exams').textContent = this.state.completedExams.size;
+
+                // Custom message based on performance
+                const messageElement = document.getElementById('result-message');
+                if (percentage >= 80) {
+                    messageElement.textContent = 'Excellent! You have a strong understanding of medical reflexes.';
+                } else if (percentage >= 60) {
+                    messageElement.textContent = 'Good job! Review the areas where you need improvement.';
+                } else {
+                    messageElement.textContent = 'Keep practicing to improve your reflex knowledge!';
+                }
+            },
+
+            restart() {
+                this.state = {
+                    currentSection: 'intro',
+                    quizStarted: false,
+                    currentQuestionIndex: 0,
+                    score: 0,
+                    totalQuestions: 10,
+                    answers: [],
+                    completedExams: new Set(),
+                    selectedAnswer: null,
+                    quizTimeRemaining: 60,
+                    quizTimerRunning: false,
+                    pomodoroMode: 'focus',
+                    pomodoroDurations: {
+                        focus: 25 * 60,
+                        shortBreak: 5 * 60,
+                        longBreak: 10 * 60,
+                        deep: 50 * 60
+                    },
+                    pomodoroTimeRemaining: 25 * 60,
+                    pomodoroRunning: false,
+                    pomodoroSession: 1
+                };
+                this.navigate('intro');
+            },
+
+            // Pomodoro Timer
+            renderPomodoro Modes() {
+                const container = document.getElementById('modes-container');
+                const modes = [
+                    { id: 'focus', label: 'Focus', duration: 25 },
+                    { id: 'shortBreak', label: 'Short Break', duration: 5 },
+                    { id: 'longBreak', label: 'Long Break', duration: 10 },
+                    { id: 'deep', label: 'Deep Focus', duration: 50 }
+                ];
+
+                container.innerHTML = '';
+                modes.forEach(mode => {
+                    const btn = document.createElement('button');
+                    btn.className = `mode-btn ${mode.id === 'focus' ? 'active' : ''}`;
+                    btn.textContent = `${mode.label}\n${mode.duration}m`;
+                    btn.onclick = () => this.selectPomodoroMode(mode.id);
+                    container.appendChild(btn);
+                });
+            },
+
+            selectPomodoroMode(modeId) {
+                this.state.pomodoroMode = modeId;
+                this.state.pomodoroTimeRemaining = this.state.pomodoroDurations[modeId];
+                this.state.pomodoroRunning = false;
+
+                document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+
+                this.updatePomodoroDisplay();
+            },
+
+            pomodoroStart() {
+                if (this.state.pomodoroRunning) return;
+                this.state.pomodoroRunning = true;
+
+                this.pomodoroTimerId = setInterval(() => {
+                    this.state.pomodoroTimeRemaining--;
+                    this.updatePomodoroDisplay();
+
+                    if (this.state.pomodoroTimeRemaining <= 0) {
+                        this.pomodoroComplete();
+                    }
+                }, 1000);
+            },
+
+            pomodoroPause() {
+                this.state.pomodoroRunning = false;
+                clearInterval(this.pomodoroTimerId);
+            },
+
+            pomodoroReset() {
+                this.state.pomodoroRunning = false;
+                clearInterval(this.pomodoroTimerId);
+                this.state.pomodoroTimeRemaining = this.state.pomodoroDurations[this.state.pomodoroMode];
+                this.updatePomodoroDisplay();
+            },
+
+            updatePomodoroDisplay() {
+                const mins = Math.floor(this.state.pomodoroTimeRemaining / 60);
+                const secs = this.state.pomodoroTimeRemaining % 60;
+                const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+                document.getElementById('pomodoro-timer').textContent = timeStr;
+                document.getElementById('session-label').textContent =
+                    this.state.pomodoroMode === 'focus' ? 'Focus' :
+                    this.state.pomodoroMode === 'shortBreak' ? 'Short Break' :
+                    this.state.pomodoroMode === 'longBreak' ? 'Long Break' : 'Deep Focus';
+            },
+
+            pomodoroComplete() {
+                this.state.pomodoroRunning = false;
+                if (this.state.pomodoroMode === 'focus') {
+                    this.state.pomodoroSession++;
+                }
+                alert(`${this.state.pomodoroMode} session complete!`);
+            }
+        };
+
+        // Initialize app on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+</body>
+</html>
