@@ -27,8 +27,25 @@ const app = {
     pomodoroSession: 1
   },
 
-  // Quiz Questions from Medical Specialist
-  questions: [
+  // Quiz Questions - use TEST_QUESTIONS from test-data.js if available, otherwise fall back to default
+  get questions() {
+    if (typeof TEST_QUESTIONS !== 'undefined') {
+      // Convert NEUAAA-106 format to app format
+      return TEST_QUESTIONS.map(q => ({
+        id: q.id,
+        text: q.vignette + '\n\n' + q.question,
+        examType: 'mcq',
+        options: [q.options.A, q.options.B, q.options.C, q.options.D, q.options.E],
+        correctAnswer: ['A', 'B', 'C', 'D', 'E'].indexOf(q.answer),
+        explanation: q.explanation,
+        topic: q.topic,
+        figureRef: q.figureRef
+      }));
+    }
+    // Fallback to original questions
+    return this._defaultQuestions;
+  },
+  _defaultQuestions: [
     {id:1,text:'Which nerve roots are tested by the patellar (knee jerk) reflex?',examType:'patellar',options:['L2-L4','L5-S2','S1-S2','C5-C6'],correctAnswer:0},
     {id:2,text:'Which nerve roots are tested by the Achilles (ankle jerk) reflex?',examType:'achilles',options:['L2-L4','S1-S2','L5-S1','C7-C8'],correctAnswer:1},
     {id:3,text:"What does a grading of '4' in the reflex scale indicate according to PPK?",examType:'assessment',options:['Normal reflex response','Brisk reflex with clonus','Weak/diminished reflex','Absent reflex'],correctAnswer:1},
