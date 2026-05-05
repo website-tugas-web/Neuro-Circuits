@@ -54,50 +54,50 @@
       <div class="materials">
         <div class="material-card">
           <h3 class="material-card__title">Reflex Arc Anatomy</h3>
-          <p class="material-card__body">The five-component reflex arc: sensory receptor, afferent nerve, spinal cord synapse, efferent nerve, and muscle response.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Lima komponen lengkung refleks: reseptor sensorik, saraf aferen, sinaps medula spinalis, saraf eferen, dan respons otot.</p>
+          <button class="btn-pill" onclick="showMaterial(1)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Upper Motor Neurons</h3>
-          <p class="material-card__body">Pyramidal and extrapyramidal tracts: origin, course, and clinical signs of UMN lesions.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Traktus piramidalis dan ekstrapiramidalis: asal, jalur, dan tanda klinis lesi UMN.</p>
+          <button class="btn-pill" onclick="showMaterial(2)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Lower Motor Neurons</h3>
-          <p class="material-card__body">Motor unit: anterior horn cell, peripheral nerve, neuromuscular junction. Signs of LMN dysfunction.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Unit motorik: sel kornu anterior, saraf perifer, sambungan neuromuskular. Tanda disfungsi LMN.</p>
+          <button class="btn-pill" onclick="showMaterial(3)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Deep Tendon Reflexes</h3>
-          <p class="material-card__body">Patellar, Achilles, biceps, triceps, brachioradialis: grading, normal variants, and pathology.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Patella, Achilles, biseps, triseps, brakioradialis: grading, varian normal, dan patologi.</p>
+          <button class="btn-pill" onclick="showMaterial(4)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Pathological Reflexes</h3>
-          <p class="material-card__body">Babinski, Chaddock, Gordon, Oppenheim. How and when to elicit them; what they signify.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Babinski, Chaddock, Gordon, Oppenheim. Cara dan kapan memunculkannya; apa yang mereka tunjukkan.</p>
+          <button class="btn-pill" onclick="showMaterial(5)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Reflex Grading Scale</h3>
-          <p class="material-card__body">0 = absent, 1+ = diminished, 2+ = normal, 3+ = brisk, 4+ = hyperactive with clonus. Clinical interpretation.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">0 = tidak ada, 1+ = menurun, 2+ = normal, 3+ = cepat, 4+ = hiperaktif dengan klonus. Interpretasi klinis.</p>
+          <button class="btn-pill" onclick="showMaterial(6)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Lesion Localisation</h3>
-          <p class="material-card__body">Using reflex patterns, tone, and strength to pinpoint spinal levels and distinguish CNS from PNS pathology.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Menggunakan pola refleks, tonus, dan kekuatan untuk menentukan level spinal dan membedakan patologi CNS dari PNS.</p>
+          <button class="btn-pill" onclick="showMaterial(7)">Read</button>
         </div>
 
         <div class="material-card">
           <h3 class="material-card__title">Clinical Examination Technique</h3>
-          <p class="material-card__body">Patient positioning, hammer technique, reinforcement manoeuvres, and how to avoid common pitfalls.</p>
-          <button class="btn-pill">Read</button>
+          <p class="material-card__body">Posisi pasien, teknik palu, manuver reinforcement, dan cara menghindari kesalahan umum.</p>
+          <button class="btn-pill" onclick="showMaterial(8)">Read</button>
         </div>
       </div>
     </section>
@@ -107,6 +107,51 @@
     </footer>
   </main>
 
+  <!-- Material Modal -->
+  <div id="material-modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5); overflow:auto;">
+    <div style="background:#fff; margin:2% auto; padding:40px; max-width:900px; border-radius:8px; position:relative;">
+      <button onclick="closeMaterial()" style="position:absolute; top:20px; right:20px; font-size:28px; border:none; background:none; cursor:pointer; color:#7B1224;">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="src/materials-data.js"></script>
   <script src="app.js"></script>
+  <script>
+    function showMaterial(id) {
+      const material = MATERIALS_DATA.find(m => m.id === id);
+      if (!material) return;
+
+      let html = `<h2>${material.titleEn}</h2>`;
+      html += material.content;
+
+      if (material.figures) {
+        html += `<h3 style="margin-top:2rem;">Gambar</h3><p>${material.figures}</p>`;
+      }
+
+      if (material.references && material.references.length > 0) {
+        html += `<h3 style="margin-top:2rem;">Referensi</h3><ul>`;
+        material.references.forEach(ref => {
+          html += `<li style="margin-bottom:0.5rem;">${ref}</li>`;
+        });
+        html += `</ul>`;
+      }
+
+      document.getElementById('modal-content').innerHTML = html;
+      document.getElementById('material-modal').style.display = 'block';
+    }
+
+    function closeMaterial() {
+      document.getElementById('material-modal').style.display = 'none';
+    }
+
+    // Close on outside click
+    window.onclick = function(event) {
+      const modal = document.getElementById('material-modal');
+      if (event.target === modal) {
+        closeMaterial();
+      }
+    }
+  </script>
 </body>
 </html>

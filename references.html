@@ -52,7 +52,11 @@
 
     <section class="section">
       <div class="prose" style="max-width: 900px;">
-        <p>References and bibliographic materials coming soon. For now, consult the foundational texts and standard clinical references listed in the Materials section.</p>
+        <p style="margin-bottom: 2rem;">Referensi Cambridge yang disusun berdasarkan topik pembelajaran. Semua sumber berasal dari Panduan Praktik Klinis (PPK) Somatomotor & Refleks.</p>
+
+        <div id="references-content">
+          <!-- References will be loaded here by JavaScript -->
+        </div>
       </div>
     </section>
 
@@ -61,6 +65,27 @@
     </footer>
   </main>
 
+  <script src="src/materials-data.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Load and display references grouped by topic
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('references-content');
+
+      MATERIALS_DATA.forEach(material => {
+        if (material.references && material.references.length > 0) {
+          let html = `<h3 style="margin-top: 2.5rem; margin-bottom: 1rem; color: #7B1224;">${material.titleId}</h3>`;
+          html += '<ul style="list-style: none; padding: 0;">';
+
+          material.references.forEach(ref => {
+            html += `<li style="margin-bottom: 0.75rem; padding-left: 2rem; text-indent: -2rem;">${ref}</li>`;
+          });
+
+          html += '</ul>';
+          container.innerHTML += html;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
