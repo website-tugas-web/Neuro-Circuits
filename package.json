@@ -1,7 +1,7 @@
 {
-  "name": "medreflexed",
-  "version": "0.1.0",
-  "description": "MedReflexed platform - Next.js frontend + Express.js backend",
+  "name": "neuro-circuits",
+  "version": "1.0.0",
+  "description": "Neuro Circuits - Interactive medical reflex training platform",
   "main": "src/index.js",
   "type": "module",
   "scripts": {

@@ -15,8 +15,8 @@ app.get('/health', (req, res) => {
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'MedReflexed API Server [RELOAD-TEST]',
-    version: '0.1.0'
+    message: 'Neuro Circuits API Server',
+    version: '1.0.0'
   });
 });
 
