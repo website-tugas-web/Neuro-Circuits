@@ -19,3 +19,6 @@ frontend/node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+
+# PDF source files (available via Paperclip attachments)
+*.pdf

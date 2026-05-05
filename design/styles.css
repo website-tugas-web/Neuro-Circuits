@@ -1,7 +1,7 @@
 /* =============================================================
-   NEURO CIRCUITS — Laboratorium Keterampilan Klinis
+   NEURO CIRCUITS - Laboratorium Keterampilan Klinis
    Elite, luxury, modern web design system
-   HTML/CSS only — no JavaScript
+   HTML/CSS only - no JavaScript
    ============================================================= */
 
 /* ---------- 1. DESIGN TOKENS ---------- */
@@ -24,9 +24,9 @@
   --shadow-md: 0 6px 18px rgba(45, 0, 8, 0.08), 0 14px 36px rgba(45, 0, 8, 0.10);
   --shadow-lg: 0 18px 44px rgba(45, 0, 8, 0.16);
 
-  /* Typography — modern luxury editorial stack
+  /* Typography - modern luxury editorial stack
      Fraunces: variable serif w/ optical-sizing, SOFT + WONK axes
-       (the "Stripe Press / Aesop" feel — used for hero, masthead,
+       (the "Stripe Press / Aesop" feel - used for hero, masthead,
         section headings, card titles, italic pull-quote)
      Inter: variable neo-grotesk for body, navigation, controls */
   --font-display: 'Fraunces', 'Tiempos Headline', 'Cormorant Garamond', Georgia, serif;
