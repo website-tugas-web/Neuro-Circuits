@@ -1,24 +1,3 @@
 node_modules/
-npm-debug.log
-yarn-error.log
-.env
-.env.local
-.DS_Store
-.vscode/
-.idea/
-dist/
-build/
 *.log
-
-# Next.js build output
-frontend/.next/
-frontend/out/
-frontend/.env.local
-frontend/node_modules/
-
-# OS files
 .DS_Store
-Thumbs.db
-
-# PDF source files (available via Paperclip attachments)
-*.pdf

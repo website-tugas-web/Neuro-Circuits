@@ -110,7 +110,6 @@ const app = {
   // Initialize
   init() {
     this.setupEventListeners();
-    this.renderReflexButtons();
     this.renderPomodoroModes();
   },
 
@@ -154,7 +153,7 @@ const app = {
   },
 
   loadQuestion() {
-    if (this.state.currentQuestionIndex >= this.state.questions.length) {
+    if (this.state.currentQuestionIndex >= this.questions.length) {
       this.endQuiz();
       return;
     }
@@ -165,7 +164,43 @@ const app = {
     const pBar = document.getElementById('progress-bar');
 
     if (qNum) qNum.textContent = this.state.currentQuestionIndex + 1;
-    if (qText) qText.textContent = question.text;
+    if (qText) {
+      qText.textContent = question.text;
+
+      // Add figure if question has figureRef
+      if (question.figureRef && typeof REFLEX_DIAGRAMS !== 'undefined') {
+        const figureContainer = document.createElement('div');
+        figureContainer.style.marginTop = '1.5rem';
+
+        const pageNum = question.figureRef.page;
+        // Map known figures to SVG diagram keys
+        const diagramMap = {
+          7: 'babinski',
+          8: 'oppenheim',
+          21: 'babinski',
+          22: 'chaddock',
+          23: 'oppenheim',
+          24: 'gordon',
+          25: 'schaefer'
+        };
+        const diagramKey = diagramMap[pageNum];
+
+        if (diagramKey && REFLEX_DIAGRAMS[diagramKey]) {
+          figureContainer.innerHTML = REFLEX_DIAGRAMS[diagramKey];
+
+          const caption = document.createElement('p');
+          caption.textContent = question.figureRef.description;
+          caption.style.marginTop = '0.75rem';
+          caption.style.fontSize = '0.9rem';
+          caption.style.color = '#666';
+          caption.style.fontStyle = 'italic';
+          caption.style.textAlign = 'center';
+
+          figureContainer.appendChild(caption);
+          qText.appendChild(figureContainer);
+        }
+      }
+    }
     if (pBar) pBar.style.width = ((this.state.currentQuestionIndex / this.state.totalQuestions) * 100) + '%';
 
     const optionsContainer = document.getElementById('options-container');
@@ -201,7 +236,6 @@ const app = {
 
     if (isCorrect) {
       this.state.score++;
-      this.state.completedExams.add(question.examType);
     }
 
     const options = document.querySelectorAll('.option');
@@ -214,7 +248,6 @@ const app = {
       }
     });
 
-    this.updateExamTracking();
     setTimeout(() => this.nextQuestion(), 2000);
   },
 
@@ -323,13 +356,11 @@ const app = {
     const scoreEl = document.getElementById('final-score');
     const answeredEl = document.getElementById('result-answered');
     const correctEl = document.getElementById('result-correct');
-    const examsEl = document.getElementById('result-exams');
     const messageEl = document.getElementById('result-message');
 
     if (scoreEl) scoreEl.textContent = `${percentage}%`;
     if (answeredEl) answeredEl.textContent = this.state.answers.length;
     if (correctEl) correctEl.textContent = this.state.score;
-    if (examsEl) examsEl.textContent = this.state.completedExams.size;
 
     if (messageEl) {
       if (percentage >= 80) {
@@ -464,6 +495,9 @@ const app = {
     };
   }
 };
+
+// Expose app to window for inline scripts
+window.app = app;
 
 // Auto-init when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {

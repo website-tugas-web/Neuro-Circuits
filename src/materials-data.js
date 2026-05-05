@@ -171,40 +171,16 @@ const MATERIALS_DATA = [
 
 <p>Refleks patologis adalah refleks yang tidak ditemukan pada individu dewasa sehat, tetapi muncul pada kondisi lesi Upper Motor Neuron (UMN), khususnya lesi traktus piramidalis.</p>
 
-<h3>1. Refleks Hoffman-Tromner</h3>
-<p><strong>Teknik:</strong> Hiperekstensi pergelangan tangan, sentil ujung jari tengah.<br>
-<strong>Positif:</strong> Jari-jari fleksi dan ibu jari adduksi.<br>
-<strong>Makna:</strong> Unilateral = lesi UMN di atas C8. Bilateral pada 25% orang normal.</p>
-
-<h3>2. Refleks Babinski</h3>
-<p><strong>Teknik:</strong> Gores telapak kaki lateral dari tumit ke pangkal jempol kaki.<br>
-<strong>Positif:</strong> Dorsofleksi ibu jari kaki dengan atau tanpa fanning jari lainnya.<br>
-<strong>Makna:</strong> Lesi traktus piramidalis (UMN).</p>
-
-<h3>3. Refleks Chaddock</h3>
-<p><strong>Teknik:</strong> Gores lateral maleolus (sekitar mata kaki lateral).<br>
-<strong>Positif:</strong> Dorsofleksi ibu jari dengan atau tanpa fanning.<br>
-<strong>Makna:</strong> Alternatif Babinski untuk lesi traktus piramidalis.</p>
-
-<h3>4. Refleks Oppenheim</h3>
-<p><strong>Teknik:</strong> Urut kuat tibia dan otot tibialis anterior dari proksimal ke distal.<br>
-<strong>Positif:</strong> Dorsofleksi ibu jari kaki dengan atau tanpa fanning.<br>
-<strong>Makna:</strong> Lesi traktus piramidalis.</p>
-
-<h3>5. Refleks Gordon</h3>
-<p><strong>Teknik:</strong> Cubit otot gastroknemius (betis).<br>
-<strong>Positif:</strong> Dorsofleksi ibu jari kaki dengan atau tanpa fanning.<br>
-<strong>Makna:</strong> Lesi traktus piramidalis.</p>
-
-<h3>6. Refleks Schaefer</h3>
-<p><strong>Teknik:</strong> Cubit tendon Achilles.<br>
-<strong>Positif:</strong> Dorsofleksi ibu jari kaki dengan atau tanpa fanning.<br>
-<strong>Makna:</strong> Lesi traktus piramidalis.</p>
-
-<h3>7. Refleks Gonda</h3>
-<p><strong>Teknik:</strong> Tekan salah satu jari kaki dan lepaskan dengan cepat.<br>
-<strong>Positif:</strong> Dorsofleksi ibu jari kaki dengan atau tanpa fanning.<br>
-<strong>Makna:</strong> Lesi traktus piramidalis.</p>`,
+<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Refleks</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Teknik</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Positif</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Makna</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Hoffman-Tromner</td><td style="border: 1px solid #ddd; padding: 8px;">Hiperekstensi pergelangan tangan, sentil ujung jari tengah</td><td style="border: 1px solid #ddd; padding: 8px;">Jari-jari fleksi dan ibu jari adduksi</td><td style="border: 1px solid #ddd; padding: 8px;">Unilateral = lesi UMN di atas C8. Bilateral pada 25% orang normal</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Babinski</td><td style="border: 1px solid #ddd; padding: 8px;">Gores telapak kaki lateral dari tumit ke pangkal jempol kaki</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning jari lainnya</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis (UMN)</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Chaddock</td><td style="border: 1px solid #ddd; padding: 8px;">Gores lateral maleolus (sekitar mata kaki lateral)</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Alternatif Babinski untuk lesi traktus piramidalis</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Oppenheim</td><td style="border: 1px solid #ddd; padding: 8px;">Urut kuat tibia dan otot tibialis anterior dari proksimal ke distal</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Gordon</td><td style="border: 1px solid #ddd; padding: 8px;">Cubit otot gastroknemius (betis)</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Schaefer</td><td style="border: 1px solid #ddd; padding: 8px;">Cubit tendon Achilles</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Gonda</td><td style="border: 1px solid #ddd; padding: 8px;">Tekan salah satu jari kaki dan lepaskan dengan cepat</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
+</table>`,
     figures: "Gambar 21 (hal 67): Refleks Babinski; Gambar 22-25 (hal 68-69): Refleks Chaddock, Oppenheim, Gordon, Schaefer",
     references: [
       "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",
@@ -220,13 +196,14 @@ const MATERIALS_DATA = [
     content: `<h2>Skala Penilaian Refleks</h2>
 
 <h3>Skala Penilaian Refleks (0 hingga 4+):</h3>
-<ul>
-<li><strong>0</strong> = Tidak ada refleks (arefleksia)</li>
-<li><strong>1+</strong> = Refleks lemah/diminished (hiporefleksia)</li>
-<li><strong>2+</strong> = Refleks normal</li>
-<li><strong>3+</strong> = Refleks cepat/brisk (lebih cepat dari normal tetapi tidak tentu patologis)</li>
-<li><strong>4+</strong> = Refleks sangat cepat dengan disertai klonus - selalu patologis pada dewasa</li>
-</ul>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Grade</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Deskripsi</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Interpretasi</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">0</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada refleks</td><td style="border: 1px solid #ddd; padding: 8px;">Arefleksia</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">1+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks lemah/diminished</td><td style="border: 1px solid #ddd; padding: 8px;">Hiporefleksia</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">2+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks normal</td><td style="border: 1px solid #ddd; padding: 8px;">Normal</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">3+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks cepat/brisk</td><td style="border: 1px solid #ddd; padding: 8px;">Lebih cepat dari normal, tidak tentu patologis</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">4+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks sangat cepat dengan klonus</td><td style="border: 1px solid #ddd; padding: 8px;">Selalu patologis pada dewasa</td></tr>
+</table>
 
 <h3>Hiporefleksia (Refleks 0 atau 1+)</h3>
 <p><strong>Penyebab:</strong> Kelainan Lower Motor Neuron (LMN), lesi saraf perifer, lesi radiks saraf, fase akut cedera medula spinalis, penyakit neuromuskular, hipotiroidisme berat.</p>
@@ -264,14 +241,14 @@ const MATERIALS_DATA = [
 <p>Lokalisasi lesi neurologis menggunakan pola refleks, tonus, kekuatan, dan pemeriksaan sensorik untuk menentukan level dan lokasi kerusakan pada sistem saraf.</p>
 
 <h3>A. Membedakan Lesi UMN dan LMN</h3>
-<table>
-<tr><th>Karakteristik</th><th>UMN</th><th>LMN</th></tr>
-<tr><td>Refleks</td><td>Hiperefleksia (3-4+)</td><td>Hiporefleksia/Arefleksia (0-1+)</td></tr>
-<tr><td>Tonus</td><td>Spastisitas</td><td>Flaksiditas</td></tr>
-<tr><td>Klonus</td><td>Sustained</td><td>Tidak ada</td></tr>
-<tr><td>Refleks Patologis</td><td>Positif (Babinski, dll)</td><td>Negatif</td></tr>
-<tr><td>Atrofi</td><td>Minimal (disuse)</td><td>Signifikan</td></tr>
-<tr><td>Fasikulasi</td><td>Tidak ada</td><td>Dapat terlihat</td></tr>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Karakteristik</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">UMN</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">LMN</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Refleks</td><td style="border: 1px solid #ddd; padding: 8px;">Hiperefleksia (3-4+)</td><td style="border: 1px solid #ddd; padding: 8px;">Hiporefleksia/Arefleksia (0-1+)</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Tonus</td><td style="border: 1px solid #ddd; padding: 8px;">Spastisitas</td><td style="border: 1px solid #ddd; padding: 8px;">Flaksiditas</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Klonus</td><td style="border: 1px solid #ddd; padding: 8px;">Sustained</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Refleks Patologis</td><td style="border: 1px solid #ddd; padding: 8px;">Positif (Babinski, dll)</td><td style="border: 1px solid #ddd; padding: 8px;">Negatif</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Atrofi</td><td style="border: 1px solid #ddd; padding: 8px;">Minimal (disuse)</td><td style="border: 1px solid #ddd; padding: 8px;">Signifikan</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Fasikulasi</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada</td><td style="border: 1px solid #ddd; padding: 8px;">Dapat terlihat</td></tr>
 </table>
 
 <h3>B. Lokalisasi Berdasarkan Level Spinal</h3>
