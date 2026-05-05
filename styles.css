@@ -991,7 +991,56 @@ button.restart-btn:hover {
 .site-footer a { color: var(--maroon); }
 .site-footer a:hover { text-decoration: underline; }
 
+/* ---------- 13.5. SECTIONS WITH BACKGROUND IMAGES & RED OVERLAY ---------- */
+.section-with-bg {
+  position: relative;
+  background-color: var(--maroon-dark);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.section-with-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(74, 0, 16, 0.75) 0%,
+    rgba(45, 0, 8, 0.75) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section-with-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+.section-with-bg h1,
+.section-with-bg h2,
+.section-with-bg h3,
+.section-with-bg p,
+.section-with-bg .page-hero__eyebrow,
+.section-with-bg .page-hero__title,
+.section-with-bg .page-hero__lead {
+  color: var(--white);
+}
+
+.section-with-bg .page-hero__eyebrow {
+  color: var(--gold);
+}
+
 /* ---------- 14. RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .section-with-bg {
+    background-attachment: scroll;
+  }
+}
 @media (max-width: 1024px) {
   :root { --section-pad-x: 48px; }
 }
