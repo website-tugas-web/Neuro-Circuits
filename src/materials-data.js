@@ -27,7 +27,6 @@ const MATERIALS_DATA = [
 
 <h3>Jalur Refleks Tendon:</h3>
 <p>Ketika tendon diketuk dengan palu refleks, reseptor regang (muscle spindle) teraktivasi dan mengirim sinyal melalui serabut saraf aferen Ia ke medula spinalis. Di kornu anterior, terjadi sinaps monosinaptik langsung dengan neuron motorik alfa yang kemudian mengirim impuls melalui saraf eferen ke otot yang sama, menyebabkan kontraksi refleks.</p>`,
-    figures: "halaman 13-14: diagram komponen lengkung refleks; Gambar 21 (hal 67): Refleks Babinski; Gambar 22-25 (hal 68-69): Refleks patologis lainnya",
     references: [
       "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: The Neurology Examination</em>.",
@@ -74,7 +73,6 @@ const MATERIALS_DATA = [
 <li>Tumor otak atau medula spinalis</li>
 <li>Cerebral palsy</li>
 </ul>`,
-    figures: "Gambar 26 (hal 75): Tremor; Gambar 27-28 (hal 76-77): Tics dan Chorea",
     references: [
       "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>.",
@@ -118,7 +116,6 @@ const MATERIALS_DATA = [
 <li>Amyotrophic Lateral Sclerosis (ALS)</li>
 <li>Trauma saraf perifer</li>
 </ul>`,
-    figures: "halaman 72-75: Pemeriksaan tonus otot dan kekuatan otot; halaman 76: Fasikulasi dan atrofi otot pada lesi LMN",
     references: [
       "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>."
@@ -156,7 +153,6 @@ const MATERIALS_DATA = [
 <li><strong>Refleks Kremaster</strong> - Gores paha dalam dari distal ke proksimal, nilai testis terangkat</li>
 <li><strong>Refleks Anal</strong> - Gores sekitar anus melingkar, nilai kontraksi sfingter</li>
 </ul>`,
-    figures: "halaman 64-66: Teknik pemeriksaan refleks biseps, triseps, brakioradialis, patella, dan Achilles",
     references: [
       "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>."
@@ -181,7 +177,6 @@ const MATERIALS_DATA = [
 <tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Schaefer</td><td style="border: 1px solid #ddd; padding: 8px;">Cubit tendon Achilles</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
 <tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Gonda</td><td style="border: 1px solid #ddd; padding: 8px;">Tekan salah satu jari kaki dan lepaskan dengan cepat</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
 </table>`,
-    figures: "Gambar 21 (hal 67): Refleks Babinski; Gambar 22-25 (hal 68-69): Refleks Chaddock, Oppenheim, Gordon, Schaefer",
     references: [
       "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: The Neurology Examination</em>.",
@@ -225,7 +220,6 @@ const MATERIALS_DATA = [
 <li>Klonus patella: Dorong patella ke kaudal dengan cepat dan pertahankan tekanan</li>
 </ul>
 <p><strong>Interpretasi:</strong> Klonus berkelanjutan (sustained) = patologis, indikasi lesi central motor neuron. Pada bayi atau refleks sangat cepat, 3-4 ketukan bilateral dapat normal. Pada dewasa, >3-4 ketukan selalu patologis (lesi UMN).</p>`,
-    figures: "halaman 64-66: Dokumentasi grading refleks; halaman 65-66: Demonstrasi klonus pada refleks Achilles dan patella",
     references: [
       "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>."
@@ -276,7 +270,6 @@ const MATERIALS_DATA = [
 <h3>D. Contoh Kasus Lokalisasi</h3>
 <p><strong>Kasus 1:</strong> Kelemahan tungkai unilateral, hiperefleksia dengan klonus sustained, Babinski positif → Lesi UMN (stroke, cedera medula spinalis, tumor).</p>
 <p><strong>Kasus 2:</strong> Kelemahan kedua tungkai, refleks patella normal, refleks Achilles absent bilateral, Babinski negatif, atrofi betis → Lesi LMN pada S1-S2 (radikulopati S1 bilateral, neuropati perifer).</p>`,
-    figures: "halaman 70-71: Peta dermatom; halaman 72-80: Pemeriksaan motorik sistematis; Gambar 26-28 (hal 75-77): Pola gerakan involunter",
     references: [
       "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
       "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>.",
@@ -342,7 +335,6 @@ const MATERIALS_DATA = [
 <h3>E. Dokumentasi Hasil Pemeriksaan</h3>
 <p>Gunakan diagram stick figure dengan notasi refleks di setiap lokasi. Cantumkan grading (0, 1+, 2+, 3+, 4+). Tandai bila ada klonus.</p>
 <p>Contoh: "Biseps 2+/2+, Triseps 2+/2+, Brakioradialis 2+/2+, Patella 3+/3+, Achilles 2+/2+"</p>`,
-    figures: "halaman 64-69: Teknik pemeriksaan refleks fisiologis dan patologis; halaman 80-82: Teknik pemeriksaan koordinasi; Gambar 30 (hal 82): Patrick's sign",
     references: [
       "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
       "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",

@@ -126,29 +126,6 @@
       let html = `<h2>${material.titleEn}</h2>`;
       html += material.content;
 
-      if (material.figures) {
-        html += `<h3 style="margin-top:2rem;">Gambar</h3>`;
-
-        // Map topic IDs to their SVG diagrams
-        const diagramMap = {
-          1: ['reflexArc'], // Reflex Arc Anatomy
-          5: ['babinski', 'chaddock', 'oppenheim', 'gordon', 'schaefer'], // Pathological Reflexes
-          8: ['patrick'] // Patrick's Sign (FABER test)
-        };
-
-        if (diagramMap[id]) {
-          html += `<div style="margin-top:1rem;">`;
-          diagramMap[id].forEach(diagramKey => {
-            if (REFLEX_DIAGRAMS[diagramKey]) {
-              html += `<div style="margin-bottom:2rem;">`;
-              html += REFLEX_DIAGRAMS[diagramKey];
-              html += `</div>`;
-            }
-          });
-          html += `</div>`;
-        }
-      }
-
       if (material.references && material.references.length > 0) {
         html += `<h3 style="margin-top:2rem;">Referensi</h3><ul>`;
         material.references.forEach(ref => {
