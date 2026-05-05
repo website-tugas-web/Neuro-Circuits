@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Neuro Circuits — helping medical students master physiological and pathophysiological reflexes." />
+  <title>Neuro Circuits — Home</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+
+  <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#7B1224" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <line x1="4" y1="18" x2="20" y2="18" />
+    </svg>
+  </label>
+  <label for="nav-toggle" class="nav-scrim" aria-hidden="true"></label>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" aria-label="Primary navigation">
+    <div class="sidebar__crest" aria-hidden="true">
+      <!-- Brain / neuro-circuit mark — maroon outline, gold neural nodes -->
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+        <defs>
+          <linearGradient id="brainStroke" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#7B1224" />
+            <stop offset="100%" stop-color="#4a0010" />
+          </linearGradient>
+        </defs>
+        <!-- Brain outline: stylized two-hemisphere silhouette -->
+        <path
+          d="M14 26 C12 18 18 12 26 12 C28 8 32 8 32 11 C32 8 36 8 38 12 C46 12 52 18 50 26 C56 28 56 36 50 39 C52 47 46 53 38 51 C36 55 32 55 32 52 C32 55 28 55 26 51 C18 53 12 47 14 39 C8 36 8 28 14 26 Z"
+          fill="none"
+          stroke="url(#brainStroke)"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+        />
+        <!-- Central sulcus (interhemispheric line) -->
+        <path
+          d="M32 11 C30 22 34 30 32 38 C30 46 34 50 32 52"
+          fill="none"
+          stroke="#7B1224"
+          stroke-width="1.2"
+          opacity="0.45"
+          stroke-linecap="round"
+        />
+        <!-- Convolution suggestion -->
+        <path d="M19 22 C21 24 23 24 25 22" fill="none" stroke="#7B1224" stroke-width="1" opacity="0.4" />
+        <path d="M39 22 C41 24 43 24 45 22" fill="none" stroke="#7B1224" stroke-width="1" opacity="0.4" />
+        <path d="M17 36 C19 38 23 38 25 36" fill="none" stroke="#7B1224" stroke-width="1" opacity="0.4" />
+        <path d="M39 36 C41 38 45 38 47 36" fill="none" stroke="#7B1224" stroke-width="1" opacity="0.4" />
+
+        <!-- Neural circuit nodes -->
+        <circle cx="22" cy="22" r="2.2" fill="#C9A84C" />
+        <circle cx="42" cy="22" r="2.2" fill="#C9A84C" />
+        <circle cx="18" cy="36" r="1.8" fill="#C9A84C" />
+        <circle cx="46" cy="36" r="1.8" fill="#C9A84C" />
+        <circle cx="27" cy="44" r="1.8" fill="#C9A84C" />
+        <circle cx="37" cy="44" r="1.8" fill="#C9A84C" />
+
+        <!-- Synapse connections -->
+        <g stroke="#C9A84C" stroke-width="0.9" opacity="0.7" stroke-linecap="round">
+          <line x1="22" y1="22" x2="18" y2="36" />
+          <line x1="22" y1="22" x2="27" y2="44" />
+          <line x1="42" y1="22" x2="46" y2="36" />
+          <line x1="42" y1="22" x2="37" y2="44" />
+          <line x1="18" y1="36" x2="27" y2="44" />
+          <line x1="46" y1="36" x2="37" y2="44" />
+          <line x1="22" y1="22" x2="42" y2="22" />
+        </g>
+      </svg>
+    </div>
+
+    <h1 class="sidebar__title">Neuro&nbsp;Circuits</h1>
+    <hr class="sidebar__rule" />
+
+    <nav class="sidebar__nav" aria-label="Section">
+      <ul>
+        <li><a href="index.html" class="is-active">Home</a></li>
+        <li><a href="materials.html">Materials</a></li>
+        <li><a href="quiz.html">Interactive Quiz</a></li>
+        <li><a href="test.html">Test</a></li>
+        <li><a href="timer.html">Study Timer</a></li>
+        <li><a href="references.html">References</a></li>
+      </ul>
+    </nav>
+
+    <p class="sidebar__footnote">Est. MMXXVI · v3</p>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <div class="hero__bold" id="hero-title">Neuro&nbsp;Circuits</div>
+        <p class="hero__subtitle">Mastering Physiological &amp; Pathophysiological Reflexes</p>
+        <hr class="hero__divider" aria-hidden="true" />
+        <p class="hero__quote">&ldquo;In every reflex, the nervous system whispers its secrets.&rdquo;</p>
+      </div>
+
+      <a href="#about" class="hero__chevron" aria-label="Scroll to learn more">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </a>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section id="about" class="section">
+      <span class="section__eyebrow">Our Mission</span>
+      <h2 class="section__heading">What We Do</h2>
+      <div class="prose">
+        <p class="lead">Neuro Circuits helps medical students develop a confident, intuitive understanding of <strong>physiological</strong> and <strong>pathophysiological reflexes</strong> — the foundation of competent neurological examination.</p>
+        <p>Reflexes are dense, high-stakes content. They rarely sit at the top of a study schedule, yet they sit at the centre of every credible neurological assessment. Hyperreflexia, areflexia, and the subtler asymmetries of tone and response are often what separate a confident clinician from a hesitant one at the bedside.</p>
+        <p>We make this material approachable — without flattening its complexity. Through curated reading, interactive practice, structured testing, and guided study sessions, our platform turns rote memorisation into lasting clinical understanding.</p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section--alt">
+      <span class="section__eyebrow">Method</span>
+      <h2 class="section__heading">How It Works</h2>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature__numeral">I.</div>
+          <h3 class="feature__title">Foundational Materials</h3>
+          <p class="feature__body">Anatomy, technique, and pathophysiology — organised by clinical relevance, paired with palpable bedside landmarks.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__numeral">II.</div>
+          <h3 class="feature__title">Interactive Quiz</h3>
+          <p class="feature__body">Self-paced practice on reflex pathways and lesion localisation. Immediate feedback, spaced repetition, no penalties for curiosity.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__numeral">III.</div>
+          <h3 class="feature__title">Structured Test</h3>
+          <p class="feature__body">Timed assessments mirroring the form and rhythm of real OSCE stations — calibrated to surface gaps before they become exam day surprises.</p>
+        </div>
+        <div class="feature">
+          <div class="feature__numeral">IV.</div>
+          <h3 class="feature__title">Study Timer</h3>
+          <p class="feature__body">A focus tool built around evidence-based study cadences. Quiet, minimal, designed for long evenings before clinical postings.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY REFLEXES -->
+    <section class="section">
+      <span class="section__eyebrow">Clinical Relevance</span>
+      <h2 class="section__heading">Why Reflexes Matter</h2>
+      <div class="prose">
+        <p>A reflex is the simplest experiment a clinician can run on a patient — input, integration, output. When the result deviates, the deviation localises. A brisk patellar with an upgoing toe is a different conversation than the same finding with a downgoing toe.</p>
+        <p>Mastering this language costs time, and the cost is paid up front. Once paid, however, it returns interest for the rest of a clinical career: in the ER, in the ward, in the consult room. <em>Neuro Circuits</em> is built to make that initial investment worthwhile — and, as much as possible, even a little bit elegant.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <p>&copy; MMXXVI Neuro Circuits &middot; Mastering Physiological &amp; Pathophysiological Reflexes &middot; <a href="index.html">Home</a></p>
+    </footer>
+
+  </main>
+
+</body>
+</html>
