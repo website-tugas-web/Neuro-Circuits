@@ -9,7 +9,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static('.'));
 
 // Serve static files from project root (one level up from src/)
 app.use(express.static(path.join(__dirname, '..')));
