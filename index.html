@@ -35,6 +35,16 @@
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .nav-brand {
+            font-weight: 700;
+            color: #7B1224;
+            font-size: 1.1rem;
+            text-decoration: none;
         }
 
         nav ul {
@@ -45,6 +55,34 @@
             flex-wrap: wrap;
             max-width: 1200px;
             margin: 0 auto;
+            flex: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 3px;
+            background: #7B1224;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         nav button {
@@ -57,6 +95,7 @@
             color: #7B1224;
             transition: all 0.3s ease;
             border-radius: 6px;
+            position: relative;
         }
 
         nav button:hover {
@@ -68,6 +107,8 @@
             color: #7B1224;
             background: rgba(123, 18, 36, 0.15);
             font-weight: 600;
+            border-left: 4px solid #7B1224;
+            padding-left: calc(1rem - 4px);
         }
 
         /* Main Container */
@@ -200,6 +241,24 @@
             font-size: 1rem;
             font-weight: 600;
             color: #7B1224;
+            width: 100%;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #7B1224 0%, #C9A84C 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 4%;
         }
 
         .quiz-timer {
@@ -396,9 +455,52 @@
             align-items: center;
             justify-content: center;
             padding: 3rem 2rem;
-            background: linear-gradient(135deg, #7B1224 0%, #C9A84C 100%);
+            background: white;
             border-radius: 12px;
-            color: white;
+            color: #0f172a;
+            position: relative;
+        }
+
+        .progress-ring-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-ring {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-background {
+            fill: none;
+            stroke: #ede7d9;
+            stroke-width: 8;
+        }
+
+        .progress-ring-progress {
+            fill: none;
+            stroke: #7B1224;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 565.49;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s linear;
+        }
+
+        .timer-center {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
         }
 
         .session-label {
@@ -621,13 +723,51 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+
+            nav .nav-brand {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 1rem;
                 gap: 0.5rem;
+                max-width: none;
+                margin: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav ul.active {
+                max-height: 400px;
             }
 
             nav button {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.85rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.95rem;
+                text-align: left;
+                width: 100%;
+            }
+
+            nav button.active {
+                border-left: 4px solid #7B1224;
+                padding-left: calc(1rem - 4px);
+                background: rgba(123, 18, 36, 0.1);
             }
 
             h1 {
@@ -651,7 +791,7 @@
             }
 
             main {
-                padding: 70px 1rem 1rem;
+                padding: 120px 1rem 1rem;
             }
 
             section {
@@ -662,14 +802,24 @@
             .quiz-container {
                 gap: 1.5rem;
             }
+
+            .pomodoro-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
+        <a href="#" class="nav-brand" onclick="app.navigate('intro'); return false;">Neuro Circuits</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <ul id="nav-menu">
-            <li><button class="nav-btn active" data-section="intro">Start</button></li>
+            <li><button class="nav-btn active" data-section="intro">Home</button></li>
             <li><button class="nav-btn" data-section="quiz">Quiz</button></li>
             <li><button class="nav-btn" data-section="diagnosis">Diagnosis</button></li>
             <li><button class="nav-btn" data-section="result">Results</button></li>
@@ -703,11 +853,16 @@
         <section id="quiz">
             <div class="quiz-container">
                 <div class="quiz-header">
-                    <div class="quiz-progress">
-                        Question <span id="current-question">1</span> / <span id="total-questions">25</span>
-                    </div>
-                    <div class="quiz-timer" id="timer-display">
-                        <span class="timer-value" id="timer-seconds">60</span>s
+                    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                        <div class="quiz-progress">
+                            Question <span id="current-question">1</span> / <span id="total-questions">25</span>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-timer" id="timer-display">
+                            <span class="timer-value" id="timer-seconds">60</span>s
+                        </div>
                     </div>
                 </div>
 
@@ -797,9 +952,17 @@
             <h2>Focus Timer - Pomodoro</h2>
             <div class="pomodoro-container">
                 <div class="pomodoro-display">
-                    <div class="session-label" id="session-label">Focus</div>
-                    <div class="timer-display" id="pomodoro-timer">25:00</div>
-                    <p id="session-count">Session 1</p>
+                    <div class="progress-ring-container">
+                        <svg class="progress-ring" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="progress-ring-background" cx="100" cy="100" r="90" />
+                            <circle class="progress-ring-progress" id="progress-ring" cx="100" cy="100" r="90" />
+                        </svg>
+                        <div class="timer-center">
+                            <div class="timer-display" id="pomodoro-timer">25:00</div>
+                            <div class="session-label" id="session-label">Focus</div>
+                        </div>
+                    </div>
+                    <p id="session-count" style="margin-top: 1rem; color: #7B1224; font-weight: 600;">Session 1</p>
                 </div>
                 <div>
                     <h3>Select Duration</h3>
@@ -916,6 +1079,14 @@
             },
 
             setupEventListeners() {
+                // Hamburger menu toggle
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.getElementById('nav-menu');
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
                 // Navigation
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
@@ -925,6 +1096,9 @@
                             return;
                         }
                         this.navigate(section);
+                        // Close mobile menu
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
                     });
                 });
 
@@ -973,6 +1147,10 @@
                 const question = this.questions[this.state.currentQuestionIndex];
                 document.getElementById('current-question').textContent = this.state.currentQuestionIndex + 1;
                 document.getElementById('question-text').textContent = question.text;
+
+                // Update progress bar
+                const progress = ((this.state.currentQuestionIndex) / this.state.totalQuestions) * 100;
+                document.getElementById('progress-bar').style.width = progress + '%';
 
                 const optionsContainer = document.getElementById('options-container');
                 optionsContainer.innerHTML = '';
@@ -1074,6 +1252,8 @@
 
             endQuiz() {
                 this.stopQuizTimer();
+                // Set progress bar to 100%
+                document.getElementById('progress-bar').style.width = '100%';
                 this.navigate('result');
                 this.displayResults();
             },
@@ -1213,6 +1393,7 @@
                 modes.forEach(mode => {
                     const btn = document.createElement('button');
                     btn.className = `mode-btn ${mode.id === 'focus' ? 'active' : ''}`;
+                    btn.setAttribute('data-mode', mode.id);
                     btn.textContent = `${mode.label}\n${mode.duration}m`;
                     btn.onclick = () => this.selectPomodoroMode(mode.id);
                     container.appendChild(btn);
@@ -1225,7 +1406,7 @@
                 this.state.pomodoroRunning = false;
 
                 document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
+                document.querySelector(`[data-mode="${modeId}"]`).classList.add('active');
 
                 this.updatePomodoroDisplay();
             },
@@ -1266,6 +1447,16 @@
                     this.state.pomodoroMode === 'focus' ? 'Focus' :
                     this.state.pomodoroMode === 'shortBreak' ? 'Short Break' :
                     this.state.pomodoroMode === 'longBreak' ? 'Long Break' : 'Deep Focus';
+
+                // Update progress ring
+                const totalDuration = this.state.pomodoroDurations[this.state.pomodoroMode];
+                const elapsedPercent = (totalDuration - this.state.pomodoroTimeRemaining) / totalDuration;
+                const circumference = 565.49; // 2 * π * 90
+                const dashOffset = circumference * elapsedPercent;
+                const ring = document.getElementById('progress-ring');
+                if (ring) {
+                    ring.style.strokeDashoffset = dashOffset;
+                }
             },
 
             pomodoroComplete() {
