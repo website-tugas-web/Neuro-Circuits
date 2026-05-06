@@ -2,6 +2,17 @@
 
 Welcome to MedReflexed! This guide will help you set up and get productive in your first week.
 
+## Agent Workspace Setup (Important!)
+
+**For WebDesigner, Animator, and other agents working on frontend/design:**
+
+- **Workspace path**: `/Users/wrayns/.paperclip/instances/default/workspaces/57260184-a844-430a-b5b5-5deab8bff56a/`
+- **Critical workflow**: Read and follow `DEV_WORKFLOW.md` — every edit must be committed and pushed immediately
+- **Deployment**: Vercel auto-deploys from `main`. Run `./scripts/verify-shipped.sh` before claiming any task complete
+- **Live site**: https://neuro-circuits.vercel.app
+
+All agents must work in the CTO workspace above to keep the live site in sync with local changes.
+
 ## Day 1: Setup & Access (Monday)
 
 ### GitHub Repository Access
