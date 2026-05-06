@@ -1,347 +1,704 @@
-// Materials data from NEUAAA-105 - Bahasa Indonesia content
+// Materials data - 7 new Bahasa Indonesia topics (NEUAAA-135)
 const MATERIALS_DATA = [
   {
     id: 1,
-    titleEn: "Reflex Arc Anatomy",
-    titleId: "Anatomi Lengkung Refleks",
-    summary: "Lima komponen lengkung refleks: reseptor sensorik, saraf aferen, sinaps medula spinalis, saraf eferen, dan respons otot.",
-    content: `<h2>Anatomi Lengkung Refleks</h2>
+    titleEn: "Pemeriksaan Refleks Fisiologis",
+    titleId: "Pemeriksaan Refleks Fisiologis",
+    summary: "Menilai refleks fisiologis serta mengenali kelainannya.",
+    content: `<h2>Pemeriksaan Refleks Fisiologis</h2>
 
-<p>Refleks adalah respons motorik involunter terhadap stimulus sensorik tertentu. Lengkung refleks terdiri dari lima komponen utama yang bekerja secara terintegrasi:</p>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<h3>Komponen Lengkung Refleks:</h3>
-<ol>
-<li><strong>Reseptor Sensorik</strong> - Menerima stimulus dari lingkungan (proprioseptor pada tendon dan otot)</li>
-<li><strong>Saraf Aferen</strong> - Membawa impuls sensorik dari reseptor menuju medula spinalis melalui radiks dorsalis</li>
-<li><strong>Pusat Integrasi di Medula Spinalis</strong> - Sinaps antara neuron sensorik dan neuron motorik terjadi di kornu anterior medula spinalis</li>
-<li><strong>Saraf Eferen</strong> - Neuron motorik bawah (lower motor neuron) yang membawa impuls dari medula spinalis melalui radiks ventralis menuju efektor</li>
-<li><strong>Efektor</strong> - Otot yang berkontraksi sebagai respons terhadap stimulus</li>
-</ol>
+<h3>Tujuan</h3>
+<p>Menilai refleks fisiologis serta mengenali kelainannya.</p>
 
-<h3>Jenis Refleks:</h3>
+<h3>Alat dan Bahan</h3>
 <ul>
-<li><strong>Refleks Fisiologis</strong> - Refleks normal yang dapat diperiksa dengan palu refleks (refleks tendon dalam)</li>
-<li><strong>Refleks Patologis</strong> - Refleks yang muncul pada kondisi patologis, terutama lesi traktus piramidalis (Upper Motor Neuron)</li>
-<li><strong>Refleks Superfisial</strong> - Refleks yang ditimbulkan dengan rangsangan pada kulit (refleks abdominal, refleks kremaster, refleks anal)</li>
+<li>Palu refleks</li>
 </ul>
 
-<h3>Jalur Refleks Tendon:</h3>
-<p>Ketika tendon diketuk dengan palu refleks, reseptor regang (muscle spindle) teraktivasi dan mengirim sinyal melalui serabut saraf aferen Ia ke medula spinalis. Di kornu anterior, terjadi sinaps monosinaptik langsung dengan neuron motorik alfa yang kemudian mengirim impuls melalui saraf eferen ke otot yang sama, menyebabkan kontraksi refleks.</p>`,
+<h2>A. Teknik Pemeriksaan</h2>
+
+<h3>1. Persiapan</h3>
+<ol>
+<li>Persiapkan alat yang dibutuhkan.</li>
+</ol>
+
+<h3>2. Penilaian Refleks Tendon (Bisep, Trisep, Pergelangan, Patela, Tumit)</h3>
+
+<h4>A. Tendon Biceps (Posisi Pasien Duduk)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Apabila pemeriksa tidak kidal, pegang siku pasien dengan tangan kiri.</li>
+<li>Lengan bawah pasien harus rileks berada di atas lengan bawah pemeriksa.</li>
+<li>Jempol kiri pemeriksa harus berada di atas tendon biscep di lipat siku pasien.</li>
+<li>Ketuk jempol anda dengan palu refleks.</li>
+<li>Nilai adanya kontraksi pada otot bisceps dan pergerakan lengan bawah, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>B. Tendon Biceps (Posisi Pasien Berbaring)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Fleksikan lengan dan letakkan lengan bawah di atas abdomen.</li>
+<li>Pastikan otot biscep dalam keadaan rileks dengan menggerakkan siku secara pasif.</li>
+<li>Tempatkan jempol atau telunjuk kiri pemeriksa pada tendon bisceps di lipat siku pasien sebagai pemandu lokasi tendon otot biceps.</li>
+<li>Ketuk jari pemandu dengan palu refleks.</li>
+<li>Nilai adanya fleksi lengan bawah dan kontraksi pada otot bisceps, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>C. Tendon Triceps (Posisi Pasien Duduk)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Fleksikan lengan bawah pasien secara pasif sehingga sikunya membentuk sudut 90°. Pegang pergelangan tangan pasien sehingga otot pasien benar-benar dalam keadaan rileks.</li>
+<li>Letakkan jari telunjuk pada tendon triceps sebagai pemandu.</li>
+<li>Ketuk jari telunjuk dengan palu refleks, sekitar 3 cm di atas olecranon.</li>
+<li>Nilai adanya ekstensi lengan bawah dan kontraksi pada otot triceps, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>D. Tendon Triceps (Posisi Pasien Berbaring)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Lengan bawah pasien diposisikan di atas dadanya dalam posisi rileks, dengan siku fleksi 90°.</li>
+<li>Dengan menggunakan satu tangan, pemeriksa memegang tangan atau pergelangan tangan pasien memfleksikannya sedikit lebih dari 90°, dengan terlebih dahulu menggerakkan siku pasien fleksi-ekstensi secara pasif.</li>
+<li>Letakkan jari telunjuk pada tendon triceps sebagai pemandu.</li>
+<li>Ketuk jari telunjuk dengan palu refleks, sekitar 3 cm di atas olecranon.</li>
+<li>Ketuk tendon triceps dengan palu refleks, sekitar 3 cm di atas olecranon.</li>
+<li>Nilai adanya ekstensi lengan bawah dan kontraksi pada otot triceps, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>E. Refleks Brachioradialis / Pergelangan Tangan (Posisi Duduk)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Posisi awal memegang lengan pasien seperti saat melakukan pemeriksaan refleks bisceps.</li>
+<li>Kemudian ketuk di daerah 1 cm di atas prosesus radiostyloid dengan palu refleks.</li>
+<li>Nilai adanya fleksi lengan bawah dan kontraksi otot brachioradialis, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>F. Refleks Brachioradialis / Pergelangan Tangan (Posisi Berbaring)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Posisi awal memegang lengan pasien seperti saat melakukan pemeriksaan refleks bisceps.</li>
+<li>Pegang jari telunjuk pasien dengan satu tangan dan gerakkan lengan bawah dan pergelangan tangan pasien hingga otot rileks.</li>
+<li>Kemudian ketuk di daerah 1 cm di atas prosesus radiostyloid dengan palu refleks.</li>
+<li>Nilai adanya fleksi lengan bawah dan kontraksi otot brachioradialis, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>G. KPR Patella (Posisi Duduk)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Tungkai bawah pasien harus dalam keadaan menggantung dan rileks.</li>
+<li>Yakinkan otot quadriceps pasien dalam keadaan rileks.</li>
+<li>Ketuk tendon quadriceps dengan palu refleks, di antara patella dan tuberositas tibial.</li>
+<li>Nilai adanya ekstensi tungkai bawah dan kontraksi otot quadriceps, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>H. Patella (Posisi Berbaring)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pemeriksa menempatkan tangannya pada salah satu lutut pasien melewati bawah lutut yang akan diperiksa.</li>
+<li>Yakinkan tangan pemeriksa yang bebas mengecek bahwa otot quadriceps pasien dalam keadaan rileks.</li>
+<li>Ketuk tendon quadriceps dengan palu refleks, di antara patella dan tuberositas tibial.</li>
+<li>Nilai adanya ekstensi tungkai bawah dan kontraksi otot quadriceps, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>I. Tendon Achilles (Posisi Berbaring)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Letakkan kaki pasien dalam posisi menyilang, satu kaki di atas kaki lainnya.</li>
+<li>Pemeriksa memegang ujung kaki pasien dan menggerakkan pergelangan kakinya fleksi-ekstensi hingga otot rileks.</li>
+<li>Pemeriksa menekan kaki pasien sehingga kaki pasien sedikit dorsofleksi.</li>
+<li>Ketuk tendon Achilles dengan palu refleks.</li>
+<li>Nilai adanya fleksi dorsum pedis atau ekstensi plantar pedis, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h3>3. Refleks Superfisial</h3>
+
+<h4>A. Refleks Abdominal</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pasien berbaring dalam keadaan rileks.</li>
+<li>Goreskan ujung lancip palu refleks dengan arah dari tepi ke umbilikus di enam regio abdomen (epigastrik, mesogastrik, hipogastrik, kanan dan kiri).</li>
+<li>Nilai adanya pergerakan umbilikus yang disebabkan oleh adanya kontraksi otot abdomen.</li>
+</ol>
+
+<h4>B. Refleks Kremaster</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pasien berbaring di atas meja periksa.</li>
+<li>Goreskan ujung lancip palu refleks di daerah paha dalam dengan arah dari distal ke proksimal.</li>
+<li>Nilai bila terlihat testis terangkat, bandingkan kanan dan kiri.</li>
+</ol>
+
+<h4>C. Refleks Anal</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pasien berbaring dengan posisi litotomi.</li>
+<li>Dengan perlahan, goreskan ujung lancip palu refleks di sekitar anus dengan gerakan melingkar.</li>
+<li>Nilai adanya kontraksi dari muskulus sfingter ani eksternal.</li>
+</ol>
+
+<h4>D. Snout Refleks (Refleks Regresi)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Dengan perlahan ketukkan jari pemeriksa di antara hidung dan mulut pasien.</li>
+<li>Nilai respon mulut pasien berupa gerakan mencucu.</li>
+</ol>
+
+<h2>B. Analisis Hasil Pemeriksaan</h2>
+
+<h3>1. Penilaian Hasil Pemeriksaan Refleks</h3>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Nilai</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Interpretasi</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">0</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada refleks</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">1</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks lemah</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">2</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks normal</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">3</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks cepat</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">4</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks cepat dengan disertai klonus (beberapa kontraksi pendek dan ritmik)</td></tr>
+</table>
+
+<h3>2. Kelainan yang Dapat Ditemukan</h3>
+<ol style="list-style-type: lower-alpha;">
+<li><strong>Hiporefleksia:</strong> refleks menurun pada kelainan lower motor neuron.</li>
+<li><strong>Arefleksia.</strong> Dapat disebabkan oleh:
+  <ul>
+  <li>Lesi yang melibatkan saraf tepi (jalur aferen dan/atau eferen lengkung refleks)</li>
+  <li>Lesi pada bagian sentral (spinal root) dari lengkung refleks, seperti syringomalasia</li>
+  <li>Fase akut dari cedera spinal</li>
+  <li>Koma dalam</li>
+  <li>Arefleksia kongenital, biasanya pada tungkai</li>
+  </ul>
+</li>
+<li><strong>Hiperefleksia:</strong> refleks meningkat pada gangguan yang melibatkan upper motor neuron.</li>
+<li><strong>Adanya klonus</strong> merupakan tanda patologis dan indikasi adanya lesi pada central motor neuron (CML) di atas refleks cabang spinal. Pada bayi baru lahir atau pasien dengan refleks yang sangat cepat, klonus bertahan selama 3–4 ketukan didapatkan di kedua sisi.</li>
+</ol>`,
     references: [
-      "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: The Neurology Examination</em>.",
-      "Lumbantobing. 2008. <em>Neurologi Klinik Pemeriksaan Fisik dan Mental</em>. Jakarta: Balai Penerbit FKUI, pp. 46-47."
+      "Bickley. <em>Bates Guide to Physical Examination and History Taking, 8th Edition</em>. 2002–08.",
+      "Duijnhoven, Bele. <em>Skills in Medicine: Neurology Examination</em>. 2009."
     ]
   },
   {
     id: 2,
-    titleEn: "Upper Motor Neurons",
-    titleId: "Neuron Motorik Atas",
-    summary: "Traktus piramidalis dan ekstrapiramidalis: asal, jalur, dan tanda klinis lesi UMN.",
-    content: `<h2>Neuron Motorik Atas</h2>
+    titleEn: "Pemeriksaan Sistem Motorik",
+    titleId: "Pemeriksaan Sistem Motorik",
+    summary: "Menilai postur, gerakan involunter, tonus otot, dan kekuatan otot.",
+    content: `<h2>Pemeriksaan Sistem Motorik</h2>
 
-<p>Upper Motor Neuron (UMN) atau neuron motorik atas adalah neuron yang membawa impuls motorik dari korteks serebri dan batang otak menuju medula spinalis. UMN terdiri dari dua traktus utama:</p>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<h3>Traktus Piramidalis:</h3>
-<ul>
-<li>Traktus kortikospinalis yang berasal dari korteks motorik primer (area 4 Brodmann)</li>
-<li>Menyilang di dekusasio piramidalis di medula oblongata</li>
-<li>Mengontrol gerakan volunter halus dan terampil</li>
-</ul>
-
-<h3>Traktus Ekstrapiramidalis:</h3>
-<ul>
-<li>Meliputi jalur motorik yang tidak melalui piramis medula oblongata</li>
-<li>Terlibat dalam kontrol postural, tonus otot, dan gerakan involunter</li>
-</ul>
-
-<h3>Tanda dan Gejala Lesi UMN:</h3>
+<h3>Tujuan</h3>
 <ol>
-<li><strong>Hiperefleksia</strong> - Refleks tendon meningkat pada pemeriksaan refleks fisiologis. Refleks dapat dinilai sebagai 3+ (refleks cepat/brisk) atau 4+ (refleks sangat cepat dengan klonus)</li>
-<li><strong>Spastisitas</strong> - Peningkatan tonus otot yang bergantung pada kecepatan peregangan (velocity-dependent)</li>
-<li><strong>Klonus</strong> - Kontraksi otot ritmik yang berulang, merupakan tanda patologis lesi pada central motor neuron di atas cabang refleks spinal</li>
-<li><strong>Refleks Patologis Positif</strong> - Munculnya refleks Babinski, Oppenheim, Chaddock, Gordon, dan refleks patologis lainnya</li>
-<li><strong>Kelemahan Pola Piramidal</strong> - Kelemahan lebih menonjol pada otot ekstensor lengan atas dan fleksor tungkai bawah</li>
-<li><strong>Tidak Ada Atrofi Otot Signifikan</strong> - Berbeda dengan lesi LMN, atrofi otot minimal atau hanya terjadi akibat disuse</li>
+<li>Menilai postur dan habitus (lihat Bab II General Survey).</li>
+<li>Menilai adanya gerakan involunter.</li>
+<li>Menilai tonus otot.</li>
+<li>Menilai kekuatan otot.</li>
 </ol>
 
-<h3>Penyebab Lesi UMN:</h3>
+<h3>Alat dan Bahan</h3>
 <ul>
-<li>Stroke iskemik atau hemoragik</li>
-<li>Cedera medula spinalis</li>
-<li>Sklerosis multipel</li>
-<li>Tumor otak atau medula spinalis</li>
+<li>Tidak ada</li>
+</ul>
+
+<h2>A. Teknik Pemeriksaan</h2>
+
+<h3>1. Persiapan</h3>
+<ol>
+<li>Siapkan alat dan bahan.</li>
+<li>Jelaskan kepada pasien jenis dan prosedur pemeriksaan yang dilakukan.</li>
+<li>Cuci tangan sebelum melakukan prosedur pemeriksaan.</li>
+</ol>
+
+<h3>2. Inspeksi</h3>
+<ol>
+<li>Minta pasien berdiri dengan santai.</li>
+<li>Nilai postur tubuh pasien dan kontur otot. Amati tanda-tanda adanya hipertrofi maupun atrofi otot.</li>
+<li>Nilai adanya gerakan involunter seperti tremor, fasikulasi, dan gerakan koreiform.</li>
+</ol>
+
+<h3>3. Penilaian Tonus Otot</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Persiapkan pasien dalam posisi berbaring, se-rileks mungkin.</li>
+<li>Pegang lengan pasien dengan menempatkan tangan pemeriksa di sekitar pergelangan tangan pasien (hanya di sendi siku dan lutut; sendi-sendi besar). Siku dalam keadaan menempel pada meja periksa.</li>
+<li>Tempatkan jari-jari pemeriksa pada tendon biceps.</li>
+<li>Fleksi dan ekstensikan sendi siku beberapa kali.</li>
+<li>Nilai tonus otot-otot lengan atas pasien dan bandingkan kanan dan kiri.</li>
+<li>Nilai juga tonus otot-otot tungkai atas dengan fleksi dan ekstensi secara pasif sendi panggul dan lutut.</li>
+</ol>
+
+<h3>4. Penilaian Kekuatan Otot</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Untuk menilai kekuatan otot, pasien harus mengkontraksikan ototnya secara maksimal.</li>
+<li>Coba untuk membuat tahanan terhadap otot yang diperiksa dengan menggunakan tangan pemeriksa.</li>
+<li>Saat menilai kekuatan otot pasien, coba untuk membuat perbandingan dengan kekuatan pemeriksa.</li>
+<li>Buat penilaian semi kuantitatif berdasarkan skala 0–5.</li>
+</ol>
+
+<h2>B. Area Pemeriksaan</h2>
+<p>(tetap sama seperti sebelumnya — tidak diubah)</p>
+
+<h2>C. Analisis Hasil Pemeriksaan</h2>
+
+<h3>1. Atrofi Otot</h3>
+<p>Atrofi otot dapat ditemukan pada:</p>
+<ol style="list-style-type: lower-alpha;">
+<li>Penyakit kronis dan malnutrisi</li>
+<li>Penyakit muskular</li>
+<li>Setelah kerusakan saraf perifer</li>
+<li>Setelah kerusakan traktus kortikospinal</li>
+</ol>
+<p>Bentuk atrofi dapat berupa:</p>
+<ol style="list-style-type: lower-alpha;">
+<li>Atrofi asimetris terjadi pada contohnya mononeuropathy.</li>
+<li>Atrofi simetris terjadi pada contohnya penyakit muskular.</li>
+</ol>
+
+<h3>2. Gerakan Involunter</h3>
+
+<h4>a. Fasikulasi</h4>
+<p>Fasikulasi merupakan kontraksi otot yang tidak beraturan. Keadaan ini dapat mengindikasikan adanya lesi motor neuron (contohnya poliomielitis, amyotrophic lateral sclerosis) namun dapat juga tidak memiliki makna patologis.</p>
+
+<h4>b. Tremor</h4>
+<p>Tremor merupakan gerakan involunter yang relatif berirama, yang kurang lebih dapat dibagi menjadi tiga kelompok:</p>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Jenis Tremor</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Karakteristik</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Resting (Static) Tremors</td><td style="border: 1px solid #ddd; padding: 8px;">Tremor ini paling mencolok saat istirahat dan dapat berkurang atau menghilang dengan adanya pergerakan.<br/>→ khas pada Parkinson</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Postural Tremors</td><td style="border: 1px solid #ddd; padding: 8px;">Tremor ini terlihat saat bagian yang terkena aktif menjaga postur.<br/>→ contoh: hipertiroid, kecemasan, kelelahan</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Intention Tremors</td><td style="border: 1px solid #ddd; padding: 8px;">Merupakan tremor yang hilang saat istirahat dan timbul saat aktivitas dan semakin memburuk bila target yang akan disentuh semakin dekat.<br/>→ menunjukkan gangguan cerebellum (misalnya multiple sclerosis)</td></tr>
+</table>
+
+<h4>c. Tics</h4>
+<p>Tics merupakan gerakan yang singkat, berulang, stereotip, gerakan terkoordinasi yang terjadi pada interval yang tidak teratur.</p>
+<ul>
+<li>Contoh: berulang mengedip, meringis, dan mengangkat bahu</li>
+<li>Dapat ditekan sementara oleh pasien</li>
+<li>Sering disertai dorongan (urge) sebelum gerakan</li>
+</ul>
+<p>Penyebab termasuk sindrom seperti Tourette, serta obat-obatan seperti fenotiazin dan amfetamin.</p>
+
+<h4>d. Gerakan Choreiform (Chorea)</h4>
+<p>Gerakan choreiform merupakan gerakan yang singkat, cepat, tidak teratur, dan tak terduga.</p>
+<ul>
+<li>Terjadi saat istirahat atau mengganggu gerakan terkoordinasi normal</li>
+<li>Tidak seperti tics, chorea jarang berulang</li>
+<li>Wajah, kepala, lengan bawah, dan tangan sering terlibat</li>
+</ul>
+<p>Penyebabnya termasuk:</p>
+<ul>
+<li>Chorea Sydenham (demam rematik)</li>
+<li>Penyakit Huntington</li>
+</ul>
+
+<h4>e. Athetosis</h4>
+<p>Gerakan athetoid lebih lambat dan lebih memutar dan menggeliat dibandingkan gerakan choreiform, dan memiliki amplitudo yang lebih besar.</p>
+<ul>
+<li>Paling sering melibatkan wajah dan ekstremitas distal</li>
+<li>Sering dikaitkan dengan spastisitas</li>
+</ul>
+<p>Penyebabnya antara lain:</p>
+<ul>
 <li>Cerebral palsy</li>
-</ul>`,
+</ul>
+
+<h3>3. Penilaian Tonus Otot</h3>
+<ol style="list-style-type: lower-alpha;">
+<li><strong>Rigiditas:</strong> adanya tahanan pada seluruh pergerakan → sistem ekstrapiramidal</li>
+<li><strong>Spastisitas:</strong> adanya tahanan pada bagian tertentu → sistem piramidal</li>
+<li><strong>Hipotonia:</strong> penurunan tonus otot</li>
+</ol>
+
+<h3>4. Penilaian Kekuatan Otot (Skala 0–5)</h3>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Skala</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Interpretasi</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">0</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada pergerakan sama sekali, tonus otot tidak teraba</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">1</td><td style="border: 1px solid #ddd; padding: 8px;">Tonus otot teraba namun tidak ada pergerakan</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">2</td><td style="border: 1px solid #ddd; padding: 8px;">Terdapat pergerakan namun tidak dapat melawan gravitasi</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">3</td><td style="border: 1px solid #ddd; padding: 8px;">Melawan gravitasi tanpa tahanan</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">4</td><td style="border: 1px solid #ddd; padding: 8px;">Melawan tahanan ringan</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">5</td><td style="border: 1px solid #ddd; padding: 8px;">Melawan tahanan maksimal</td></tr>
+</table>`,
     references: [
-      "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>.",
-      "Lumbantobing. 2008. <em>Neurologi Klinik Pemeriksaan Fisik dan Mental</em>. Jakarta: Balai Penerbit FKUI, pp. 46-47."
+      "Bickley. <em>Bates Guide to Physical Examination and History Taking 8th Edition</em>. 2002–08.",
+      "Duijnhoven, Bele. <em>Skills in Medicine: Neurology Examination</em>. 2009."
     ]
   },
   {
     id: 3,
-    titleEn: "Lower Motor Neurons",
-    titleId: "Neuron Motorik Bawah",
-    summary: "Unit motorik: sel kornu anterior, saraf perifer, sambungan neuromuskular. Tanda disfungsi LMN.",
-    content: `<h2>Neuron Motorik Bawah</h2>
+    titleEn: "Pemeriksaan Refleks Patologis",
+    titleId: "Pemeriksaan Refleks Patologis",
+    summary: "Melakukan pemeriksaan Hofmann Tromner, Babinski, Oppenheim, Chaddock, Gordon, Schaefer, dan Gonda.",
+    content: `<h2>Pemeriksaan Refleks Patologis</h2>
 
-<p>Lower Motor Neuron (LMN) atau neuron motorik bawah adalah neuron yang membawa impuls langsung dari medula spinalis atau batang otak ke otot rangka.</p>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<h3>Komponen LMN:</h3>
+<h3>Tujuan</h3>
+<p>Melakukan pemeriksaan:</p>
 <ol>
-<li><strong>Sel Kornu Anterior</strong> - Badan sel neuron motorik di substansia grisea medula spinalis</li>
-<li><strong>Radiks Ventralis</strong> - Akson neuron motorik yang keluar dari medula spinalis</li>
-<li><strong>Saraf Perifer</strong> - Nervus yang membawa impuls motorik</li>
-<li><strong>Sambungan Neuromuskular</strong> - Tempat transmisi sinyal dari saraf ke otot melalui asetilkolin</li>
-<li><strong>Otot Rangka</strong> - Efektor akhir</li>
+<li>Hofmann Tromner</li>
+<li>Babinski</li>
+<li>Oppenheim</li>
+<li>Chaddock</li>
+<li>Gordon</li>
+<li>Schaefer</li>
+<li>Gonda</li>
 </ol>
 
-<h3>Tanda dan Gejala Lesi LMN:</h3>
-<ol>
-<li><strong>Hiporefleksia atau Arefleksia</strong> - Refleks tendon menurun (1+) atau bahkan hilang sama sekali (0)</li>
-<li><strong>Flaksiditas</strong> - Penurunan atau hilangnya tonus otot</li>
-<li><strong>Atrofi Otot</strong> - Pengecilan massa otot yang signifikan dan progresif akibat denervasi</li>
-<li><strong>Fasikulasi</strong> - Kontraksi otot tidak beraturan yang terlihat sebagai kedutan pada permukaan kulit</li>
-<li><strong>Kelemahan Otot</strong> - Distribusi kelemahan sesuai dengan saraf yang terkena</li>
-<li><strong>Refleks Patologis Negatif</strong> - Tidak ditemukan refleks Babinski atau refleks patologis lainnya</li>
-</ol>
-
-<h3>Kondisi yang Menyebabkan Lesi LMN:</h3>
+<h3>Alat dan Bahan</h3>
 <ul>
-<li>Poliomielitis</li>
-<li>Guillain-Barré Syndrome</li>
-<li>Kompresi radiks saraf (herniated disc)</li>
-<li>Neuropati perifer (diabetes, alkohol, defisiensi vitamin B12)</li>
-<li>Amyotrophic Lateral Sclerosis (ALS)</li>
-<li>Trauma saraf perifer</li>
-</ul>`,
+<li>Palu refleks</li>
+</ul>
+
+<h2>A. Teknik Pemeriksaan</h2>
+
+<h3>1. Persiapan</h3>
+<ol>
+<li>Siapkan alat dan bahan.</li>
+<li>Jelaskan kepada pasien jenis dan prosedur pemeriksaan yang dilakukan.</li>
+<li>Mencuci tangan.</li>
+</ol>
+
+<h3>2. Pemeriksaan Refleks</h3>
+
+<h4>A. Refleks Hoffman Tromner</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk melakukan hiperekstensi di pergelangan tangannya, kemudian ujung jari tengah disentil (snapped).</li>
+<li>Lihat gerakan jari lainnya, hasil positif adalah bila jari-jari fleksi dan ibu jari adduksi.</li>
+</ol>
+<p>Kemudian, minta pasien berbaring di meja periksa dengan kedua tungkai diluruskan.</p>
+
+<h4>B. Refleks Babinski</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pemeriksa memegang pergelangan kaki untuk memfiksasi kaki pasien.</li>
+<li>Gunakan ujung tajam palu refleks untuk menggores telapak kaki bagian lateral, mulai tumit menuju pangkal jempol kaki.</li>
+<li>Goresan dilakukan secara perlahan dan tidak sampai mengakibatkan rasa nyeri.</li>
+</ol>
+<p>Lakukan prosedur pemeriksaan ini pada kaki lainnya dan bandingkan hasilnya.</p>
+
+<h4>C. Refleks Chaddock</h4>
+<p>Rangsangan diberikan dengan cara menggoreskan ujung runcing palu refleks di bagian lateral maleolus.</p>
+
+<h4>D. Refleks Oppenheim</h4>
+<p>Rangsangan diberikan dengan mengurut dengan kuat tibia dan otot tibialis anterior dari arah proksimal ke distal.</p>
+
+<h4>E. Refleks Gordon</h4>
+<p>Rangsangan diberikan dengan mencubit otot gastroknemius.</p>
+
+<h4>F. Refleks Schaefer</h4>
+<p>Rangsangan diberikan dengan mencubit tendon Achilles.</p>
+
+<h4>G. Refleks Gonda</h4>
+<p>Rangsangan diberikan dengan menekan salah satu jari kaki dan melepaskannya.</p>
+
+<h2>B. Analisis Hasil Pemeriksaan</h2>
+<p>Refleks Hoffman Tromner positif bilateral pada 25% orang normal, sedangkan bila unilateral merupakan indikasi lesi UMN di atas segmen servikal VI.</p>
+<p>Refleks dikatakan positif apabila pada saat dilakukan manuver-manuver di atas didapatkan gerakan dorsofleksi ibu jari kaki yang dapat disertai dengan gerak mekarnya jari-jari lainnya. Refleks-refleks ini positif pada lesi traktus piramidalis.</p>`,
     references: [
-      "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>."
+      "Bickley, LS. Szilagyi PG: <em>Bates' Guide to Physical Examination and History Taking, 10th edition</em>. Lippincott Williams & Wilkins, China, 2009.",
+      "Duijnhoven, Belle. <em>Skills in Medicine: The Neurology Examination</em>. 2009.",
+      "Lumbantobing. <em>Neurologi Klinik Pemeriksaan Fisik dan Mental</em>. Jakarta: Balai Penerbit FKUI, 2008. p. 46–47."
     ]
   },
   {
     id: 4,
-    titleEn: "Deep Tendon Reflexes",
-    titleId: "Refleks Tendon Dalam",
-    summary: "Patella, Achilles, biseps, triseps, brakioradialis: grading, varian normal, dan patologi.",
-    content: `<h2>Refleks Tendon Dalam</h2>
+    titleEn: "Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick",
+    titleId: "Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick",
+    summary: "Melakukan pemeriksaan Patrick dan kontra Patrick.",
+    content: `<h2>Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick</h2>
 
-<p>Refleks tendon dalam (deep tendon reflexes) adalah refleks fisiologis yang diperiksa dengan mengetuk tendon menggunakan palu refleks.</p>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<h3>Refleks Ekstremitas Atas:</h3>
-<h4>1. Refleks Biseps (C5-C6)</h4>
-<p>Posisi: Lengan bawah rileks di atas lengan bawah pemeriksa. Jempol pemeriksa di atas tendon biseps di lipat siku. Nilai: kontraksi otot biseps dan fleksi lengan bawah.</p>
+<h3>Tujuan</h3>
+<p>Melakukan pemeriksaan Patrick dan kontra Patrick.</p>
 
-<h4>2. Refleks Triseps (C7-C8)</h4>
-<p>Posisi: Lengan bawah fleksi 90°. Ketuk tendon triseps 3 cm di atas olekranon. Nilai: ekstensi lengan bawah dan kontraksi otot triseps.</p>
-
-<h4>3. Refleks Brakioradialis (C5-C6)</h4>
-<p>Posisi: Seperti refleks biseps. Ketuk 1 cm di atas prosesus stiloid radial. Nilai: fleksi lengan bawah dan kontraksi otot brakioradialis.</p>
-
-<h3>Refleks Ekstremitas Bawah:</h3>
-<h4>4. Refleks Patella (L2-L4)</h4>
-<p>Posisi: Tungkai bawah menggantung rileks atau lutut fleksi di atas tangan pemeriksa. Ketuk tendon kuadriseps di antara patella dan tuberositas tibialis. Nilai: ekstensi tungkai bawah dan kontraksi otot kuadriseps.</p>
-
-<h4>5. Refleks Achilles (S1-S2)</h4>
-<p>Posisi: Kaki menyilang atau pergelangan kaki sedikit dorsofleksi. Ketuk tendon Achilles. Nilai: fleksi dorsum pedis atau ekstensi plantar pedis.</p>
-
-<h3>Refleks Superfisial:</h3>
+<h3>Alat dan Bahan</h3>
 <ul>
-<li><strong>Refleks Abdominal</strong> - Gores tepi ke umbilikus, nilai pergerakan umbilikus</li>
-<li><strong>Refleks Kremaster</strong> - Gores paha dalam dari distal ke proksimal, nilai testis terangkat</li>
-<li><strong>Refleks Anal</strong> - Gores sekitar anus melingkar, nilai kontraksi sfingter</li>
-</ul>`,
+<li>Tidak ada</li>
+</ul>
+
+<h2>A. Teknik Pemeriksaan</h2>
+
+<h3>1. Persiapan</h3>
+<ol>
+<li>Siapkan alat dan bahan.</li>
+<li>Jelaskan kepada pasien jenis dan prosedur pemeriksaan yang dilakukan.</li>
+<li>Minta pasien berbaring di meja periksa dengan kedua tungkai diluruskan.</li>
+</ol>
+
+<h3>2. Patrick's Sign</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Pemeriksa melakukan fleksi sendi lutut, abduksi, dan internal rotasi pada salah satu tungkai pasien.</li>
+<li>Salah satu tangan pemeriksa diletakkan pada anterior superior os iliaka untuk menstabilkan panggul, sedangkan tangan lainnya diletakkan pada lutut pasien yang fleksi kemudian ditekan.</li>
+<li>Nilai adakah nyeri dan lokasinya, bandingkan tungkai kanan dan kiri.</li>
+</ol>
+
+<h3>3. Contra-Patrick's Sign</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Pemeriksa melakukan fleksi sendi lutut, abduksi, dan eksternal rotasi pada salah satu tungkai pasien.</li>
+<li>Salah satu tangan pemeriksa diletakkan pada anterior superior os iliaka untuk menstabilkan panggul, sedangkan tangan lainnya diletakkan pada lutut pasien yang fleksi kemudian ditekan.</li>
+<li>Nilai adakah nyeri dan lokasinya, bandingkan tungkai kanan dan kiri.</li>
+</ol>
+
+<h2>B. Analisis Hasil Pemeriksaan</h2>
+
+<h3>1. Patrick's Sign</h3>
+<p>Pemeriksaan ini dilakukan untuk mengevaluasi kelainan pada sendi panggul atau sendi sakroiliaka.</p>
+<p>Jika rasa nyeri timbul pada sisi ipsilateral anterior, maka hal ini menandakan adanya gangguan sendi panggul pada sisi ipsilateral.</p>
+<p>Jika nyeri timbul pada sisi kontralateral posterior sekitar sendi panggul, maka hal ini menandakan adanya kelainan pada sendi tersebut.</p>
+
+<h3>2. Contra-Patrick's Sign</h3>
+<p>Pemeriksaan ini merupakan kebalikan dari tindakan Patrick's sign.</p>
+<p>Bila nyeri timbul pada pemeriksaan ini, maka hal ini menandakan adanya kelainan pada sendi sakroiliaka.</p>`,
     references: [
-      "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>."
+      "Buckup K. <em>Clinical Test for the Musculoskeletal System: Examinations–Signs–Phenomena. 2nd ed</em>. Stuttgart: Thieme; 2008."
     ]
   },
   {
     id: 5,
-    titleEn: "Pathological Reflexes",
-    titleId: "Refleks Patologis",
-    summary: "Babinski, Chaddock, Gordon, Oppenheim. Cara dan kapan memunculkannya; apa yang mereka tunjukkan.",
-    content: `<h2>Refleks Patologis</h2>
+    titleEn: "Pemeriksaan Koordinasi",
+    titleId: "Pemeriksaan Koordinasi",
+    summary: "Menilai fungsi koordinasi.",
+    content: `<h2>Pemeriksaan Koordinasi</h2>
 
-<p>Refleks patologis adalah refleks yang tidak ditemukan pada individu dewasa sehat, tetapi muncul pada kondisi lesi Upper Motor Neuron (UMN), khususnya lesi traktus piramidalis.</p>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<table style="border-collapse: collapse; width: 100%; margin: 1.5rem 0;">
-<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Refleks</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Teknik</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Positif</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Makna</th></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Hoffman-Tromner</td><td style="border: 1px solid #ddd; padding: 8px;">Hiperekstensi pergelangan tangan, sentil ujung jari tengah</td><td style="border: 1px solid #ddd; padding: 8px;">Jari-jari fleksi dan ibu jari adduksi</td><td style="border: 1px solid #ddd; padding: 8px;">Unilateral = lesi UMN di atas C8. Bilateral pada 25% orang normal</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Babinski</td><td style="border: 1px solid #ddd; padding: 8px;">Gores telapak kaki lateral dari tumit ke pangkal jempol kaki</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning jari lainnya</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis (UMN)</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Chaddock</td><td style="border: 1px solid #ddd; padding: 8px;">Gores lateral maleolus (sekitar mata kaki lateral)</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Alternatif Babinski untuk lesi traktus piramidalis</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Oppenheim</td><td style="border: 1px solid #ddd; padding: 8px;">Urut kuat tibia dan otot tibialis anterior dari proksimal ke distal</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Gordon</td><td style="border: 1px solid #ddd; padding: 8px;">Cubit otot gastroknemius (betis)</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Schaefer</td><td style="border: 1px solid #ddd; padding: 8px;">Cubit tendon Achilles</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Gonda</td><td style="border: 1px solid #ddd; padding: 8px;">Tekan salah satu jari kaki dan lepaskan dengan cepat</td><td style="border: 1px solid #ddd; padding: 8px;">Dorsofleksi ibu jari kaki dengan atau tanpa fanning</td><td style="border: 1px solid #ddd; padding: 8px;">Lesi traktus piramidalis</td></tr>
-</table>`,
+<h3>Tujuan</h3>
+<p>Menilai fungsi koordinasi.</p>
+
+<h3>Alat dan Bahan</h3>
+<ul>
+<li>Tidak ada</li>
+</ul>
+
+<h2>A. Teknik Pemeriksaan</h2>
+
+<h3>1. Persiapan</h3>
+<ol>
+<li>Jelaskan kepada pasien jenis pemeriksaan yang akan dilakukan dan prosedurnya.</li>
+</ol>
+
+<h3>2. Inspeksi Cara Berjalan (Gait)</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk berjalan melintasi ruangan beberapa kali.</li>
+<li>Amati cara berjalan pasien, pola kontak kaki dengan lantai, ayunan tangan, dan lebar langkah.</li>
+</ol>
+
+<h3>3. Pemeriksaan Tandem Gait</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk berjalan dalam satu garis lurus dengan cara ujung tumit menyentuh ujung jempol kaki di belakangnya. Bila dibutuhkan, berikan contoh kepada pasien.</li>
+<li>Amati cara berjalan pasien. Perhatikan bilamana pasien terlihat kehilangan keseimbangan.</li>
+</ol>
+
+<h3>4. Tes Romberg dan Romberg Dipertajam</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien berdiri dengan kedua kaki dirapatkan.</li>
+<li>Pemeriksa berdiri di belakang pasien dengan posisi tangan pemeriksa berada di sisi pasien tanpa menyentuhnya.</li>
+<li>Minta pasien untuk merentangkan kedua tangannya ke depan sejajar bahu dengan posisi supinasi.</li>
+<li>Instruksikan kepada pasien untuk mempertahankan posisi kedua tangannya.</li>
+<li>Bila pasien tidak terjatuh saat dilakukan pemeriksaan dengan mata terbuka, minta pasien untuk menutup kedua matanya.</li>
+<li>Amati bila pasien kehilangan keseimbangan atau terjatuh. Nilai arah jatuh atau ayunan pasien.</li>
+</ol>
+
+<h3>5. Tes Telunjuk–Hidung</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien menutup mata dan merentangkan tangan kanan jauh ke samping.</li>
+<li>Minta pasien menyentuh hidungnya dengan jari telunjuk kanan, ulangi beberapa kali. Lakukan prosedur yang sama terhadap tangan kiri.</li>
+<li>Nilai tanda-tanda hipermetria atau kecenderungan tremor saat pasien melakukan prosedur di atas.</li>
+<li>Nilai apakah dengan mata terbuka pasien lebih mudah melakukan prosedur pemeriksaan.</li>
+<li>Bandingkan kanan dan kiri.</li>
+</ol>
+
+<h3>6. Tes Tumit–Lutut</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk menutup kedua matanya, kemudian menempatkan tumit kanan di atas lutut kiri.</li>
+<li>Minta pasien untuk menurunkan tumitnya menyusuri tungkai bawah kaki kiri ke bawah.</li>
+<li>Lakukan prosedur bergantian dengan kaki kiri.</li>
+<li>Nilai bila pasien menunjukkan tanda-tanda hipermetria atau ataksia, yaitu bila tumit berkali-kali terjatuh dari jalurnya pada tungkai bawah.</li>
+<li>Bila pemeriksa menemukan tanda hipermetria atau ataksia, minta pasien melakukan prosedur pemeriksaan dengan mata terbuka.</li>
+<li>Bandingkan kanan dan kiri.</li>
+</ol>
+
+<h3>7. Pemeriksaan Disdiadokokinesis</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien melakukan gerakan tangan pronasi dan supinasi. Tangan kanan dimulai dari pronasi, tangan kiri dimulai dari supinasi, lakukan gerakan ini secepat mungkin.</li>
+<li>Bila diperlukan pemeriksa boleh memberikan contoh pemeriksaan terhadap pasien.</li>
+<li>Bandingkan kanan dan kiri.</li>
+</ol>
+
+<h2>B. Analisis Hasil Pemeriksaan</h2>
+<ol>
+<li>Keseimbangan pasien dipengaruhi oleh fungsi cerebellum dan sistem vestibular, serta proprioseptif ekstremitas bawah, sehingga kelainan pada keseimbangan berhubungan dengan gangguan pada sistem-sistem tersebut.</li>
+<li>Pola kontak kaki-lantai. Kondisi yang berhubungan dengan N. peroneal dapat menyebabkan drop foot. Pada keadaan ini, saat berjalan bagian kaki pasien yang lebih dulu menyentuh lantai adalah jempol kaki, diikuti telapak kaki, terakhir tumit.</li>
+<li>Jarak antar langkah dapat memendek pada pasien dengan penyakit Parkinson. Pada keadaan ini juga dapat dilihat ayunan tangan berkurang saat pasien berjalan.</li>
+<li>Pada pemeriksaan Romberg, dinyatakan positif bila pasien terlihat berayun atau pemeriksa harus memegang pasien untuk mencegah pasien terjatuh.</li>
+<li>Apabila pasien terganggu koordinasinya hanya saat pasien menutup mata, maka pasien mengalami gangguan koordinasi karena proprioseptif yang tidak adekuat. Kondisi ini juga dikenal dengan ataksia sensoris.</li>
+<li>Bila gangguan koordinasi meningkat saat pasien menutup mata, maka pasien mengalami gangguan koordinasi disebabkan oleh kondisi vestibular.</li>
+<li>Bila gangguan koordinasi sama saat pasien menutup maupun membuka mata, maka gangguan koordinasi ini disebabkan oleh kondisi cerebelar.</li>
+<li>Tes telunjuk hidung tidak terganggu pada pasien dengan gangguan ekstrapiramidal, namun mungkin terdapat tremor yang hilang bila pasien diminta melakukan gerakan yang bertujuan. Namun saat berdiri dan berjalan, pasien mengalami kesulitan akibat adanya gerakan involunter yang berlebihan, seperti pada pasien Parkinson.</li>
+</ol>`,
     references: [
-      "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: The Neurology Examination</em>.",
-      "Lumbantobing. 2008. <em>Neurologi Klinik Pemeriksaan Fisik dan Mental</em>. Jakarta: Balai Penerbit FKUI, pp. 46-47."
+      "Bickley. <em>Bates Guide to Physical Examination and History Taking, 8th Edition</em>. 2002–08.",
+      "Duijnhoven, Bele. <em>Skills in Medicine: Neurology Examination</em>. 2009."
     ]
   },
   {
     id: 6,
-    titleEn: "Reflex Grading Scale",
-    titleId: "Skala Penilaian Refleks",
-    summary: "0 = tidak ada, 1+ = menurun, 2+ = normal, 3+ = cepat, 4+ = hiperaktif dengan klonus. Interpretasi klinis.",
-    content: `<h2>Skala Penilaian Refleks</h2>
+    titleEn: "Pemeriksaan Fungsi Luhur",
+    titleId: "Pemeriksaan Fungsi Luhur",
+    summary: "Menilai fungsi koordinasi.",
+    content: `<h2>Pemeriksaan Fungsi Luhur</h2>
 
-<h3>Skala Penilaian Refleks (0 hingga 4+):</h3>
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
-<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Grade</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Deskripsi</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Interpretasi</th></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">0</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada refleks</td><td style="border: 1px solid #ddd; padding: 8px;">Arefleksia</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">1+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks lemah/diminished</td><td style="border: 1px solid #ddd; padding: 8px;">Hiporefleksia</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">2+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks normal</td><td style="border: 1px solid #ddd; padding: 8px;">Normal</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">3+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks cepat/brisk</td><td style="border: 1px solid #ddd; padding: 8px;">Lebih cepat dari normal, tidak tentu patologis</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">4+</td><td style="border: 1px solid #ddd; padding: 8px;">Refleks sangat cepat dengan klonus</td><td style="border: 1px solid #ddd; padding: 8px;">Selalu patologis pada dewasa</td></tr>
-</table>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<h3>Hiporefleksia (Refleks 0 atau 1+)</h3>
-<p><strong>Penyebab:</strong> Kelainan Lower Motor Neuron (LMN), lesi saraf perifer, lesi radiks saraf, fase akut cedera medula spinalis, penyakit neuromuskular, hipotiroidisme berat.</p>
+<h3>Tujuan</h3>
+<p>Menilai fungsi koordinasi.</p>
 
-<h3>Arefleksia (Refleks 0)</h3>
-<p><strong>Penyebab:</strong> Lesi saraf tepi, lesi spinal root (syringomyelia), fase syok spinal, koma dalam, arefleksia kongenital, Guillain-Barré Syndrome, neuropati perifer berat.</p>
-
-<h3>Refleks Normal (Refleks 2+)</h3>
-<p>Kontraksi otot yang jelas terlihat, pergerakan sendi yang dapat diamati, simetris bilateral, tidak ada klonus.</p>
-
-<h3>Hiperefleksia (Refleks 3+ atau 4+)</h3>
-<p><strong>Penyebab:</strong> Gangguan Upper Motor Neuron (UMN), lesi traktus kortikospinalis, hipertiroidisme, ansietas.</p>
-
-<h3>Klonus</h3>
-<p><strong>Definisi:</strong> Serangkaian kontraksi otot ritmik dan involunter sebagai respons terhadap peregangan otot yang cepat dan dipertahankan.</p>
-<p><strong>Cara Menguji:</strong></p>
+<h3>Alat dan Bahan</h3>
 <ul>
-<li>Klonus pergelangan kaki: Dorsofleksikan kaki dengan cepat dan pertahankan posisi</li>
-<li>Klonus patella: Dorong patella ke kaudal dengan cepat dan pertahankan tekanan</li>
+<li>Tidak ada</li>
 </ul>
-<p><strong>Interpretasi:</strong> Klonus berkelanjutan (sustained) = patologis, indikasi lesi central motor neuron. Pada bayi atau refleks sangat cepat, 3-4 ketukan bilateral dapat normal. Pada dewasa, >3-4 ketukan selalu patologis (lesi UMN).</p>`,
+
+<h2>A. Teknik Pemeriksaan</h2>
+
+<h3>1. Persiapan</h3>
+<ol>
+<li>Jelaskan kepada pasien jenis pemeriksaan yang akan dilakukan dan prosedurnya.</li>
+</ol>
+
+<h3>2. Inspeksi Cara Berjalan (Gait)</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk berjalan melintasi ruangan beberapa kali.</li>
+<li>Amati cara berjalan pasien, pola kontak kaki dengan lantai, ayunan tangan, dan lebar langkah.</li>
+</ol>
+
+<h3>3. Pemeriksaan Tandem Gait</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk berjalan dalam satu garis lurus dengan cara ujung tumit menyentuh ujung jempol kaki di belakangnya. Bila dibutuhkan, berikan contoh kepada pasien.</li>
+<li>Amati cara berjalan pasien. Perhatikan bilamana pasien terlihat kehilangan keseimbangan.</li>
+</ol>
+
+<h3>4. Tes Romberg dan Romberg Dipertajam</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien berdiri dengan kedua kaki dirapatkan.</li>
+<li>Pemeriksa berdiri di belakang pasien dengan posisi tangan pemeriksa berada di sisi pasien tanpa menyentuhnya.</li>
+<li>Minta pasien untuk merentangkan kedua tangannya ke depan sejajar bahu dengan posisi supinasi.</li>
+<li>Instruksikan kepada pasien untuk mempertahankan posisi kedua tangannya.</li>
+<li>Bila pasien tidak terjatuh saat dilakukan pemeriksaan dengan mata terbuka, minta pasien untuk menutup kedua matanya.</li>
+<li>Amati bila pasien kehilangan keseimbangan atau terjatuh. Nilai arah jatuh atau ayunan pasien.</li>
+</ol>
+
+<h3>5. Tes Telunjuk–Hidung</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien menutup mata dan merentangkan tangan kanan jauh ke samping.</li>
+<li>Minta pasien menyentuh hidungnya dengan jari telunjuk kanan, ulangi beberapa kali. Lakukan prosedur yang sama terhadap tangan kiri.</li>
+<li>Nilai tanda-tanda hipermetria atau kecenderungan tremor saat pasien melakukan prosedur di atas.</li>
+<li>Bila pemeriksa menemukan tanda hipermetria atau tremor, minta pasien melakukan prosedur pemeriksaan dengan mata terbuka.</li>
+<li>Nilai apakah dengan mata terbuka pasien lebih mudah melakukan prosedur pemeriksaan. Bandingkan kanan dan kiri.</li>
+</ol>
+
+<h3>6. Tes Tumit–Lutut</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien untuk menutup kedua matanya, kemudian menempatkan tumit kanan di atas lutut kiri.</li>
+<li>Minta pasien untuk menurunkan tumitnya menyusuri tungkai bawah kaki kiri ke bawah.</li>
+<li>Lakukan prosedur bergantian dengan kaki kiri.</li>
+<li>Nilai bila pasien menunjukkan tanda-tanda hipermetria atau ataksia, yaitu bila tumit berkali-kali terjatuh dari jalurnya pada tungkai bawah.</li>
+<li>Bila pemeriksa menemukan tanda hipermetria atau ataksia, minta pasien melakukan prosedur pemeriksaan dengan mata terbuka.</li>
+<li>Bandingkan kanan dan kiri.</li>
+</ol>
+
+<h3>7. Pemeriksaan Disdiadokokinesis</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien melakukan perubahan gerakan misalnya gerakan tangan pronasi dan supinasi. Tangan kanan dimulai dari pronasi, tangan kiri dimulai dari supinasi, lakukan gerakan ini secepat mungkin.</li>
+<li>Bila diperlukan pemeriksa boleh memberikan contoh pemeriksaan terhadap pasien.</li>
+<li>Bandingkan kanan dan kiri.</li>
+</ol>
+
+<h2>B. Analisis Hasil Pemeriksaan</h2>
+<ol>
+<li>Keseimbangan pasien dipengaruhi oleh fungsi cerebellum dan sistem vestibular, serta proprioseptif ekstremitas bawah, sehingga kelainan pada keseimbangan berhubungan dengan gangguan pada sistem-sistem tersebut.</li>
+<li>Pola kontak kaki-lantai. Kondisi yang berhubungan dengan n. peroneal dapat menyebabkan drop foot. Pada keadaan ini, saat berjalan bagian kaki pasien yang lebih dulu menyentuh lantai adalah jempol kaki, diikuti telapak kaki, terakhir tumit.</li>
+<li>Jarak antar langkah dapat memendek pada pasien dengan penyakit Parkinson. Pada keadaan ini juga dapat dilihat ayunan tangan berkurang saat pasien berjalan.</li>
+<li>Pada pemeriksaan Romberg, dinyatakan positif bila pasien terlihat berayun atau pemeriksa harus memegang pasien untuk mencegah pasien terjatuh.</li>
+<li>Apabila pasien terganggu koordinasinya hanya saat pasien menutup mata, maka pasien mengalami gangguan koordinasi karena proprioseptif yang tidak adekuat. Kondisi ini juga dikenal dengan ataksia sensoris.</li>
+<li>Bila gangguan koordinasi meningkat saat pasien menutup mata, maka pasien mengalami gangguan koordinasi disebabkan oleh kondisi vestibular.</li>
+<li>Bila gangguan koordinasi sama saat pasien menutup maupun membuka mata, maka gangguan koordinasi ini disebabkan oleh kondisi cerebelar.</li>
+<li>Tes telunjuk hidung tidak terganggu pada pasien dengan gangguan ekstrapiramidal, namun mungkin terdapat tremor yang hilang bila pasien diminta melakukan gerakan yang bertujuan. Namun saat berdiri dan berjalan, pasien mengalami kesulitan akibat adanya gerakan involunter yang berlebihan, seperti pada pasien Parkinson.</li>
+</ol>`,
     references: [
-      "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>."
+      "Bickley. <em>Bates Guide to Physical Examination and History Taking, 8th Edition</em>. 2002–08.",
+      "Duijnhoven, Bele. <em>Skills in Medicine: Neurology Examination</em>. 2009."
     ]
   },
   {
     id: 7,
-    titleEn: "Lesion Localisation",
-    titleId: "Lokalisasi Lesi",
-    summary: "Menggunakan pola refleks, tonus, dan kekuatan untuk menentukan level spinal dan membedakan patologi CNS dari PNS.",
-    content: `<h2>Lokalisasi Lesi</h2>
+    titleEn: "Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)",
+    titleId: "Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)",
+    summary: "Menilai fungsi sistem sensorik.",
+    content: `<h2>Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)</h2>
 
-<p>Lokalisasi lesi neurologis menggunakan pola refleks, tonus, kekuatan, dan pemeriksaan sensorik untuk menentukan level dan lokasi kerusakan pada sistem saraf.</p>
+<h3>Tingkat Keterampilan</h3>
+<p>4A</p>
 
-<h3>A. Membedakan Lesi UMN dan LMN</h3>
-<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
-<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Karakteristik</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">UMN</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">LMN</th></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px;">Refleks</td><td style="border: 1px solid #ddd; padding: 8px;">Hiperefleksia (3-4+)</td><td style="border: 1px solid #ddd; padding: 8px;">Hiporefleksia/Arefleksia (0-1+)</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px;">Tonus</td><td style="border: 1px solid #ddd; padding: 8px;">Spastisitas</td><td style="border: 1px solid #ddd; padding: 8px;">Flaksiditas</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px;">Klonus</td><td style="border: 1px solid #ddd; padding: 8px;">Sustained</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px;">Refleks Patologis</td><td style="border: 1px solid #ddd; padding: 8px;">Positif (Babinski, dll)</td><td style="border: 1px solid #ddd; padding: 8px;">Negatif</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px;">Atrofi</td><td style="border: 1px solid #ddd; padding: 8px;">Minimal (disuse)</td><td style="border: 1px solid #ddd; padding: 8px;">Signifikan</td></tr>
-<tr><td style="border: 1px solid #ddd; padding: 8px;">Fasikulasi</td><td style="border: 1px solid #ddd; padding: 8px;">Tidak ada</td><td style="border: 1px solid #ddd; padding: 8px;">Dapat terlihat</td></tr>
-</table>
+<h3>Tujuan</h3>
+<p>Menilai fungsi sistem sensorik.</p>
 
-<h3>B. Lokalisasi Berdasarkan Level Spinal</h3>
-<ul>
-<li><strong>Refleks Biseps</strong> - C5-C6</li>
-<li><strong>Refleks Triseps</strong> - C7-C8</li>
-<li><strong>Refleks Brakioradialis</strong> - C5-C6</li>
-<li><strong>Refleks Patella</strong> - L2-L4 (terutama L3-L4)</li>
-<li><strong>Refleks Achilles</strong> - S1-S2</li>
-</ul>
-
-<h3>C. Pola Klinis Lokalisasi</h3>
-<h4>1. Lesi Korteks Motorik/Kapsula Interna (Stroke)</h4>
-<p>Hemiparesis kontralateral, hiperefleksia kontralateral, Babinski positif kontralateral, defisit sensorik kontralateral.</p>
-
-<h4>2. Lesi Medula Spinalis (Mielopati)</h4>
-<p>Level sensorik (sensory level), UMN sign di bawah level lesi, LMN sign pada level lesi, disfungsi kandung kemih dan bowel.</p>
-
-<h4>3. Lesi Radiks Saraf (Radikulopati)</h4>
-<p>Nyeri radikuler, kelemahan pada otot yang dipersarafi radiks tersebut, refleks menurun/absent pada level terkena, defisit sensorik sesuai dermatom.</p>
-
-<h4>4. Lesi Saraf Perifer (Neuropati)</h4>
-<p>Distribusi sesuai saraf (mononeuropati) atau pola sarung tangan-kaus kaki (polineuropati), LMN signs, refleks menurun/absent, atrofi otot.</p>
-
-<h3>D. Contoh Kasus Lokalisasi</h3>
-<p><strong>Kasus 1:</strong> Kelemahan tungkai unilateral, hiperefleksia dengan klonus sustained, Babinski positif → Lesi UMN (stroke, cedera medula spinalis, tumor).</p>
-<p><strong>Kasus 2:</strong> Kelemahan kedua tungkai, refleks patella normal, refleks Achilles absent bilateral, Babinski negatif, atrofi betis → Lesi LMN pada S1-S2 (radikulopati S1 bilateral, neuropati perifer).</p>`,
-    references: [
-      "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: Neurology Examination</em>.",
-      "Lumbantobing. 2008. <em>Neurologi Klinik Pemeriksaan Fisik dan Mental</em>. Jakarta: Balai Penerbit FKUI, pp. 46-47."
-    ]
-  },
-  {
-    id: 8,
-    titleEn: "Clinical Examination Technique",
-    titleId: "Teknik Pemeriksaan Klinis",
-    summary: "Posisi pasien, teknik palu, manuver reinforcement, dan cara menghindari kesalahan umum.",
-    content: `<h2>Teknik Pemeriksaan Klinis</h2>
-
-<h3>A. Prinsip Umum Pemeriksaan Neurologis</h3>
-<h4>Persiapan Alat:</h4>
-<ul>
-<li>Palu refleks dengan ujung lancip dan tumpul</li>
-<li>Cotton bud untuk pemeriksaan sensorik</li>
-<li>Tusuk gigi untuk pemeriksaan nyeri</li>
-<li>Tabung reaksi berisi air panas dan dingin untuk pemeriksaan suhu</li>
-<li>Garpu tala untuk pemeriksaan vibrasi</li>
-</ul>
-
-<h4>Persiapan Pasien:</h4>
-<ul>
-<li>Jelaskan prosedur yang akan dilakukan</li>
-<li>Pastikan pasien memahami instruksi</li>
-<li>Posisikan pasien dengan nyaman (duduk/berbaring)</li>
-<li>Pastikan privasi yang cukup</li>
-<li>Cuci tangan sebelum prosedur</li>
-</ul>
-
-<h3>B. Teknik Pemeriksaan Refleks yang Benar</h3>
-<h4>Prinsip Dasar:</h4>
+<h3>Alat dan Bahan</h3>
 <ol>
-<li><strong>Relaksasi Otot Pasien</strong> - Kunci utama. Otot tegang = hasil false positive/negative. Gunakan percakapan ringan.</li>
-<li><strong>Posisi yang Tepat</strong> - Ekstremitas dalam posisi yang memungkinkan kontraksi terlihat jelas. Sendi semi-fleksi (90° untuk siku/lutut).</li>
-<li><strong>Teknik Ketukan</strong> - Gunakan pergelangan tangan, bukan lengan. Ketukan cepat dan tajam (brisk tap). Kekuatan konsisten. Arah tegak lurus terhadap tendon.</li>
-<li><strong>Lokasi Ketukan yang Tepat</strong> - Ketuk pada tendon, bukan otot/tulang. Gunakan jari sebagai pemandu.</li>
-<li><strong>Teknik Reinforcement (Jendrassik)</strong> - Untuk refleks tungkai yang sulit didapat. Pasien mengaitkan jari kedua tangan dan menarik berlawanan arah sekuat-kuatnya sambil pemeriksa mengetuk.</li>
+<li>Tusuk gigi</li>
+<li>Cotton bud</li>
+<li>Dua buah tabung reaksi</li>
+<li>Air panas</li>
+<li>Air dingin</li>
+<li>Garpu tala</li>
 </ol>
 
-<h3>C. Teknik Pemeriksaan Tonus Otot</h3>
-<p>Pegang lengan pasien di pergelangan tangan, siku menempel meja. Jari pemeriksa pada tendon biseps. Fleksikan dan ekstensikan siku beberapa kali dengan berbagai kecepatan. Nilai tonus otot-otot lengan atas dan bandingkan kanan-kiri.</p>
+<h2>A. Teknik Pemeriksaan</h2>
+<p>Disusun berdasar dermatom, mulai dari C3 untuk rangsang nyeri, raba halus, dan suhu.</p>
 
-<h4>Interpretasi:</h4>
-<ul>
-<li><strong>Flaksiditas:</strong> Tidak ada tahanan (lesi LMN)</li>
-<li><strong>Normal:</strong> Tahanan ringan yang halus</li>
-<li><strong>Spastisitas:</strong> Peningkatan tahanan velocity-dependent, fenomena "clasp-knife" (lesi UMN)</li>
-<li><strong>Rigiditas:</strong> Peningkatan tahanan konstan, fenomena "lead-pipe" atau "cogwheel" (gangguan ekstrapiramidal)</li>
-</ul>
+<h3>1. Persiapan</h3>
+<ol>
+<li>Siapkan alat dan bahan.</li>
+<li>Jelaskan kepada pasien jenis pemeriksaan yang akan dilakukan dan prosedurnya.</li>
+</ol>
 
-<h3>D. Kesalahan Umum yang Harus Dihindari</h3>
-<ul>
-<li>Otot pasien tidak rileks → refleks palsu menurun/meningkat</li>
-<li>Ketukan terlalu lemah/kuat → tidak terpicu atau nyeri</li>
-<li>Posisi tidak tepat → kontraksi tidak terlihat</li>
-<li>Tidak membandingkan sisi kanan-kiri → asimetri tidak terdeteksi</li>
-<li>Mengetuk otot/tulang, bukan tendon → tidak ada respons spesifik</li>
-</ul>
+<h3>2. Penilaian Sensasi Nyeri</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Biarkan pasien merasakan perbedaan rangsangan saat pemeriksa menekan ujung runcing tusuk gigi dan ujung tumpul cotton bud pada area dimana pemeriksa yakin tidak terdapat defisit sensorik.</li>
+<li>Minta pasien menutup mata.</li>
+<li>Kemudian lakukan prosedur ini di beberapa tempat dengan menekankan ujung tajam tusuk gigi dan ujung tumpul cotton bud secara bergantian dan acak. Tanyakan kepada pasien setiap pemeriksa menekankan salah satu benda di atas, apakah pasien merasakan tajam atau tumpul.</li>
+<li>Apabila terdapat gangguan membedakan sensasi tajam dan tumpul, gunakan istilah hipalgesia atau analgesia dan catat bagian tubuh yang mengalami gangguan.</li>
+</ol>
 
-<h3>E. Dokumentasi Hasil Pemeriksaan</h3>
-<p>Gunakan diagram stick figure dengan notasi refleks di setiap lokasi. Cantumkan grading (0, 1+, 2+, 3+, 4+). Tandai bila ada klonus.</p>
-<p>Contoh: "Biseps 2+/2+, Triseps 2+/2+, Brakioradialis 2+/2+, Patella 3+/3+, Achilles 2+/2+"</p>`,
+<h3>3. Penilaian Sensasi Suhu</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Pada pemeriksaan ini, siapkan dua buah tabung reaksi yang berisi air dingin dan air panas.</li>
+<li>Biarkan pasien merasakan perbedaan rangsangan suhu yang diberikan pada area dimana pemeriksa yakin tidak terdapat defisit sensorik.</li>
+<li>Minta pasien menutup mata.</li>
+<li>Sentuhkan rangsangan panas dan dingin di beberapa area pada tubuh pasien, tanyakan apa yang pasien rasakan setiap kali memberikan rangsangan.</li>
+<li>Catat bagian tubuh mana saja yang mengalami gangguan dalam membedakan rangsangan suhu.</li>
+</ol>
+
+<h3>4. Penilaian Sensasi Raba Halus</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Untuk pemeriksaan ini, gunakan ujung cotton bud.</li>
+<li>Minta pasien untuk menutup mata.</li>
+<li>Selalu sentuh pasien dengan sentuhan ringan, jangan ditekan.</li>
+<li>Minta pasien mengatakan "ya" setiap kali pasien merasakan kontak.</li>
+<li>Minta pasien untuk menyebutkan bila pasien merasakan sensasi yang berbeda saat disentuh.</li>
+<li>Catat bagian tubuh mana saja yang mengalami gangguan dalam membedakan rangsangan suhu.</li>
+</ol>
+
+<h3>5. Penilaian Rasa Posisi (Proprioseptif)</h3>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien menutup mata.</li>
+<li>Pegang jempol kaki pasien di antara jempol dan jari telunjuk pemeriksa.</li>
+<li>Pastikan bahwa pemeriksa tidak menyentuh jari pasien yang lainnya.</li>
+<li>Gerakkan jempol kaki pasien dan tanyakan bila pasien merasakan gerakan tersebut dan menyebutkan arahnya.</li>
+<li>Lakukan juga prosedur ini pada ekstremitas atas.</li>
+</ol>
+<p>Lakukan pula pemeriksaan getar dan posisi dua tempat (two point discrimination).</p>
+
+<h2>B. Analisis Hasil Pemeriksaan</h2>
+<ol>
+<li>Dengan menandai area yang mengalami defisit neurologis, pemeriksa dapat mengetahui adanya kelainan mononeuropathy, polineuropathy, lesi saraf tepi maupun lesi pada saraf sentral.</li>
+<li>Penilaian sensasi nyeri dan suhu merupakan penilaian fungsi sensoris spinothalamikus sehingga kelainan pada pemeriksaan ini merupakan tanda adanya gangguan pada fungsi sensoris spinothalamikus.</li>
+<li>Penilaian sensasi raba dan posisi (proprioseptif) merupakan penilaian fungsi sensoris kolumna dorsalis sehingga kelainan pada pemeriksaan ini merupakan tanda adanya gangguan pada fungsi sensoris kolumna dorsalis.</li>
+<li>Kondisi yang melibatkan korda spinalis dapat menyebabkan gangguan pada salah satu fungsi tersebut, misalnya fungsi sensoris spinothalamikus yang intak namun ada defisit dari fungsi sensoris kolumna dorsalis.</li>
+<li>Berdasarkan lokasi gangguan fungsi sensoris, pemeriksa dapat memperkirakan kemungkinan letak lesi.</li>
+</ol>`,
     references: [
-      "Bickley, L.S. 2002. <em>Bates Guide to Physical Examination and History Taking</em>, 8th Edition.",
-      "Bickley, L.S. & Szilagyi, P.G. 2009. <em>Bates' Guide to Physical Examination and History Taking</em>, 10th edition. China: Lippincott Williams & Wilkins.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: The Neurology Examination</em>.",
-      "Duijnhoven, B. 2009. <em>Skills in Medicine: The Pulmonary Examination</em>.",
-      "Lumbantobing. 2008. <em>Neurologi Klinik Pemeriksaan Fisik dan Mental</em>. Jakarta: Balai Penerbit FKUI, pp. 46-47.",
-      "Buckup, K. 2008. <em>Clinical test for the musculoskeletal system: examinations-signs-phenomena</em>, 2nd ed. Stuttgart: Thieme."
+      "Bickley. <em>Bates Guide to Physical Examination and History Taking, 8th Edition</em>. 2002–08.",
+      "Duijnhoven, Bele. <em>Skills in Medicine: Neurology Examination</em>. 2009."
     ]
   }
 ];
