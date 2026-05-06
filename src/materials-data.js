@@ -254,6 +254,11 @@ const MATERIALS_DATA = [
 <tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Intention Tremors</td><td style="border: 1px solid #ddd; padding: 8px;">Merupakan tremor yang hilang saat istirahat dan timbul saat aktivitas dan semakin memburuk bila target yang akan disentuh semakin dekat.<br/>→ menunjukkan gangguan cerebellum (misalnya multiple sclerosis)</td></tr>
 </table>
 
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/motor/tremor.png" alt="Tremor" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Tremor</figcaption>
+</figure>
+
 <h4>c. Tics</h4>
 <p>Tics merupakan gerakan yang singkat, berulang, stereotip, gerakan terkoordinasi yang terjadi pada interval yang tidak teratur.</p>
 <ul>
@@ -262,6 +267,11 @@ const MATERIALS_DATA = [
 <li>Sering disertai dorongan (urge) sebelum gerakan</li>
 </ul>
 <p>Penyebab termasuk sindrom seperti Tourette, serta obat-obatan seperti fenotiazin dan amfetamin.</p>
+
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/motor/tic.png" alt="Tics" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Tics</figcaption>
+</figure>
 
 <h4>d. Gerakan Choreiform (Chorea)</h4>
 <p>Gerakan choreiform merupakan gerakan yang singkat, cepat, tidak teratur, dan tak terduga.</p>
@@ -276,6 +286,11 @@ const MATERIALS_DATA = [
 <li>Penyakit Huntington</li>
 </ul>
 
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/motor/chorea.png" alt="Gerakan Choreiform (Chorea)" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Gerakan Choreiform (Chorea)</figcaption>
+</figure>
+
 <h4>e. Athetosis</h4>
 <p>Gerakan athetoid lebih lambat dan lebih memutar dan menggeliat dibandingkan gerakan choreiform, dan memiliki amplitudo yang lebih besar.</p>
 <ul>
@@ -286,6 +301,11 @@ const MATERIALS_DATA = [
 <ul>
 <li>Cerebral palsy</li>
 </ul>
+
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/motor/athetosis.png" alt="Athetosis" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Athetosis</figcaption>
+</figure>
 
 <h3>3. Penilaian Tonus Otot</h3>
 <ol style="list-style-type: lower-alpha;">
