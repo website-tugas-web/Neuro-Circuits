@@ -222,7 +222,175 @@ const MATERIALS_DATA = [
 </ol>
 
 <h2>B. Area Pemeriksaan</h2>
-<p>(tetap sama seperti sebelumnya — tidak diubah)</p>
+
+<h3>1. Inspeksi</h3>
+<p>Pemeriksaan inspeksi mencakup pengamatan menyeluruh terhadap sistem motorik pasien:</p>
+
+<h4>a. Postur dan Sikap Tubuh</h4>
+<ul>
+<li>Amati postur tubuh pasien saat berdiri dan duduk (posisi kepala, bahu, tulang belakang, panggul).</li>
+<li>Perhatikan simetri tubuh kanan dan kiri.</li>
+<li>Identifikasi adanya deformitas atau kelainan bentuk skeletal (skoliosis, kifosis, lordosis).</li>
+</ul>
+
+<h4>b. Kontur dan Massa Otot</h4>
+<ul>
+<li><strong>Atrofi otot:</strong> pengecilan ukuran otot yang dapat menunjukkan denervasi, disuse, atau penyakit otot primer.</li>
+<li><strong>Hipertrofi otot:</strong> pembesaran otot yang dapat terjadi akibat latihan fisik intensif atau kondisi patologis tertentu.</li>
+<li><strong>Pseudohipertrofi:</strong> pembesaran otot palsu akibat penggantian jaringan otot dengan lemak atau jaringan fibrosa (misal pada distrofi otot Duchenne).</li>
+<li>Bandingkan simetri massa otot kedua sisi tubuh.</li>
+</ul>
+
+<h4>c. Gerakan Abnormal dan Involunter</h4>
+<ul>
+<li><strong>Tremor:</strong> gerakan involunter berirama dan osilasi (resting, postural, intention).</li>
+<li><strong>Chorea:</strong> gerakan cepat, tidak beraturan, tidak terduga, seperti menari.</li>
+<li><strong>Athetosis:</strong> gerakan lambat, menggeliat, dan memutar terutama di ekstremitas distal.</li>
+<li><strong>Mioklonus:</strong> kontraksi otot mendadak, singkat, seperti tersentak.</li>
+<li><strong>Fasikulasi:</strong> kedutan otot halus yang terlihat di bawah kulit, menunjukkan iritasi motor neuron.</li>
+<li><strong>Tic:</strong> gerakan cepat, stereotip, berulang yang dapat ditekan sementara secara volunter.</li>
+<li><strong>Distonia:</strong> kontraksi otot involunter yang menyebabkan gerakan memutar dan postur abnormal.</li>
+</ul>
+
+<h4>d. Deformitas dan Kontraktur</h4>
+<ul>
+<li>Amati adanya kontraktur sendi (keterbatasan rentang gerak akibat fibrosis jaringan lunak).</li>
+<li>Identifikasi deformitas tulang atau sendi (pes cavus, claw hand, drop foot).</li>
+</ul>
+
+<h3>2. Palpasi Otot</h3>
+<p>Palpasi dilakukan untuk menilai karakteristik jaringan otot:</p>
+<ul>
+<li><strong>Tonus otot saat istirahat:</strong> raba otot dalam keadaan rileks untuk menilai konsistensi dan tegangan dasar.</li>
+<li><strong>Konsistensi otot:</strong> otot normal teraba kenyal dan elastis; otot yang digantikan lemak/jaringan fibrotik teraba lebih lunak atau keras.</li>
+<li><strong>Nyeri tekan:</strong> identifikasi area nyeri yang dapat menunjukkan inflamasi, trauma, atau miopati.</li>
+<li><strong>Massa abnormal:</strong> deteksi benjolan, nodul, atau area pengerasan pada otot.</li>
+</ul>
+
+<h3>3. Pemeriksaan Tonus Otot</h3>
+<p>Tonus otot adalah tahanan yang dirasakan saat menggerakkan ekstremitas pasien secara pasif. Pemeriksaan dilakukan dengan pasien dalam keadaan rileks:</p>
+
+<h4>a. Teknik Pemeriksaan</h4>
+<ul>
+<li>Posisikan pasien berbaring dengan rileks.</li>
+<li>Pegang ekstremitas pasien dan gerakkan sendi secara pasif (fleksi, ekstensi, rotasi) dengan kecepatan bervariasi.</li>
+<li>Nilai tahanan yang dirasakan selama gerakan.</li>
+<li>Periksa tonus pada sendi besar: siku, pergelangan tangan, lutut, pergelangan kaki.</li>
+<li>Bandingkan tonus kanan dan kiri.</li>
+</ul>
+
+<h4>b. Kategori Tonus Otot</h4>
+<ul>
+<li><strong>Normal (Normotonia):</strong> tahanan halus dan konsisten selama rentang gerak.</li>
+<li><strong>Hipotonia:</strong> penurunan tahanan, ekstremitas terasa lemas, rentang gerak berlebihan.<br/>
+  Penyebab: lesi lower motor neuron, cerebellar disease, fase akut stroke.</li>
+<li><strong>Hipertonia:</strong> peningkatan tahanan terhadap gerakan pasif, dapat berupa:
+  <ul>
+  <li><strong>Spastisitas (lesi upper motor neuron/piramidal):</strong> tahanan meningkat pada awal gerakan cepat kemudian tiba-tiba berkurang (<em>clasp-knife phenomenon</em>); lebih jelas pada otot fleksor lengan dan ekstensor tungkai; bergantung pada kecepatan gerakan.</li>
+  <li><strong>Rigiditas (lesi ekstrapiramidal):</strong> tahanan konstan sepanjang rentang gerak, tidak bergantung kecepatan; dapat berupa:
+    <ul>
+    <li><em>Lead-pipe rigidity:</em> tahanan seragam dan halus seperti menekuk pipa timah.</li>
+    <li><em>Cogwheel rigidity:</em> tahanan terpatah-patah seperti roda gigi (kombinasi rigiditas dan tremor), khas pada Parkinson.</li>
+    </ul>
+  </li>
+  </ul>
+</li>
+</ul>
+
+<h3>4. Pemeriksaan Kekuatan Otot (Motor Power)</h3>
+<p>Kekuatan otot dinilai secara sistematis pada kelompok otot utama ekstremitas atas dan bawah menggunakan skala MRC (Medical Research Council) 0–5.</p>
+
+<h4>a. Prinsip Pemeriksaan</h4>
+<ul>
+<li>Minta pasien melakukan gerakan aktif melawan tahanan pemeriksa.</li>
+<li>Isolasi kelompok otot yang diperiksa.</li>
+<li>Berikan tahanan yang bertahap meningkat.</li>
+<li>Bandingkan kekuatan kanan dan kiri.</li>
+<li>Catat hasil menggunakan skala MRC (lihat bagian C untuk interpretasi skala).</li>
+</ul>
+
+<h4>b. Area Pemeriksaan Ekstremitas Atas</h4>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Otot/Gerakan</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Akar Saraf</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Cara Pemeriksaan</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Deltoid (abduksi bahu)</td><td style="border: 1px solid #ddd; padding: 8px;">C5, C6</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien abduksi lengan melawan tahanan ke bawah dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Biceps (fleksi siku)</td><td style="border: 1px solid #ddd; padding: 8px;">C5, C6</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien fleksi siku melawan tahanan ekstensi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Triceps (ekstensi siku)</td><td style="border: 1px solid #ddd; padding: 8px;">C7, C8</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien ekstensi siku melawan tahanan fleksi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Ekstensor pergelangan tangan</td><td style="border: 1px solid #ddd; padding: 8px;">C6, C7</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien ekstensi pergelangan melawan tahanan fleksi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Fleksor pergelangan tangan</td><td style="border: 1px solid #ddd; padding: 8px;">C7, C8</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien fleksi pergelangan melawan tahanan ekstensi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Otot intrinsik tangan (interossei, lumbricals)</td><td style="border: 1px solid #ddd; padding: 8px;">T1</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien abduksi/adduksi jari melawan tahanan; cengkeraman kuat</td></tr>
+</table>
+
+<h4>c. Area Pemeriksaan Ekstremitas Bawah</h4>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Otot/Gerakan</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Akar Saraf</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Cara Pemeriksaan</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Iliopsoas (fleksi panggul)</td><td style="border: 1px solid #ddd; padding: 8px;">L1, L2, L3</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien fleksi panggul (angkat paha) melawan tahanan ke bawah dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Quadriceps (ekstensi lutut)</td><td style="border: 1px solid #ddd; padding: 8px;">L3, L4</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien ekstensi lutut melawan tahanan fleksi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Hamstring (fleksi lutut)</td><td style="border: 1px solid #ddd; padding: 8px;">L5, S1</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien fleksi lutut melawan tahanan ekstensi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Tibialis anterior (dorsofleksi kaki)</td><td style="border: 1px solid #ddd; padding: 8px;">L4, L5</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien dorsofleksi kaki melawan tahanan plantarfleksi dari pemeriksa</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Gastrocnemius (plantarfleksi kaki)</td><td style="border: 1px solid #ddd; padding: 8px;">S1, S2</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien plantarfleksi kaki melawan tahanan dorsofleksi; atau berjalan jinjit</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px;">Ekstensor hallucis longus (ekstensi ibu jari kaki)</td><td style="border: 1px solid #ddd; padding: 8px;">L5</td><td style="border: 1px solid #ddd; padding: 8px;">Pasien ekstensi ibu jari kaki melawan tahanan fleksi dari pemeriksa</td></tr>
+</table>
+
+<h3>5. Pemeriksaan Koordinasi</h3>
+<p>Koordinasi motorik diatur oleh cerebellum dan sistem proprioseptif. Gangguan koordinasi disebut <em>ataksia</em>.</p>
+
+<h4>a. Tes Finger-to-Nose (Jari-ke-Hidung)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pasien diminta menyentuh hidungnya sendiri dengan ujung jari telunjuk.</li>
+<li>Kemudian pasien diminta menyentuh jari pemeriksa yang diletakkan di depan pasien.</li>
+<li>Ulangi gerakan bolak-balik dengan kecepatan meningkat.</li>
+<li>Amati adanya <em>intention tremor</em> (tremor yang makin jelas saat mendekati target) atau <em>past-pointing</em> (melewati target).</li>
+</ol>
+
+<h4>b. Tes Heel-to-Shin (Tumit-ke-Tulang Kering)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pasien berbaring terlentang.</li>
+<li>Minta pasien mengangkat satu kaki dan meletakkan tumitnya di lutut kaki yang lain.</li>
+<li>Kemudian tumit digeser menyusuri tulang kering ke arah pergelangan kaki.</li>
+<li>Amati ketepatan dan kelancaran gerakan; pada ataksia gerakan menjadi kaku dan tidak teratur.</li>
+</ol>
+
+<h4>c. Tes Gerakan Bergantian Cepat (Dysdiadokokinesia)</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Minta pasien melakukan gerakan pronasi-supinasi tangan secara cepat dan bergantian (seperti membuka-tutup sekrup).</li>
+<li>Atau minta pasien menepuk paha dengan telapak tangan dan punggung tangan secara bergantian dengan cepat.</li>
+<li>Ketidakmampuan melakukan gerakan bergantian cepat secara teratur disebut <em>dysdiadokokinesia</em>, menunjukkan disfungsi cerebellar.</li>
+</ol>
+
+<h4>d. Tes Romberg</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Pasien berdiri dengan kaki rapat dan lengan di samping tubuh atau terbuka ke depan.</li>
+<li>Minta pasien menutup mata.</li>
+<li>Amati stabilitas postur selama 20–30 detik; bersiap menahan pasien jika jatuh.</li>
+<li><strong>Romberg positif:</strong> pasien dapat mempertahankan keseimbangan dengan mata terbuka tetapi goyang/jatuh saat mata tertutup → menunjukkan gangguan proprioseptif (kolumna posterior medula spinalis, neuropati perifer).</li>
+<li><strong>Ataksia cerebellar:</strong> pasien tidak stabil bahkan dengan mata terbuka; menutup mata memperburuk tetapi gangguan sudah ada sejak awal.</li>
+</ol>
+
+<h3>6. Pemeriksaan Gait (Cara Berjalan)</h3>
+<p>Cara berjalan mencerminkan integrasi sistem motorik, sensorik, cerebellar, dan vestibular.</p>
+
+<h4>a. Teknik Pemeriksaan</h4>
+<ul>
+<li>Minta pasien berjalan dengan kecepatan normal di ruang pemeriksaan.</li>
+<li>Amati dari samping dan belakang.</li>
+<li>Perhatikan: inisiasi berjalan, kecepatan, panjang langkah, simetri kanan-kiri, ayunan lengan, postur tubuh, stabilitas.</li>
+<li>Minta pasien berjalan tandem (tumit-ke-jari kaki dalam garis lurus) untuk menilai keseimbangan lebih sensitif.</li>
+<li>Minta pasien berjalan dengan tumit saja (heel walking) untuk menguji dorsofleksi kaki (L4-L5).</li>
+<li>Minta pasien berjalan jinjit (toe walking) untuk menguji plantarfleksi kaki (S1-S2).</li>
+</ul>
+
+<h4>b. Pola Gait Abnormal</h4>
+<table style="border-collapse: collapse; width: 100%; margin: 1rem 0;">
+<tr><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Jenis Gait</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Karakteristik</th><th style="border: 1px solid #ddd; padding: 8px; background-color: #f4f4f4; text-align: left;">Penyebab</th></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Hemiplegic (Circumduction)</td><td style="border: 1px solid #ddd; padding: 8px;">Kaki di sisi lesi ekstensi kaku, diayunkan melingkar dari pinggul; lengan fleksi dan adduksi ke tubuh</td><td style="border: 1px solid #ddd; padding: 8px;">Stroke, lesi upper motor neuron unilateral</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Spastic (Scissor Gait)</td><td style="border: 1px solid #ddd; padding: 8px;">Kedua tungkai kaku, ekstensi, adduksi; kaki bersilangan saat berjalan; langkah pendek dan kaku</td><td style="border: 1px solid #ddd; padding: 8px;">Cerebral palsy spastic diplegia, myelopathy</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Steppage (Foot Drop)</td><td style="border: 1px solid #ddd; padding: 8px;">Kaki tidak dapat dorsofleksi; pasien mengangkat lutut tinggi agar jari kaki tidak menyeret; kaki jatuh dengan bunyi tampak saat mendarat</td><td style="border: 1px solid #ddd; padding: 8px;">Kelemahan tibialis anterior; lesi saraf peroneal, L5 radiculopathy</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Waddling (Myopathic)</td><td style="border: 1px solid #ddd; padding: 8px;">Panggul turun bergantian (Trendelenburg); badan bergoyang kanan-kiri seperti bebek; lordosis lumbal</td><td style="border: 1px solid #ddd; padding: 8px;">Kelemahan otot gluteus medius/proximal hip; distrofi otot, miopati</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Ataxic (Cerebellar)</td><td style="border: 1px solid #ddd; padding: 8px;">Gaya berjalan tidak stabil, melebar (wide-based); langkah tidak teratur, seperti orang mabuk; sulit berjalan tandem</td><td style="border: 1px solid #ddd; padding: 8px;">Disfungsi cerebellar; alkohol, multiple sclerosis, stroke cerebellar</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Parkinsonian (Festinating)</td><td style="border: 1px solid #ddd; padding: 8px;">Postur membungkuk; langkah kecil dan cepat (festination); kesulitan memulai dan berhenti; berkurangnya ayunan lengan; dapat disertai tremor</td><td style="border: 1px solid #ddd; padding: 8px;">Penyakit Parkinson, parkinsonisme</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Sensory Ataxic</td><td style="border: 1px solid #ddd; padding: 8px;">Gait tidak stabil dengan langkah yang "membanting" kaki ke lantai (stamping); membaik dengan melihat kaki; memburuk dengan mata tertutup (Romberg positif)</td><td style="border: 1px solid #ddd; padding: 8px;">Gangguan proprioseptif; tabes dorsalis, neuropati perifer, gangguan kolumna posterior</td></tr>
+<tr><td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">Antalgic</td><td style="border: 1px solid #ddd; padding: 8px;">Fase stance pendek pada sisi yang nyeri; pasien cepat memindahkan berat ke sisi yang sehat</td><td style="border: 1px solid #ddd; padding: 8px;">Nyeri sendi, fraktur, artritis</td></tr>
+</table>
 
 <h2>C. Analisis Hasil Pemeriksaan</h2>
 
