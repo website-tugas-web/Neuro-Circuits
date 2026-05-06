@@ -111,6 +111,7 @@ const app = {
   init() {
     this.setupEventListeners();
     this.renderPomodoroModes();
+    this.loadPomodoroState();
   },
 
   setupEventListeners() {
@@ -410,10 +411,14 @@ const app = {
   pomodoroStart() {
     if (this.state.pomodoroRunning) return;
     this.state.pomodoroRunning = true;
+    this.state.pomodoroStartTime = Date.now();
+    this.state.pomodoroInitialTime = this.state.pomodoroTimeRemaining;
+    this.savePomodoroState();
 
     this.pomodoroTimerId = setInterval(() => {
       this.state.pomodoroTimeRemaining--;
       this.updatePomodoroDisplay();
+      this.savePomodoroState();
 
       if (this.state.pomodoroTimeRemaining <= 0) {
         this.pomodoroComplete();
@@ -424,6 +429,7 @@ const app = {
   pomodoroPause() {
     this.state.pomodoroRunning = false;
     clearInterval(this.pomodoroTimerId);
+    this.savePomodoroState();
   },
 
   pomodoroReset() {
@@ -431,6 +437,7 @@ const app = {
     clearInterval(this.pomodoroTimerId);
     this.state.pomodoroTimeRemaining = this.state.pomodoroDurations[this.state.pomodoroMode];
     this.updatePomodoroDisplay();
+    this.savePomodoroState();
   },
 
   updatePomodoroDisplay() {
@@ -451,7 +458,7 @@ const app = {
 
     const totalDuration = this.state.pomodoroDurations[this.state.pomodoroMode];
     const elapsedPercent = (totalDuration - this.state.pomodoroTimeRemaining) / totalDuration;
-    const circumference = 565.49;
+    const circumference = 816.81;
     const dashOffset = circumference * elapsedPercent;
     const ring = document.getElementById('progress-ring');
     if (ring) {
@@ -464,7 +471,68 @@ const app = {
     if (this.state.pomodoroMode === 'focus') {
       this.state.pomodoroSession++;
     }
+    this.savePomodoroState();
     alert(`${this.state.pomodoroMode} session complete!`);
+  },
+
+  savePomodoroState() {
+    const state = {
+      mode: this.state.pomodoroMode,
+      timeRemaining: this.state.pomodoroTimeRemaining,
+      running: this.state.pomodoroRunning,
+      startTime: this.state.pomodoroStartTime,
+      initialTime: this.state.pomodoroInitialTime,
+      session: this.state.pomodoroSession
+    };
+    localStorage.setItem('pomodoroState', JSON.stringify(state));
+  },
+
+  loadPomodoroState() {
+    const saved = localStorage.getItem('pomodoroState');
+    if (!saved) return;
+
+    try {
+      const state = JSON.parse(saved);
+      this.state.pomodoroMode = state.mode;
+      this.state.pomodoroSession = state.session || 1;
+
+      if (state.running && state.startTime && state.initialTime) {
+        const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+        const remaining = state.initialTime - elapsed;
+
+        if (remaining > 0) {
+          this.state.pomodoroTimeRemaining = remaining;
+          this.state.pomodoroRunning = true;
+          this.state.pomodoroStartTime = state.startTime;
+          this.state.pomodoroInitialTime = state.initialTime;
+
+          this.pomodoroTimerId = setInterval(() => {
+            this.state.pomodoroTimeRemaining--;
+            this.updatePomodoroDisplay();
+            this.savePomodoroState();
+
+            if (this.state.pomodoroTimeRemaining <= 0) {
+              this.pomodoroComplete();
+            }
+          }, 1000);
+        } else {
+          this.state.pomodoroTimeRemaining = this.state.pomodoroDurations[this.state.pomodoroMode];
+          this.state.pomodoroRunning = false;
+        }
+      } else {
+        this.state.pomodoroTimeRemaining = state.timeRemaining;
+        this.state.pomodoroRunning = false;
+      }
+
+      this.updatePomodoroDisplay();
+      if (document.querySelector('.mode-btn')) {
+        document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.querySelector(`[data-mode="${this.state.pomodoroMode}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+      }
+    } catch (e) {
+      console.error('Failed to load pomodoro state:', e);
+    }
   },
 
   restart() {

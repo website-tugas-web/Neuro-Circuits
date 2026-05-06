@@ -5,7 +5,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Refleks Fisiologis",
     titleId: "Pemeriksaan Refleks Fisiologis",
     summary: "Menilai refleks fisiologis serta mengenali kelainannya.",
-    content: `<h2>Pemeriksaan Refleks Fisiologis</h2>
+    content: `<h1>Pemeriksaan Refleks Fisiologis</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
@@ -169,7 +169,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Sistem Motorik",
     titleId: "Pemeriksaan Sistem Motorik",
     summary: "Menilai postur, gerakan involunter, tonus otot, dan kekuatan otot.",
-    content: `<h2>Pemeriksaan Sistem Motorik</h2>
+    content: `<h1>Pemeriksaan Sistem Motorik</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
@@ -314,7 +314,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Refleks Patologis",
     titleId: "Pemeriksaan Refleks Patologis",
     summary: "Melakukan pemeriksaan Hofmann Tromner, Babinski, Oppenheim, Chaddock, Gordon, Schaefer, dan Gonda.",
-    content: `<h2>Pemeriksaan Refleks Patologis</h2>
+    content: `<h1>Pemeriksaan Refleks Patologis</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
@@ -391,7 +391,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick",
     titleId: "Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick",
     summary: "Melakukan pemeriksaan Patrick dan kontra Patrick.",
-    content: `<h2>Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick</h2>
+    content: `<h1>Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
@@ -446,7 +446,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Koordinasi",
     titleId: "Pemeriksaan Koordinasi",
     summary: "Menilai fungsi koordinasi.",
-    content: `<h2>Pemeriksaan Koordinasi</h2>
+    content: `<h1>Pemeriksaan Koordinasi</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
@@ -535,7 +535,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Fungsi Luhur",
     titleId: "Pemeriksaan Fungsi Luhur",
     summary: "Menilai fungsi koordinasi.",
-    content: `<h2>Pemeriksaan Fungsi Luhur</h2>
+    content: `<h1>Pemeriksaan Fungsi Luhur</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
@@ -624,7 +624,7 @@ const MATERIALS_DATA = [
     titleEn: "Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)",
     titleId: "Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)",
     summary: "Menilai fungsi sistem sensorik.",
-    content: `<h2>Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)</h2>
+    content: `<h1>Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)</h1>
 
 <h3>Tingkat Keterampilan</h3>
 <p>4A</p>
