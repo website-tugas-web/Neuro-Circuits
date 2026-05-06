@@ -362,17 +362,42 @@ const MATERIALS_DATA = [
 </ol>
 <p>Lakukan prosedur pemeriksaan ini pada kaki lainnya dan bandingkan hasilnya.</p>
 
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/reflex/refleks-babinski.png" alt="Refleks Babinski" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Refleks Babinski</figcaption>
+</figure>
+
 <h4>C. Refleks Chaddock</h4>
 <p>Rangsangan diberikan dengan cara menggoreskan ujung runcing palu refleks di bagian lateral maleolus.</p>
+
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/reflex/refleks-chaddock.png" alt="Refleks Chaddock" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Refleks Chaddock</figcaption>
+</figure>
 
 <h4>D. Refleks Oppenheim</h4>
 <p>Rangsangan diberikan dengan mengurut dengan kuat tibia dan otot tibialis anterior dari arah proksimal ke distal.</p>
 
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/reflex/refleks-oppenheim.png" alt="Refleks Oppenheim" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Refleks Oppenheim</figcaption>
+</figure>
+
 <h4>E. Refleks Gordon</h4>
 <p>Rangsangan diberikan dengan mencubit otot gastroknemius.</p>
 
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/reflex/refleks-gordon.png" alt="Refleks Gordon" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Refleks Gordon</figcaption>
+</figure>
+
 <h4>F. Refleks Schaefer</h4>
 <p>Rangsangan diberikan dengan mencubit tendon Achilles.</p>
+
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/reflex/refleks-scaeffer.png" alt="Refleks Scaeffer" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Refleks Scaeffer</figcaption>
+</figure>
 
 <h4>G. Refleks Gonda</h4>
 <p>Rangsangan diberikan dengan menekan salah satu jari kaki dan melepaskannya.</p>
