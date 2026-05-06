@@ -465,6 +465,11 @@ const MATERIALS_DATA = [
 <li>Nilai adakah nyeri dan lokasinya, bandingkan tungkai kanan dan kiri.</li>
 </ol>
 
+<figure style="margin: 1.5rem 0; text-align: center;">
+<img src="images/patrick-sign.png" alt="Patrick's Sign" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Patrick's Sign</figcaption>
+</figure>
+
 <h3>3. Contra-Patrick's Sign</h3>
 <ol style="list-style-type: lower-alpha;">
 <li>Pemeriksa melakukan fleksi sendi lutut, abduksi, dan eksternal rotasi pada salah satu tungkai pasien.</li>
