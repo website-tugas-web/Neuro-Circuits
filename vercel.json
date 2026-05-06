@@ -1,0 +1,36 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/materials.html",
+      "destination": "/materials",
+      "permanent": true
+    },
+    {
+      "source": "/quiz.html",
+      "destination": "/quiz",
+      "permanent": true
+    },
+    {
+      "source": "/test.html",
+      "destination": "/test",
+      "permanent": true
+    },
+    {
+      "source": "/timer.html",
+      "destination": "/timer",
+      "permanent": true
+    },
+    {
+      "source": "/references.html",
+      "destination": "/references",
+      "permanent": true
+    }
+  ]
+}

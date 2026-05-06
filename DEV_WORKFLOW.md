@@ -161,3 +161,61 @@ npm run deploy --prefix frontend
 ```
 
 Development is isolated from production; this dev workflow has zero impact on deployed systems.
+
+## Vercel Deployment Discipline
+
+**CRITICAL**: Every HTML/CSS/JS/asset edit must ship to production immediately. Vercel auto-deploys from `main` on push.
+
+### Push-on-Edit Rule
+
+After ANY edit to the site (HTML, CSS, JS, images, config):
+
+1. **Add** your changes:
+   ```bash
+   git add <edited-files>
+   ```
+
+2. **Commit** with a clear message:
+   ```bash
+   git commit -m "feat: describe what changed"
+   ```
+
+3. **Push** to origin/main:
+   ```bash
+   git push origin main
+   ```
+
+4. **Verify** clean state:
+   ```bash
+   git status  # should show "nothing to commit, working tree clean"
+   git log origin/main..HEAD  # should be empty (no unpushed commits)
+   ```
+
+### Verification Script
+
+Run this before marking any task complete:
+
+```bash
+./scripts/verify-shipped.sh
+```
+
+This script fails if:
+- There are uncommitted changes
+- There are unpushed commits on `main`
+
+### Why This Matters
+
+- **Live site**: https://neuro-circuits.vercel.app
+- **Vercel deploys**: Automatically from `main` branch on every push
+- **No manual deploys**: Push = deploy. If it's not pushed, it's not live.
+- **Task completion**: An edit is NOT done until `git status` is clean and `git log origin/main..HEAD` is empty.
+
+### Agent Responsibility
+
+All agents working on this project (CTO, WebDesigner, Animator) must:
+- Work in the CTO workspace: `/Users/wrayns/.paperclip/instances/default/workspaces/57260184-a844-430a-b5b5-5deab8bff56a/`
+- Follow the push-on-edit rule above
+- Run `./scripts/verify-shipped.sh` before claiming "done"
+- Never leave uncommitted changes or unpushed commits
+
+Failure to follow this discipline means the live site is out of sync with local work.
