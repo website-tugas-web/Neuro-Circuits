@@ -1261,6 +1261,15 @@ button:focus-visible,
   border-left: 4px solid #7B1224;
   border-radius: 4px;
 }
+.finding-explanation {
+  margin: .75rem 0 0;
+  padding-top: .75rem;
+  border-top: 1px solid rgba(123, 18, 36, .15);
+  font-style: italic;
+  color: #888;
+  font-size: .92rem;
+  line-height: 1.5;
+}
 
 @media (max-width: 600px) {
   .osce-scene { flex-direction: column; align-items: center; min-height: auto; }

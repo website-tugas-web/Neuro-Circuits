@@ -120,12 +120,13 @@ function doctorSVG(speech) {
 // ---- State ----
 
 var osceState = {
-  phase: 'intro',
+  phase: 'start',
   examinedIds: [],
   score: 0,
   lastFace: 'normal',
   lastSpeech: '',
   lastFinding: '',
+  lastWrongExplanation: '',
   lastDoctorSpeech: '',
   _selectedDx: []
 };
@@ -156,10 +157,21 @@ function renderScene(faceState, patientText, doctorText) {
 function renderOSCE() {
   var el = document.getElementById('osceApp');
   if (!el) return;
-  var c = getCurrentCase();
-  if (!c) { el.innerHTML = '<p style="color:#7B1224;text-align:center;font-size:1.2rem;">No cases available.</p>'; return; }
 
   var html = '';
+
+  if (osceState.phase === 'start') {
+    html = '<div style="text-align:center;padding:4rem 2rem;">' +
+      '<h2 style="color:#7B1224;font-family:Fraunces,serif;font-size:2rem;margin-bottom:1rem;">Simulasi OSCE</h2>' +
+      '<p style="color:#555;font-size:1.1rem;margin-bottom:2rem;">Apakah Anda siap untuk simulasi kuis OSCE ini?</p>' +
+      '<button class="btn-pill" onclick="startSimulation()">Mulai</button>' +
+    '</div>';
+    el.innerHTML = html;
+    return;
+  }
+
+  var c = getCurrentCase();
+  if (!c) { el.innerHTML = '<p style="color:#7B1224;text-align:center;font-size:1.2rem;">No cases available.</p>'; return; }
 
   if (osceState.phase === 'intro') {
     html = renderScene('normal', c.complaint, c.doctorIntro || '') +
@@ -175,8 +187,10 @@ function renderOSCE() {
     var finding = '';
     if (osceState.lastFinding) {
       finding = '<div class="finding-box">' +
-        '<strong style="color:#7B1224;">Temuan Terakhir:</strong>' +
-        '<p style="margin:.5rem 0 0;color:#555;">' + osceState.lastFinding + '</p></div>';
+        '<strong style="color:#7B1224;">Hasil Temuan:</strong>' +
+        '<p style="margin:.5rem 0 0;color:#555;">' + osceState.lastFinding + '</p>' +
+        (osceState.lastWrongExplanation ? '<p class="finding-explanation">' + osceState.lastWrongExplanation + '</p>' : '') +
+        '</div>';
     }
 
     var btns = '';
@@ -268,21 +282,18 @@ function doExam(examId) {
   osceState.lastSpeech = exam.patientSpeech || exam.feedback || '';
   osceState.lastFace = exam.patientFace || 'normal';
   osceState.lastFinding = exam.finding || '';
-
-  if (exam.correct) {
-    osceState.score += 10;
-  } else {
-    osceState._lastWrongExam = exam;
-  }
+  osceState.lastWrongExplanation = '';
 
   renderOSCE();
 
   setTimeout(function () {
     if (!exam.correct && exam.wrongExplanation) {
-      osceState.lastDoctorSpeech = exam.wrongExplanation;
-      osceState.lastFinding = '❌ ' + (exam.finding || '-');
+      osceState.lastDoctorSpeech = 'Hasil pemeriksaan sudah dicatat.';
+      osceState.lastFinding = exam.finding || '-';
+      osceState.lastWrongExplanation = exam.wrongExplanation;
     } else {
       osceState.lastDoctorSpeech = 'Saya temukan: ' + (exam.finding || '-');
+      osceState.lastWrongExplanation = '';
     }
     if (exam.patientFace === 'pain') {
       osceState.lastFace = 'normal';
@@ -320,19 +331,39 @@ function submitDiagnosis() {
   var c = getCurrentCase();
   if (!c || osceState._selectedDx.length === 0) { alert('Pilih diagnosis terlebih dahulu.'); return; }
 
-  var selIdx = osceState._selectedDx[0];
-  var dx = c.diagnoses[selIdx];
-  if (dx && dx.correct) {
-    osceState.score += 20;
-    osceState.score = Math.min(osceState.score, 100);
-  } else {
-    osceState.score = Math.max(osceState.score - 10, 0);
+  var exams = c.exams || [];
+  var totalCorrect = 0;
+  var chosenCorrect = 0;
+  var chosenWrong = 0;
+  for (var i = 0; i < exams.length; i++) {
+    if (exams[i].correct) totalCorrect++;
+    if (osceState.examinedIds.indexOf(exams[i].id) !== -1) {
+      if (exams[i].correct) chosenCorrect++;
+      else chosenWrong++;
+    }
   }
 
-  var pass = dx && dx.correct;
+  var selIdx = osceState._selectedDx[0];
+  var dx = c.diagnoses[selIdx];
+  var dxCorrect = dx && dx.correct;
+
+  var examScore = totalCorrect > 0 ? (chosenCorrect / totalCorrect) * 70 : 0;
+  var penalty = chosenWrong * 5;
+  var dxScore = dxCorrect ? 30 : 0;
+  osceState.score = Math.round(Math.max(0, Math.min(100, examScore - penalty + dxScore)));
+
+  var pass = dxCorrect;
   var failMsg = (dx && dx.wrongExplanation) ? dx.wrongExplanation : (c.doctorFail || '');
   osceState.lastDoctorSpeech = pass ? (c.doctorPass || '') : failMsg;
   osceState.phase = 'result';
+  renderOSCE();
+}
+
+function startSimulation() {
+  if (typeof OSCE_CASES !== 'undefined' && OSCE_CASES.length > 0) {
+    currentCase = Math.floor(Math.random() * OSCE_CASES.length);
+  }
+  osceState.phase = 'intro';
   renderOSCE();
 }
 
@@ -340,18 +371,21 @@ function restartCase() {
   osceState = {
     phase: 'intro', examinedIds: [], score: 0,
     lastFace: 'normal', lastSpeech: '', lastFinding: '',
-    lastDoctorSpeech: '', _selectedDx: []
+    lastWrongExplanation: '', lastDoctorSpeech: '', _selectedDx: []
   };
   renderOSCE();
 }
 
 function nextCase() {
-  if (typeof OSCE_CASES !== 'undefined' && currentCase < OSCE_CASES.length - 1) {
-    currentCase++;
-    restartCase();
-  } else {
+  if (typeof OSCE_CASES === 'undefined' || OSCE_CASES.length <= 1) {
     alert('Tidak ada kasus lagi.');
+    return;
   }
+  var prev = currentCase;
+  while (currentCase === prev) {
+    currentCase = Math.floor(Math.random() * OSCE_CASES.length);
+  }
+  restartCase();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
