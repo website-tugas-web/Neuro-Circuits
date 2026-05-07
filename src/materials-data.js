@@ -7,9 +7,6 @@ const MATERIALS_DATA = [
     summary: "Menilai refleks fisiologis serta mengenali kelainannya.",
     content: `<h1>Pemeriksaan Refleks Fisiologis</h1>
 
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
-
 <h3>Tujuan</h3>
 <p>Menilai refleks fisiologis serta mengenali kelainannya.</p>
 
@@ -170,9 +167,6 @@ const MATERIALS_DATA = [
     titleId: "Pemeriksaan Sistem Motorik",
     summary: "Menilai postur, gerakan involunter, tonus otot, dan kekuatan otot.",
     content: `<h1>Pemeriksaan Sistem Motorik</h1>
-
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
 
 <h3>Tujuan</h3>
 <ol>
@@ -504,9 +498,6 @@ const MATERIALS_DATA = [
     summary: "Melakukan pemeriksaan Hofmann Tromner, Babinski, Oppenheim, Chaddock, Gordon, Schaefer, dan Gonda.",
     content: `<h1>Pemeriksaan Refleks Patologis</h1>
 
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
-
 <h3>Tujuan</h3>
 <p>Melakukan pemeriksaan:</p>
 <ol>
@@ -606,9 +597,6 @@ const MATERIALS_DATA = [
     summary: "Melakukan pemeriksaan Patrick dan kontra Patrick.",
     content: `<h1>Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick</h1>
 
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
-
 <h3>Tujuan</h3>
 <p>Melakukan pemeriksaan Patrick dan kontra Patrick.</p>
 
@@ -665,9 +653,6 @@ const MATERIALS_DATA = [
     titleId: "Pemeriksaan Koordinasi",
     summary: "Menilai fungsi koordinasi.",
     content: `<h1>Pemeriksaan Koordinasi</h1>
-
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
 
 <h3>Tujuan</h3>
 <p>Menilai fungsi koordinasi.</p>
@@ -755,9 +740,6 @@ const MATERIALS_DATA = [
     summary: "Menilai fungsi koordinasi.",
     content: `<h1>Pemeriksaan Fungsi Luhur</h1>
 
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
-
 <h3>Tujuan</h3>
 <p>Menilai fungsi koordinasi.</p>
 
@@ -843,9 +825,6 @@ const MATERIALS_DATA = [
     titleId: "Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)",
     summary: "Menilai fungsi sistem sensorik.",
     content: `<h1>Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)</h1>
-
-<h3>Tingkat Keterampilan</h3>
-<p>4A</p>
 
 <h3>Tujuan</h3>
 <p>Menilai fungsi sistem sensorik.</p>
