@@ -128,7 +128,9 @@ var osceState = {
   lastFinding: '',
   lastWrongExplanation: '',
   lastDoctorSpeech: '',
-  _selectedDx: []
+  _selectedDxId: null,
+  shuffledExams: [],
+  shuffledDiagnoses: []
 };
 
 var currentCase = 0;
@@ -136,6 +138,18 @@ var currentCase = 0;
 function getCurrentCase() {
   if (typeof OSCE_CASES === 'undefined' || !OSCE_CASES[currentCase]) return null;
   return OSCE_CASES[currentCase];
+}
+
+// Fisher-Yates shuffle — returns shuffled copy
+function shuffle(arr) {
+  var copy = arr.slice();
+  for (var i = copy.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = copy[i];
+    copy[i] = copy[j];
+    copy[j] = temp;
+  }
+  return copy;
 }
 
 function getMinExams() {
@@ -194,7 +208,7 @@ function renderOSCE() {
     }
 
     var btns = '';
-    var exams = c.exams || [];
+    var exams = osceState.shuffledExams.length > 0 ? osceState.shuffledExams : (c.exams || []);
     for (var i = 0; i < exams.length; i++) {
       var ex = exams[i];
       var used = osceState.examinedIds.indexOf(ex.id) !== -1;
@@ -222,10 +236,11 @@ function renderOSCE() {
 
   } else if (osceState.phase === 'diagnosis') {
     var dxBtns = '';
-    var dxList = c.diagnoses || [];
+    var dxList = osceState.shuffledDiagnoses.length > 0 ? osceState.shuffledDiagnoses : (c.diagnoses || []);
     for (var j = 0; j < dxList.length; j++) {
-      var sel = osceState._selectedDx.indexOf(j) !== -1;
-      dxBtns += '<button class="dx-btn' + (sel ? ' selected' : '') + '" onclick="pickDx(' + j + ')">' + dxList[j].name + '</button>';
+      var dx = dxList[j];
+      var sel = osceState._selectedDxId === dx.id;
+      dxBtns += '<button class="dx-btn' + (sel ? ' selected' : '') + '" onclick="pickDx(\'' + dx.id + '\')">' + dx.name + '</button>';
     }
 
     html = renderScene('worried', '', c.doctorDiagnosisCue || 'Apa diagnosis Anda?') +
@@ -318,42 +333,49 @@ function goToDiagnosis() {
   renderOSCE();
 }
 
-function pickDx(idx) {
-  if (osceState._selectedDx.indexOf(idx) !== -1) {
-    osceState._selectedDx = [];
+function pickDx(dxId) {
+  if (osceState._selectedDxId === dxId) {
+    osceState._selectedDxId = null;
   } else {
-    osceState._selectedDx = [idx];
+    osceState._selectedDxId = dxId;
   }
   renderOSCE();
 }
 
 function submitDiagnosis() {
   var c = getCurrentCase();
-  if (!c || osceState._selectedDx.length === 0) { alert('Pilih diagnosis terlebih dahulu.'); return; }
+  if (!c || !osceState._selectedDxId) { alert('Pilih diagnosis terlebih dahulu.'); return; }
 
+  // Build sets of correct exam IDs and selected exam IDs
   var exams = c.exams || [];
-  var totalCorrect = 0;
-  var chosenCorrect = 0;
-  var chosenWrong = 0;
+  var requiredExamIds = [];
   for (var i = 0; i < exams.length; i++) {
-    if (exams[i].correct) totalCorrect++;
-    if (osceState.examinedIds.indexOf(exams[i].id) !== -1) {
-      if (exams[i].correct) chosenCorrect++;
-      else chosenWrong++;
-    }
+    if (exams[i].correct) requiredExamIds.push(exams[i].id);
   }
+  var selectedExamIds = osceState.examinedIds.slice();
 
-  var selIdx = osceState._selectedDx[0];
-  var dx = c.diagnoses[selIdx];
-  var dxCorrect = dx && dx.correct;
+  // Count correct exams (intersection of selected and required)
+  var correctExams = 0;
+  for (var j = 0; j < requiredExamIds.length; j++) {
+    if (selectedExamIds.indexOf(requiredExamIds[j]) !== -1) correctExams++;
+  }
+  var totalRequired = requiredExamIds.length;
+  var examScore = totalRequired > 0 ? (correctExams / totalRequired) : 0;
 
-  var examScore = totalCorrect > 0 ? (chosenCorrect / totalCorrect) * 70 : 0;
-  var penalty = chosenWrong * 5;
-  var dxScore = dxCorrect ? 30 : 0;
-  osceState.score = Math.round(Math.max(0, Math.min(100, examScore - penalty + dxScore)));
+  // Check diagnosis by ID
+  var selectedDx = null;
+  var diagnoses = c.diagnoses || [];
+  for (var k = 0; k < diagnoses.length; k++) {
+    if (diagnoses[k].id === osceState._selectedDxId) { selectedDx = diagnoses[k]; break; }
+  }
+  var diagnosisScore = (selectedDx && selectedDx.correct) ? 1 : 0;
 
-  var pass = dxCorrect;
-  var failMsg = (dx && dx.wrongExplanation) ? dx.wrongExplanation : (c.doctorFail || '');
+  // Weight per existing rubric: 70% exams, 30% diagnosis
+  var total = Math.round((examScore * 70 + diagnosisScore * 30));
+  osceState.score = total;
+
+  var pass = (selectedDx && selectedDx.correct);
+  var failMsg = (selectedDx && selectedDx.wrongExplanation) ? selectedDx.wrongExplanation : (c.doctorFail || '');
   osceState.lastDoctorSpeech = pass ? (c.doctorPass || '') : failMsg;
   osceState.phase = 'result';
   renderOSCE();
@@ -363,15 +385,23 @@ function startSimulation() {
   if (typeof OSCE_CASES !== 'undefined' && OSCE_CASES.length > 0) {
     currentCase = Math.floor(Math.random() * OSCE_CASES.length);
   }
+  var c = getCurrentCase();
+  if (c) {
+    osceState.shuffledExams = shuffle(c.exams || []);
+    osceState.shuffledDiagnoses = shuffle(c.diagnoses || []);
+  }
   osceState.phase = 'intro';
   renderOSCE();
 }
 
 function restartCase() {
+  var c = getCurrentCase();
   osceState = {
     phase: 'intro', examinedIds: [], score: 0,
     lastFace: 'normal', lastSpeech: '', lastFinding: '',
-    lastWrongExplanation: '', lastDoctorSpeech: '', _selectedDx: []
+    lastWrongExplanation: '', lastDoctorSpeech: '', _selectedDxId: null,
+    shuffledExams: c ? shuffle(c.exams || []) : [],
+    shuffledDiagnoses: c ? shuffle(c.diagnoses || []) : []
   };
   renderOSCE();
 }
@@ -385,7 +415,15 @@ function nextCase() {
   while (currentCase === prev) {
     currentCase = Math.floor(Math.random() * OSCE_CASES.length);
   }
-  restartCase();
+  var c = getCurrentCase();
+  osceState = {
+    phase: 'intro', examinedIds: [], score: 0,
+    lastFace: 'normal', lastSpeech: '', lastFinding: '',
+    lastWrongExplanation: '', lastDoctorSpeech: '', _selectedDxId: null,
+    shuffledExams: c ? shuffle(c.exams || []) : [],
+    shuffledDiagnoses: c ? shuffle(c.diagnoses || []) : []
+  };
+  renderOSCE();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
