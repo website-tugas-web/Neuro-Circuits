@@ -123,6 +123,7 @@ var osceState = {
   phase: 'start',
   examinedIds: [],
   score: 0,
+  diagnosisCorrect: false,
   lastFace: 'normal',
   lastSpeech: '',
   lastFinding: '',
@@ -251,7 +252,7 @@ function renderOSCE() {
       '</div>';
 
   } else if (osceState.phase === 'result') {
-    var pass = osceState.score >= 50;
+    var pass = osceState.diagnosisCorrect;
     var rFace = pass ? 'happy' : 'worried';
     var rMsg = pass ? 'Selamat! Diagnosis Anda tepat.' : 'Silakan tinjau kembali temuan dan coba lagi.';
     var drMsg = pass ? (c.doctorPass || rMsg) : (c.doctorFail || rMsg);
@@ -375,6 +376,7 @@ function submitDiagnosis() {
   osceState.score = total;
 
   var pass = (selectedDx && selectedDx.correct);
+  osceState.diagnosisCorrect = pass;
   var failMsg = (selectedDx && selectedDx.wrongExplanation) ? selectedDx.wrongExplanation : (c.doctorFail || '');
   osceState.lastDoctorSpeech = pass ? (c.doctorPass || '') : failMsg;
   osceState.phase = 'result';
@@ -397,7 +399,7 @@ function startSimulation() {
 function restartCase() {
   var c = getCurrentCase();
   osceState = {
-    phase: 'intro', examinedIds: [], score: 0,
+    phase: 'intro', examinedIds: [], score: 0, diagnosisCorrect: false,
     lastFace: 'normal', lastSpeech: '', lastFinding: '',
     lastWrongExplanation: '', lastDoctorSpeech: '', _selectedDxId: null,
     shuffledExams: c ? shuffle(c.exams || []) : [],
@@ -417,7 +419,7 @@ function nextCase() {
   }
   var c = getCurrentCase();
   osceState = {
-    phase: 'intro', examinedIds: [], score: 0,
+    phase: 'intro', examinedIds: [], score: 0, diagnosisCorrect: false,
     lastFace: 'normal', lastSpeech: '', lastFinding: '',
     lastWrongExplanation: '', lastDoctorSpeech: '', _selectedDxId: null,
     shuffledExams: c ? shuffle(c.exams || []) : [],
