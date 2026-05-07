@@ -49,23 +49,23 @@ const OSCE_CASES = [
       },
       {
         id: "case1-exam5",
-        name: "Periksa kekuatan otot",
+        name: "Inspeksi rambut kepala",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan otot bukan prioritas di sini. Kasus ini mengarah ke lesi UMN — yang perlu dikonfirmasi adalah refleks fisiologis, bukan kekuatan motorik. Kekuatan bisa menurun di banyak kondisi, tapi refleks yang meningkat unilateral lebih spesifik untuk diagnosis.",
-        doctorPrompt: "Coba lawan dorongan saya pada lengan Anda.",
-        patientSpeech: "Iya dokter, tapi agak sulit...",
-        patientFace: "worried",
-        finding: "Kekuatan motorik menurun (4/5) pada sisi kanan"
+        finding: "Hasil normal. Tidak ada kelainan pada kulit kepala atau rambut.",
+        wrongExplanation: "Pemeriksaan rambut kepala tidak relevan karena keluhan pasien adalah kelemahan tungkai dan lengan, bukan masalah kepala.",
+        doctorPrompt: "Saya akan memeriksa kulit kepala Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "worried"
       },
       {
         id: "case1-exam6",
-        name: "Periksa sensibilitas",
+        name: "Auskultasi suara usus",
         correct: false,
-        wrongExplanation: "Pemeriksaan sensibilitas tidak relevan untuk topik refleks fisiologis. Meskipun gangguan sensorik bisa ditemukan pada stroke, fokus kasus ini adalah mengevaluasi refleks fisiologis untuk membedakan lesi UMN dan LMN.",
-        doctorPrompt: "Apakah Anda merasakan sentuhan ini sama di kedua sisi?",
-        patientSpeech: "Sepertinya berbeda, dokter.",
-        patientFace: "worried",
-        finding: "Sensibilitas menurun pada hemibody kanan"
+        finding: "Hasil normal. Bising usus normal di semua kuadran abdomen.",
+        wrongExplanation: "Pemeriksaan bising usus tidak relevan karena keluhan pasien berada di sistem neurologis tungkai, bukan sistem gastrointestinal.",
+        doctorPrompt: "Saya akan mendengarkan perut Anda.",
+        patientSpeech: "Silakan dokter.",
+        patientFace: "worried"
       }
     ],
     diagnoses: [
@@ -133,13 +133,13 @@ const OSCE_CASES = [
       },
       {
         id: "case2-exam6",
-        name: "Periksa koordinasi",
+        name: "Inspeksi gigi dan gusi",
         correct: false,
-        wrongExplanation: "Pemeriksaan koordinasi tidak diperlukan di sini. Keluhan pasien mengarah ke gangguan refleks dan sensorik perifer, bukan gangguan serebelum. Tes koordinasi relevan jika dicurigai lesi serebelum, yang tidak sesuai dengan pola hiporefleksia simetris.",
-        doctorPrompt: "Coba sentuh hidung Anda lalu jari saya.",
-        patientSpeech: "Baik, dokter.",
-        patientFace: "normal",
-        finding: "Koordinasi baik, tidak ada dismetria"
+        finding: "Hasil normal. Tidak ada kelainan pada gigi dan gusi.",
+        wrongExplanation: "Pemeriksaan gigi tidak relevan karena keluhan pasien adalah kelemahan dan kebas pada ekstremitas, bukan masalah oral.",
+        doctorPrompt: "Buka mulut, saya periksa gigi Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -209,13 +209,13 @@ const OSCE_CASES = [
       },
       {
         id: "case3-exam6",
-        name: "Periksa sensibilitas",
+        name: "Palpasi kelenjar tiroid",
         correct: false,
-        wrongExplanation: "Pemeriksaan sensibilitas tidak relevan untuk kasus ini. ALS adalah penyakit motor neuron murni — sensorik tidak terganggu. Waktu pemeriksaan lebih baik digunakan untuk menilai sistem motorik secara menyeluruh (atrofi, fasikulasi, kekuatan, tonus).",
-        doctorPrompt: "Apakah Anda merasakan sentuhan ini?",
-        patientSpeech: "Ya, terasa normal dokter.",
-        patientFace: "normal",
-        finding: "Sensibilitas utuh, tidak ada gangguan"
+        finding: "Hasil normal. Kelenjar tiroid tidak membesar, konsistensi normal.",
+        wrongExplanation: "Pemeriksaan tiroid tidak relevan karena keluhan pasien adalah kelemahan lengan, bukan gejala tiroid.",
+        doctorPrompt: "Saya raba leher Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -274,23 +274,23 @@ const OSCE_CASES = [
       },
       {
         id: "case4-exam5",
-        name: "Periksa tonus otot",
+        name: "Perkusi sinus frontalis",
         correct: false,
-        wrongExplanation: "Pemeriksaan tonus otot tidak membantu diagnosis miastenia gravis. Pada MG, masalahnya ada di neuromuscular junction sehingga tonus biasanya normal. Yang khas adalah fatigability — kelemahan yang memburuk saat aktivitas berulang.",
-        doctorPrompt: "Saya raba tonus otot lengan Anda.",
-        patientSpeech: "Silakan.",
-        patientFace: "normal",
-        finding: "Tonus otot normal"
+        finding: "Hasil normal. Tidak ada nyeri tekan pada sinus frontalis.",
+        wrongExplanation: "Pemeriksaan sinus tidak relevan karena keluhan pasien adalah kelemahan mata dan otot, bukan gejala sinusitis.",
+        doctorPrompt: "Saya ketuk area dahi Anda.",
+        patientSpeech: "Silakan dokter.",
+        patientFace: "normal"
       },
       {
         id: "case4-exam6",
-        name: "Periksa refleks tendon",
+        name: "Auskultasi paru-paru",
         correct: false,
-        wrongExplanation: "Pemeriksaan refleks tendon tidak relevan untuk mendiagnosis miastenia gravis. Refleks normal pada MG karena busur refleks tidak melibatkan transmisi NMJ yang berulang. Fokus pemeriksaan seharusnya pada fatigability otot, bukan refleks.",
-        doctorPrompt: "Saya periksa refleks Anda.",
-        patientSpeech: "Baik.",
-        patientFace: "normal",
-        finding: "Refleks fisiologis normal (++)"
+        finding: "Hasil normal. Suara napas vesikuler, tidak ada ronki atau wheezing.",
+        wrongExplanation: "Pemeriksaan paru tidak relevan karena keluhan pasien adalah kelemahan neuromuskular, bukan gejala respirasi.",
+        doctorPrompt: "Tarik napas dalam, saya dengarkan paru Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -360,13 +360,13 @@ const OSCE_CASES = [
       },
       {
         id: "case5-exam6",
-        name: "Periksa sensibilitas",
+        name: "Inspeksi telinga luar",
         correct: false,
-        wrongExplanation: "Pemeriksaan sensibilitas bukan fokus utama pada topik refleks patologis. Kasus ini meminta evaluasi refleks patologis (Babinski, Hoffman, klonus) untuk mengonfirmasi lesi UMN. Sensibilitas memang terganggu, tapi bukan pemeriksaan yang diminta.",
-        doctorPrompt: "Apakah Anda merasakan sentuhan ini?",
-        patientSpeech: "Kurang jelas di bawah pusar, dokter.",
-        patientFace: "worried",
-        finding: "Level sensorik setinggi T10"
+        finding: "Hasil normal. Tidak ada kelainan pada aurikula atau liang telinga.",
+        wrongExplanation: "Pemeriksaan telinga tidak relevan karena keluhan pasien adalah kekakuan dan kesulitan berjalan akibat trauma tulang belakang, bukan masalah pendengaran.",
+        doctorPrompt: "Saya lihat telinga Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "worried"
       }
     ],
     diagnoses: [
@@ -425,23 +425,23 @@ const OSCE_CASES = [
       },
       {
         id: "case6-exam5",
-        name: "Periksa kekuatan tungkai kiri",
+        name: "Palpasi kelenjar limfe leher",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan motorik bukan fokus pada topik refleks patologis. Yang perlu dievaluasi adalah refleks patologis (Babinski, Hoffman) dan tonus untuk mengonfirmasi lesi UMN — bukan kekuatan otot.",
-        doctorPrompt: "Angkat kaki kiri Anda, lawan dorongan saya.",
-        patientSpeech: "Sulit, dokter.",
-        patientFace: "worried",
-        finding: "Kekuatan tungkai kiri 3/5 (dapat melawan gravitasi)"
+        finding: "Hasil normal. Tidak ada pembesaran kelenjar getah bening di leher.",
+        wrongExplanation: "Pemeriksaan kelenjar limfe tidak relevan karena keluhan pasien adalah kelemahan tungkai pasca-stroke, bukan infeksi atau keganasan.",
+        doctorPrompt: "Saya raba leher Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "worried"
       },
       {
         id: "case6-exam6",
-        name: "Tes koordinasi kanan",
+        name: "Inspeksi lidah",
         correct: false,
-        wrongExplanation: "Tes koordinasi tidak relevan di sini. Kasus ini tentang refleks patologis pada hemiparesis spastik pasca-stroke. Memeriksa koordinasi sisi sehat (kanan) tidak membantu mengonfirmasi lesi UMN hemisfer kontralateral.",
-        doctorPrompt: "Sentuh hidung lalu jari saya dengan tangan kanan.",
-        patientSpeech: "Baik, dokter.",
-        patientFace: "normal",
-        finding: "Koordinasi tangan kanan baik"
+        finding: "Hasil normal. Lidah simetris, tidak ada deviasi atau fasikulasi.",
+        wrongExplanation: "Pemeriksaan lidah tidak relevan karena keluhan pasien adalah hemiparesis tungkai, bukan gangguan saraf kranial.",
+        doctorPrompt: "Julurkan lidah Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -502,23 +502,23 @@ const OSCE_CASES = [
       },
       {
         id: "case7-exam5",
-        name: "Periksa refleks patella",
+        name: "Inspeksi sklera mata",
         correct: false,
-        wrongExplanation: "Pemeriksaan refleks patella tidak diperlukan untuk kasus nyeri sakroiliaka. Refleks patella mengevaluasi radiks L3-L4 dan traktus kortikospinal — sedangkan masalah di sini adalah sendi sakroiliaka, bukan radiks saraf.",
-        doctorPrompt: "Saya periksa refleks lutut Anda.",
-        patientSpeech: "Baik.",
-        patientFace: "normal",
-        finding: "Refleks patella normal bilateral (++)"
+        finding: "Hasil normal. Sklera putih, tidak ada ikterus atau injeksi konjungtiva.",
+        wrongExplanation: "Pemeriksaan mata tidak relevan karena keluhan pasien adalah nyeri pinggang dan pantat, bukan masalah okuler.",
+        doctorPrompt: "Lihat ke atas, saya periksa mata Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       },
       {
         id: "case7-exam6",
-        name: "Periksa kekuatan tungkai",
+        name: "Palpasi nadi radialis",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan tungkai tidak relevan karena masalah utama adalah nyeri sendi sakroiliaka, bukan kelemahan neurologis. Patrick/Kontra Patrick dan palpasi SI joint jauh lebih diagnostik untuk kasus ini.",
-        doctorPrompt: "Angkat kaki, lawan dorongan saya.",
-        patientSpeech: "Bisa, dokter.",
-        patientFace: "normal",
-        finding: "Kekuatan motorik tungkai normal (5/5)"
+        finding: "Hasil normal. Nadi radialis teraba kuat dan teratur, frekuensi 78x/menit.",
+        wrongExplanation: "Pemeriksaan nadi pergelangan tangan tidak relevan karena keluhan pasien adalah nyeri muskuloskeletal panggul, bukan masalah kardiovaskular atau ekstremitas atas.",
+        doctorPrompt: "Saya raba nadi Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -577,23 +577,23 @@ const OSCE_CASES = [
       },
       {
         id: "case8-exam5",
-        name: "Periksa gait (cara berjalan)",
+        name: "Perkusi ginjal (CVA tenderness)",
         correct: false,
-        wrongExplanation: "Pemeriksaan gait memberikan informasi umum tapi bukan pemeriksaan spesifik untuk membedakan patologi sendi panggul dari penyebab nyeri lain. Tes Patrick dan Kontra Patrick jauh lebih diagnostik untuk melokalisasi sumber nyeri.",
-        doctorPrompt: "Coba berjalan beberapa langkah.",
-        patientSpeech: "Agak pincang, dokter.",
-        patientFace: "worried",
-        finding: "Antalgic gait (pincang untuk mengurangi beban pada hip kanan)"
+        finding: "Hasil normal. Tidak ada nyeri ketok pada sudut kostovertebra.",
+        wrongExplanation: "Pemeriksaan ginjal tidak relevan karena keluhan pasien adalah nyeri sendi panggul, bukan gejala nefrolitiasis atau pielonefritis.",
+        doctorPrompt: "Saya ketuk punggung bawah Anda.",
+        patientSpeech: "Tidak sakit dokter.",
+        patientFace: "normal"
       },
       {
         id: "case8-exam6",
-        name: "Tes lurus angkat tungkai",
+        name: "Inspeksi kuku jari tangan",
         correct: false,
-        wrongExplanation: "SLR (Straight Leg Raise) digunakan untuk mendeteksi iritasi radiks saraf (radikulopati). Pada kasus nyeri sendi panggul, SLR tidak membantu karena patologinya intra-artikular, bukan kompresi saraf. Patrick/Kontra Patrick lebih tepat.",
-        doctorPrompt: "Saya angkat kaki Anda lurus.",
-        patientSpeech: "Tidak sakit, dokter.",
-        patientFace: "normal",
-        finding: "SLR negatif, tidak ada nyeri radikuler"
+        finding: "Hasil normal. Kuku tidak ada clubbing, sianosis, atau kelainan bentuk.",
+        wrongExplanation: "Pemeriksaan kuku tangan tidak relevan karena keluhan pasien adalah nyeri panggul dan lutut, bukan masalah ekstremitas atas atau sistemik.",
+        doctorPrompt: "Saya lihat kuku Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -654,23 +654,23 @@ const OSCE_CASES = [
       },
       {
         id: "case9-exam5",
-        name: "Periksa kekuatan tangan",
+        name: "Palpasi kelenjar parotis",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan otot tidak membantu mendiagnosis gangguan serebelum. Lesi serebelum menyebabkan inkoordinasi, bukan kelemahan. Kekuatan biasanya normal — yang terganggu adalah presisi dan timing gerakan.",
-        doctorPrompt: "Genggam jari saya sekuat mungkin.",
-        patientSpeech: "Kekuatannya baik, dokter.",
-        patientFace: "normal",
-        finding: "Kekuatan genggam normal (5/5)"
+        finding: "Hasil normal. Kelenjar parotis tidak membesar, tidak ada nyeri tekan.",
+        wrongExplanation: "Pemeriksaan kelenjar ludah tidak relevan karena keluhan pasien adalah gangguan koordinasi tangan, bukan masalah kelenjar saliva.",
+        doctorPrompt: "Saya raba pipi Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       },
       {
         id: "case9-exam6",
-        name: "Periksa sensibilitas posisi",
+        name: "Inspeksi perut (abdomen)",
         correct: false,
-        wrongExplanation: "Pemeriksaan propriosepsi tidak diperlukan pada kasus ini. Propriosepsi yang terganggu mengarah ke ataksia sensorik, bukan ataksia serebelar. Pada lesi serebelum murni, propriosepsi normal — yang terganggu adalah koordinasi motorik halus.",
-        doctorPrompt: "Saya gerakkan jari Anda, ke atas atau bawah?",
-        patientSpeech: "Ke atas, dokter.",
-        patientFace: "normal",
-        finding: "Propriosepsi normal, dapat mendeteksi posisi jari"
+        finding: "Hasil normal. Abdomen datar, tidak ada distensi atau sikatriks.",
+        wrongExplanation: "Pemeriksaan abdomen tidak relevan karena keluhan pasien adalah gangguan koordinasi tangan, bukan gejala gastrointestinal.",
+        doctorPrompt: "Buka baju, saya lihat perut Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -729,23 +729,23 @@ const OSCE_CASES = [
       },
       {
         id: "case10-exam5",
-        name: "Tes jari-hidung",
+        name: "Auskultasi jantung",
         correct: false,
-        wrongExplanation: "Tes jari-hidung mengevaluasi koordinasi serebelar, bukan proprioseptif. Pada ataksia sensorik, masalahnya ada di input proprioseptif — tes Romberg dan propriosepsi lebih tepat. Koordinasi serebelar biasanya normal pada ataksia sensorik.",
-        doctorPrompt: "Sentuh hidung lalu jari saya.",
-        patientSpeech: "Bisa, dokter.",
-        patientFace: "normal",
-        finding: "Koordinasi jari-hidung normal, tidak ada dismetria"
+        finding: "Hasil normal. Bunyi jantung S1 S2 regular, tidak ada murmur.",
+        wrongExplanation: "Pemeriksaan jantung tidak relevan karena keluhan pasien adalah gangguan keseimbangan dan jatuh, bukan gejala kardiovaskular.",
+        doctorPrompt: "Saya dengarkan jantung Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       },
       {
         id: "case10-exam6",
-        name: "Periksa kekuatan tungkai",
+        name: "Inspeksi rongga mulut dan faring",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan tungkai tidak relevan karena masalahnya bukan kelemahan motorik, melainkan gangguan input sensorik proprioseptif. Pasien jatuh bukan karena lemah, tapi karena tidak bisa merasakan posisi tubuh — terutama saat mata ditutup.",
-        doctorPrompt: "Angkat kaki, lawan dorongan saya.",
-        patientSpeech: "Kuat, dokter.",
-        patientFace: "normal",
-        finding: "Kekuatan tungkai normal (5/5)"
+        finding: "Hasil normal. Mukosa mulut lembab, faring tidak hiperemis, tonsil tidak membesar.",
+        wrongExplanation: "Pemeriksaan mulut dan tenggorokan tidak relevan karena keluhan pasien adalah gangguan berjalan dan keseimbangan, bukan masalah orofaring.",
+        doctorPrompt: "Buka mulut lebar, katakan 'aaa'.",
+        patientSpeech: "Aaa.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -806,23 +806,23 @@ const OSCE_CASES = [
       },
       {
         id: "case11-exam5",
-        name: "Tes bahasa (naming)",
+        name: "Palpasi pulsa dorsalis pedis",
         correct: false,
-        wrongExplanation: "Tes naming sederhana kurang sensitif untuk demensia stadium awal-menengah. Pada Alzheimer, gangguan naming biasanya muncul belakangan. Prioritas pemeriksaan seharusnya memori, orientasi, atensi, dan visuospasial yang sudah terganggu lebih awal.",
-        doctorPrompt: "Benda ini namanya apa? (tunjuk pulpen)",
-        patientSpeech: "Pulpen, dokter.",
-        patientFace: "normal",
-        finding: "Kemampuan naming baik, tidak ada anomia"
+        finding: "Hasil normal. Nadi dorsalis pedis teraba kuat bilateral.",
+        wrongExplanation: "Pemeriksaan nadi kaki tidak relevan karena keluhan pasien adalah gangguan memori dan kognitif, bukan masalah vaskular perifer.",
+        doctorPrompt: "Saya raba nadi kaki Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       },
       {
         id: "case11-exam6",
-        name: "Periksa kekuatan motorik",
+        name: "Inspeksi kulit punggung",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan motorik tidak relevan untuk mengevaluasi fungsi luhur. Demensia adalah gangguan kognitif — motorik biasanya normal pada stadium awal. Waktu pemeriksaan lebih baik digunakan untuk tes kognitif seperti memori, orientasi, dan visuospasial.",
-        doctorPrompt: "Angkat tangan, lawan dorongan saya.",
-        patientSpeech: "Bisa, dokter.",
-        patientFace: "normal",
-        finding: "Kekuatan motorik normal (5/5)"
+        finding: "Hasil normal. Kulit punggung bersih, tidak ada lesi atau ruam.",
+        wrongExplanation: "Pemeriksaan kulit punggung tidak relevan karena keluhan pasien adalah gangguan fungsi kognitif, bukan masalah dermatologi.",
+        doctorPrompt: "Buka baju, saya lihat punggung Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
@@ -881,23 +881,23 @@ const OSCE_CASES = [
       },
       {
         id: "case12-exam5",
-        name: "Periksa kekuatan wajah",
+        name: "Perkusi lutut (refleks patella)",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan wajah bukan bagian dari evaluasi fungsi luhur/bahasa. Meskipun facial palsy bisa ditemukan pada stroke hemisfer kiri, fokus kasus ini adalah mengevaluasi afasia — pemahaman, produksi, repetisi, dan fluensi bahasa.",
-        doctorPrompt: "Senyum lebar, tunjukkan gigi.",
+        finding: "Hasil normal. Refleks patella normal bilateral (++).",
+        wrongExplanation: "Pemeriksaan refleks lutut tidak relevan karena keluhan pasien adalah gangguan bahasa, bukan gangguan sistem motorik atau refleks.",
+        doctorPrompt: "Saya ketuk lutut Anda.",
         patientSpeech: "Baik.",
-        patientFace: "normal",
-        finding: "Kelemahan wajah kanan bawah (UMN facial palsy)"
+        patientFace: "normal"
       },
       {
         id: "case12-exam6",
-        name: "Periksa lapang pandang",
+        name: "Auskultasi abdomen",
         correct: false,
-        wrongExplanation: "Pemeriksaan lapang pandang bukan prioritas dalam evaluasi fungsi luhur bahasa. Hemianopsia memang bisa menyertai stroke hemisfer kiri, tapi tidak membantu membedakan jenis afasia. Tes bahasa (comprehension, naming, repetisi) lebih relevan.",
-        doctorPrompt: "Lihat hidung saya, bilang jika Anda lihat jari saya bergerak.",
-        patientSpeech: "Tidak lihat di kanan, dokter.",
-        patientFace: "worried",
-        finding: "Hemianopsia homonim kanan"
+        finding: "Hasil normal. Bising usus positif di semua kuadran.",
+        wrongExplanation: "Pemeriksaan usus tidak relevan karena keluhan pasien adalah afasia pasca-stroke, bukan masalah gastrointestinal.",
+        doctorPrompt: "Saya dengarkan perut Anda.",
+        patientSpeech: "Baik.",
+        patientFace: "worried"
       }
     ],
     diagnoses: [
@@ -967,13 +967,13 @@ const OSCE_CASES = [
       },
       {
         id: "case13-exam6",
-        name: "Periksa kekuatan tungkai",
+        name: "Inspeksi membran timpani telinga",
         correct: false,
-        wrongExplanation: "Pemeriksaan kekuatan motorik bukan fokus utama pada topik sistem sensorik. Kasus ini meminta evaluasi berbagai modalitas sensorik (nyeri, suhu, raba, propriosepsi) untuk menegakkan pola neuropati. Kelemahan distal memang bisa menyertai, tapi bukan pemeriksaan sensorik.",
-        doctorPrompt: "Angkat kaki, lawan dorongan saya.",
-        patientSpeech: "Agak lemah, dokter.",
-        patientFace: "worried",
-        finding: "Kekuatan motorik tungkai distal 4/5"
+        finding: "Hasil normal. Membran timpani utuh, tidak ada tanda infeksi.",
+        wrongExplanation: "Pemeriksaan telinga tidak relevan karena keluhan pasien adalah baal dan kesemutan pada tangan dan kaki, bukan masalah pendengaran atau telinga.",
+        doctorPrompt: "Saya lihat dalam telinga Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "worried"
       }
     ],
     diagnoses: [
@@ -1032,23 +1032,23 @@ const OSCE_CASES = [
       },
       {
         id: "case14-exam5",
-        name: "Periksa koordinasi",
+        name: "Palpasi kelenjar submandibula",
         correct: false,
-        wrongExplanation: "Pemeriksaan koordinasi bukan fokus utama pada topik sistem sensorik. Meskipun ataksia bisa menyertai sindrom Wallenberg, kasus ini meminta evaluasi modalitas sensorik (nyeri, suhu, raba, posisi) untuk mengidentifikasi pola disosiasi sensorik.",
-        doctorPrompt: "Sentuh hidung lalu jari saya.",
-        patientSpeech: "Agak meleset, dokter.",
-        patientFace: "worried",
-        finding: "Ataksia ringan sisi kanan"
+        finding: "Hasil normal. Kelenjar submandibula tidak membesar, tidak ada massa.",
+        wrongExplanation: "Pemeriksaan kelenjar ludah tidak relevan karena keluhan pasien adalah gangguan sensorik hemibody, bukan masalah kelenjar saliva atau leher.",
+        doctorPrompt: "Saya raba di bawah rahang Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "worried"
       },
       {
         id: "case14-exam6",
-        name: "Periksa nistagmus",
+        name: "Inspeksi kuku jari kaki",
         correct: false,
-        wrongExplanation: "Pemeriksaan nistagmus bukan bagian dari evaluasi sistem sensorik. Meskipun nistagmus bisa ditemukan pada sindrom Wallenberg, fokus kasus ini adalah mengevaluasi modalitas sensorik untuk mengidentifikasi disosiasi sensorik yang khas.",
-        doctorPrompt: "Ikuti jari saya dengan mata, jangan gerakkan kepala.",
-        patientSpeech: "Baik.",
-        patientFace: "normal",
-        finding: "Nistagmus horizontal saat lateral gaze"
+        finding: "Hasil normal. Kuku jari kaki tidak ada onikomikosis atau kelainan.",
+        wrongExplanation: "Pemeriksaan kuku kaki tidak relevan karena keluhan pasien adalah gangguan sensasi nyeri dan suhu hemibody, bukan masalah dermatologi kaki.",
+        doctorPrompt: "Saya lihat kuku jari kaki Anda.",
+        patientSpeech: "Baik dokter.",
+        patientFace: "normal"
       }
     ],
     diagnoses: [
