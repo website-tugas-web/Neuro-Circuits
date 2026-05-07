@@ -1,4 +1,4 @@
-// Test questions from NEUAAA-106 - 25 OSCE-style MCQs in Bahasa Indonesia
+// Test questions - 33 OSCE-style MCQs in Bahasa Indonesia (25 from NEUAAA-106 + 8 additional)
 const TEST_QUESTIONS = [
   {
     "id": 1,
@@ -386,5 +386,129 @@ const TEST_QUESTIONS = [
     },
     "answer": "C",
     "explanation": "Tes tumit-lutut menilai koordinasi tungkai bawah. Hipermetria atau ataksia (tumit berkali-kali terjatuh dari jalur) menandakan gangguan koordinasi cerebelar. Karena gangguan sama berat baik mata tertutup maupun terbuka, ini menandakan gangguan cerebelar (bukan proprioseptif). Pada multiple sclerosis, lesi plak di jalur serebelar dapat menyebabkan ataksia."
+  },
+  {
+    "id": 26,
+    "topic": "Refleks Fisiologis - Refleks Triceps",
+    "vignette": "Seorang laki-laki berusia 52 tahun dengan keluhan kelemahan tangan kiri. Dokter memegang lengan pasien dengan siku fleksi 90 derajat, kemudian mengetuk tendon triceps tepat di atas olekranon dengan palu refleks. Didapatkan ekstensi lengan bawah yang lemah dibandingkan sisi kanan.",
+    "question": "Level segmen spinal mana yang dinilai pada pemeriksaan refleks triceps?",
+    "options": {
+      "A": "C5-C6",
+      "B": "C6-C7",
+      "C": "C7-C8",
+      "D": "C8-T1",
+      "E": "T1-T2"
+    },
+    "answer": "C",
+    "explanation": "Refleks triceps menilai integritas lengkung refleks pada level C7-C8. Respon normal adalah ekstensi lengan bawah dengan kontraksi otot triceps. Refleks triceps yang lemah unilateral dapat menandakan lesi pada segmen C7-C8 atau nervus radialis pada sisi yang terkena."
+  },
+  {
+    "id": 27,
+    "topic": "Refleks Patologis - Chaddock",
+    "vignette": "Seorang perempuan berusia 62 tahun pasca stroke 2 minggu lalu dengan hemiparesis kanan. Pada pemeriksaan, pemeriksa menggores kulit di bawah maleolus lateralis dari posterior ke anterior. Didapatkan dorsofleksi ibu jari kaki kanan.",
+    "question": "Apa makna klinis dari temuan refleks Chaddock positif pada pasien ini?",
+    "options": {
+      "A": "Menandakan lesi lower motor neuron",
+      "B": "Varian normal pada orang dewasa",
+      "C": "Menandakan lesi traktus piramidalis (upper motor neuron)",
+      "D": "Menandakan gangguan saraf perifer",
+      "E": "Menandakan kelainan sendi pergelangan kaki"
+    },
+    "answer": "C",
+    "explanation": "Refleks Chaddock merupakan salah satu refleks patologis yang menilai integritas traktus piramidalis, sama seperti refleks Babinski. Refleks ini positif bila didapatkan dorsofleksi ibu jari kaki setelah menggores kulit di bawah maleolus lateralis. Temuan positif menandakan lesi upper motor neuron, sesuai dengan riwayat stroke pada pasien.",
+    "figureRef": {
+      "page": 22,
+      "description": "Diagram teknik pemeriksaan refleks Chaddock"
+    }
+  },
+  {
+    "id": 28,
+    "topic": "Refleks Patologis - Gonda",
+    "vignette": "Seorang laki-laki berusia 58 tahun dengan suspek lesi UMN. Dokter melakukan pemeriksaan dengan menekan dan melepaskan jari kaki ke-4 atau ke-5 secara tiba-tiba ke arah plantar. Didapatkan dorsofleksi ibu jari kaki.",
+    "question": "Refleks patologis apa yang sedang diperiksa dan bagaimana interpretasinya?",
+    "options": {
+      "A": "Refleks Babinski, negatif menandakan tidak ada kelainan",
+      "B": "Refleks Gonda, positif menandakan lesi traktus piramidalis",
+      "C": "Refleks Schaefer, negatif merupakan respon normal",
+      "D": "Refleks Gordon, positif menandakan kelainan lower motor neuron",
+      "E": "Refleks Oppenheim, negatif tidak ada makna klinis"
+    },
+    "answer": "B",
+    "explanation": "Refleks Gonda dilakukan dengan menekan dan melepaskan jari kaki ke-4 atau ke-5 secara tiba-tiba ke arah plantar. Refleks positif bila didapatkan dorsofleksi ibu jari kaki. Bersama refleks Babinski, Oppenheim, Chaddock, Gordon, dan Schaefer, refleks Gonda positif menandakan lesi traktus piramidalis (upper motor neuron)."
+  },
+  {
+    "id": 29,
+    "topic": "Pemeriksaan Sensorik - Sensasi Raba",
+    "vignette": "Seorang perempuan berusia 48 tahun dengan keluhan baal di tangan kanan. Pada pemeriksaan sensasi raba halus menggunakan kapas, pasien dapat merasakan sentuhan kapas tetapi tidak dapat membedakan apakah disentuh dengan 1 atau 2 titik pada jarak 5mm (two-point discrimination menurun).",
+    "question": "Gangguan two-point discrimination menandakan kelainan pada struktur apa?",
+    "options": {
+      "A": "Jalur spinothalamikus",
+      "B": "Korteks sensoris primer atau jalur kolumna dorsalis",
+      "C": "Jalur kortikospinal",
+      "D": "Jalur ekstrapiramidal",
+      "E": "Saraf motorik perifer"
+    },
+    "answer": "B",
+    "explanation": "Two-point discrimination adalah kemampuan membedakan dua titik sentuhan yang berdekatan. Pemeriksaan ini menilai fungsi korteks sensoris primer dan integritas jalur kolumna dorsalis. Gangguan two-point discrimination dengan sensasi raba kasar yang masih intak menandakan kelainan pada korteks sensoris atau jalur diskriminasi halus (kolumna dorsalis)."
+  },
+  {
+    "id": 30,
+    "topic": "Pemeriksaan Motorik - Pola Kelemahan",
+    "vignette": "Seorang laki-laki berusia 38 tahun mengalami kecelakaan dengan fraktur humerus. Setelah cedera, pasien tidak dapat melakukan ekstensi pergelangan tangan dan jari-jari, namun fleksi pergelangan tangan dan jari masih baik. Sensasi terganggu pada dorsum manus antara ibu jari dan telunjuk.",
+    "question": "Saraf perifer mana yang kemungkinan mengalami cedera?",
+    "options": {
+      "A": "Nervus medianus",
+      "B": "Nervus ulnaris",
+      "C": "Nervus radialis",
+      "D": "Nervus muskulokutaneus",
+      "E": "Nervus axillaris"
+    },
+    "answer": "C",
+    "explanation": "Pola kelemahan dengan hilangnya ekstensi pergelangan tangan dan jari (wrist drop, finger drop) disertai gangguan sensasi pada dorsum manus antara ibu jari dan telunjuk adalah karakteristik cedera nervus radialis. Nervus radialis sering terlibat pada fraktur humerus karena letaknya yang dekat dengan tulang humerus di sulcus spiralis."
+  },
+  {
+    "id": 31,
+    "topic": "Pemeriksaan Motorik - Upper Motor Neuron vs Lower Motor Neuron",
+    "vignette": "Seorang perempuan berusia 65 tahun dengan kelemahan tungkai bilateral. Pada pemeriksaan didapatkan hiperefleksia bilateral, Babinski positif bilateral, spastisitas, namun tidak ada atrofi otot. Pasien juga mengeluh kesulitan buang air kecil.",
+    "question": "Lokasi lesi yang paling mungkin pada pasien ini?",
+    "options": {
+      "A": "Lesi bilateral saraf perifer tungkai",
+      "B": "Lesi medula spinalis torakal (myelopati)",
+      "C": "Lesi bilateral korteks motorik",
+      "D": "Lesi bilateral cauda equina",
+      "E": "Lesi bilateral nervus femoralis"
+    },
+    "answer": "B",
+    "explanation": "Kombinasi hiperefleksia bilateral, Babinski positif bilateral, spastisitas tanpa atrofi otot, dan gangguan fungsi kandung kemih menunjukkan lesi upper motor neuron pada medula spinalis (myelopati). Lesi bilateral pada level torakal dapat menyebabkan paraparesis spastik dengan hiperefleksia dan gangguan fungsi otonom (kandung kemih). Tidak ada atrofi karena lower motor neuron masih intak."
+  },
+  {
+    "id": 32,
+    "topic": "Refleks Fisiologis - Refleks Brachioradialis",
+    "vignette": "Seorang laki-laki berusia 44 tahun dengan keluhan nyeri leher menjalar ke lengan. Pada pemeriksaan refleks brachioradialis, pemeriksa meletakkan lengan bawah pasien dalam posisi semi-pronasi dan mengetuk processus styloideus radii dengan palu refleks. Didapatkan refleks yang lemah dibanding sisi kontralateral.",
+    "question": "Level segmen spinal mana yang dinilai pada pemeriksaan refleks brachioradialis?",
+    "options": {
+      "A": "C4-C5",
+      "B": "C5-C6",
+      "C": "C6-C7",
+      "D": "C7-C8",
+      "E": "C8-T1"
+    },
+    "answer": "B",
+    "explanation": "Refleks brachioradialis menilai integritas lengkung refleks pada level C5-C6, sama seperti refleks biceps. Respon normal adalah fleksi dan supinasi lengan bawah. Refleks yang lemah unilateral dapat menandakan radikulopati C6 atau lesi pada level C5-C6, yang sesuai dengan keluhan nyeri leher menjalar ke lengan pada pasien."
+  },
+  {
+    "id": 33,
+    "topic": "Pemeriksaan Koordinasi - Dysdiadochokinesia",
+    "vignette": "Seorang laki-laki berusia 56 tahun dengan tumor cerebelar. Pasien diminta melakukan gerakan pronasi-supinasi tangan secara cepat dan bergantian. Gerakan pasien menjadi lambat, tidak teratur, dan kehilangan ritme setelah beberapa repetisi.",
+    "question": "Bagaimana istilah yang tepat untuk menggambarkan temuan ini dan apa maknanya?",
+    "options": {
+      "A": "Disdiadokokinesis, menandakan gangguan fungsi cerebelar",
+      "B": "Athetosis, menandakan gangguan ganglia basalis",
+      "C": "Bradykinesia, menandakan penyakit Parkinson",
+      "D": "Chorea, menandakan gangguan ekstrapiramidal",
+      "E": "Ataksia sensoris, menandakan gangguan proprioseptif"
+    },
+    "answer": "A",
+    "explanation": "Disdiadokokinesis (dysdiadochokinesia) adalah ketidakmampuan melakukan gerakan bergantian yang cepat, teratur, dan terkoordinasi dengan baik. Temuan ini merupakan tanda khas gangguan fungsi cerebelar. Pada tumor cerebelar, kerusakan struktur cerebelar mengganggu koordinasi gerakan halus yang memerlukan perubahan arah cepat."
   }
 ];

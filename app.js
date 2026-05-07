@@ -27,20 +27,54 @@ const app = {
     pomodoroSession: 1
   },
 
+  // Shuffle helper using Fisher-Yates algorithm
+  shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  },
+
   // Quiz Questions - use TEST_QUESTIONS from test-data.js if available, otherwise fall back to default
   get questions() {
     if (typeof TEST_QUESTIONS !== 'undefined') {
       // Convert NEUAAA-106 format to app format
-      return TEST_QUESTIONS.map(q => ({
-        id: q.id,
-        text: q.vignette + '\n\n' + q.question,
-        examType: 'mcq',
-        options: [q.options.A, q.options.B, q.options.C, q.options.D, q.options.E],
-        correctAnswer: ['A', 'B', 'C', 'D', 'E'].indexOf(q.answer),
-        explanation: q.explanation,
-        topic: q.topic,
-        figureRef: q.figureRef
-      }));
+      const converted = TEST_QUESTIONS.map(q => {
+        // Create array of options with their original indices
+        const optionsWithIndices = [
+          { text: q.options.A, originalIndex: 0 },
+          { text: q.options.B, originalIndex: 1 },
+          { text: q.options.C, originalIndex: 2 },
+          { text: q.options.D, originalIndex: 3 },
+          { text: q.options.E, originalIndex: 4 }
+        ];
+
+        // Shuffle the options
+        const shuffledOptions = this.shuffleArray(optionsWithIndices);
+
+        // Find the new index of the correct answer
+        const correctAnswerOriginalIndex = ['A', 'B', 'C', 'D', 'E'].indexOf(q.answer);
+        const newCorrectIndex = shuffledOptions.findIndex(opt => opt.originalIndex === correctAnswerOriginalIndex);
+
+        return {
+          id: q.id,
+          text: q.vignette + '\n\n' + q.question,
+          examType: 'mcq',
+          options: shuffledOptions.map(opt => opt.text),
+          correctAnswer: newCorrectIndex,
+          explanation: q.explanation,
+          topic: q.topic,
+          figureRef: q.figureRef
+        };
+      });
+
+      // Return shuffled questions if this is a fresh start
+      if (!this._shuffledQuestions) {
+        this._shuffledQuestions = this.shuffleArray(converted);
+      }
+      return this._shuffledQuestions;
     }
     // Fallback to original questions
     return this._defaultQuestions;
@@ -149,6 +183,10 @@ const app = {
     this.state.answers = [];
     this.state.selectedAnswer = null;
     this.state.completedExams.clear();
+    // Reset shuffled questions to get a fresh random order
+    this._shuffledQuestions = null;
+    // Update total questions dynamically
+    this.state.totalQuestions = this.questions.length;
     this.loadQuestion();
     this.startQuizTimer();
   },
@@ -161,10 +199,12 @@ const app = {
 
     const question = this.questions[this.state.currentQuestionIndex];
     const qNum = document.getElementById('current-question');
+    const qTotal = document.getElementById('total-questions');
     const qText = document.getElementById('question-text');
     const pBar = document.getElementById('progress-bar');
 
     if (qNum) qNum.textContent = this.state.currentQuestionIndex + 1;
+    if (qTotal) qTotal.textContent = this.state.totalQuestions;
     if (qText) {
       qText.textContent = question.text;
 
