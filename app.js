@@ -249,7 +249,56 @@ const app = {
       }
     });
 
-    setTimeout(() => this.nextQuestion(), 2000);
+    // Stop the timer when answer is selected
+    this.stopQuizTimer();
+
+    // Show explanation
+    this.showExplanation(isCorrect, question.explanation);
+
+    // Show next button
+    this.showNextButton();
+  },
+
+  showExplanation(isCorrect, explanation) {
+    const optionsContainer = document.getElementById('options-container');
+    if (!optionsContainer) return;
+
+    const explanationDiv = document.createElement('div');
+    explanationDiv.className = 'explanation-box';
+    explanationDiv.style.marginTop = '1.5rem';
+    explanationDiv.style.padding = '1rem';
+    explanationDiv.style.borderRadius = '8px';
+    explanationDiv.style.backgroundColor = isCorrect ? '#e8f5e9' : '#ffebee';
+    explanationDiv.style.border = isCorrect ? '2px solid #4caf50' : '2px solid #f44336';
+
+    const title = document.createElement('h4');
+    title.style.margin = '0 0 0.5rem 0';
+    title.style.color = isCorrect ? '#2e7d32' : '#c62828';
+    title.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
+    explanationDiv.appendChild(title);
+
+    const text = document.createElement('p');
+    text.style.margin = '0';
+    text.style.lineHeight = '1.6';
+    text.textContent = explanation;
+    explanationDiv.appendChild(text);
+
+    optionsContainer.appendChild(explanationDiv);
+  },
+
+  showNextButton() {
+    const optionsContainer = document.getElementById('options-container');
+    if (!optionsContainer) return;
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'btn-pill';
+    nextBtn.textContent = 'Next Question';
+    nextBtn.style.marginTop = '1.5rem';
+    nextBtn.style.width = '100%';
+    nextBtn.style.padding = '12px 24px';
+    nextBtn.onclick = () => this.nextQuestion();
+
+    optionsContainer.appendChild(nextBtn);
   },
 
   nextQuestion() {
