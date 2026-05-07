@@ -41,7 +41,7 @@ function patientSVG(face, speech) {
 
   var f = faces[face] || faces.normal;
 
-  var svg = '<svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" style="width:120px;height:auto;">' +
+  var svg = '<svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:120px;height:auto;">' +
     '<circle cx="60" cy="35" r="22" fill="#f4c8c8" stroke="#7B1224" stroke-width="1.5"/>' +
     '<path d="M 38 20 Q 35 8 60 5 Q 85 8 82 20" fill="#3d2817"/>' +
     '<g transform="translate(60,35)">' +
@@ -79,7 +79,7 @@ function patientSVG(face, speech) {
 function doctorSVG(speech) {
   speech = speech || '';
 
-  var svg = '<svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" style="width:100px;height:auto;">' +
+  var svg = '<svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:100px;height:auto;">' +
     '<circle cx="50" cy="30" r="18" fill="#f4c8c8" stroke="#7B1224" stroke-width="1.5"/>' +
     '<path d="M 32 18 Q 30 8 50 5 Q 70 8 68 18" fill="#3d2817"/>' +
     '<circle cx="40" cy="28" r="6" fill="none" stroke="#333" stroke-width="1.2"/>' +

@@ -1272,8 +1272,81 @@ button:focus-visible,
 }
 
 @media (max-width: 600px) {
-  .osce-scene { flex-direction: column; align-items: center; min-height: auto; }
-  .speech-bubble { max-width: 200px; font-size: 13px; }
+  .osce-scene {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    gap: 3rem;
+  }
+  .osce-scene__actor {
+    max-width: 100%;
+  }
+  .speech-bubble {
+    max-width: 260px;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+  .exam-btn {
+    min-width: 140px;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+  .patient-wrapper,
+  .doctor-wrapper {
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 414px) {
+  .speech-bubble {
+    max-width: 220px;
+    min-width: 140px;
+    font-size: 12px;
+  }
+  .exam-btn {
+    flex: 1 1 calc(50% - 0.25rem);
+    min-width: 120px;
+  }
+  .osce-scene {
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .speech-bubble {
+    max-width: 200px;
+    min-width: 130px;
+    padding: 8px 12px;
+  }
+  .finding-box {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  .dx-btn {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .speech-bubble {
+    max-width: 180px;
+    min-width: 120px;
+    font-size: 11px;
+  }
+  .exam-btn {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+  .patient-wrapper,
+  .doctor-wrapper {
+    max-width: 110px;
+  }
+  .dx-btn {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 /* ---------- 17. PRINT ---------- */
