@@ -434,6 +434,43 @@ body {
   flex-grow: 1;
 }
 
+/* ---------- 9b. WHITE CARD (Material Content) ---------- */
+.white-card {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.white-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.white-card table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .white-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 540px) {
+  .white-card {
+    padding: 20px;
+    border-radius: 8px;
+  }
+}
+
 /* ---------- 10. PILL BUTTON ---------- */
 .btn-pill {
   display: inline-flex;

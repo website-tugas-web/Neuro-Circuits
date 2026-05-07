@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neuro Circuits - Foundational Materials." />
-  <title>Neuro Circuits - Materials</title>
+  <meta name="description" content="Neuro Circuits - Pemeriksaan Refleks Patologis" />
+  <title>Pemeriksaan Refleks Patologis - Neuro Circuits</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -33,7 +33,7 @@
     <nav class="sidebar__nav" aria-label="Section">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/materials" class="is-active">Materials</a></li>
+        <li><a href="/materials">Materials</a></li>
         <li><a href="/quiz">Interactive Quiz</a></li>
         <li><a href="/test">Test</a></li>
         <li><a href="/timer">Study Timer</a></li>
@@ -44,63 +44,41 @@
   </aside>
 
   <main class="main">
-    <section class="page-hero section-with-bg" style="background-image: url('images/neuroscience-1.jpg');" aria-labelledby="page-title">
-      <span class="page-hero__eyebrow">Foundation</span>
-      <h1 class="page-hero__title" id="page-title">Foundational Materials</h1>
-      <p class="page-hero__lead">Anatomy, technique, and pathophysiology - organised by clinical relevance, paired with palpable bedside landmarks.</p>
+    <section class="page-hero section-with-bg" style="background-image: url('images/neuroscience-3.jpg');" aria-labelledby="page-title">
+      <span class="page-hero__eyebrow">Material</span>
+      <h1 class="page-hero__title" id="page-title">Pemeriksaan Refleks Patologis</h1>
+      <p class="page-hero__lead">Melakukan pemeriksaan Hofmann Tromner, Babinski, Oppenheim, Chaddock, Gordon, Schaefer, dan Gonda.</p>
     </section>
 
     <section class="section">
-      <div class="materials">
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Refleks Fisiologis</h3>
-          <p class="material-card__body">Menilai refleks fisiologis serta mengenali kelainannya.</p>
-          <a href="/material-1" class="btn-pill">Read</a>
-        </div>
-
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Sistem Motorik</h3>
-          <p class="material-card__body">Menilai postur, gerakan involunter, tonus otot, dan kekuatan otot.</p>
-          <a href="/material-2" class="btn-pill">Read</a>
-        </div>
-
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Refleks Patologis</h3>
-          <p class="material-card__body">Melakukan pemeriksaan Hofmann Tromner, Babinski, Oppenheim, Chaddock, Gordon, Schaefer, dan Gonda.</p>
-          <a href="/material-3" class="btn-pill">Read</a>
-        </div>
-
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick</h3>
-          <p class="material-card__body">Melakukan pemeriksaan Patrick dan kontra Patrick.</p>
-          <a href="/material-4" class="btn-pill">Read</a>
-        </div>
-
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Koordinasi</h3>
-          <p class="material-card__body">Menilai fungsi koordinasi.</p>
-          <a href="/material-5" class="btn-pill">Read</a>
-        </div>
-
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Fungsi Luhur</h3>
-          <p class="material-card__body">Menilai fungsi koordinasi.</p>
-          <a href="/material-6" class="btn-pill">Read</a>
-        </div>
-
-        <div class="material-card">
-          <h3 class="material-card__title">Pemeriksaan Sistem Sensorik (Eksteroseptif dan Proprioseptif)</h3>
-          <p class="material-card__body">Menilai fungsi sistem sensorik.</p>
-          <a href="/material-7" class="btn-pill">Read</a>
-        </div>
+      <div class="white-card" id="material-content">
+        <!-- Content will be loaded here -->
       </div>
     </section>
 
     <footer class="site-footer">
-      <p>&copy; MMXXVI Neuro Circuits &middot; Mastering Physiological &amp; Pathophysiological Reflexes &middot; <a href="/">Home</a> &middot; Made by Estrella Kyara Pangkahila Febian</p>
+      <p>&copy; MMXXVI Neuro Circuits &middot; Mastering Physiological &amp; Pathophysiological Reflexes &middot; <a href="/">Home</a> &middot; <a href="/materials">Materials</a></p>
     </footer>
   </main>
 
-  <script src="app.js"></script>
+  <script src="src/materials-data.js"></script>
+  <script src="src/reflex-diagrams.js"></script>
+  <script>
+    // Load material 3 content
+    const material = MATERIALS_DATA.find(m => m.id === 3);
+    if (material) {
+      let html = material.content;
+
+      if (material.references && material.references.length > 0) {
+        html += `<h3 style="margin-top:2rem;">Referensi</h3><ul>`;
+        material.references.forEach(ref => {
+          html += `<li style="margin-bottom:0.5rem;">${ref}</li>`;
+        });
+        html += `</ul>`;
+      }
+
+      document.getElementById('material-content').innerHTML = html;
+    }
+  </script>
 </body>
 </html>

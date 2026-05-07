@@ -31,6 +31,41 @@
       "source": "/references.html",
       "destination": "/references",
       "permanent": true
+    },
+    {
+      "source": "/material-1.html",
+      "destination": "/material-1",
+      "permanent": true
+    },
+    {
+      "source": "/material-2.html",
+      "destination": "/material-2",
+      "permanent": true
+    },
+    {
+      "source": "/material-3.html",
+      "destination": "/material-3",
+      "permanent": true
+    },
+    {
+      "source": "/material-4.html",
+      "destination": "/material-4",
+      "permanent": true
+    },
+    {
+      "source": "/material-5.html",
+      "destination": "/material-5",
+      "permanent": true
+    },
+    {
+      "source": "/material-6.html",
+      "destination": "/material-6",
+      "permanent": true
+    },
+    {
+      "source": "/material-7.html",
+      "destination": "/material-7",
+      "permanent": true
     }
   ]
 }
