@@ -51,6 +51,7 @@ const OSCE_CASES = [
         id: "case1-exam5",
         name: "Periksa kekuatan otot",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan otot bukan prioritas di sini. Kasus ini mengarah ke lesi UMN — yang perlu dikonfirmasi adalah refleks fisiologis, bukan kekuatan motorik. Kekuatan bisa menurun di banyak kondisi, tapi refleks yang meningkat unilateral lebih spesifik untuk diagnosis.",
         doctorPrompt: "Coba lawan dorongan saya pada lengan Anda.",
         patientSpeech: "Iya dokter, tapi agak sulit...",
         patientFace: "worried",
@@ -60,6 +61,7 @@ const OSCE_CASES = [
         id: "case1-exam6",
         name: "Periksa sensibilitas",
         correct: false,
+        wrongExplanation: "Pemeriksaan sensibilitas tidak relevan untuk topik refleks fisiologis. Meskipun gangguan sensorik bisa ditemukan pada stroke, fokus kasus ini adalah mengevaluasi refleks fisiologis untuk membedakan lesi UMN dan LMN.",
         doctorPrompt: "Apakah Anda merasakan sentuhan ini sama di kedua sisi?",
         patientSpeech: "Sepertinya berbeda, dokter.",
         patientFace: "worried",
@@ -68,9 +70,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case1-dx1", name: "Stroke iskemik hemisfer kiri (lesi UMN)", correct: true },
-      { id: "case1-dx2", name: "Polineuropati perifer", correct: false },
-      { id: "case1-dx3", name: "Miastenia gravis", correct: false },
-      { id: "case1-dx4", name: "Radikulopati servikal", correct: false }
+      { id: "case1-dx2", name: "Polineuropati perifer", correct: false, wrongExplanation: "Polineuropati perifer tidak cocok karena pada neuropati perifer refleks justru menurun atau hilang, bukan meningkat. Selain itu, polanya simetris (stocking-glove), bukan unilateral seperti pada kasus ini." },
+      { id: "case1-dx3", name: "Miastenia gravis", correct: false, wrongExplanation: "Miastenia gravis menyerang neuromuscular junction sehingga refleks fisiologis tetap normal. Pada kasus ini refleks meningkat, yang menandakan lesi UMN — bukan gangguan NMJ." },
+      { id: "case1-dx4", name: "Radikulopati servikal", correct: false, wrongExplanation: "Radikulopati servikal menyebabkan refleks menurun pada dermatom tertentu, bukan hiperrefleksia unilateral. Pola kelemahan unilateral dengan refleks meningkat lebih mengarah ke lesi sentral (stroke), bukan kompresi radiks." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -133,6 +135,7 @@ const OSCE_CASES = [
         id: "case2-exam6",
         name: "Periksa koordinasi",
         correct: false,
+        wrongExplanation: "Pemeriksaan koordinasi tidak diperlukan di sini. Keluhan pasien mengarah ke gangguan refleks dan sensorik perifer, bukan gangguan serebelum. Tes koordinasi relevan jika dicurigai lesi serebelum, yang tidak sesuai dengan pola hiporefleksia simetris.",
         doctorPrompt: "Coba sentuh hidung Anda lalu jari saya.",
         patientSpeech: "Baik, dokter.",
         patientFace: "normal",
@@ -141,9 +144,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case2-dx1", name: "Polineuropati perifer (Guillain-Barré syndrome atau neuropati diabetik)", correct: true },
-      { id: "case2-dx2", name: "Mielitis transversa", correct: false },
-      { id: "case2-dx3", name: "Stroke batang otak", correct: false },
-      { id: "case2-dx4", name: "Sklerosis multipel", correct: false }
+      { id: "case2-dx2", name: "Mielitis transversa", correct: false, wrongExplanation: "Mielitis transversa biasanya menunjukkan tanda UMN (hiperrefleksia, Babinski positif) di bawah level lesi, plus ada level sensorik yang jelas. Pada kasus ini refleks justru menurun — pola khas LMN/perifer." },
+      { id: "case2-dx3", name: "Stroke batang otak", correct: false, wrongExplanation: "Stroke batang otak biasanya muncul dengan tanda UMN (refleks meningkat), gangguan saraf kranial, dan onset akut. Pola hiporefleksia bilateral simetris yang progresif tidak sesuai dengan lesi vaskular sentral." },
+      { id: "case2-dx4", name: "Sklerosis multipel", correct: false, wrongExplanation: "Sklerosis multipel biasanya menunjukkan refleks yang meningkat (tanda UMN) karena lesi pada substansia alba SSP. Pola hiporefleksia simetris dengan gangguan sensorik stocking-glove lebih khas neuropati perifer." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -208,6 +211,7 @@ const OSCE_CASES = [
         id: "case3-exam6",
         name: "Periksa sensibilitas",
         correct: false,
+        wrongExplanation: "Pemeriksaan sensibilitas tidak relevan untuk kasus ini. ALS adalah penyakit motor neuron murni — sensorik tidak terganggu. Waktu pemeriksaan lebih baik digunakan untuk menilai sistem motorik secara menyeluruh (atrofi, fasikulasi, kekuatan, tonus).",
         doctorPrompt: "Apakah Anda merasakan sentuhan ini?",
         patientSpeech: "Ya, terasa normal dokter.",
         patientFace: "normal",
@@ -216,9 +220,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case3-dx1", name: "Amyotrophic lateral sclerosis (ALS) atau penyakit motor neuron", correct: true },
-      { id: "case3-dx2", name: "Stroke hemisfer kanan", correct: false },
-      { id: "case3-dx3", name: "Miastenia gravis", correct: false },
-      { id: "case3-dx4", name: "Distrofi otot", correct: false }
+      { id: "case3-dx2", name: "Stroke hemisfer kanan", correct: false, wrongExplanation: "Stroke hemisfer kanan menyebabkan kelemahan tipe UMN (spastisitas, hiperrefleksia) tanpa atrofi atau fasikulasi. Pada kasus ini ada atrofi dan fasikulasi yang merupakan tanda khas degenerasi LMN, bukan lesi kortikal." },
+      { id: "case3-dx3", name: "Miastenia gravis", correct: false, wrongExplanation: "Miastenia gravis menyebabkan kelemahan yang memburuk saat aktivitas berulang (fatigability), tanpa atrofi dan fasikulasi. Pada kasus ini tidak ada pola fatigability, dan adanya atrofi serta fasikulasi menunjukkan kerusakan motor neuron langsung." },
+      { id: "case3-dx4", name: "Distrofi otot", correct: false, wrongExplanation: "Distrofi otot menunjukkan kelemahan progresif dengan pseudohipertrofi dan tanpa fasikulasi. Kasus ini menunjukkan fasikulasi yang khas denervasi motor neuron — bukan degenerasi otot primer seperti pada distrofi." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -272,6 +276,7 @@ const OSCE_CASES = [
         id: "case4-exam5",
         name: "Periksa tonus otot",
         correct: false,
+        wrongExplanation: "Pemeriksaan tonus otot tidak membantu diagnosis miastenia gravis. Pada MG, masalahnya ada di neuromuscular junction sehingga tonus biasanya normal. Yang khas adalah fatigability — kelemahan yang memburuk saat aktivitas berulang.",
         doctorPrompt: "Saya raba tonus otot lengan Anda.",
         patientSpeech: "Silakan.",
         patientFace: "normal",
@@ -281,6 +286,7 @@ const OSCE_CASES = [
         id: "case4-exam6",
         name: "Periksa refleks tendon",
         correct: false,
+        wrongExplanation: "Pemeriksaan refleks tendon tidak relevan untuk mendiagnosis miastenia gravis. Refleks normal pada MG karena busur refleks tidak melibatkan transmisi NMJ yang berulang. Fokus pemeriksaan seharusnya pada fatigability otot, bukan refleks.",
         doctorPrompt: "Saya periksa refleks Anda.",
         patientSpeech: "Baik.",
         patientFace: "normal",
@@ -289,9 +295,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case4-dx1", name: "Miastenia gravis", correct: true },
-      { id: "case4-dx2", name: "Stroke batang otak", correct: false },
-      { id: "case4-dx3", name: "Penyakit motor neuron", correct: false },
-      { id: "case4-dx4", name: "Poliomielitis", correct: false }
+      { id: "case4-dx2", name: "Stroke batang otak", correct: false, wrongExplanation: "Stroke batang otak muncul tiba-tiba dan menetap, tidak memburuk saat aktivitas berulang. Pada kasus ini kelemahan bersifat fluktuatif dan memburuk saat dipakai berulang (fatigability) — ciri khas gangguan NMJ, bukan vaskular." },
+      { id: "case4-dx3", name: "Penyakit motor neuron", correct: false, wrongExplanation: "Penyakit motor neuron menunjukkan atrofi, fasikulasi, dan kelemahan progresif permanen. Kasus ini tidak ada atrofi maupun fasikulasi, dan kelemahan bersifat fatigable — membaik setelah istirahat, memburuk saat dipakai." },
+      { id: "case4-dx4", name: "Poliomielitis", correct: false, wrongExplanation: "Poliomielitis menyerang motor neuron di kornu anterior dengan kelemahan flaksid asimetris permanen dan atrofi. Pada kasus ini tidak ada atrofi, kelemahan bersifat fatigable dan melibatkan otot okuler — pola khas MG, bukan polio." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -356,6 +362,7 @@ const OSCE_CASES = [
         id: "case5-exam6",
         name: "Periksa sensibilitas",
         correct: false,
+        wrongExplanation: "Pemeriksaan sensibilitas bukan fokus utama pada topik refleks patologis. Kasus ini meminta evaluasi refleks patologis (Babinski, Hoffman, klonus) untuk mengonfirmasi lesi UMN. Sensibilitas memang terganggu, tapi bukan pemeriksaan yang diminta.",
         doctorPrompt: "Apakah Anda merasakan sentuhan ini?",
         patientSpeech: "Kurang jelas di bawah pusar, dokter.",
         patientFace: "worried",
@@ -364,9 +371,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case5-dx1", name: "Cedera medula spinalis (paraplegia spastik)", correct: true },
-      { id: "case5-dx2", name: "Stroke hemisfer bilateral", correct: false },
-      { id: "case5-dx3", name: "Polineuropati perifer", correct: false },
-      { id: "case5-dx4", name: "Mielitis transversa akut", correct: false }
+      { id: "case5-dx2", name: "Stroke hemisfer bilateral", correct: false, wrongExplanation: "Stroke hemisfer bilateral sangat jarang dan biasanya menyebabkan gangguan kognitif berat. Kasus ini menunjukkan paraplegia spastik dengan level sensorik — pola lesi medula spinalis, bukan kortikal bilateral." },
+      { id: "case5-dx3", name: "Polineuropati perifer", correct: false, wrongExplanation: "Polineuropati perifer menyebabkan refleks menurun atau hilang (tanda LMN), bukan hiperrefleksia dengan Babinski positif. Spastisitas dan klonus pada kasus ini adalah tanda khas lesi UMN, kebalikan dari neuropati perifer." },
+      { id: "case5-dx4", name: "Mielitis transversa akut", correct: false, wrongExplanation: "Mielitis transversa akut memang melibatkan medula spinalis, tapi pada fase akut biasanya ada syok spinal (arefleksia, flaksid). Kasus ini sudah menunjukkan spastisitas dan hiperrefleksia — lebih sesuai dengan cedera spinalis kronik pasca-trauma." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -420,6 +427,7 @@ const OSCE_CASES = [
         id: "case6-exam5",
         name: "Periksa kekuatan tungkai kiri",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan motorik bukan fokus pada topik refleks patologis. Yang perlu dievaluasi adalah refleks patologis (Babinski, Hoffman) dan tonus untuk mengonfirmasi lesi UMN — bukan kekuatan otot.",
         doctorPrompt: "Angkat kaki kiri Anda, lawan dorongan saya.",
         patientSpeech: "Sulit, dokter.",
         patientFace: "worried",
@@ -429,6 +437,7 @@ const OSCE_CASES = [
         id: "case6-exam6",
         name: "Tes koordinasi kanan",
         correct: false,
+        wrongExplanation: "Tes koordinasi tidak relevan di sini. Kasus ini tentang refleks patologis pada hemiparesis spastik pasca-stroke. Memeriksa koordinasi sisi sehat (kanan) tidak membantu mengonfirmasi lesi UMN hemisfer kontralateral.",
         doctorPrompt: "Sentuh hidung lalu jari saya dengan tangan kanan.",
         patientSpeech: "Baik, dokter.",
         patientFace: "normal",
@@ -437,9 +446,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case6-dx1", name: "Stroke hemisfer kanan dengan hemiparesis spastik kiri", correct: true },
-      { id: "case6-dx2", name: "Tumor medula spinalis servikal", correct: false },
-      { id: "case6-dx3", name: "Sklerosis multipel", correct: false },
-      { id: "case6-dx4", name: "Ensefalitis", correct: false }
+      { id: "case6-dx2", name: "Tumor medula spinalis servikal", correct: false, wrongExplanation: "Tumor medula spinalis servikal biasanya menyebabkan gejala bilateral atau quadriparesis progresif, bukan hemiparesis unilateral. Pola Babinski unilateral dengan spastisitas hemibody lebih konsisten dengan lesi hemisfer." },
+      { id: "case6-dx3", name: "Sklerosis multipel", correct: false, wrongExplanation: "Sklerosis multipel biasanya muncul dengan episode relaps-remisi dan gejala yang disseminated in time and space. Hemiparesis spastik unilateral dengan riwayat stroke 3 bulan lalu lebih mengarah ke lesi vaskular, bukan demielinisasi." },
+      { id: "case6-dx4", name: "Ensefalitis", correct: false, wrongExplanation: "Ensefalitis biasanya menunjukkan penurunan kesadaran, demam, dan gejala difus — bukan hemiparesis fokal yang stabil. Kasus ini menunjukkan defisit neurologis fokal kronik pasca-stroke, bukan infeksi otak akut." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -495,6 +504,7 @@ const OSCE_CASES = [
         id: "case7-exam5",
         name: "Periksa refleks patella",
         correct: false,
+        wrongExplanation: "Pemeriksaan refleks patella tidak diperlukan untuk kasus nyeri sakroiliaka. Refleks patella mengevaluasi radiks L3-L4 dan traktus kortikospinal — sedangkan masalah di sini adalah sendi sakroiliaka, bukan radiks saraf.",
         doctorPrompt: "Saya periksa refleks lutut Anda.",
         patientSpeech: "Baik.",
         patientFace: "normal",
@@ -504,6 +514,7 @@ const OSCE_CASES = [
         id: "case7-exam6",
         name: "Periksa kekuatan tungkai",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan tungkai tidak relevan karena masalah utama adalah nyeri sendi sakroiliaka, bukan kelemahan neurologis. Patrick/Kontra Patrick dan palpasi SI joint jauh lebih diagnostik untuk kasus ini.",
         doctorPrompt: "Angkat kaki, lawan dorongan saya.",
         patientSpeech: "Bisa, dokter.",
         patientFace: "normal",
@@ -512,9 +523,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case7-dx1", name: "Sakroiliitis atau disfungsi sendi sakroiliaka", correct: true },
-      { id: "case7-dx2", name: "Hernia nukleus pulposus (HNP) lumbal", correct: false },
-      { id: "case7-dx3", name: "Osteoartritis panggul", correct: false },
-      { id: "case7-dx4", name: "Spondilitis ankilosa", correct: false }
+      { id: "case7-dx2", name: "Hernia nukleus pulposus (HNP) lumbal", correct: false, wrongExplanation: "HNP lumbal menyebabkan nyeri radikuler yang menjalar sesuai dermatom dengan SLR yang sangat positif. Pada kasus ini SLR hanya positif ringan tanpa pola radikuler khas, dan nyeri tekan lebih di sendi SI — bukan distribusi radiks." },
+      { id: "case7-dx3", name: "Osteoartritis panggul", correct: false, wrongExplanation: "Pada OA panggul, Kontra Patrick juga akan positif (nyeri saat rotasi internal hip) karena patologinya intra-artikular. Pada kasus ini Kontra Patrick negatif — artinya masalahnya di sendi sakroiliaka, bukan sendi panggul." },
+      { id: "case7-dx4", name: "Spondilitis ankilosa", correct: false, wrongExplanation: "Spondilitis ankilosa memang bisa menyerang sendi SI, tapi biasanya bilateral, pada laki-laki muda, dengan kekakuan pagi hari >30 menit. Kasus ini menunjukkan nyeri SI unilateral tanpa tanda inflamasi sistemik khas spondilitis." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -568,6 +579,7 @@ const OSCE_CASES = [
         id: "case8-exam5",
         name: "Periksa gait (cara berjalan)",
         correct: false,
+        wrongExplanation: "Pemeriksaan gait memberikan informasi umum tapi bukan pemeriksaan spesifik untuk membedakan patologi sendi panggul dari penyebab nyeri lain. Tes Patrick dan Kontra Patrick jauh lebih diagnostik untuk melokalisasi sumber nyeri.",
         doctorPrompt: "Coba berjalan beberapa langkah.",
         patientSpeech: "Agak pincang, dokter.",
         patientFace: "worried",
@@ -577,6 +589,7 @@ const OSCE_CASES = [
         id: "case8-exam6",
         name: "Tes lurus angkat tungkai",
         correct: false,
+        wrongExplanation: "SLR (Straight Leg Raise) digunakan untuk mendeteksi iritasi radiks saraf (radikulopati). Pada kasus nyeri sendi panggul, SLR tidak membantu karena patologinya intra-artikular, bukan kompresi saraf. Patrick/Kontra Patrick lebih tepat.",
         doctorPrompt: "Saya angkat kaki Anda lurus.",
         patientSpeech: "Tidak sakit, dokter.",
         patientFace: "normal",
@@ -585,9 +598,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case8-dx1", name: "Osteoartritis sendi panggul (coxarthrosis)", correct: true },
-      { id: "case8-dx2", name: "Sakroiliitis", correct: false },
-      { id: "case8-dx3", name: "Radikulopati L2-L3", correct: false },
-      { id: "case8-dx4", name: "Bursitis trokanter", correct: false }
+      { id: "case8-dx2", name: "Sakroiliitis", correct: false, wrongExplanation: "Pada sakroiliitis, Patrick test positif tapi Kontra Patrick negatif karena nyerinya di sendi SI, bukan sendi panggul. Kasus ini menunjukkan kedua tes positif — artinya masalahnya ada di sendi panggul itu sendiri (intra-artikular)." },
+      { id: "case8-dx3", name: "Radikulopati L2-L3", correct: false, wrongExplanation: "Radikulopati L2-L3 menyebabkan nyeri yang menjalar ke paha anterior dengan SLR atau femoral stretch test positif. Kasus ini SLR negatif, dan nyeri diprovokasi oleh gerakan sendi panggul — bukan pola distribusi radiks." },
+      { id: "case8-dx4", name: "Bursitis trokanter", correct: false, wrongExplanation: "Bursitis trokanter menyebabkan nyeri di sisi lateral panggul (trokanter mayor), biasanya nyeri saat tidur miring. Kasus ini nyeri di inguinal dengan keterbatasan ROM dan kedua Patrick/Kontra Patrick positif — lebih ke OA panggul." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -643,6 +656,7 @@ const OSCE_CASES = [
         id: "case9-exam5",
         name: "Periksa kekuatan tangan",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan otot tidak membantu mendiagnosis gangguan serebelum. Lesi serebelum menyebabkan inkoordinasi, bukan kelemahan. Kekuatan biasanya normal — yang terganggu adalah presisi dan timing gerakan.",
         doctorPrompt: "Genggam jari saya sekuat mungkin.",
         patientSpeech: "Kekuatannya baik, dokter.",
         patientFace: "normal",
@@ -652,6 +666,7 @@ const OSCE_CASES = [
         id: "case9-exam6",
         name: "Periksa sensibilitas posisi",
         correct: false,
+        wrongExplanation: "Pemeriksaan propriosepsi tidak diperlukan pada kasus ini. Propriosepsi yang terganggu mengarah ke ataksia sensorik, bukan ataksia serebelar. Pada lesi serebelum murni, propriosepsi normal — yang terganggu adalah koordinasi motorik halus.",
         doctorPrompt: "Saya gerakkan jari Anda, ke atas atau bawah?",
         patientSpeech: "Ke atas, dokter.",
         patientFace: "normal",
@@ -660,9 +675,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case9-dx1", name: "Lesi serebelum kanan (stroke serebelar, tumor, atau sklerosis multipel)", correct: true },
-      { id: "case9-dx2", name: "Penyakit Parkinson", correct: false },
-      { id: "case9-dx3", name: "Neuropati perifer", correct: false },
-      { id: "case9-dx4", name: "Stroke hemisfer kiri", correct: false }
+      { id: "case9-dx2", name: "Penyakit Parkinson", correct: false, wrongExplanation: "Penyakit Parkinson menunjukkan tremor istirahat (resting tremor), rigiditas, dan bradikinesia. Kasus ini menunjukkan tremor intensi (saat mendekati target) dan dismetria — tanda serebelar, bukan ganglia basalis." },
+      { id: "case9-dx3", name: "Neuropati perifer", correct: false, wrongExplanation: "Neuropati perifer menyebabkan gangguan sensorik dan kelemahan, bukan inkoordinasi dengan kekuatan normal. Dismetria dan disdiadokokinesia adalah tanda khas lesi serebelum — neuropati perifer tidak menyebabkan pola ini." },
+      { id: "case9-dx4", name: "Stroke hemisfer kiri", correct: false, wrongExplanation: "Stroke hemisfer kiri menyebabkan hemiparesis kanan dengan tanda UMN (hiperrefleksia, Babinski), bukan gangguan koordinasi murni. Kasus ini menunjukkan koordinasi terganggu tanpa kelemahan — pola khas serebelum, bukan kortikal." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -716,6 +731,7 @@ const OSCE_CASES = [
         id: "case10-exam5",
         name: "Tes jari-hidung",
         correct: false,
+        wrongExplanation: "Tes jari-hidung mengevaluasi koordinasi serebelar, bukan proprioseptif. Pada ataksia sensorik, masalahnya ada di input proprioseptif — tes Romberg dan propriosepsi lebih tepat. Koordinasi serebelar biasanya normal pada ataksia sensorik.",
         doctorPrompt: "Sentuh hidung lalu jari saya.",
         patientSpeech: "Bisa, dokter.",
         patientFace: "normal",
@@ -725,6 +741,7 @@ const OSCE_CASES = [
         id: "case10-exam6",
         name: "Periksa kekuatan tungkai",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan tungkai tidak relevan karena masalahnya bukan kelemahan motorik, melainkan gangguan input sensorik proprioseptif. Pasien jatuh bukan karena lemah, tapi karena tidak bisa merasakan posisi tubuh — terutama saat mata ditutup.",
         doctorPrompt: "Angkat kaki, lawan dorongan saya.",
         patientSpeech: "Kuat, dokter.",
         patientFace: "normal",
@@ -733,9 +750,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case10-dx1", name: "Ataksia sensorik (akibat neuropati perifer atau defisiensi B12)", correct: true },
-      { id: "case10-dx2", name: "Ataksia serebelar", correct: false },
-      { id: "case10-dx3", name: "Penyakit Parkinson", correct: false },
-      { id: "case10-dx4", name: "Labirinitis atau gangguan vestibular", correct: false }
+      { id: "case10-dx2", name: "Ataksia serebelar", correct: false, wrongExplanation: "Pada ataksia serebelar, Romberg test negatif karena pasien sudah tidak stabil saat mata terbuka. Kasus ini Romberg positif (memburuk saat mata ditutup), yang menunjukkan ketergantungan pada visual untuk kompensasi — khas ataksia sensorik." },
+      { id: "case10-dx3", name: "Penyakit Parkinson", correct: false, wrongExplanation: "Penyakit Parkinson menyebabkan instabilitas postural dengan rigiditas dan bradikinesia, bukan gangguan propriosepsi. Kasus ini menunjukkan propriosepsi yang terganggu sebagai penyebab utama ketidakseimbangan — bukan ganglia basalis." },
+      { id: "case10-dx4", name: "Labirinitis atau gangguan vestibular", correct: false, wrongExplanation: "Gangguan vestibular biasanya disertai vertigo, nistagmus, dan mual. Pada kasus ini tidak ada vertigo — yang dominan adalah gangguan propriosepsi dan sensasi vibrasi, yang mengarah ke kolumna dorsalis, bukan vestibular." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -791,6 +808,7 @@ const OSCE_CASES = [
         id: "case11-exam5",
         name: "Tes bahasa (naming)",
         correct: false,
+        wrongExplanation: "Tes naming sederhana kurang sensitif untuk demensia stadium awal-menengah. Pada Alzheimer, gangguan naming biasanya muncul belakangan. Prioritas pemeriksaan seharusnya memori, orientasi, atensi, dan visuospasial yang sudah terganggu lebih awal.",
         doctorPrompt: "Benda ini namanya apa? (tunjuk pulpen)",
         patientSpeech: "Pulpen, dokter.",
         patientFace: "normal",
@@ -800,6 +818,7 @@ const OSCE_CASES = [
         id: "case11-exam6",
         name: "Periksa kekuatan motorik",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan motorik tidak relevan untuk mengevaluasi fungsi luhur. Demensia adalah gangguan kognitif — motorik biasanya normal pada stadium awal. Waktu pemeriksaan lebih baik digunakan untuk tes kognitif seperti memori, orientasi, dan visuospasial.",
         doctorPrompt: "Angkat tangan, lawan dorongan saya.",
         patientSpeech: "Bisa, dokter.",
         patientFace: "normal",
@@ -808,9 +827,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case11-dx1", name: "Demensia (kemungkinan Alzheimer disease)", correct: true },
-      { id: "case11-dx2", name: "Delirium akut", correct: false },
-      { id: "case11-dx3", name: "Depresi dengan pseudodemensia", correct: false },
-      { id: "case11-dx4", name: "Stroke lakunar", correct: false }
+      { id: "case11-dx2", name: "Delirium akut", correct: false, wrongExplanation: "Delirium muncul mendadak dengan fluktuasi kesadaran, gangguan atensi yang berat, dan biasanya ada pencetus (infeksi, obat, metabolik). Kasus ini menunjukkan penurunan kognitif progresif kronik tanpa fluktuasi kesadaran — pola demensia." },
+      { id: "case11-dx3", name: "Depresi dengan pseudodemensia", correct: false, wrongExplanation: "Pseudodemensia pada depresi biasanya pasien mengeluh 'tidak bisa' tapi sebenarnya 'tidak mau' — sering menjawab 'tidak tahu' tanpa berusaha. Kasus ini pasien berusaha menjawab tapi gagal, dan ada gangguan visuospasial objektif (clock drawing abnormal)." },
+      { id: "case11-dx4", name: "Stroke lakunar", correct: false, wrongExplanation: "Stroke lakunar biasanya menyebabkan defisit fokal (hemiparesis, disartria) tanpa gangguan kognitif multipel domain. Kasus ini menunjukkan gangguan memori, orientasi, atensi, DAN visuospasial secara difus — lebih khas proses neurodegeneratif." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -864,6 +883,7 @@ const OSCE_CASES = [
         id: "case12-exam5",
         name: "Periksa kekuatan wajah",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan wajah bukan bagian dari evaluasi fungsi luhur/bahasa. Meskipun facial palsy bisa ditemukan pada stroke hemisfer kiri, fokus kasus ini adalah mengevaluasi afasia — pemahaman, produksi, repetisi, dan fluensi bahasa.",
         doctorPrompt: "Senyum lebar, tunjukkan gigi.",
         patientSpeech: "Baik.",
         patientFace: "normal",
@@ -873,6 +893,7 @@ const OSCE_CASES = [
         id: "case12-exam6",
         name: "Periksa lapang pandang",
         correct: false,
+        wrongExplanation: "Pemeriksaan lapang pandang bukan prioritas dalam evaluasi fungsi luhur bahasa. Hemianopsia memang bisa menyertai stroke hemisfer kiri, tapi tidak membantu membedakan jenis afasia. Tes bahasa (comprehension, naming, repetisi) lebih relevan.",
         doctorPrompt: "Lihat hidung saya, bilang jika Anda lihat jari saya bergerak.",
         patientSpeech: "Tidak lihat di kanan, dokter.",
         patientFace: "worried",
@@ -881,9 +902,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case12-dx1", name: "Afasia Wernicke (stroke hemisfer kiri - area temporal posterior)", correct: true },
-      { id: "case12-dx2", name: "Afasia Broca", correct: false },
-      { id: "case12-dx3", name: "Afasia global", correct: false },
-      { id: "case12-dx4", name: "Disartria", correct: false }
+      { id: "case12-dx2", name: "Afasia Broca", correct: false, wrongExplanation: "Afasia Broca ditandai oleh gangguan produksi bahasa (non-fluent) tapi pemahaman relatif baik. Kasus ini menunjukkan gangguan pemahaman yang berat — pasien tidak mengerti perintah sederhana — yang lebih khas afasia Wernicke (reseptif)." },
+      { id: "case12-dx3", name: "Afasia global", correct: false, wrongExplanation: "Afasia global menunjukkan gangguan berat pada semua aspek bahasa dengan output yang sangat minimal. Pada kasus ini pasien masih bisa menghasilkan beberapa kata meskipun terfragmentasi — tidak se-berat afasia global yang biasanya hanya stereotipi." },
+      { id: "case12-dx4", name: "Disartria", correct: false, wrongExplanation: "Disartria adalah gangguan artikulasi (motorik bicara), bukan gangguan bahasa. Pasien disartria masih mengerti dan bisa menulis dengan benar. Kasus ini menunjukkan gangguan pemahaman dan produksi bahasa — itu afasia, bukan sekadar masalah artikulasi." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -948,6 +969,7 @@ const OSCE_CASES = [
         id: "case13-exam6",
         name: "Periksa kekuatan tungkai",
         correct: false,
+        wrongExplanation: "Pemeriksaan kekuatan motorik bukan fokus utama pada topik sistem sensorik. Kasus ini meminta evaluasi berbagai modalitas sensorik (nyeri, suhu, raba, propriosepsi) untuk menegakkan pola neuropati. Kelemahan distal memang bisa menyertai, tapi bukan pemeriksaan sensorik.",
         doctorPrompt: "Angkat kaki, lawan dorongan saya.",
         patientSpeech: "Agak lemah, dokter.",
         patientFace: "worried",
@@ -956,9 +978,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case13-dx1", name: "Polineuropati perifer (diabetik atau defisiensi B12)", correct: true },
-      { id: "case13-dx2", name: "Mielitis transversa", correct: false },
-      { id: "case13-dx3", name: "Guillain-Barré syndrome fase awal", correct: false },
-      { id: "case13-dx4", name: "Stroke lakunar multipel", correct: false }
+      { id: "case13-dx2", name: "Mielitis transversa", correct: false, wrongExplanation: "Mielitis transversa menunjukkan level sensorik yang jelas (misalnya T10 ke bawah) dengan tanda UMN di bawah lesi. Kasus ini menunjukkan pola stocking-glove yang gradual dari distal ke proksimal — khas neuropati perifer, bukan lesi medula spinalis." },
+      { id: "case13-dx3", name: "Guillain-Barré syndrome fase awal", correct: false, wrongExplanation: "GBS biasanya muncul akut dengan kelemahan ascending yang dominan, arefleksia, dan disosiasi sitoalbuminologik pada LCS. Kasus ini lebih kronik dan didominasi gejala sensorik — lebih konsisten dengan polineuropati kronik (diabetik atau defisiensi B12)." },
+      { id: "case13-dx4", name: "Stroke lakunar multipel", correct: false, wrongExplanation: "Stroke lakunar menyebabkan defisit fokal asimetris, bukan gangguan sensorik simetris bilateral. Pola stocking-glove yang gradual dan simetris sangat khas neuropati perifer — bukan lesi vaskular yang biasanya mendadak dan asimetris." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",
@@ -1012,6 +1034,7 @@ const OSCE_CASES = [
         id: "case14-exam5",
         name: "Periksa koordinasi",
         correct: false,
+        wrongExplanation: "Pemeriksaan koordinasi bukan fokus utama pada topik sistem sensorik. Meskipun ataksia bisa menyertai sindrom Wallenberg, kasus ini meminta evaluasi modalitas sensorik (nyeri, suhu, raba, posisi) untuk mengidentifikasi pola disosiasi sensorik.",
         doctorPrompt: "Sentuh hidung lalu jari saya.",
         patientSpeech: "Agak meleset, dokter.",
         patientFace: "worried",
@@ -1021,6 +1044,7 @@ const OSCE_CASES = [
         id: "case14-exam6",
         name: "Periksa nistagmus",
         correct: false,
+        wrongExplanation: "Pemeriksaan nistagmus bukan bagian dari evaluasi sistem sensorik. Meskipun nistagmus bisa ditemukan pada sindrom Wallenberg, fokus kasus ini adalah mengevaluasi modalitas sensorik untuk mengidentifikasi disosiasi sensorik yang khas.",
         doctorPrompt: "Ikuti jari saya dengan mata, jangan gerakkan kepala.",
         patientSpeech: "Baik.",
         patientFace: "normal",
@@ -1029,9 +1053,9 @@ const OSCE_CASES = [
     ],
     diagnoses: [
       { id: "case14-dx1", name: "Sindrom Wallenberg (lateral medullary syndrome - stroke batang otak)", correct: true },
-      { id: "case14-dx2", name: "Stroke hemisfer kiri", correct: false },
-      { id: "case14-dx3", name: "Siringomielia", correct: false },
-      { id: "case14-dx4", name: "Tumor thalamus", correct: false }
+      { id: "case14-dx2", name: "Stroke hemisfer kiri", correct: false, wrongExplanation: "Stroke hemisfer kiri menyebabkan gangguan SEMUA modalitas sensorik (nyeri, suhu, raba, posisi) pada hemibody kanan. Kasus ini menunjukkan disosiasi sensorik — nyeri/suhu hilang tapi raba/posisi normal — yang khas lesi batang otak, bukan kortikal." },
+      { id: "case14-dx3", name: "Siringomielia", correct: false, wrongExplanation: "Siringomielia menyebabkan disosiasi sensorik tapi dengan pola 'cape-like' (tipe jubah) di punggung dan lengan, sesuai level medula spinalis. Kasus ini menunjukkan pola 'crossed' (wajah ipsilateral, tubuh kontralateral) — khas lesi batang otak lateral." },
+      { id: "case14-dx4", name: "Tumor thalamus", correct: false, wrongExplanation: "Tumor thalamus menyebabkan gangguan semua modalitas sensorik kontralateral karena thalamus adalah relay station untuk semua jalur sensorik. Kasus ini menunjukkan disosiasi (nyeri/suhu hilang, raba/posisi utuh) — tidak sesuai dengan lesi thalamus." }
     ],
     doctorIntro: "Selamat pagi. Saya dokter yang akan memeriksa Anda hari ini.",
     doctorDiagnosisCue: "Berdasarkan temuan pemeriksaan, apa diagnosis Anda?",

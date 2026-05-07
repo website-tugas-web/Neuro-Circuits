@@ -184,8 +184,13 @@ function renderOSCE() {
     for (var i = 0; i < exams.length; i++) {
       var ex = exams[i];
       var used = osceState.examinedIds.indexOf(ex.id) !== -1;
-      btns += '<button class="exam-btn' + (used ? ' already' : '') + '" onclick="doExam(\'' + ex.id + '\')"' +
-        (used ? ' disabled' : '') + '>' + (used ? '✓ ' : '') + ex.name + '</button>';
+      var mark = '';
+      var wrongClass = '';
+      if (used) {
+        if (ex.correct) { mark = '✓ '; } else { mark = '✗ '; wrongClass = ' wrong'; }
+      }
+      btns += '<button class="exam-btn' + (used ? ' already' : '') + wrongClass + '" onclick="doExam(\'' + ex.id + '\')"' +
+        (used ? ' disabled' : '') + '>' + mark + ex.name + '</button>';
     }
 
     var adv = canAdv
@@ -266,12 +271,19 @@ function doExam(examId) {
 
   if (exam.correct) {
     osceState.score += 10;
+  } else {
+    osceState._lastWrongExam = exam;
   }
 
   renderOSCE();
 
   setTimeout(function () {
-    osceState.lastDoctorSpeech = 'Saya temukan: ' + (exam.finding || '-');
+    if (!exam.correct && exam.wrongExplanation) {
+      osceState.lastDoctorSpeech = exam.wrongExplanation;
+      osceState.lastFinding = '❌ ' + (exam.finding || '-');
+    } else {
+      osceState.lastDoctorSpeech = 'Saya temukan: ' + (exam.finding || '-');
+    }
     if (exam.patientFace === 'pain') {
       osceState.lastFace = 'normal';
       osceState.lastSpeech = '';
@@ -318,7 +330,8 @@ function submitDiagnosis() {
   }
 
   var pass = dx && dx.correct;
-  osceState.lastDoctorSpeech = pass ? (c.doctorPass || '') : (c.doctorFail || '');
+  var failMsg = (dx && dx.wrongExplanation) ? dx.wrongExplanation : (c.doctorFail || '');
+  osceState.lastDoctorSpeech = pass ? (c.doctorPass || '') : failMsg;
   osceState.phase = 'result';
   renderOSCE();
 }
