@@ -51,69 +51,7 @@
     </section>
 
     <section class="section">
-      <div id="quiz-container" style="display: none;">
-        <div class="quiz-container">
-          <div class="quiz-header">
-            <div class="quiz-progress">
-              <div>Question <span id="current-question">1</span> of 25</div>
-              <div class="progress-bar-container">
-                <div class="progress-bar" id="progress-bar"></div>
-              </div>
-            </div>
-            <div class="quiz-timer" id="timer-display">
-              <span class="timer-value" id="timer-seconds">60</span>s
-            </div>
-          </div>
-
-          <div class="question-content">
-            <div class="question-number">Question</div>
-            <div class="question-text" id="question-text">Loading question...</div>
-            <div class="options" id="options-container"></div>
-          </div>
-
-          <div class="exam-tracking">
-            <div class="reflex-buttons" id="reflex-buttons-container"></div>
-            <div class="exam-requirement" id="exam-status">0/3 exams completed</div>
-          </div>
-
-          <div class="diagnosis-message locked" id="diagnosis-message">
-            Complete 3 exams to unlock diagnosis and advance to results.
-          </div>
-        </div>
-      </div>
-
-      <div id="result-container" style="display: none;">
-        <div class="result-container">
-          <h2 style="color: #7B1224; margin: 2rem 0 1rem;">Quiz Complete!</h2>
-          <div class="score-display" id="final-score">0%</div>
-          <div class="result-message" id="result-message">Great effort!</div>
-
-          <div class="result-details">
-            <div class="result-item">
-              <h4>Questions Answered</h4>
-              <p id="result-answered">0</p>
-            </div>
-            <div class="result-item">
-              <h4>Correct Answers</h4>
-              <p id="result-correct">0</p>
-            </div>
-            <div class="result-item">
-              <h4>Exams Completed</h4>
-              <p id="result-exams">0</p>
-            </div>
-          </div>
-
-          <button class="restart-btn" onclick="app.startQuiz()">Try Again</button>
-          <a href="/" class="btn-pill" style="margin-left: 1rem;">Back Home</a>
-        </div>
-      </div>
-
-      <div id="start-container">
-        <div style="max-width: 880px; margin: 0 auto; text-align: center;">
-          <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Ready to test your knowledge of reflex pathways and lesion localisation?</p>
-          <button class="btn-pill" onclick="app.startQuiz()" style="padding: 15px 40px; font-size: 1rem;">Start Quiz</button>
-        </div>
-      </div>
+      <div id="osceApp"></div>
     </section>
 
     <footer class="site-footer">
@@ -121,36 +59,7 @@
     </footer>
   </main>
 
-  <script src="app.js"></script>
-  <script>
-    // Show quiz container on load
-    function showQuiz() {
-      document.getElementById('start-container').style.display = 'none';
-      document.getElementById('quiz-container').style.display = 'block';
-      document.getElementById('result-container').style.display = 'none';
-    }
-
-    function showResults() {
-      document.getElementById('quiz-container').style.display = 'none';
-      document.getElementById('result-container').style.display = 'block';
-      document.getElementById('start-container').style.display = 'none';
-    }
-
-    // Override the navigate method to show/hide sections
-    const originalEndQuiz = app.endQuiz.bind(app);
-    app.endQuiz = function() {
-      this.stopQuizTimer();
-      const pBar = document.getElementById('progress-bar');
-      if (pBar) pBar.style.width = '100%';
-      this.displayResults();
-      showResults();
-    };
-
-    const originalStartQuiz = app.startQuiz.bind(app);
-    app.startQuiz = function() {
-      originalStartQuiz.call(this);
-      showQuiz();
-    };
-  </script>
+  <script src="src/osce-cases.js"></script>
+  <script src="osce.js"></script>
 </body>
 </html>

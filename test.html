@@ -51,7 +51,57 @@
     </section>
 
     <section class="section">
-      <div id="osceApp"></div>
+      <div id="test-container" style="display: none;">
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <div class="quiz-progress">
+              <div>Question <span id="current-question">1</span> of 25</div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+            </div>
+            <div class="quiz-timer" id="timer-display">
+              <span class="timer-value" id="timer-seconds">60</span>s
+            </div>
+          </div>
+
+          <div class="question-content">
+            <div class="question-number">Question</div>
+            <div class="question-text" id="question-text">Loading question...</div>
+            <div class="options" id="options-container"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="result-container" style="display: none;">
+        <div class="result-container">
+          <h2 style="color: #7B1224; margin: 2rem 0 1rem;">Test Complete!</h2>
+          <div class="score-display" id="final-score">0%</div>
+          <div class="result-message" id="result-message">Great effort!</div>
+
+          <div class="result-details">
+            <div class="result-item">
+              <h4>Questions Answered</h4>
+              <p id="result-answered">0</p>
+            </div>
+            <div class="result-item">
+              <h4>Correct Answers</h4>
+              <p id="result-correct">0</p>
+            </div>
+          </div>
+
+          <button class="restart-btn" onclick="startTest()">Try Again</button>
+          <a href="/" class="btn-pill" style="margin-left: 1rem;">Back Home</a>
+        </div>
+      </div>
+
+      <div id="start-container">
+        <div style="max-width: 880px; margin: 0 auto; text-align: center;">
+          <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Take a full-length timed assessment. You'll have 60 seconds per question, just like in an OSCE station.</p>
+          <button class="btn-pill" onclick="startTest()" style="padding: 15px 40px; font-size: 1rem;">Start Test</button>
+        </div>
+      </div>
     </section>
 
     <footer class="site-footer">
@@ -59,95 +109,36 @@
     </footer>
   </main>
 
+  <script src="src/test-data.js"></script>
+  <script src="src/reflex-diagrams.js"></script>
+  <script src="app.js"></script>
   <script>
-    // Stub OSCE cases for testing - replace with real data from MedicalSpecialist
-    const OSCE_CASES = [
-      {
-        id: 1,
-        complaint: "I\'ve been having weakness in my arm.",
-        diagnosisPrompt: "Based on your examination findings, what is the most likely diagnosis?",
-        minExamsRequired: 3,
-        exams: [
-          {
-            id: "exam-1",
-            name: "Check Arm Strength",
-            correct: true,
-            feedback: "Good - I notice weakness on the right side.",
-            finding: "Right arm weakness present, grade 4/5"
-          },
-          {
-            id: "exam-2",
-            name: "Test Reflexes",
-            correct: true,
-            feedback: "The reflexes are hyperactive on the right.",
-            finding: "Hyperreflexia right side, brisk response"
-          },
-          {
-            id: "exam-3",
-            name: "Check Babinski Sign",
-            correct: true,
-            feedback: "The Babinski sign is present - upgoing toe on the right.",
-            finding: "Babinski sign positive right side"
-          },
-          {
-            id: "exam-4",
-            name: "Assess Sensation",
-            correct: false,
-            feedback: "Sensation is normal - this doesn\'t help narrow it down.",
-            finding: "Sensation intact bilaterally"
-          }
-        ],
-        diagnoses: [
-          { id: "dx-1", name: "Acute Ischemic Stroke - right hemisphere", correct: true },
-          { id: "dx-2", name: "Peripheral neuropathy", correct: false },
-          { id: "dx-3", name: "Myasthenia gravis", correct: false },
-          { id: "dx-4", name: "Cervical radiculopathy", correct: false }
-        ]
-      },
-      {
-        id: 2,
-        complaint: "I\'ve been having difficulty walking.",
-        diagnosisPrompt: "What is your diagnosis based on the findings?",
-        minExamsRequired: 3,
-        exams: [
-          {
-            id: "exam-5",
-            name: "Test Gait",
-            correct: true,
-            feedback: "I see an ataxic gait pattern.",
-            finding: "Wide-based, ataxic gait"
-          },
-          {
-            id: "exam-6",
-            name: "Romberg Test",
-            correct: true,
-            feedback: "Unable to maintain balance with eyes closed.",
-            finding: "Positive Romberg sign"
-          },
-          {
-            id: "exam-7",
-            name: "Finger-to-nose Test",
-            correct: true,
-            feedback: "There\'s clear intention tremor.",
-            finding: "Intention tremor, dysmetria"
-          },
-          {
-            id: "exam-8",
-            name: "Check Reflexes",
-            correct: false,
-            feedback: "Reflexes are normal - not helpful here.",
-            finding: "Normal reflexes"
-          }
-        ],
-        diagnoses: [
-          { id: "dx-5", name: "Cerebellar ataxia", correct: true },
-          { id: "dx-6", name: "Peripheral neuropathy", correct: false },
-          { id: "dx-7", name: "Spastic paraplegia", correct: false },
-          { id: "dx-8", name: "Vestibular dysfunction", correct: false }
-        ]
-      }
-    ];
+    function showTest() {
+      document.getElementById('start-container').style.display = 'none';
+      document.getElementById('test-container').style.display = 'block';
+      document.getElementById('result-container').style.display = 'none';
+    }
+
+    function showResults() {
+      document.getElementById('test-container').style.display = 'none';
+      document.getElementById('result-container').style.display = 'block';
+      document.getElementById('start-container').style.display = 'none';
+    }
+
+    function startTest() {
+      app.startQuiz();
+      showTest();
+    }
+
+    // Override endQuiz to show results
+    const originalEndQuiz = app.endQuiz.bind(app);
+    app.endQuiz = function() {
+      this.stopQuizTimer();
+      const pBar = document.getElementById('progress-bar');
+      if (pBar) pBar.style.width = '100%';
+      this.displayResults();
+      showResults();
+    };
   </script>
-  <script src="osce.js"></script>
 </body>
 </html>
