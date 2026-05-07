@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   description: "Mastering Physiological & Pathophysiological Reflexes",
   icons: {
     icon: [
-      { url: '/favicon.ico?v=3', type: 'image/x-icon' },
-      { url: '/icon.svg?v=3', type: 'image/svg+xml' },
+      { url: '/favicon.ico?v=4', type: 'image/x-icon', sizes: 'any' },
+      { url: '/icon.svg?v=4', type: 'image/svg+xml', sizes: 'any' },
     ],
     apple: [
-      { url: '/apple-icon.png?v=3', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-icon.png?v=4', sizes: '180x180', type: 'image/png' },
     ],
   },
 };
