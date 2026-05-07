@@ -113,7 +113,7 @@ function doctorSVG(speech) {
 
   return '<div class="doctor-wrapper">' + bubble +
     '<div class="doctor-figure">' + svg + '</div>' +
-    '<div style="text-align:center;margin-top:8px;font-size:13px;color:#555;font-weight:500;">Dokter Anda</div>' +
+    '<div style="text-align:center;margin-top:8px;font-size:13px;color:#555;font-weight:500;">Dokter(Anda)</div>' +
   '</div>';
 }
 
