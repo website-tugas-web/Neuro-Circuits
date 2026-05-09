@@ -1,0 +1,35 @@
+<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stage 0: Baby brain - chubby pink brain with pacifier, big curious eyes, tiny -->
+  <defs>
+    <radialGradient id="babyBrainGradient" cx="50%" cy="40%">
+      <stop offset="0%" stop-color="#ffb3d9" />
+      <stop offset="100%" stop-color="#ff99cc" />
+    </radialGradient>
+  </defs>
+
+  <!-- Main brain body - extra chubby -->
+  <ellipse cx="60" cy="65" rx="38" ry="42" fill="url(#babyBrainGradient)" stroke="#ff66b3" stroke-width="2"/>
+
+  <!-- Brain convolutions (simplified, cute) -->
+  <path d="M 35 55 Q 40 50 45 55" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.5"/>
+  <path d="M 75 55 Q 80 50 85 55" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.5"/>
+  <path d="M 38 70 Q 45 65 52 70" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.5"/>
+  <path d="M 68 70 Q 75 65 82 70" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Big curious eyes -->
+  <circle cx="48" cy="60" r="8" fill="white"/>
+  <circle cx="72" cy="60" r="8" fill="white"/>
+  <circle cx="48" cy="60" r="5" fill="#333"/>
+  <circle cx="72" cy="60" r="5" fill="#333"/>
+  <circle cx="50" cy="58" r="2" fill="white"/> <!-- eye shine -->
+  <circle cx="74" cy="58" r="2" fill="white"/> <!-- eye shine -->
+
+  <!-- Chubby cheeks (subtle blush) -->
+  <circle cx="32" cy="70" r="6" fill="#ff99cc" opacity="0.4"/>
+  <circle cx="88" cy="70" r="6" fill="#ff99cc" opacity="0.4"/>
+
+  <!-- Pacifier -->
+  <ellipse cx="60" cy="85" rx="8" ry="6" fill="#99ccff" stroke="#6699ff" stroke-width="1.5"/>
+  <circle cx="60" cy="85" r="3" fill="#6699ff"/>
+  <rect x="58" y="85" width="4" height="6" rx="2" fill="#ffcc99"/>
+</svg>

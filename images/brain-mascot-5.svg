@@ -1,0 +1,66 @@
+<svg viewBox="0 0 120 170" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stage 5: Confident med student - UGM almamater, holding anatomy book, upright posture -->
+  <defs>
+    <radialGradient id="medBrain5Gradient" cx="50%" cy="40%">
+      <stop offset="0%" stop-color="#ffb3d9" />
+      <stop offset="100%" stop-color="#ff99cc" />
+    </radialGradient>
+    <linearGradient id="almamaterGold5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4d03f" />
+      <stop offset="100%" stop-color="#d4af37" />
+    </linearGradient>
+  </defs>
+
+  <!-- UGM Almamater blazer - more structured, confident posture -->
+  <g transform="translate(0, 65)">
+    <!-- Main blazer -->
+    <path d="M 28 0 L 28 85 L 43 80 L 60 85 L 77 80 L 92 85 L 92 0 Z" fill="url(#almamaterGold5)" stroke="#b8941f" stroke-width="2"/>
+
+    <!-- Collar (more defined) -->
+    <path d="M 28 0 L 40 18 L 60 10 L 80 18 L 92 0" fill="url(#almamaterGold5)" stroke="#b8941f" stroke-width="1.5"/>
+
+    <!-- Buttons -->
+    <circle cx="60" cy="28" r="2.5" fill="#b8941f"/>
+    <circle cx="60" cy="42" r="2.5" fill="#b8941f"/>
+    <circle cx="60" cy="56" r="2.5" fill="#b8941f"/>
+
+    <!-- UGM Badge on left chest (more prominent) -->
+    <g transform="translate(38, 12)">
+      <circle cx="0" cy="0" r="9" fill="#7B1224" stroke="#d4af37" stroke-width="1.8"/>
+      <text x="0" y="3" font-family="serif" font-size="8" fill="#d4af37" text-anchor="middle" font-weight="bold">UGM</text>
+    </g>
+
+    <!-- Lapels -->
+    <line x1="40" y1="12" x2="46" y2="40" stroke="#b8941f" stroke-width="1.5"/>
+    <line x1="80" y1="12" x2="74" y2="40" stroke="#b8941f" stroke-width="1.5"/>
+  </g>
+
+  <!-- Main brain body -->
+  <ellipse cx="60" cy="43" rx="45" ry="49" fill="url(#medBrain5Gradient)" stroke="#ff66b3" stroke-width="2"/>
+
+  <!-- Brain convolutions (more mature) -->
+  <path d="M 26 30 Q 32 25 38 30" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 82 30 Q 88 25 94 30" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 27 43 Q 35 38 43 43" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 77 43 Q 85 38 93 43" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
+  <path d="M 30 56 Q 38 52 46 56" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Confident eyes -->
+  <circle cx="43" cy="40" r="6" fill="white"/>
+  <circle cx="77" cy="40" r="6" fill="white"/>
+  <circle cx="43" cy="40" r="3.5" fill="#333"/>
+  <circle cx="77" cy="40" r="3.5" fill="#333"/>
+  <circle cx="45" cy="38" r="1.5" fill="white"/>
+  <circle cx="79" cy="38" r="1.5" fill="white"/>
+
+  <!-- Confident smile -->
+  <path d="M 38 60 Q 60 66 82 60" fill="none" stroke="#ff66b3" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Anatomy book held proudly -->
+  <g transform="translate(5, 120)">
+    <rect x="0" y="0" width="50" height="38" rx="2" fill="#cc3333" stroke="#992222" stroke-width="2"/>
+    <text x="25" y="16" font-family="Arial, sans-serif" font-size="8" fill="white" text-anchor="middle" font-weight="bold">ANATOMY</text>
+    <text x="25" y="26" font-family="Arial, sans-serif" font-size="6" fill="white" text-anchor="middle">Human Body</text>
+    <rect x="3" y="3" width="44" height="6" rx="1" fill="white" opacity="0.25"/>
+  </g>
+</svg>
