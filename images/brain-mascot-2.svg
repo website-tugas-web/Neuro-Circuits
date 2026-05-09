@@ -1,41 +1,42 @@
-<svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
-  <!-- Stage 2: Schoolkid brain - wearing small backpack, slightly taller -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schoolkid brain mascot with backpack - stage 2 of 7">
+  <title>Stage 2 - Schoolkid brain with backpack</title>
   <defs>
-    <radialGradient id="schoolBrainGradient" cx="50%" cy="40%">
-      <stop offset="0%" stop-color="#ffb3d9" />
-      <stop offset="100%" stop-color="#ff99cc" />
+    <radialGradient id="brain" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffd2dc"/>
+      <stop offset="55%" stop-color="#f4a8b8"/>
+      <stop offset="100%" stop-color="#d97a92"/>
     </radialGradient>
+    <linearGradient id="bag" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ea1d3"/>
+      <stop offset="100%" stop-color="#2c6f9a"/>
+    </linearGradient>
   </defs>
-
-  <!-- Backpack straps (behind brain) -->
-  <rect x="42" y="45" width="4" height="35" rx="2" fill="#cc6633" opacity="0.8"/>
-  <rect x="74" y="45" width="4" height="35" rx="2" fill="#cc6633" opacity="0.8"/>
-
-  <!-- Main brain body - taller -->
-  <ellipse cx="60" cy="55" rx="42" ry="46" fill="url(#schoolBrainGradient)" stroke="#ff66b3" stroke-width="2"/>
-
-  <!-- Brain convolutions -->
-  <path d="M 30 42 Q 36 37 42 42" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 78 42 Q 84 37 90 42" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 32 58 Q 40 53 48 58" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 72 58 Q 80 53 88 58" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 35 72 Q 43 68 51 72" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-
-  <!-- Confident eyes -->
-  <circle cx="46" cy="50" r="6" fill="white"/>
-  <circle cx="74" cy="50" r="6" fill="white"/>
-  <circle cx="46" cy="50" r="4" fill="#333"/>
-  <circle cx="74" cy="50" r="4" fill="#333"/>
-  <circle cx="48" cy="48" r="1.5" fill="white"/>
-  <circle cx="76" cy="48" r="1.5" fill="white"/>
-
-  <!-- Smile -->
-  <path d="M 43 70 Q 60 75 77 70" fill="none" stroke="#ff66b3" stroke-width="2" stroke-linecap="round"/>
-
-  <!-- Backpack (behind and lower) -->
-  <g transform="translate(35, 80)">
-    <rect x="0" y="0" width="50" height="40" rx="3" fill="#ff6633" stroke="#cc5522" stroke-width="2"/>
-    <rect x="5" y="5" width="40" height="30" rx="2" fill="#ff8855" opacity="0.5"/>
-    <circle cx="25" cy="35" r="3" fill="#cc5522"/>
-  </g>
+  <path d="M 18,90 L 18,180 Q 18,194 32,194 L 70,194 Q 70,180 70,150 L 70,98 Q 70,86 58,86 L 30,86 Q 18,86 18,90 Z" fill="url(#bag)" stroke="#1c4f70" stroke-width="2"/>
+  <rect x="26" y="120" width="36" height="22" rx="4" fill="#1c4f70" opacity="0.55"/>
+  <rect x="32" y="124" width="24" height="3" rx="1.5" fill="#aee0f3"/>
+  <circle cx="62" cy="135" r="2.5" fill="#f4d04a" stroke="#1c4f70" stroke-width="0.8"/>
+  <ellipse cx="80" cy="103" rx="40" ry="12" fill="#d987a0" stroke="#7a3f50" stroke-width="2"/>
+  <path d="M44,103 Q52,98 60,104 Q68,98 76,104 Q84,98 92,104 Q100,98 108,104 Q114,99 116,103" stroke="#7a3f50" stroke-width="1.2" fill="none" opacity="0.65"/>
+  <rect x="74" y="113" width="12" height="11" rx="5" fill="#c5687f" stroke="#7a3f50" stroke-width="1.5"/>
+  <path d="M 80,12 C 65,10 50,16 42,28 C 30,30 22,42 28,54 C 18,58 16,76 28,86 C 22,98 32,108 46,108 C 52,114 64,114 72,108 C 76,112 80,112 80,108 Z" fill="url(#brain)" stroke="#7a3f50" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 80,12 C 95,10 110,16 118,28 C 130,30 138,42 132,54 C 142,58 144,76 132,86 C 138,98 128,108 114,108 C 108,114 96,114 88,108 C 84,112 80,112 80,108 Z" fill="url(#brain)" stroke="#7a3f50" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 42,28 Q 47,22 53,28 Q 60,22 66,28 Q 73,22 80,28 Q 87,22 94,28 Q 100,22 107,28 Q 113,22 118,28" stroke="#7a3f50" stroke-width="1.6" fill="none" opacity="0.6"/>
+  <path d="M 80,12 Q 79,40 80,72 Q 81,98 80,108" stroke="#7a3f50" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+  <path d="M 32,48 Q 44,46 42,56 Q 30,60 38,70 Q 50,68 46,80" stroke="#7a3f50" stroke-width="1.7" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 50,42 Q 58,48 50,55" stroke="#7a3f50" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 62,82 Q 70,80 66,90" stroke="#7a3f50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+  <path d="M 128,48 Q 116,46 118,56 Q 130,60 122,70 Q 110,68 114,80" stroke="#7a3f50" stroke-width="1.7" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 110,42 Q 102,48 110,55" stroke="#7a3f50" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 98,82 Q 90,80 94,90" stroke="#7a3f50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+  <ellipse cx="56" cy="32" rx="18" ry="10" fill="white" opacity="0.32"/>
+  <path d="M 36,32 Q 30,90 36,140 Q 36,148 44,148" stroke="#1c4f70" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.92"/>
+  <path d="M 124,32 Q 130,90 124,140 Q 124,148 116,148" stroke="#1c4f70" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.92"/>
+  <circle cx="62" cy="60" r="9" fill="white" stroke="#7a3f50" stroke-width="1.2"/>
+  <circle cx="98" cy="60" r="9" fill="white" stroke="#7a3f50" stroke-width="1.2"/>
+  <circle cx="63" cy="61" r="4.5" fill="#222234"/>
+  <circle cx="99" cy="61" r="4.5" fill="#222234"/>
+  <circle cx="65" cy="58" r="1.8" fill="white"/>
+  <circle cx="101" cy="58" r="1.8" fill="white"/>
+  <path d="M 66,86 Q 80,94 94,86" stroke="#7a3f50" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 </svg>

@@ -1,60 +1,69 @@
-<svg viewBox="0 0 120 170" xmlns="http://www.w3.org/2000/svg">
-  <!-- Stage 4: Freshman med student - UGM almamater (yellow-gold blazer with UGM badge), nervous smile -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freshman med student brain mascot in UGM almamater - stage 4 of 7">
+  <title>Stage 4 - Freshman med student wearing the UGM yellow-gold almamater</title>
   <defs>
-    <radialGradient id="medBrainGradient" cx="50%" cy="40%">
-      <stop offset="0%" stop-color="#ffb3d9" />
-      <stop offset="100%" stop-color="#ff99cc" />
+    <radialGradient id="brain" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#ffd2dc"/>
+      <stop offset="55%" stop-color="#f4a8b8"/>
+      <stop offset="100%" stop-color="#d97a92"/>
     </radialGradient>
-    <linearGradient id="almamaterGold" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#f4d03f" />
-      <stop offset="100%" stop-color="#d4af37" />
+    <linearGradient id="goldBlazer" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5cf3a"/>
+      <stop offset="55%" stop-color="#e0a916"/>
+      <stop offset="100%" stop-color="#a87b0a"/>
+    </linearGradient>
+    <linearGradient id="goldHilite" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde576"/>
+      <stop offset="100%" stop-color="#e6b520"/>
     </linearGradient>
   </defs>
-
-  <!-- UGM Almamater blazer body -->
-  <g transform="translate(0, 65)">
-    <!-- Main blazer -->
-    <path d="M 30 0 L 30 80 L 45 75 L 60 80 L 75 75 L 90 80 L 90 0 Z" fill="url(#almamaterGold)" stroke="#b8941f" stroke-width="2"/>
-
-    <!-- Collar -->
-    <path d="M 30 0 L 42 15 L 60 8 L 78 15 L 90 0" fill="url(#almamaterGold)" stroke="#b8941f" stroke-width="1.5"/>
-
-    <!-- Buttons -->
-    <circle cx="60" cy="25" r="2.5" fill="#b8941f"/>
-    <circle cx="60" cy="38" r="2.5" fill="#b8941f"/>
-    <circle cx="60" cy="51" r="2.5" fill="#b8941f"/>
-
-    <!-- UGM Badge on left chest -->
-    <g transform="translate(40, 10)">
-      <circle cx="0" cy="0" r="8" fill="#7B1224" stroke="#d4af37" stroke-width="1.5"/>
-      <text x="0" y="2" font-family="serif" font-size="7" fill="#d4af37" text-anchor="middle" font-weight="bold">UGM</text>
+  <path d="M 22,128 L 14,218 L 146,218 L 138,128 Q 124,134 112,126 L 100,144 Q 80,154 60,144 L 48,126 Q 36,134 22,128 Z" fill="url(#goldBlazer)" stroke="#5a3f08" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M 60,124 L 80,156 L 100,124 L 96,124 L 80,148 L 64,124 Z" fill="#ffffff" stroke="#7a8a99" stroke-width="1"/>
+  <path d="M 48,126 Q 50,128 56,128 L 72,150 L 80,156 L 74,156 L 58,134 Z" fill="url(#goldHilite)" stroke="#5a3f08" stroke-width="1.4"/>
+  <path d="M 112,126 Q 110,128 104,128 L 88,150 L 80,156 L 86,156 L 102,134 Z" fill="url(#goldHilite)" stroke="#5a3f08" stroke-width="1.4"/>
+  <circle cx="80" cy="170" r="2.6" fill="#5a3f08" stroke="#2a1a02" stroke-width="0.6"/>
+  <circle cx="80" cy="186" r="2.6" fill="#5a3f08" stroke="#2a1a02" stroke-width="0.6"/>
+  <circle cx="80" cy="202" r="2.6" fill="#5a3f08" stroke="#2a1a02" stroke-width="0.6"/>
+  <g transform="translate(54, 152)">
+    <ellipse cx="0.6" cy="0.8" rx="11" ry="11" fill="#000" opacity="0.22"/>
+    <circle r="11" fill="#f4c430" stroke="#3d2814" stroke-width="1.5"/>
+    <g fill="#3d2814">
+      <polygon points="0,-10 0.8,-7 -0.8,-7"/>
+      <polygon points="5,-8.66 3.6,-6.06 2.04,-7.13"/>
+      <polygon points="8.66,-5 6.06,-3.6 7.13,-2.04"/>
+      <polygon points="10,0 7,-0.8 7,0.8"/>
+      <polygon points="8.66,5 6.06,3.6 7.13,2.04"/>
+      <polygon points="5,8.66 3.6,6.06 2.04,7.13"/>
+      <polygon points="0,10 0.8,7 -0.8,7"/>
+      <polygon points="-5,8.66 -3.6,6.06 -2.04,7.13"/>
+      <polygon points="-8.66,5 -6.06,3.6 -7.13,2.04"/>
+      <polygon points="-10,0 -7,-0.8 -7,0.8"/>
+      <polygon points="-8.66,-5 -6.06,-3.6 -7.13,-2.04"/>
+      <polygon points="-5,-8.66 -3.6,-6.06 -2.04,-7.13"/>
     </g>
-
-    <!-- Lapels detail -->
-    <line x1="42" y1="10" x2="48" y2="35" stroke="#b8941f" stroke-width="1.5"/>
-    <line x1="78" y1="10" x2="72" y2="35" stroke="#b8941f" stroke-width="1.5"/>
+    <circle r="6" fill="#1a3a6b" stroke="#3d2814" stroke-width="0.6"/>
+    <text x="0" y="2.1" font-family="Georgia, serif" font-size="4.6" font-weight="bold" fill="#f4c430" text-anchor="middle">UGM</text>
   </g>
-
-  <!-- Main brain body -->
-  <ellipse cx="60" cy="45" rx="44" ry="48" fill="url(#medBrainGradient)" stroke="#ff66b3" stroke-width="2"/>
-
-  <!-- Brain convolutions -->
-  <path d="M 27 32 Q 33 27 39 32" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 81 32 Q 87 27 93 32" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 28 45 Q 36 40 44 45" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-  <path d="M 76 45 Q 84 40 92 45" fill="none" stroke="#ff66b3" stroke-width="1.5" opacity="0.6"/>
-
-  <!-- Slightly nervous eyes -->
-  <circle cx="44" cy="42" r="6" fill="white"/>
-  <circle cx="76" cy="42" r="6" fill="white"/>
-  <circle cx="44" cy="43" r="3.5" fill="#333"/>
-  <circle cx="76" cy="43" r="3.5" fill="#333"/>
-  <circle cx="46" cy="41" r="1.5" fill="white"/>
-  <circle cx="78" cy="41" r="1.5" fill="white"/>
-
-  <!-- Nervous smile (slightly asymmetric) -->
-  <path d="M 40 62 Q 58 67 77 63" fill="none" stroke="#ff66b3" stroke-width="1.8" stroke-linecap="round"/>
-
-  <!-- Sweat drop (nervousness) -->
-  <ellipse cx="95" cy="35" rx="3" ry="4" fill="#99ccff" opacity="0.7"/>
+  <ellipse cx="80" cy="103" rx="40" ry="12" fill="#d987a0" stroke="#7a3f50" stroke-width="2"/>
+  <path d="M44,103 Q52,98 60,104 Q68,98 76,104 Q84,98 92,104 Q100,98 108,104 Q114,99 116,103" stroke="#7a3f50" stroke-width="1.2" fill="none" opacity="0.65"/>
+  <rect x="74" y="113" width="12" height="11" rx="5" fill="#c5687f" stroke="#7a3f50" stroke-width="1.5"/>
+  <path d="M 80,12 C 65,10 50,16 42,28 C 30,30 22,42 28,54 C 18,58 16,76 28,86 C 22,98 32,108 46,108 C 52,114 64,114 72,108 C 76,112 80,112 80,108 Z" fill="url(#brain)" stroke="#7a3f50" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 80,12 C 95,10 110,16 118,28 C 130,30 138,42 132,54 C 142,58 144,76 132,86 C 138,98 128,108 114,108 C 108,114 96,114 88,108 C 84,112 80,112 80,108 Z" fill="url(#brain)" stroke="#7a3f50" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 42,28 Q 47,22 53,28 Q 60,22 66,28 Q 73,22 80,28 Q 87,22 94,28 Q 100,22 107,28 Q 113,22 118,28" stroke="#7a3f50" stroke-width="1.6" fill="none" opacity="0.6"/>
+  <path d="M 80,12 Q 79,40 80,72 Q 81,98 80,108" stroke="#7a3f50" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+  <path d="M 32,48 Q 44,46 42,56 Q 30,60 38,70 Q 50,68 46,80" stroke="#7a3f50" stroke-width="1.7" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 50,42 Q 58,48 50,55" stroke="#7a3f50" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 62,82 Q 70,80 66,90" stroke="#7a3f50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+  <path d="M 128,48 Q 116,46 118,56 Q 130,60 122,70 Q 110,68 114,80" stroke="#7a3f50" stroke-width="1.7" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 110,42 Q 102,48 110,55" stroke="#7a3f50" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 98,82 Q 90,80 94,90" stroke="#7a3f50" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.75"/>
+  <ellipse cx="56" cy="32" rx="18" ry="10" fill="white" opacity="0.32"/>
+  <circle cx="62" cy="60" r="9" fill="white" stroke="#7a3f50" stroke-width="1.2"/>
+  <circle cx="98" cy="60" r="9" fill="white" stroke="#7a3f50" stroke-width="1.2"/>
+  <circle cx="63" cy="62" r="4" fill="#222234"/>
+  <circle cx="99" cy="62" r="4" fill="#222234"/>
+  <circle cx="65" cy="59" r="1.5" fill="white"/>
+  <circle cx="101" cy="59" r="1.5" fill="white"/>
+  <path d="M 70,87 Q 80,90 88,87" stroke="#7a3f50" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="124" cy="42" rx="3" ry="4.5" fill="#9bd2ee" stroke="#3d8eb0" stroke-width="0.8" opacity="0.85"/>
 </svg>
