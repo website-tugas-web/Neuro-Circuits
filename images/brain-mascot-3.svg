@@ -40,12 +40,18 @@
     <line x1="111" y1="58" x2="120" y2="54" stroke-linecap="round"/>
   </g>
   <path d="M 66,86 Q 80,93 94,86" stroke="#7a3f50" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-  <g transform="translate(80, 158)">
-    <rect x="-34" y="-18" width="68" height="36" rx="2" fill="url(#book)" stroke="#2a0e1c" stroke-width="2"/>
-    <rect x="-32" y="-16" width="64" height="32" fill="none" stroke="#f4d04a" stroke-width="1"/>
+  <!-- Both arms reach down/inward to hold the science book.
+       Arms emerge from shared shoulder coords (32,102) and (128,102). -->
+  <path d="M 32,102 Q 30,124 44,148 Q 50,156 56,150 Q 50,134 44,118 Q 38,108 38,108 Z" fill="url(#brain)" stroke="#7a3f50" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M 128,102 Q 130,124 116,148 Q 110,156 104,150 Q 110,134 116,118 Q 122,108 122,108 Z" fill="url(#brain)" stroke="#7a3f50" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Hands holding book edges -->
+  <ellipse cx="50" cy="156" rx="7" ry="6" fill="url(#brain)" stroke="#7a3f50" stroke-width="1.5"/>
+  <ellipse cx="110" cy="156" rx="7" ry="6" fill="url(#brain)" stroke="#7a3f50" stroke-width="1.5"/>
+  <!-- Science book held between hands -->
+  <g transform="translate(80, 162)">
+    <rect x="-30" y="-16" width="60" height="32" rx="2" fill="url(#book)" stroke="#2a0e1c" stroke-width="2"/>
+    <rect x="-28" y="-14" width="56" height="28" fill="none" stroke="#f4d04a" stroke-width="1"/>
     <text x="0" y="-3" font-family="Georgia, serif" font-size="6" font-weight="bold" fill="#f4d04a" text-anchor="middle">SCIENCE</text>
     <text x="0" y="9" font-family="Georgia, serif" font-size="4.5" fill="#f4d04a" text-anchor="middle">BIOLOGY</text>
   </g>
-  <ellipse cx="44" cy="146" rx="7" ry="6" fill="url(#brain)" stroke="#7a3f50" stroke-width="1.5"/>
-  <ellipse cx="116" cy="146" rx="7" ry="6" fill="url(#brain)" stroke="#7a3f50" stroke-width="1.5"/>
 </svg>
