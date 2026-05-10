@@ -318,7 +318,7 @@ body {
   font-family: var(--font-editorial);
   font-weight: 700;
   font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
-  font-size: clamp(46px, 9vw, 92px);
+  font-size: clamp(40px, 7.5vw, 76px);
   line-height: 0.96;
   letter-spacing: 0.005em;
   text-transform: uppercase;
