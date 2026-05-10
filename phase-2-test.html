@@ -53,6 +53,9 @@
     <section class="section">
       <div class="prose" style="max-width: 720px;">
         <p class="lead">Simulasi ujian terstruktur Phase 2 sedang disiapkan. Sementara itu, gunakan <a href="/test">Test Phase 1</a> untuk latihan.</p>
+        <p style="margin-top:1.5rem;">Sudah berlatih Test Phase 1 dan meninjau Kasus OSCE Fase 2 (Tetanus, Stroke, TIA)? Tandai bagian ini selesai untuk memajukan Neuro Pet ke tahap berikutnya.</p>
+        <button id="phase-2-test-complete" class="btn-pill" style="margin-top:1rem;">Tandai Test Fase 2 Selesai</button>
+        <p id="phase-2-test-completed-msg" style="display:none;color:#7B1224;font-weight:500;margin-top:1rem;">✓ Test Terstruktur Fase 2 ditandai selesai. Neuro Pet sudah berevolusi!</p>
       </div>
     </section>
 
@@ -63,5 +66,36 @@
 
   <script src="app.js"></script>
   <script src="src/brain-mascot.js" defer></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('phase-2-test-complete');
+      var msg = document.getElementById('phase-2-test-completed-msg');
+      if (!btn) return;
+
+      function isCompleted() {
+        return !!(window.NeuroPet && window.NeuroPet.getCompletedSections &&
+          window.NeuroPet.getCompletedSections().indexOf('test-fase-2') !== -1);
+      }
+      function syncUI() {
+        if (isCompleted()) {
+          btn.disabled = true;
+          btn.textContent = '✓ Sudah Selesai';
+          if (msg) msg.style.display = 'block';
+        }
+      }
+      btn.addEventListener('click', function () {
+        if (window.NeuroPet && typeof window.NeuroPet.markSectionComplete === 'function') {
+          window.NeuroPet.markSectionComplete('test-fase-2');
+        }
+        syncUI();
+      });
+      // Wait until brain-mascot.js has loaded (it is deferred) before reading state.
+      function poll(retries) {
+        if (window.NeuroPet || retries <= 0) { syncUI(); return; }
+        setTimeout(function () { poll(retries - 1); }, 100);
+      }
+      poll(20);
+    })();
+  </script>
 </body>
 </html>

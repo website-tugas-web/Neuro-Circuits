@@ -381,6 +381,11 @@ function submitDiagnosis() {
   osceState.lastDoctorSpeech = pass ? (c.doctorPass || '') : failMsg;
   osceState.phase = 'result';
   renderOSCE();
+
+  // Reaching the end-of-case evaluation screen completes Quiz Interaktif Fase 1.
+  if (window.NeuroPet && typeof window.NeuroPet.markSectionComplete === 'function') {
+    window.NeuroPet.markSectionComplete('quiz-fase-1');
+  }
 }
 
 function startSimulation() {

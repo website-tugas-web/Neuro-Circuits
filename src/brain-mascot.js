@@ -1,25 +1,36 @@
-/* Floating Brain Mascot — Growth Tracker (NEUAAA-203)
-   Self-contained, vanilla JS. Injects its own styles + DOM. */
+/* Floating Brain Mascot — 6-section OSCE evolution (NEUAAA-234)
+   Self-contained, vanilla JS. Injects its own styles + DOM.
+   Pet evolves one stage per section completion (6 sections → 6 evolutions).
+*/
 (function () {
   if (window.__neuroMascotLoaded) return;
   window.__neuroMascotLoaded = true;
 
-  // Persisted progress lives under v2 because the topic catalogue changed in NEUAAA-217
-  var TOPICS_KEY = 'neuro-circuits:opened-topics';
+  // v3 — data model changed from "topics opened" to "sections completed" (NEUAAA-234)
+  var SECTIONS_KEY = 'neuro-pet:sections-completed:v3';
+  var MATERIALS_KEY = 'neuro-pet:materials-visited:v3';
   var POS_KEY = 'neuro-circuits:mascot-position';
-  var TOPIC_COUNT = 6;
   var DRAG_THRESHOLD = 5;
 
-  var TOPICS = [
-    { id: 1, name: 'Refleks Fisiologis', href: '/material-1', match: /\/material-1(?:\.html)?$/ },
-    { id: 2, name: 'Sistem Motorik', href: '/material-2', match: /\/material-2(?:\.html)?$/ },
-    { id: 3, name: 'Refleks Patologis', href: '/material-3', match: /\/material-3(?:\.html)?$/ },
-    { id: 4, name: 'Koordinasi', href: '/material-5', match: /\/material-5(?:\.html)?$/ },
-    { id: 5, name: 'Sistem Sensorik', href: '/material-7', match: /\/material-7(?:\.html)?$/ },
-    { id: 6, name: 'Kasus OSCE Fase 1', href: '/kasus-osce-fase-1', match: /\/kasus-osce-fase-1(?:\.html)?$/ }
+  // Six OSCE learning sections; completing one advances the pet by exactly one stage.
+  var SECTIONS = [
+    { id: 'materi-fase-1', name: 'Materi — Fase 1' },
+    { id: 'quiz-fase-1', name: 'Quiz Interaktif — Fase 1' },
+    { id: 'test-fase-1', name: 'Test Terstruktur — Fase 1' },
+    { id: 'materi-fase-2', name: 'Materi — Fase 2' },
+    { id: 'quiz-fase-2', name: 'Quiz Interaktif — Fase 2' },
+    { id: 'test-fase-2', name: 'Test Terstruktur — Fase 2' }
   ];
+  var SECTION_COUNT = SECTIONS.length;
 
-  // 7 stages; SVG-4 (UGM freshman) is skipped to fit the new 7-stage roadmap.
+  // Materials whose visit counts toward each Materi section.
+  var MATERI_REQUIREMENTS = {
+    'materi-fase-1': ['material-1', 'material-2'],
+    'materi-fase-2': ['material-3', 'material-5', 'material-7']
+  };
+
+  // 7 visible stages: stage 0 (no completions) through stage 6 (all six sections done).
+  // brain-mascot-4.svg (UGM freshman) is skipped to keep the same 7-step roadmap as v2.
   var STAGE_SVG_INDEX = [0, 1, 2, 3, 5, 6, 7];
 
   var STAGE_LABELS = [
@@ -33,29 +44,29 @@
   ];
 
   var STAGE_ENCOURAGEMENTS = [
-    'Buka topik pertamamu untuk mulai bertumbuh!',
+    'Selesaikan bagian pertama untuk mulai bertumbuh!',
     'Awal yang bagus! Lanjutkan eksplorasi.',
     'Momentum sedang terbangun.',
     'Setengah jalan menuju white coat!',
     'Tahap percaya diri. Lanjutkan!',
-    'Satu topik lagi sebelum lulus.',
+    'Satu bagian lagi sebelum lulus.',
     'Selamat — kamu sudah jadi Doctor!'
   ];
 
   var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---- state helpers ----
-  function readSet() {
+  function readSet(key) {
     try {
-      var raw = localStorage.getItem(TOPICS_KEY);
+      var raw = localStorage.getItem(key);
       if (!raw) return new Set();
       var arr = JSON.parse(raw);
       if (!Array.isArray(arr)) return new Set();
-      return new Set(arr.filter(function (n) { return Number.isInteger(n) && n >= 1 && n <= TOPIC_COUNT; }));
+      return new Set(arr.filter(function (v) { return typeof v === 'string'; }));
     } catch (e) { return new Set(); }
   }
-  function writeSet(set) {
-    try { localStorage.setItem(TOPICS_KEY, JSON.stringify(Array.from(set).sort())); } catch (e) {}
+  function writeSet(key, set) {
+    try { localStorage.setItem(key, JSON.stringify(Array.from(set).sort())); } catch (e) {}
   }
   function readPosition() {
     try {
@@ -70,19 +81,17 @@
     try { localStorage.setItem(POS_KEY, JSON.stringify(p)); } catch (e) {}
   }
 
-  function detectTopicFromPath() {
-    var p = location.pathname;
-    for (var i = 0; i < TOPICS.length; i++) {
-      if (TOPICS[i].match.test(p)) return TOPICS[i].id;
-    }
-    return null;
+  function isValidSectionId(id) {
+    for (var i = 0; i < SECTIONS.length; i++) if (SECTIONS[i].id === id) return true;
+    return false;
   }
 
   // ---- mount ----
   var mounted = false;
   var els = {};
   var state = {
-    opened: readSet(),
+    completed: readSet(SECTIONS_KEY),
+    materialsVisited: readSet(MATERIALS_KEY),
     pos: null,
     dragging: false,
     moved: false,
@@ -90,7 +99,7 @@
     lastStage: 0
   };
 
-  function stage() { return Math.min(state.opened.size, TOPIC_COUNT); }
+  function stage() { return Math.min(state.completed.size, SECTION_COUNT); }
 
   function ensureStyles() {
     if (document.getElementById('neuro-mascot-styles')) return;
@@ -101,7 +110,6 @@
       '#neuro-mascot.dragging{cursor:grabbing;transition:none;}' +
       '#neuro-mascot.bob{animation:nm-bob 2.4s ease-in-out infinite;}' +
       '#neuro-mascot .nm-img{display:block;width:100%;height:auto;pointer-events:none;}' +
-      '#neuro-mascot .nm-blink{position:absolute;inset:0;background:transparent;pointer-events:none;}' +
       '#neuro-mascot.grow{animation:nm-grow .6s cubic-bezier(.34,1.56,.64,1);}' +
       '#neuro-mascot .nm-sparkle{position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;pointer-events:none;opacity:0;}' +
       '#neuro-mascot.grow .nm-sparkle{animation:nm-sparkle .65s ease-out;}' +
@@ -112,24 +120,24 @@
       '#neuro-mascot .nm-sparkle span:nth-child(4){top:70%;left:-4%;background:#7B1224;}' +
       '#neuro-mascot .nm-sparkle span:nth-child(5){top:96%;left:32%;}' +
       '#neuro-mascot .nm-sparkle span:nth-child(6){top:84%;left:80%;}' +
-      '#nm-tooltip{position:absolute;background:#fff;color:#3a0010;font-family:Inter,system-ui,sans-serif;font-size:12px;line-height:1.35;padding:8px 10px;border-radius:8px;border:1px solid #e8d6dc;box-shadow:0 4px 14px rgba(0,0,0,.12);pointer-events:none;max-width:200px;opacity:0;transform:translateY(4px);transition:opacity .15s ease,transform .15s ease;}' +
+      '#nm-tooltip{position:absolute;background:#fff;color:#3a0010;font-family:Inter,system-ui,sans-serif;font-size:12px;line-height:1.35;padding:8px 10px;border-radius:8px;border:1px solid #e8d6dc;box-shadow:0 4px 14px rgba(0,0,0,.12);pointer-events:none;max-width:220px;opacity:0;transform:translateY(4px);transition:opacity .15s ease,transform .15s ease;}' +
       '#nm-tooltip.show{opacity:1;transform:translateY(0);}' +
       '#nm-tooltip strong{color:#7B1224;}' +
-      '#nm-panel{position:absolute;background:#fff;border:1px solid #e8d6dc;border-radius:14px;padding:14px 14px 10px;width:240px;box-shadow:0 12px 28px rgba(0,0,0,.18);pointer-events:auto;font-family:Inter,system-ui,sans-serif;color:#3a0010;}' +
+      '#nm-panel{position:absolute;background:#fff;border:1px solid #e8d6dc;border-radius:14px;padding:14px 14px 10px;width:260px;box-shadow:0 12px 28px rgba(0,0,0,.18);pointer-events:auto;font-family:Inter,system-ui,sans-serif;color:#3a0010;}' +
       '#nm-panel h4{margin:0 0 8px;font-size:13px;font-weight:600;color:#7B1224;letter-spacing:.02em;text-transform:uppercase;}' +
       '#nm-panel .nm-progress{font-size:12px;margin:0 0 10px;color:#5b3a44;}' +
+      '#nm-panel .nm-stage-label{font-size:12px;margin:0 0 10px;color:#5b3a44;font-style:italic;}' +
       '#nm-panel ul{list-style:none;padding:0;margin:0 0 10px;}' +
       '#nm-panel li{margin:0;}' +
-      '#nm-panel li a{display:flex;align-items:center;gap:8px;padding:6px 6px;border-radius:6px;text-decoration:none;color:#3a0010;font-size:13px;line-height:1.3;}' +
-      '#nm-panel li a:hover{background:#fbeef1;}' +
-      '#nm-panel li a .nm-mark{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1.5px solid #c9a8b1;color:#7B1224;font-size:12px;flex:0 0 auto;}' +
-      '#nm-panel li a.done .nm-mark{background:#7B1224;border-color:#7B1224;color:#fff;}' +
-      '#nm-panel li a.done{color:#7B1224;font-weight:500;}' +
+      '#nm-panel li .nm-row{display:flex;align-items:center;gap:8px;padding:6px 6px;border-radius:6px;color:#3a0010;font-size:13px;line-height:1.3;}' +
+      '#nm-panel li .nm-mark{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1.5px solid #c9a8b1;color:#7B1224;font-size:12px;flex:0 0 auto;}' +
+      '#nm-panel li .nm-row.done .nm-mark{background:#7B1224;border-color:#7B1224;color:#fff;}' +
+      '#nm-panel li .nm-row.done{color:#7B1224;font-weight:500;}' +
       '#nm-panel .nm-foot{display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding-top:8px;border-top:1px solid #f1e2e7;}' +
       '#nm-panel .nm-foot button{background:none;border:1px solid #d6b3bd;color:#7B1224;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:inherit;}' +
       '#nm-panel .nm-foot button:hover{background:#fbeef1;}' +
       '#nm-panel .nm-foot .nm-close{border:none;color:#7B1224;font-size:18px;line-height:1;padding:2px 8px;cursor:pointer;background:none;}' +
-      '@media (max-width:640px){#neuro-mascot{width:60px;}#nm-panel{width:220px;}}' +
+      '@media (max-width:640px){#neuro-mascot{width:60px;}#nm-panel{width:240px;}}' +
       '@keyframes nm-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}' +
       '@keyframes nm-grow{0%{transform:scale(1);}30%{transform:scale(1.18);}55%{transform:scale(.95);}100%{transform:scale(1);}}' +
       '@keyframes nm-sparkle{0%{opacity:0;transform:scale(.5);}40%{opacity:1;}100%{opacity:0;transform:scale(1.4);}}' +
@@ -204,7 +212,7 @@
 
   function updateAria() {
     var s = stage();
-    var label = 'Mascot Neuro Pet, tahap ' + (s + 1) + ' dari ' + (TOPIC_COUNT + 1) + ' — ' + STAGE_LABELS[s] + '. ' + state.opened.size + ' dari ' + TOPIC_COUNT + ' topik dibuka. Klik untuk membuka panel progres; geser untuk memindahkan; gunakan tombol panah untuk menggeser.';
+    var label = 'Mascot Neuro Pet, tahap ' + s + ' dari ' + SECTION_COUNT + ' — ' + STAGE_LABELS[s] + '. ' + state.completed.size + ' dari ' + SECTION_COUNT + ' bagian selesai. Klik untuk membuka panel progres; geser untuk memindahkan; gunakan tombol panah untuk menggeser.';
     els.mascot.setAttribute('aria-label', label);
   }
 
@@ -212,7 +220,7 @@
     var s = stage();
     var svgIdx = STAGE_SVG_INDEX[Math.min(s, STAGE_SVG_INDEX.length - 1)];
     els.img.src = 'images/brain-mascot-' + svgIdx + '.svg';
-    if (animate && !prefersReducedMotion) {
+    if (animate && !prefersReducedMotion && s > state.lastStage) {
       els.mascot.classList.remove('grow');
       // force reflow so animation re-triggers
       void els.mascot.offsetWidth;
@@ -227,10 +235,9 @@
   function showTooltip() {
     if (state.panelOpen || state.dragging) return;
     var s = stage();
-    var msg = '<strong>' + state.opened.size + '/' + TOPIC_COUNT + ' topik</strong> — ' + STAGE_ENCOURAGEMENTS[s];
+    var msg = '<strong>' + state.completed.size + '/' + SECTION_COUNT + ' bagian</strong> — ' + STAGE_ENCOURAGEMENTS[s];
     els.tooltip.innerHTML = msg;
     var r = els.mascot.getBoundingClientRect();
-    // Position above the mascot, clamped horizontally
     els.tooltip.style.visibility = 'hidden';
     els.tooltip.classList.add('show');
     var tw = els.tooltip.offsetWidth, th = els.tooltip.offsetHeight;
@@ -254,18 +261,20 @@
     var panel = document.createElement('div');
     panel.id = 'nm-panel';
     panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-label', 'Progres topik');
+    panel.setAttribute('aria-label', 'Progres OSCE');
 
-    var header = '<h4>Progresmu</h4>' +
-      '<p class="nm-progress">' + state.opened.size + ' dari ' + TOPIC_COUNT + ' topik dibuka — ' + STAGE_ENCOURAGEMENTS[stage()] + '</p>';
+    var s = stage();
+    var header = '<h4>Progres Neuro Pet</h4>' +
+      '<p class="nm-progress">' + state.completed.size + ' dari ' + SECTION_COUNT + ' bagian selesai — ' + STAGE_ENCOURAGEMENTS[s] + '</p>' +
+      '<p class="nm-stage-label">Tahap ' + s + ': ' + STAGE_LABELS[s] + '</p>';
 
     var ulHtml = '<ul>';
-    for (var i = 0; i < TOPICS.length; i++) {
-      var t = TOPICS[i];
-      var done = state.opened.has(t.id);
-      ulHtml += '<li><a href="' + t.href + '" class="' + (done ? 'done' : '') + '">' +
-        '<span class="nm-mark" aria-hidden="true">' + (done ? '✓' : '○') + '</span>' +
-        '<span>' + t.id + '. ' + t.name + '</span></a></li>';
+    for (var i = 0; i < SECTIONS.length; i++) {
+      var sec = SECTIONS[i];
+      var done = state.completed.has(sec.id);
+      ulHtml += '<li><div class="nm-row ' + (done ? 'done' : '') + '">' +
+        '<span class="nm-mark" aria-hidden="true">' + (done ? '✓' : (i + 1)) + '</span>' +
+        '<span>' + sec.name + '</span></div></li>';
     }
     ulHtml += '</ul>';
 
@@ -289,15 +298,12 @@
 
     panel.querySelector('.nm-close').addEventListener('click', closePanel);
     panel.querySelector('.nm-reset').addEventListener('click', function () {
-      if (window.confirm('Atur ulang progresmu? Topik yang sudah dibuka dan tahap pertumbuhan akan dihapus.')) {
-        state.opened = new Set();
-        writeSet(state.opened);
-        applyStage(false);
+      if (window.confirm('Atur ulang Neuro Pet ke tahap awal? Progres bagian yang sudah selesai akan dihapus.')) {
+        resetProgress();
         closePanel();
       }
     });
 
-    // Click outside closes
     setTimeout(function () { document.addEventListener('mousedown', outsideClose, true); document.addEventListener('touchstart', outsideClose, true); }, 0);
   }
   function outsideClose(e) {
@@ -399,24 +405,98 @@
     els.mascot.style.left = state.pos.x + 'px';
     els.mascot.style.top = state.pos.y + 'px';
     if (state.panelOpen) {
-      // re-position panel against new mascot rect
       closePanel(); openPanel();
     }
   }
 
   // ---- public API ----
-  function markTopicOpened(id) {
-    if (!Number.isInteger(id) || id < 1 || id > TOPIC_COUNT) return;
-    if (state.opened.has(id)) return;
-    state.opened.add(id);
-    writeSet(state.opened);
+  function markSectionComplete(sectionId) {
+    if (!isValidSectionId(sectionId)) return false;
+    if (state.completed.has(sectionId)) return false;
+    state.completed.add(sectionId);
+    writeSet(SECTIONS_KEY, state.completed);
     if (mounted) applyStage(true);
+    if (state.panelOpen) { closePanel(); openPanel(); }
+    return true;
   }
 
+  function markMaterialVisited(materialId) {
+    if (typeof materialId !== 'string' || !materialId) return;
+    if (!state.materialsVisited.has(materialId)) {
+      state.materialsVisited.add(materialId);
+      writeSet(MATERIALS_KEY, state.materialsVisited);
+    }
+    // After a visit, check whether any Materi section is now complete.
+    Object.keys(MATERI_REQUIREMENTS).forEach(function (sectionId) {
+      var required = MATERI_REQUIREMENTS[sectionId];
+      var allVisited = required.every(function (m) { return state.materialsVisited.has(m); });
+      if (allVisited) markSectionComplete(sectionId);
+    });
+  }
+
+  function getStage() { return stage(); }
+
+  function resetProgress() {
+    state.completed = new Set();
+    state.materialsVisited = new Set();
+    writeSet(SECTIONS_KEY, state.completed);
+    writeSet(MATERIALS_KEY, state.materialsVisited);
+    state.lastStage = 0;
+    if (mounted) applyStage(false);
+  }
+
+  // Path → material id (e.g. /material-1.html → 'material-1')
+  function detectMaterialFromPath() {
+    var p = location.pathname;
+    var m = p.match(/\/(material-\d+)(?:\.html)?$/);
+    return m ? m[1] : null;
+  }
+
+  // Returns the section auto-fired by simply visiting the page (pages with no
+  // richer interaction model: phase-2 case docs and the placeholder phase-2 test).
+  function detectAutoSectionFromPath() {
+    var p = location.pathname;
+    if (/\/kasus-osce-fase-2-(tetanus|stroke|tia)(?:\.html)?$/.test(p)) {
+      return { section: 'quiz-fase-2', requireBottom: true };
+    }
+    return null;
+  }
+
+  // Watch for the user to scroll the page footer into view; only then mark
+  // the "end of case" / "test placeholder" section complete.
+  function armBottomTrigger(sectionId) {
+    var footer = document.querySelector('.site-footer') || document.querySelector('footer');
+    if (!footer || typeof IntersectionObserver === 'undefined') {
+      // Fallback: still mark complete so the trigger never silently drops.
+      setTimeout(function () { markSectionComplete(sectionId); }, 1500);
+      return;
+    }
+    var observed = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !observed) {
+          observed = true;
+          io.disconnect();
+          markSectionComplete(sectionId);
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(footer);
+  }
+
+  window.NeuroPet = {
+    markSectionComplete: markSectionComplete,
+    markMaterialVisited: markMaterialVisited,
+    getStage: getStage,
+    getCompletedSections: function () { return Array.from(state.completed); },
+    reset: resetProgress,
+    SECTIONS: SECTIONS.slice()
+  };
+  // Backwards compatibility for any older callers (NEUAAA-203 tests etc.).
   window.NeuroMascot = {
-    markTopicOpened: markTopicOpened,
-    getOpenedTopics: function () { return Array.from(state.opened); },
-    getStage: stage
+    markTopicOpened: function () { /* deprecated — replaced by NeuroPet API */ },
+    getOpenedTopics: function () { return []; },
+    getStage: getStage
   };
 
   // ---- init ----
@@ -426,6 +506,7 @@
     build();
     state.pos = readPosition() || defaultPosition();
     applyPosition();
+    state.lastStage = stage();
     applyStage(false);
     updateAria();
 
@@ -438,19 +519,26 @@
     document.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', onResize);
 
-    // Auto-detect material page
-    var topic = (typeof window.NEURO_TOPIC_ID === 'number') ? window.NEURO_TOPIC_ID : detectTopicFromPath();
-    if (topic) {
-      // Defer so the growth animation is visible after page settles
-      setTimeout(function () { markTopicOpened(topic); }, 400);
+    // Auto-detect material visit toward Materi section completion.
+    var materialId = detectMaterialFromPath();
+    if (materialId) {
+      setTimeout(function () { markMaterialVisited(materialId); }, 400);
+    }
+
+    // Auto-detect bottom-of-page sections (phase-2 case docs).
+    var auto = detectAutoSectionFromPath();
+    if (auto && auto.requireBottom) {
+      armBottomTrigger(auto.section);
     }
 
     // Cross-tab sync
     window.addEventListener('storage', function (ev) {
-      if (ev.key === TOPICS_KEY) {
-        state.opened = readSet();
+      if (ev.key === SECTIONS_KEY) {
+        state.completed = readSet(SECTIONS_KEY);
         applyStage(false);
         if (state.panelOpen) { closePanel(); openPanel(); }
+      } else if (ev.key === MATERIALS_KEY) {
+        state.materialsVisited = readSet(MATERIALS_KEY);
       } else if (ev.key === POS_KEY) {
         state.pos = readPosition() || defaultPosition();
         applyPosition();

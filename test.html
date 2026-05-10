@@ -137,6 +137,10 @@
       if (pBar) pBar.style.width = '100%';
       this.displayResults();
       showResults();
+      // Submitting the test completes Test Terstruktur Fase 1.
+      if (window.NeuroPet && typeof window.NeuroPet.markSectionComplete === 'function') {
+        window.NeuroPet.markSectionComplete('test-fase-1');
+      }
     };
   </script>
   <script src="src/brain-mascot.js" defer></script>
