@@ -10,6 +10,120 @@ const OSCE_CASES = [
     complaint: "Saya merasa lemah pada lengan dan kaki kanan sejak 2 hari yang lalu, dokter.",
     diagnosisPrompt: "Apa diagnosis yang paling mungkin?",
     minExamsRequired: 4,
+    // Full 7-step dialogueScript (NEUAAA-238) — sourced from kasus-osce-fase-1.html.
+    dialogueScript: {
+      intro: {
+        prompt: "Bagaimana cara terbaik membuka pertemuan dengan pasien?",
+        choices: [
+          {
+            id: "case1-intro-warm",
+            label: "Selamat pagi Pak. Perkenalkan, saya dokter yang bertugas hari ini. Boleh saya tahu nama, usia, dan pekerjaan Bapak?",
+            good: true,
+            key: "intro-greeting",
+            reply: "Selamat pagi dok. Nama saya Pak Joko, 55 tahun, sopir taksi.",
+            patientFace: "normal"
+          },
+          {
+            id: "case1-intro-skip",
+            label: "Pak, langsung saja — ada keluhan apa hari ini?",
+            good: false,
+            reply: "Eh... iya dok. Lengan kanan saya lemah... (tampak terkejut tidak diperkenalkan)",
+            patientFace: "worried",
+            penalty: "Tidak ada salam dan perkenalan diri."
+          }
+        ]
+      },
+      anamnesis: {
+        minRelevant: 4,
+        questions: [
+          { id: "case1-q-onset",     label: "Sejak kapan keluhan ini muncul?",                                relevant: true,  key: "anam-onset",     reply: "Tiba-tiba 2 hari yang lalu, dok, saat saya bangun tidur." },
+          { id: "case1-q-location",  label: "Di bagian mana keluhan dirasakan?",                              relevant: true,  key: "anam-location",  reply: "Lengan kanan dan kaki kanan, dok." },
+          { id: "case1-q-duration",  label: "Apakah keluhan hilang timbul atau terus-menerus?",               relevant: true,  key: "anam-duration",  reply: "Terus-menerus, dok, tidak membaik." },
+          { id: "case1-q-character", label: "Bagaimana karakter keluhan — lemah, kebas, atau nyeri?",         relevant: true,  key: "anam-character", reply: "Lebih ke arah lemah, sulit digerakkan. Tidak nyeri." },
+          { id: "case1-q-aggrav",    label: "Adakah faktor yang memperparah atau memperingan?",               relevant: true,  key: "anam-aggrav",    reply: "Tidak ada yang membantu. Saat dipakai aktivitas malah lebih lemah." },
+          { id: "case1-q-rpd",       label: "Riwayat penyakit dahulu — hipertensi, diabetes, stroke?",        relevant: true,  key: "anam-rpd",       reply: "Saya darah tinggi sejak 5 tahun, tidak rutin minum obat, dok." },
+          { id: "case1-q-rpk",       label: "Riwayat keluarga — apakah ada yang pernah serupa?",               relevant: true, key: "anam-rpk",       reply: "Bapak saya pernah stroke dulu, dok." },
+          { id: "case1-q-pola",      label: "Bagaimana pola hidup — merokok, alkohol, olahraga?",              relevant: true, key: "anam-pola",      reply: "Saya merokok 1 bungkus per hari, dok. Olahraga jarang." },
+          { id: "case1-q-irrelevant-food",  label: "Apakah Bapak alergi makanan laut?",                       relevant: false, reply: "Tidak ada hubungannya, dok... (bingung)",  penalty: "Pertanyaan tidak relevan untuk keluhan neurologis." },
+          { id: "case1-q-irrelevant-pet",   label: "Apakah Bapak memelihara hewan di rumah?",                  relevant: false, reply: "Tidak ada, dok.",                          penalty: "Pertanyaan tidak relevan." }
+        ]
+      },
+      consent: {
+        prompt: "Pilih cara terbaik menyampaikan inform consent (sesuai script kasus OSCE Fase 1):",
+        doctorIntro: "Sebelum memeriksa, saya minta persetujuan Bapak terlebih dahulu.",
+        options: [
+          {
+            id: "case1-consent-good",
+            label: '"Baik Pak, selanjutnya saya akan melakukan pemeriksaan pergerakan otot dan refleks. Mungkin nanti sedikit kurang nyaman, tapi akan saya lakukan sebaik mungkin. Apakah Bapak bersedia?"',
+            correct: true, key: "consent-explained",
+            reply: "Iya dok, saya bersedia. Silakan.",
+            patientFace: "normal"
+          },
+          {
+            id: "case1-consent-curt",
+            label: '"Pak, saya periksa sekarang ya."',
+            correct: false,
+            reply: "Eh... iya dok. (terlihat ragu)",
+            patientFace: "worried",
+            penalty: "Tidak menjelaskan prosedur dengan jelas."
+          },
+          {
+            id: "case1-consent-skip",
+            label: "(Langsung memeriksa tanpa minta persetujuan)",
+            correct: false,
+            reply: "(pasien terlihat tidak nyaman)",
+            patientFace: "worried",
+            penalty: "Pelanggaran etika — tidak ada inform consent."
+          }
+        ]
+      },
+      persiapan: {
+        minRelevant: 3,
+        items: [
+          { id: "case1-prep-handwash", label: "Cuci tangan 6 langkah WHO sebelum kontak pasien",      correct: true, key: "prep-handwash", reply: "Baik, dok." },
+          { id: "case1-prep-tools",    label: "Siapkan palu refleks dan alcuta",                       correct: true, key: "prep-tools",    reply: "Saya tunggu, dok." },
+          { id: "case1-prep-position", label: "Atur posisi pasien (berbaring di bed pemeriksaan)",     correct: true, key: "prep-position", reply: "Baik dok, saya berbaring." },
+          { id: "case1-prep-skip",     label: "Mulai pemeriksaan tanpa cuci tangan",                   correct: false, penalty: "Tidak cuci tangan — risiko infeksi nosokomial.", patientFace: "worried", reply: "(pasien terlihat khawatir)" }
+        ]
+      },
+      pelaporan: {
+        reportOptions: [
+          {
+            id: "case1-rep-clear",
+            label: '"Pak, dari pemeriksaan didapatkan kelemahan otot di sisi kanan dan refleks yang berlebihan. Ini menandakan adanya gangguan pada pusat motorik atas. Saya akan rujuk Bapak ke dokter spesialis saraf untuk ditindak lebih lanjut."',
+            correct: true, key: "rep-patient",
+            reply: "Baik dok, terima kasih atas penjelasannya.",
+            patientFace: "normal"
+          },
+          {
+            id: "case1-rep-tech",
+            label: '"Bapak mengalami hiperrefleksia unilateral dengan lesi UMN, konsisten dengan stroke iskemik."',
+            correct: false,
+            reply: "Dok, saya tidak mengerti istilah-istilah tadi...",
+            patientFace: "worried",
+            penalty: "Bahasa terlalu teknis untuk pasien."
+          },
+          {
+            id: "case1-rep-vague",
+            label: '"Bapak baik-baik saja, pulang dulu ya. Banyak istirahat saja."',
+            correct: false,
+            reply: "(pasien lega tetapi tidak mendapat rujukan)",
+            patientFace: "normal",
+            penalty: "Hasil abnormal tidak dilaporkan — pasien terlewat rujukan ke spesialis saraf."
+          }
+        ]
+      },
+      edukasi: {
+        minRelevant: 3,
+        items: [
+          { id: "case1-edu-cerdik",  label: "CERDIK: Cek rutin, Enyahkan rokok, Rajin aktivitas, Diet seimbang, Istirahat, Kelola stres", correct: true, key: "edu-cerdik" },
+          { id: "case1-edu-bp",      label: "Kontrol tekanan darah secara rutin dan minum obat hipertensi sesuai dosis",                  correct: true, key: "edu-bp" },
+          { id: "case1-edu-stop-smoke", label: "Berhenti merokok untuk mengurangi risiko stroke berulang",                                correct: true, key: "edu-smoke" },
+          { id: "case1-edu-control", label: "Kontrol rutin ke dokter spesialis saraf",                                                     correct: true, key: "edu-control" },
+          { id: "case1-edu-bad",     label: "Pasien tidak perlu kontrol selama tidak ada keluhan",                                         correct: false, penalty: "Edukasi salah — kontrol tetap diperlukan untuk pencegahan sekunder." }
+        ]
+      }
+    },
     exams: [
       {
         id: "case1-exam1",

@@ -1335,6 +1335,321 @@ button:focus-visible,
 
 /* ---------- 16. OSCE SIMULATOR ---------- */
 
+/* Start card */
+.osce-start {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.osce-start__title {
+  color: #7B1224;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.osce-start__lead {
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Header: timer + 7-step checklist strip */
+.osce-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 1rem 0 1.5rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border: 1px solid #e8d6dc;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(45, 0, 8, 0.06);
+}
+.osce-timer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 1.25rem;
+  border-right: 1px solid #f1e2e7;
+}
+.osce-timer-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7B1224;
+  font-weight: 600;
+}
+.osce-timer {
+  font-family: 'Inter', monospace;
+  font-size: 1.65rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #2d0008;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+.osce-timer--low {
+  color: #c62828;
+  animation: osce-pulse 1s ease-in-out infinite;
+}
+@keyframes osce-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.osce-checklist {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+.osce-checklist__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.2;
+}
+.osce-checklist__item.is-active {
+  color: #7B1224;
+  font-weight: 600;
+}
+.osce-checklist__item.is-done {
+  color: #2e7d32;
+}
+.osce-checklist__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f1e2e7;
+  color: #7B1224;
+  font-weight: 600;
+  font-size: 0.75rem;
+  flex: 0 0 auto;
+}
+.osce-checklist__item.is-active .osce-checklist__dot {
+  background: #7B1224;
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(123, 18, 36, 0.15);
+}
+.osce-checklist__item.is-done .osce-checklist__dot {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* Step body */
+.osce-step-body {
+  margin: 0 0 2rem;
+}
+
+/* VN choice / MCQ buttons */
+.vn-prompt {
+  margin: 1.25rem 0 0.75rem;
+  color: #2d0008;
+  font-size: 1.02rem;
+}
+.vn-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1rem;
+}
+.vn-choice {
+  text-align: left;
+  padding: 0.85rem 1.1rem;
+  border: 2px solid #e8d6dc;
+  background: #fff;
+  color: #2d0008;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: border-color 0.15s, background 0.15s, transform 0.05s;
+  font-family: var(--font-body);
+}
+.vn-choice:hover:not(:disabled) {
+  border-color: #7B1224;
+  background: #fdf5f6;
+}
+.vn-choice:active:not(:disabled) { transform: translateY(1px); }
+.vn-choice.is-selected {
+  border-color: #7B1224;
+  background: #fbeef1;
+  font-weight: 500;
+}
+.vn-choice:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.vn-choice.dx-choice {
+  /* Diagnosis remains togglable until submission of the report */
+  border-style: solid;
+}
+
+.vn-mcq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6rem;
+  margin: 0.5rem 0 1rem;
+}
+.vn-mcq {
+  text-align: left;
+  padding: 0.7rem 0.95rem;
+  border: 2px solid #e8d6dc;
+  background: #fff;
+  color: #2d0008;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: var(--font-body);
+}
+.vn-mcq:hover:not(:disabled) {
+  border-color: #7B1224;
+  background: #fdf5f6;
+}
+.vn-mcq:disabled {
+  cursor: not-allowed;
+}
+.vn-mcq.is-correct {
+  background: #eaf5ea;
+  border-color: #4caf50;
+  color: #2e7d32;
+  opacity: 0.85;
+}
+.vn-mcq.is-wrong {
+  background: #ffebee;
+  border-color: #f44336;
+  color: #c62828;
+  opacity: 0.85;
+}
+
+.vn-exam-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+  justify-content: center;
+}
+.vn-progress-line {
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+  margin: 1rem 0;
+}
+
+.vn-helper {
+  text-align: center;
+  color: #888;
+  font-size: 0.93rem;
+  margin: 1rem 0;
+  padding: 0.65rem;
+  background: #fdf5f6;
+  border-radius: 8px;
+}
+.vn-advance {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* Evaluation card */
+.osce-eval {
+  margin: 1.5rem 0;
+}
+.osce-eval__score {
+  text-align: center;
+  padding: 1.75rem 1rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+.osce-eval__breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.1rem;
+  font-size: 0.92rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.osce-eval__breakdown span {
+  white-space: nowrap;
+}
+.osce-eval-missed,
+.osce-eval-penalty {
+  margin: 0.5rem 0 0.5rem 1.1rem;
+  padding: 0;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: #555;
+}
+.osce-eval-missed li {
+  margin: 0.2rem 0;
+  list-style: '✗  ';
+  color: #c62828;
+}
+.osce-eval-penalty li {
+  margin: 0.25rem 0;
+  list-style: disc;
+  color: #555;
+}
+.osce-eval-penalty li em {
+  color: #c62828;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Doctor mascot avatar replaces inline SVG body. */
+.doctor-figure {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 160px;
+}
+.doctor-mascot-img {
+  width: 120px;
+  height: auto;
+  max-width: 100%;
+  filter: drop-shadow(0 6px 12px rgba(45, 0, 8, 0.18));
+  transition: transform 0.2s ease;
+}
+.actor-label {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #555;
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .osce-header { gap: 0.75rem; padding: 0.85rem 1rem; }
+  .osce-timer-box { padding-right: 0.75rem; }
+  .osce-timer { font-size: 1.4rem; }
+  .osce-checklist { gap: 0.35rem 0.7rem; }
+  .osce-checklist__item { font-size: 0.74rem; }
+  .osce-checklist__dot { width: 18px; height: 18px; font-size: 0.68rem; }
+  .doctor-mascot-img { width: 92px; }
+  .doctor-figure { min-height: 110px; }
+}
+
+@media (max-width: 480px) {
+  .osce-checklist__label { display: none; }
+  .osce-mcq-grid { grid-template-columns: 1fr; }
+  .vn-choice, .vn-mcq { font-size: 0.88rem; padding: 0.7rem 0.85rem; }
+  .doctor-mascot-img { width: 78px; }
+  .doctor-figure { min-height: 96px; }
+}
+
 .osce-scene {
   display: flex;
   justify-content: space-around;
