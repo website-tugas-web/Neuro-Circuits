@@ -7,6 +7,12 @@ const MATERIALS_DATA = [
     summary: "Menilai refleks fisiologis serta mengenali kelainannya.",
     content: `<h1>Pemeriksaan Refleks Fisiologis</h1>
 
+<div style="margin: 1.5rem 0; max-width: 720px;">
+<div style="position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+<iframe src="https://www.youtube.com/embed/tq5PPDMYALY" title="Pemeriksaan Refleks Fisiologis" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"></iframe>
+</div>
+</div>
+
 <h3>Tujuan</h3>
 <p>Menilai refleks fisiologis serta mengenali kelainannya.</p>
 
@@ -497,6 +503,15 @@ const MATERIALS_DATA = [
     titleId: "Pemeriksaan Refleks Patologis",
     summary: "Melakukan pemeriksaan Hofmann Tromner, Babinski, Oppenheim, Chaddock, Gordon, Schaefer, dan Gonda.",
     content: `<h1>Pemeriksaan Refleks Patologis</h1>
+
+<div style="margin: 1.5rem 0; max-width: 720px;">
+<div style="position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+<iframe src="https://www.youtube.com/embed/AePqRLYnKXA" title="Pemeriksaan Refleks Patologis (1)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"></iframe>
+</div>
+<div style="position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+<iframe src="https://www.youtube.com/embed/W_Iht5NI2go?start=71" title="Pemeriksaan Refleks Patologis (2)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"></iframe>
+</div>
+</div>
 
 <h3>Tujuan</h3>
 <p>Melakukan pemeriksaan:</p>
