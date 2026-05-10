@@ -24,7 +24,7 @@ app.get('/health', (req, res) => {
 // API info endpoint (moved to /api to avoid conflict with static index.html)
 app.get('/api', (req, res) => {
   res.json({
-    message: 'Neuro Circuits API Server',
+    message: 'Neuro Pets API Server',
     version: '1.0.0'
   });
 });

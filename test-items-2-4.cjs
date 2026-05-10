@@ -79,7 +79,7 @@ const { chromium } = require('playwright');
 
   console.log('\n=== Item 5: Footer Check ===');
   const footer = await page.locator('footer.site-footer p').textContent();
-  const hasOriginal = footer.includes('MMXXVI Neuro Circuits');
+  const hasOriginal = footer.includes('MMXXVI Neuro Pets');
   const hasCredit = footer.includes('Made by Estrella Kyara Pangkahila Febian');
   const hasMiddleDot = footer.includes('·');
 

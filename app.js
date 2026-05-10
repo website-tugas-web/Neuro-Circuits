@@ -1,4 +1,4 @@
-// Neuro Circuits - Application State Machine
+// Neuro Pets - Application State Machine
 const app = {
   // State
   state: {

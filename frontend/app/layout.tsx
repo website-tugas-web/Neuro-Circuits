@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neuro Circuits",
+  title: "Neuro Pets",
   description: "Mastering Physiological & Pathophysiological Reflexes",
   icons: {
     icon: [

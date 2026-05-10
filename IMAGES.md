@@ -76,5 +76,5 @@ All images are displayed with a **dark red overlay** applied using CSS:
 ---
 
 **Last Updated**: 2026-05-05  
-**Project**: Neuro Circuits / Clinical Skills Lab  
+**Project**: Neuro Pets / Clinical Skills Lab  
 **Source**: Unsplash (free stock photography)
