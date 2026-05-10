@@ -104,7 +104,12 @@
     },
     {
       "source": "/phase-2-references.html",
-      "destination": "/phase-2-references",
+      "destination": "/references",
+      "permanent": true
+    },
+    {
+      "source": "/phase-2-references",
+      "destination": "/references",
       "permanent": true
     },
     {
