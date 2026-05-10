@@ -79,31 +79,10 @@ function patientSVG(face, speech) {
 function doctorSVG(speech) {
   speech = speech || '';
 
-  var svg = '<svg viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:100px;height:auto;">' +
-    '<circle cx="50" cy="30" r="18" fill="#f4c8c8" stroke="#7B1224" stroke-width="1.5"/>' +
-    '<path d="M 32 18 Q 30 8 50 5 Q 70 8 68 18" fill="#3d2817"/>' +
-    '<circle cx="40" cy="28" r="6" fill="none" stroke="#333" stroke-width="1.2"/>' +
-    '<circle cx="60" cy="28" r="6" fill="none" stroke="#333" stroke-width="1.2"/>' +
-    '<line x1="46" y1="28" x2="54" y2="28" stroke="#333" stroke-width="1.2"/>' +
-    '<circle cx="40" cy="28" r="2.5" fill="#1a1a1a"/>' +
-    '<circle cx="60" cy="28" r="2.5" fill="#1a1a1a"/>' +
-    '<path d="M 42 38 Q 50 40 58 38" stroke="#7B1224" stroke-width="1.2" fill="none" stroke-linecap="round"/>' +
-    '<rect x="46" y="48" width="8" height="10" fill="#f4c8c8"/>' +
-    '<path d="M 30 60 L 28 130 Q 28 140 38 142 L 62 142 Q 72 140 72 130 L 70 60 Z" fill="#f5f5f5" stroke="#7B1224" stroke-width="1.5"/>' +
-    '<path d="M 35 60 L 34 90 L 66 90 L 65 60 Z" fill="#fff" stroke="#ccc" stroke-width="0.5"/>' +
-    '<path d="M 50 55 L 48 75" stroke="#7B1224" stroke-width="2.5" stroke-linecap="round"/>' +
-    '<path d="M 35 65 Q 45 70 55 65" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round"/>' +
-    '<circle cx="38" cy="62" r="2" fill="#999"/>' +
-    '<circle cx="62" cy="62" r="2" fill="#999"/>' +
-    '<line x1="35" y1="70" x2="20" y2="95" stroke="#f4c8c8" stroke-width="4" stroke-linecap="round"/>' +
-    '<line x1="65" y1="70" x2="80" y2="95" stroke="#f4c8c8" stroke-width="4" stroke-linecap="round"/>' +
-    '<circle cx="20" cy="95" r="3.5" fill="#f4c8c8"/>' +
-    '<circle cx="80" cy="95" r="3.5" fill="#f4c8c8"/>' +
-    '<line x1="40" y1="142" x2="38" y2="158" stroke="#333" stroke-width="4" stroke-linecap="round"/>' +
-    '<line x1="60" y1="142" x2="62" y2="158" stroke="#333" stroke-width="4" stroke-linecap="round"/>' +
-    '<ellipse cx="38" cy="160" rx="4" ry="3" fill="#1a1a1a"/>' +
-    '<ellipse cx="62" cy="160" rx="4" ry="3" fill="#1a1a1a"/>' +
-  '</svg>';
+  // Playable doctor = Doctor Brain mascot (stage 7: white coat + stethoscope + graduation cap).
+  // Reuses the existing asset; do not regenerate.
+  var figure = '<img src="/images/brain-mascot-7.svg" alt="Doctor Brain" ' +
+    'style="width:100%;max-width:140px;height:auto;display:block;margin:0 auto;" />';
 
   var bubble = '';
   if (speech) {
@@ -112,8 +91,8 @@ function doctorSVG(speech) {
   }
 
   return '<div class="doctor-wrapper">' + bubble +
-    '<div class="doctor-figure">' + svg + '</div>' +
-    '<div style="text-align:center;margin-top:8px;font-size:13px;color:#555;font-weight:500;">Dokter(Anda)</div>' +
+    '<div class="doctor-figure">' + figure + '</div>' +
+    '<div style="text-align:center;margin-top:8px;font-size:13px;color:#555;font-weight:500;">Dr. Brain (Anda)</div>' +
   '</div>';
 }
 
