@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neuro Pet - Quiz Interaktif OSCE Phase 2 (segera hadir)." />
+  <meta name="description" content="Neuro Pet - Quiz Interaktif OSCE Phase 2 - 9 langkah dengan 3 kasus acak (Tetanus, Stroke, TIA)." />
   <title>Neuro Pet - Quiz OSCE Phase 2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,13 +47,11 @@
     <section class="page-hero section-with-bg" style="background-image: url('images/neuroscience-2.jpg');" aria-labelledby="page-title">
       <span class="page-hero__eyebrow">OSCE Phase 2</span>
       <h1 class="page-hero__title" id="page-title">Quiz Interaktif</h1>
-      <p class="page-hero__lead">Quiz Interaktif OSCE Phase 2 akan segera tersedia.</p>
+      <p class="page-hero__lead">Visual novel 9 langkah OSCE — kasus dipilih acak dari Tetanus, Stroke, atau TIA. Latih anamnesis, pemeriksaan, penunjang, diagnosis banding, tatalaksana &amp; farmakoterapi, dan edukasi bersama Doctor Brain dengan timer 14 menit.</p>
     </section>
 
     <section class="section">
-      <div class="prose" style="max-width: 720px;">
-        <p class="lead">Bank soal Quiz Phase 2 sedang disiapkan. Sementara itu, kamu dapat berlatih di <a href="/quiz">Quiz Phase 1</a>.</p>
-      </div>
+      <div id="osceApp"></div>
     </section>
 
     <footer class="site-footer">
@@ -61,6 +59,9 @@
     </footer>
   </main>
 
+  <script>window.OSCE_FASE = 2;</script>
+  <script src="src/osce-cases-fase-2.js"></script>
+  <script src="osce.js"></script>
   <script src="app.js"></script>
   <script src="src/brain-mascot.js" defer></script>
 </body>
