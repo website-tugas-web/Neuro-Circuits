@@ -106,6 +106,21 @@
       "source": "/phase-2-references.html",
       "destination": "/phase-2-references",
       "permanent": true
+    },
+    {
+      "source": "/kasus-osce-fase-2-tetanus.html",
+      "destination": "/kasus-osce-fase-2-tetanus",
+      "permanent": true
+    },
+    {
+      "source": "/kasus-osce-fase-2-stroke.html",
+      "destination": "/kasus-osce-fase-2-stroke",
+      "permanent": true
+    },
+    {
+      "source": "/kasus-osce-fase-2-tia.html",
+      "destination": "/kasus-osce-fase-2-tia",
+      "permanent": true
     }
   ]
 }

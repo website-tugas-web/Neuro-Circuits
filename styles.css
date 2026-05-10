@@ -759,6 +759,17 @@ body {
   font-style: italic;
   margin-top: 8px;
 }
+.kasus-checklist {
+  display: block;
+  margin: 8px auto 32px;
+}
+.kasus-checklist .kasus-figure {
+  max-width: 100%;
+  margin: 0 auto 16px;
+}
+.kasus-checklist .kasus-figure img {
+  min-height: 320px;
+}
 
 /* ---------- 12. QUIZ/TEST/TIMER STYLES ---------- */
 .quiz-container {
