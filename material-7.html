@@ -66,17 +66,7 @@
   <script>
     const material = MATERIALS_DATA.find(m => m.id === 7);
     if (material) {
-      let html = material.content;
-
-      if (material.references && material.references.length > 0) {
-        html += `<h3 style="margin-top:2rem;">Referensi</h3><ul>`;
-        material.references.forEach(ref => {
-          html += `<li style="margin-bottom:0.5rem;">${ref}</li>`;
-        });
-        html += `</ul>`;
-      }
-
-      document.getElementById('material-content').innerHTML = html;
+      document.getElementById('material-content').innerHTML = material.content;
     }
   </script>
   <script src="src/brain-mascot.js" defer></script>
