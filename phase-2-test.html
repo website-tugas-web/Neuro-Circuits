@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neuro Pet - Test Terstruktur OSCE Phase 2 (segera hadir)." />
+  <meta name="description" content="Neuro Pet - Test Terstruktur OSCE Phase 2." />
   <title>Neuro Pet - Test OSCE Phase 2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,15 +47,60 @@
     <section class="page-hero section-with-bg" style="background-image: url('images/neuroscience-3.jpg');" aria-labelledby="page-title">
       <span class="page-hero__eyebrow">OSCE Phase 2</span>
       <h1 class="page-hero__title" id="page-title">Test Terstruktur</h1>
-      <p class="page-hero__lead">Test Terstruktur OSCE Phase 2 akan segera tersedia.</p>
+      <p class="page-hero__lead">Simulasi ujian Fase 2: Refleks Patologis, Sensorik, Koordinasi, dan Kasus OSCE Tetanus, Stroke, TIA.</p>
     </section>
 
     <section class="section">
-      <div class="prose" style="max-width: 720px;">
-        <p class="lead">Simulasi ujian terstruktur Phase 2 sedang disiapkan. Sementara itu, gunakan <a href="/test">Test Phase 1</a> untuk latihan.</p>
-        <p style="margin-top:1.5rem;">Sudah berlatih Test Phase 1 dan meninjau Kasus OSCE Fase 2 (Tetanus, Stroke, TIA)? Tandai bagian ini selesai untuk memajukan Neuro Pet ke tahap berikutnya.</p>
-        <button id="phase-2-test-complete" class="btn-pill" style="margin-top:1rem;">Tandai Test Fase 2 Selesai</button>
-        <p id="phase-2-test-completed-msg" style="display:none;color:#7B1224;font-weight:500;margin-top:1rem;">✓ Test Terstruktur Fase 2 ditandai selesai. Neuro Pet sudah berevolusi!</p>
+      <div id="test-container" style="display: none;">
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <div class="quiz-progress">
+              <div>Soal <span id="current-question">1</span> dari <span id="total-questions">30</span></div>
+              <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+            </div>
+            <div class="quiz-timer" id="timer-display">
+              <span class="timer-value" id="timer-seconds">60</span>d
+            </div>
+          </div>
+
+          <div class="question-content">
+            <div class="question-number">Soal</div>
+            <div class="question-text" id="question-text">Memuat soal...</div>
+            <div class="options" id="options-container"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="result-container" style="display: none;">
+        <div class="result-container">
+          <h2 style="color: #7B1224; margin: 2rem 0 1rem;">Test Selesai!</h2>
+          <div class="score-display" id="final-score">0%</div>
+          <div class="result-message" id="result-message">Kerja bagus!</div>
+
+          <div class="result-details">
+            <div class="result-item">
+              <h4>Soal Dijawab</h4>
+              <p id="result-answered">0</p>
+            </div>
+            <div class="result-item">
+              <h4>Jawaban Benar</h4>
+              <p id="result-correct">0</p>
+            </div>
+          </div>
+
+          <button class="restart-btn" onclick="startTest()">Coba Lagi</button>
+          <a href="/" class="btn-pill" style="margin-left: 1rem;">Kembali ke Beranda</a>
+        </div>
+      </div>
+
+      <div id="start-container">
+        <div style="max-width: 880px; margin: 0 auto; text-align: center;">
+          <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Kerjakan simulasi ujian penuh Fase 2 dengan timer. Kamu memiliki waktu 60 detik per soal, sama seperti station OSCE.</p>
+          <button class="btn-pill" onclick="startTest()" style="padding: 15px 40px; font-size: 1rem;">Mulai Test</button>
+        </div>
       </div>
     </section>
 
@@ -64,38 +109,40 @@
     </footer>
   </main>
 
+  <script src="src/test-data-fase-2.js"></script>
+  <script src="src/reflex-diagrams.js"></script>
   <script src="app.js"></script>
-  <script src="src/brain-mascot.js" defer></script>
   <script>
-    (function () {
-      var btn = document.getElementById('phase-2-test-complete');
-      var msg = document.getElementById('phase-2-test-completed-msg');
-      if (!btn) return;
+    function showTest() {
+      document.getElementById('start-container').style.display = 'none';
+      document.getElementById('test-container').style.display = 'block';
+      document.getElementById('result-container').style.display = 'none';
+    }
 
-      function isCompleted() {
-        return !!(window.NeuroPet && window.NeuroPet.getCompletedSections &&
-          window.NeuroPet.getCompletedSections().indexOf('test-fase-2') !== -1);
+    function showResults() {
+      document.getElementById('test-container').style.display = 'none';
+      document.getElementById('result-container').style.display = 'block';
+      document.getElementById('start-container').style.display = 'none';
+    }
+
+    function startTest() {
+      app.startQuiz();
+      showTest();
+    }
+
+    const originalEndQuiz = app.endQuiz.bind(app);
+    app.endQuiz = function() {
+      this.stopQuizTimer();
+      const pBar = document.getElementById('progress-bar');
+      if (pBar) pBar.style.width = '100%';
+      this.displayResults();
+      showResults();
+      // Submitting the test completes Test Terstruktur Fase 2.
+      if (window.NeuroPet && typeof window.NeuroPet.markSectionComplete === 'function') {
+        window.NeuroPet.markSectionComplete('test-fase-2');
       }
-      function syncUI() {
-        if (isCompleted()) {
-          btn.disabled = true;
-          btn.textContent = '✓ Sudah Selesai';
-          if (msg) msg.style.display = 'block';
-        }
-      }
-      btn.addEventListener('click', function () {
-        if (window.NeuroPet && typeof window.NeuroPet.markSectionComplete === 'function') {
-          window.NeuroPet.markSectionComplete('test-fase-2');
-        }
-        syncUI();
-      });
-      // Wait until brain-mascot.js has loaded (it is deferred) before reading state.
-      function poll(retries) {
-        if (window.NeuroPet || retries <= 0) { syncUI(); return; }
-        setTimeout(function () { poll(retries - 1); }, 100);
-      }
-      poll(20);
-    })();
+    };
   </script>
+  <script src="src/brain-mascot.js" defer></script>
 </body>
 </html>
