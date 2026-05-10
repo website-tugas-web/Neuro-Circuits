@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neuro Pets - Structured Test." />
-  <title>Neuro Pets - Test</title>
+  <meta name="description" content="Neuro Pet - Test Terstruktur." />
+  <title>Neuro Pet - Test Terstruktur</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,33 +12,44 @@
 </head>
 <body>
   <input type="checkbox" id="nav-toggle" aria-hidden="true" />
-  <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation">
+  <label for="nav-toggle" class="nav-burger" aria-label="Buka navigasi">
     <svg viewBox="0 0 24 24" fill="none" stroke="#7B1224" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="18" x2="20" y2="18" /></svg>
   </label>
   <label for="nav-toggle" class="nav-scrim" aria-hidden="true"></label>
 
-  <aside class="sidebar" aria-label="Primary navigation">
-    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pets baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
-    <h1 class="sidebar__title">Neuro&nbsp;Pets</h1>
+  <aside class="sidebar" aria-label="Navigasi utama">
+    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pet baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
+    <h1 class="sidebar__title">Neuro&nbsp;Pet</h1>
     <hr class="sidebar__rule" />
-    <nav class="sidebar__nav" aria-label="Section">
+    <nav class="sidebar__nav" aria-label="Bagian">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/materials">Materials</a></li>
-        <li><a href="/quiz">Interactive Quiz</a></li>
-        <li><a href="/test" class="is-active">Test</a></li>
+        <li><a href="/">Beranda</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 1</h2>
+      <ul>
+        <li><a href="/materials">Materi</a></li>
+        <li><a href="/quiz">Quiz Interaktif</a></li>
+        <li><a href="/test" class="is-active">Test Terstruktur</a></li>
         <li><a href="/timer">Study Timer</a></li>
-        <li><a href="/references">References</a></li>
+        <li><a href="/references">Referensi</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 2</h2>
+      <ul>
+        <li><a href="/phase-2-materials">Materi</a></li>
+        <li><a href="/phase-2-quiz">Quiz Interaktif</a></li>
+        <li><a href="/phase-2-test">Test Terstruktur</a></li>
+        <li><a href="/phase-2-timer">Study Timer</a></li>
+        <li><a href="/phase-2-references">Referensi</a></li>
       </ul>
     </nav>
-    <p class="sidebar__footnote">Est. MMXXVI · v3</p>
+    <p class="sidebar__footnote">Est. MMXXVI &middot; v4</p>
   </aside>
 
   <main class="main">
     <section class="page-hero section-with-bg" style="background-image: url('images/neuroscience-3.jpg');" aria-labelledby="page-title">
-      <span class="page-hero__eyebrow">Assessment</span>
-      <h1 class="page-hero__title" id="page-title">Structured Test</h1>
-      <p class="page-hero__lead">Timed assessments mirroring OSCE stations. Get calibrated feedback and identify your gaps before exam day.</p>
+      <span class="page-hero__eyebrow">Penilaian</span>
+      <h1 class="page-hero__title" id="page-title">Test Terstruktur</h1>
+      <p class="page-hero__lead">Kerjakan simulasi ujian terstruktur dengan timer seperti OSCE asli.</p>
     </section>
 
     <section class="section">
@@ -46,19 +57,19 @@
         <div class="quiz-container">
           <div class="quiz-header">
             <div class="quiz-progress">
-              <div>Question <span id="current-question">1</span> of <span id="total-questions">25</span></div>
+              <div>Soal <span id="current-question">1</span> dari <span id="total-questions">25</span></div>
               <div class="progress-bar-container">
                 <div class="progress-bar" id="progress-bar"></div>
               </div>
             </div>
             <div class="quiz-timer" id="timer-display">
-              <span class="timer-value" id="timer-seconds">60</span>s
+              <span class="timer-value" id="timer-seconds">60</span>d
             </div>
           </div>
 
           <div class="question-content">
-            <div class="question-number">Question</div>
-            <div class="question-text" id="question-text">Loading question...</div>
+            <div class="question-number">Soal</div>
+            <div class="question-text" id="question-text">Memuat soal...</div>
             <div class="options" id="options-container"></div>
           </div>
 
@@ -67,36 +78,36 @@
 
       <div id="result-container" style="display: none;">
         <div class="result-container">
-          <h2 style="color: #7B1224; margin: 2rem 0 1rem;">Test Complete!</h2>
+          <h2 style="color: #7B1224; margin: 2rem 0 1rem;">Test Selesai!</h2>
           <div class="score-display" id="final-score">0%</div>
-          <div class="result-message" id="result-message">Great effort!</div>
+          <div class="result-message" id="result-message">Kerja bagus!</div>
 
           <div class="result-details">
             <div class="result-item">
-              <h4>Questions Answered</h4>
+              <h4>Soal Dijawab</h4>
               <p id="result-answered">0</p>
             </div>
             <div class="result-item">
-              <h4>Correct Answers</h4>
+              <h4>Jawaban Benar</h4>
               <p id="result-correct">0</p>
             </div>
           </div>
 
-          <button class="restart-btn" onclick="startTest()">Try Again</button>
-          <a href="/" class="btn-pill" style="margin-left: 1rem;">Back Home</a>
+          <button class="restart-btn" onclick="startTest()">Coba Lagi</button>
+          <a href="/" class="btn-pill" style="margin-left: 1rem;">Kembali ke Beranda</a>
         </div>
       </div>
 
       <div id="start-container">
         <div style="max-width: 880px; margin: 0 auto; text-align: center;">
-          <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Take a full-length timed assessment. You'll have 60 seconds per question, just like in an OSCE station.</p>
-          <button class="btn-pill" onclick="startTest()" style="padding: 15px 40px; font-size: 1rem;">Start Test</button>
+          <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">Kerjakan simulasi ujian penuh dengan timer. Kamu memiliki waktu 60 detik per soal, sama seperti station OSCE.</p>
+          <button class="btn-pill" onclick="startTest()" style="padding: 15px 40px; font-size: 1rem;">Mulai Test</button>
         </div>
       </div>
     </section>
 
     <footer class="site-footer">
-      <p>&copy; MMXXVI Neuro Pets &middot; Mastering Physiological &amp; Pathophysiological Reflexes &middot; <a href="/">Home</a> &middot; Made by Estrella Kyara Pangkahila Febian</p>
+      <p>&copy; MMXXVI Neuro Pet &middot; Belajar neurologi sambil membesarkan Neuro Pet-mu &middot; <a href="/">Beranda</a> &middot; Made by Estrella Kyara Pangkahila Febian</p>
     </footer>
   </main>
 
@@ -121,7 +132,6 @@
       showTest();
     }
 
-    // Override endQuiz to show results
     const originalEndQuiz = app.endQuiz.bind(app);
     app.endQuiz = function() {
       this.stopQuizTimer();

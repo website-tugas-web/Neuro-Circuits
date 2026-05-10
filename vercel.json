@@ -48,23 +48,63 @@
       "permanent": true
     },
     {
-      "source": "/material-4.html",
-      "destination": "/material-4",
-      "permanent": true
-    },
-    {
       "source": "/material-5.html",
       "destination": "/material-5",
       "permanent": true
     },
     {
-      "source": "/material-6.html",
-      "destination": "/material-6",
+      "source": "/material-7.html",
+      "destination": "/material-7",
       "permanent": true
     },
     {
-      "source": "/material-7.html",
-      "destination": "/material-7",
+      "source": "/material-4",
+      "destination": "/materials",
+      "permanent": true
+    },
+    {
+      "source": "/material-4.html",
+      "destination": "/materials",
+      "permanent": true
+    },
+    {
+      "source": "/material-6",
+      "destination": "/materials",
+      "permanent": true
+    },
+    {
+      "source": "/material-6.html",
+      "destination": "/materials",
+      "permanent": true
+    },
+    {
+      "source": "/kasus-osce-fase-1.html",
+      "destination": "/kasus-osce-fase-1",
+      "permanent": true
+    },
+    {
+      "source": "/phase-2-materials.html",
+      "destination": "/phase-2-materials",
+      "permanent": true
+    },
+    {
+      "source": "/phase-2-quiz.html",
+      "destination": "/phase-2-quiz",
+      "permanent": true
+    },
+    {
+      "source": "/phase-2-test.html",
+      "destination": "/phase-2-test",
+      "permanent": true
+    },
+    {
+      "source": "/phase-2-timer.html",
+      "destination": "/phase-2-timer",
+      "permanent": true
+    },
+    {
+      "source": "/phase-2-references.html",
+      "destination": "/phase-2-references",
       "permanent": true
     }
   ]

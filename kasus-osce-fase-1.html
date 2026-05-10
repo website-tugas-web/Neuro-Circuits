@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Neuro Pet - Kasus OSCE Fase 1: kelemahan ekstremitas, anamnesis, pemeriksaan kekuatan otot, refleks fisiologi." />
+  <title>Kasus OSCE Fase 1 - Neuro Pet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+  <label for="nav-toggle" class="nav-burger" aria-label="Buka navigasi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#7B1224" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="18" x2="20" y2="18" /></svg>
+  </label>
+  <label for="nav-toggle" class="nav-scrim" aria-hidden="true"></label>
+
+  <aside class="sidebar" aria-label="Navigasi utama">
+    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pet baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
+    <h1 class="sidebar__title">Neuro&nbsp;Pet</h1>
+    <hr class="sidebar__rule" />
+    <nav class="sidebar__nav" aria-label="Bagian">
+      <ul>
+        <li><a href="/">Beranda</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 1</h2>
+      <ul>
+        <li><a href="/materials" class="is-active">Materi</a></li>
+        <li><a href="/quiz">Quiz Interaktif</a></li>
+        <li><a href="/test">Test Terstruktur</a></li>
+        <li><a href="/timer">Study Timer</a></li>
+        <li><a href="/references">Referensi</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 2</h2>
+      <ul>
+        <li><a href="/phase-2-materials">Materi</a></li>
+        <li><a href="/phase-2-quiz">Quiz Interaktif</a></li>
+        <li><a href="/phase-2-test">Test Terstruktur</a></li>
+        <li><a href="/phase-2-timer">Study Timer</a></li>
+        <li><a href="/phase-2-references">Referensi</a></li>
+      </ul>
+    </nav>
+    <p class="sidebar__footnote">Est. MMXXVI &middot; v4</p>
+  </aside>
+
+  <main class="main">
+    <section class="page-hero section-with-bg" style="background-image: url('images/material-2-motor-examination.jpg');" aria-labelledby="page-title">
+      <span class="page-hero__eyebrow">Materi</span>
+      <h1 class="page-hero__title" id="page-title">Kasus OSCE Fase 1</h1>
+      <p class="page-hero__lead">Simulasi kasus OSCE: kelemahan ekstremitas, anamnesis, pemeriksaan kekuatan otot, dan refleks fisiologi.</p>
+    </section>
+
+    <section class="section">
+      <div class="white-card">
+
+        <h1>Kasus OSCE Fase 1</h1>
+        <p><strong>Kasus:</strong> Seorang pria berusia 40 tahun datang dengan keluhan sering menjatuhkan barang dari tangan kirinya dan merasa lemah saat menaiki tangga. <em>Catatan: TTV, pemeriksaan kepala, leher, abdomen, dan thorax normal.</em></p>
+
+        <h2>Greetings</h2>
+        <p>Salam, perkenalkan diri, dan tanyakan identitas pasien (nama, usia, alamat, pekerjaan).</p>
+
+        <h2>Anamnesis</h2>
+
+        <h3>Keluhan Utama</h3>
+        <ul>
+          <li><strong>Onset:</strong> Sejak kapan mulai merasakan keluhan ini? Apakah muncul secara tiba-tiba atau berkembang perlahan?</li>
+          <li><strong>Location:</strong> Di bagian mana keluhan dirasakan?</li>
+          <li><strong>Duration:</strong> Apakah keluhan yang dirasakan hilang timbul atau terus-menerus?</li>
+          <li><strong>Characteristic:</strong> Bagaimana karakter rasa sakit yang dirasakan, seperti ditekan, ditusuk, terbakar, atau berbeda? Jika nyeri, bisa tanyakan skala 1&ndash;10 dari 1 paling tidak nyeri sampai 10 paling nyeri.</li>
+          <li><strong>Aggravating factors:</strong> Apa faktor yang memperparah keluhan?</li>
+          <li><strong>Relieving factors:</strong> Apa faktor yang memperingan keluhan?</li>
+          <li><strong>Treatment:</strong> Apakah sudah diperiksa/diberi terapi sebelumnya?</li>
+        </ul>
+
+        <h3>Riwayat Penyakit Dahulu</h3>
+        <ul>
+          <li>Apakah pernah mengalami keluhan serupa sebelumnya?</li>
+          <li>Apakah memiliki riwayat trauma, stroke, hipertensi, atau diabetes mellitus?</li>
+        </ul>
+
+        <h3>Riwayat Penyakit Keluarga</h3>
+        <ul>
+          <li>Apakah ada anggota keluarga yang pernah mengalami keluhan serupa sebelumnya?</li>
+          <li>Apakah ada anggota keluarga yang memiliki riwayat trauma, stroke, hipertensi, atau diabetes mellitus?</li>
+        </ul>
+
+        <h3>Pola Hidup</h3>
+        <ul>
+          <li>Bagaimana kebiasaan pola makan, tidur, aktivitas fisik?</li>
+          <li>Apakah pasien merokok/mengonsumsi alkohol?</li>
+          <li>Apakah sebelumnya mengalami kecelakaan/trauma di daerah kepala?</li>
+        </ul>
+
+        <h2>Inform Consent</h2>
+        <blockquote style="border-left: 3px solid #7B1224; padding: 0.5rem 1rem; margin: 1rem 0; background: #fbeef1; font-style: italic;">
+          &ldquo;Baik Pak/Bu/Mas/Mbak selanjutnya saya akan melakukan pemeriksaan pergerakan otot dan refleks. Saya akan memberikan instruksi beberapa gerakan yang dapat Pak/Bu/Mas/Mbak ikuti. Mungkin nanti sedikit kurang nyaman, tapi akan saya lakukan sebaik mungkin, apakah Pak/Bu/Mas/Mbak bersedia?&rdquo;
+        </blockquote>
+
+        <h2>Persiapan</h2>
+        <ul>
+          <li><strong>Pasien:</strong> Pasien berbaring di bed pemeriksaan</li>
+          <li><strong>Alat:</strong> Alcuta, palu refleks</li>
+          <li><strong>Diri:</strong> Mencuci tangan 6 langkah WHO</li>
+        </ul>
+
+        <h2>Pemeriksaan</h2>
+        <ul>
+          <li><strong>TTV</strong> &mdash; Hasil: normal</li>
+          <li><strong>KU</strong> &mdash; Hasil: normal</li>
+        </ul>
+
+        <h2>Kekuatan Otot Ekstremitas Atas</h2>
+        <p>Kekuatan otot dinilai secara sistematis pada kelompok otot utama ekstremitas atas dan bawah menggunakan skala 0&ndash;5.</p>
+
+        <table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background: #fbeef1;"><th style="text-align:left; padding: 8px; border:1px solid #e8d6dc;">Skala</th><th style="text-align:left; padding: 8px; border:1px solid #e8d6dc;">Interpretasi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">0</td><td style="padding: 8px; border:1px solid #e8d6dc;">Tidak ada kontraksi otot yang teraba</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">1</td><td style="padding: 8px; border:1px solid #e8d6dc;">Kontraksi otot teraba, tetapi tidak ada pergerakan</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">2</td><td style="padding: 8px; border:1px solid #e8d6dc;">Terdapat pergerakan namun tidak dapat melawan gravitasi</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">3</td><td style="padding: 8px; border:1px solid #e8d6dc;">Pasien mampu menggerakkan otot melawan gravitasi, tetapi tidak mampu melawan tahanan pemeriksa</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">4</td><td style="padding: 8px; border:1px solid #e8d6dc;">Pasien mampu melawan tahanan ringan dari pemeriksa</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">5</td><td style="padding: 8px; border:1px solid #e8d6dc;">Pasien mampu melawan tahanan penuh dari pemeriksa. Nilai skala kekuatan otot yang normal.</td></tr>
+          </tbody>
+        </table>
+
+        <p>Minta pasien melakukan gerakan aktif melawan tahanan pemeriksa. Berikan tahanan melawan gerakan pasien. Bandingkan kekuatan kanan dan kiri. Catat hasil menggunakan skala MRC.</p>
+
+        <h3>Deltoid (abduksi bahu)</h3>
+        <p>Pasien abduksi lengan melawan tahanan ke bawah dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-deltoid-abduksi" src="./images/deltoid-abduksi.jpg" alt="Pemeriksaan kekuatan otot deltoid &mdash; abduksi bahu pasien melawan tahanan pemeriksa" />
+          <figcaption>Deltoid (abduksi bahu)</figcaption>
+        </figure>
+
+        <h3>Biceps (fleksi siku)</h3>
+        <p>Pasien fleksi siku melawan tahanan ekstensi dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-biceps-fleksi" src="./images/biceps-fleksi.jpg" alt="Pemeriksaan kekuatan otot biceps &mdash; fleksi siku pasien melawan tahanan pemeriksa" />
+          <figcaption>Biceps (fleksi siku)</figcaption>
+        </figure>
+
+        <h3>Triceps (ekstensi siku)</h3>
+        <p>Pasien ekstensi siku melawan tahanan fleksi dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-triceps-ekstensi" src="./images/triceps-ekstensi.jpg" alt="Pemeriksaan kekuatan otot triceps &mdash; ekstensi siku pasien melawan tahanan pemeriksa" />
+          <figcaption>Triceps (ekstensi siku)</figcaption>
+        </figure>
+
+        <h3>Ekstensor pergelangan tangan</h3>
+        <p>Pasien ekstensi pergelangan melawan tahanan fleksi dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-ekstensor-pergelangan" src="./images/ekstensor-pergelangan.jpg" alt="Pemeriksaan ekstensor pergelangan tangan &mdash; ekstensi pergelangan melawan tahanan pemeriksa" />
+          <figcaption>Ekstensor pergelangan tangan</figcaption>
+        </figure>
+
+        <h3>Fleksor pergelangan tangan</h3>
+        <p>Pasien fleksi pergelangan melawan tahanan ekstensi dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-fleksor-pergelangan" src="./images/fleksor-pergelangan.jpg" alt="Pemeriksaan fleksor pergelangan tangan &mdash; fleksi pergelangan melawan tahanan pemeriksa" />
+          <figcaption>Fleksor pergelangan tangan</figcaption>
+        </figure>
+
+        <h3>Jari-jari (otot intrinsik tangan)</h3>
+        <p>Pasien abduksi/adduksi jari melawan tahanan.</p>
+        <figure class="kasus-figure">
+          <img id="img-jari-intrinsik" src="./images/jari-intrinsik.jpg" alt="Pemeriksaan otot intrinsik tangan &mdash; abduksi dan adduksi jari melawan tahanan" />
+          <figcaption>Jari-jari (otot intrinsik tangan)</figcaption>
+        </figure>
+
+        <h2>Kekuatan Otot Ekstremitas Bawah</h2>
+
+        <h3>Fleksi panggul (Iliopsoas)</h3>
+        <p>Pasien fleksi panggul (angkat paha) melawan tahanan ke bawah dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-fleksi-panggul" src="./images/fleksi-panggul.jpg" alt="Pemeriksaan iliopsoas &mdash; fleksi panggul melawan tahanan pemeriksa" />
+          <figcaption>Fleksi panggul (Iliopsoas)</figcaption>
+        </figure>
+
+        <h3>Ekstensi panggul</h3>
+        <p>Pasien mengangkat paha lalu menggerakkan kaki ke bawah melawan tahanan ke atas dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-ekstensi-panggul" src="./images/ekstensi-panggul.jpg" alt="Pemeriksaan ekstensi panggul &mdash; gerakan paha melawan tahanan pemeriksa" />
+          <figcaption>Ekstensi panggul</figcaption>
+        </figure>
+
+        <h3>Adduksi panggul</h3>
+        <p>Pemeriksa meletakkan tangan di bagian dalam paha pasien, pasien menyatukan kedua kaki sambil melawan tahanan dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-adduksi-panggul" src="./images/adduksi-panggul.jpg" alt="Pemeriksaan adduksi panggul &mdash; pasien menyatukan kaki melawan tahanan pemeriksa" />
+          <figcaption>Adduksi panggul</figcaption>
+        </figure>
+
+        <h3>Abduksi panggul</h3>
+        <p>Pemeriksa meletakkan tangan di bagian luar paha pasien, pasien meregangkan kedua kaki sambil melawan tahanan dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-abduksi-panggul" src="./images/abduksi-panggul.jpg" alt="Pemeriksaan abduksi panggul &mdash; pasien meregangkan kaki melawan tahanan pemeriksa" />
+          <figcaption>Abduksi panggul</figcaption>
+        </figure>
+
+        <h3>Ekstensi lutut (quadriceps)</h3>
+        <p>Pasien ekstensi lutut melawan tahanan fleksi dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-ekstensi-lutut" src="./images/ekstensi-lutut.jpg" alt="Pemeriksaan quadriceps &mdash; ekstensi lutut melawan tahanan pemeriksa" />
+          <figcaption>Ekstensi lutut (quadriceps)</figcaption>
+        </figure>
+
+        <h3>Fleksi lutut (hamstring)</h3>
+        <p>Pasien fleksi lutut melawan tahanan ekstensi dari pemeriksa.</p>
+        <figure class="kasus-figure">
+          <img id="img-fleksi-lutut" src="./images/fleksi-lutut.jpg" alt="Pemeriksaan hamstring &mdash; fleksi lutut melawan tahanan pemeriksa" />
+          <figcaption>Fleksi lutut (hamstring)</figcaption>
+        </figure>
+
+        <h3>Dorsofleksi kaki (tibialis anterior)</h3>
+        <p>Pasien dorsofleksi kaki melawan tahanan tangan pemeriksa dari bagian atas pergelangan kaki pasien.</p>
+        <figure class="kasus-figure">
+          <img id="img-dorsofleksi-kaki" src="./images/dorsofleksi-kaki.jpg" alt="Pemeriksaan tibialis anterior &mdash; dorsofleksi kaki melawan tahanan pemeriksa" />
+          <figcaption>Dorsofleksi kaki (tibialis anterior)</figcaption>
+        </figure>
+
+        <h3>Plantarfleksi kaki (gastrocnemius)</h3>
+        <p>Pasien plantarfleksi kaki melawan tahanan tangan pemeriksa dari bagian telapak kaki pasien.</p>
+        <figure class="kasus-figure">
+          <img id="img-plantarfleksi-kaki" src="./images/plantarfleksi-kaki.jpg" alt="Pemeriksaan gastrocnemius &mdash; plantarfleksi kaki melawan tahanan pemeriksa" />
+          <figcaption>Plantarfleksi kaki (gastrocnemius)</figcaption>
+        </figure>
+
+        <h2>Refleks Fisiologi Ekstremitas Atas</h2>
+
+        <table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
+          <thead>
+            <tr style="background: #fbeef1;"><th style="text-align:left; padding: 8px; border:1px solid #e8d6dc;">Nilai</th><th style="text-align:left; padding: 8px; border:1px solid #e8d6dc;">Interpretasi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">0</td><td style="padding: 8px; border:1px solid #e8d6dc;">Tidak ada refleks</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">1</td><td style="padding: 8px; border:1px solid #e8d6dc;">Refleks lemah</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">2</td><td style="padding: 8px; border:1px solid #e8d6dc;">Refleks normal</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">3</td><td style="padding: 8px; border:1px solid #e8d6dc;">Refleks cepat</td></tr>
+            <tr><td style="padding: 8px; border:1px solid #e8d6dc;">4</td><td style="padding: 8px; border:1px solid #e8d6dc;">Refleks cepat dengan disertai klonus (beberapa kontraksi pendek dan ritmik)</td></tr>
+          </tbody>
+        </table>
+
+        <ul>
+          <li><strong>Hiporefleksia:</strong> refleks menurun pada kelainan lower motor neuron.</li>
+          <li><strong>Arefleksia:</strong> dapat disebabkan oleh fase akut dari cedera spinal, koma dalam, atau arefleksia kongenital.</li>
+          <li><strong>Hiperefleksia:</strong> refleks meningkat pada gangguan yang melibatkan upper motor neuron.</li>
+        </ul>
+
+        <h3>A. Tendon Biceps (Posisi Pasien Duduk)</h3>
+        <ol>
+          <li>Apabila pemeriksa tidak kidal, pegang siku pasien dengan tangan kiri.</li>
+          <li>Lengan bawah pasien harus rileks berada di atas lengan bawah pemeriksa.</li>
+          <li>Jempol kiri pemeriksa harus berada di atas tendon biceps di lipat siku pasien.</li>
+          <li>Ketuk jempol anda dengan palu refleks.</li>
+          <li>Nilai adanya kontraksi pada otot biceps dan pergerakan lengan bawah, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-biceps" src="./images/refleks-biceps.jpg" alt="Pemeriksaan refleks tendon biceps pada posisi duduk" />
+          <figcaption>Refleks Tendon Biceps</figcaption>
+        </figure>
+
+        <h3>B. Tendon Triceps (Posisi Pasien Duduk)</h3>
+        <ol>
+          <li>Fleksikan lengan bawah pasien secara pasif sehingga sikunya membentuk sudut 90&deg;. Pegang pergelangan tangan pasien sehingga otot pasien benar-benar dalam keadaan rileks.</li>
+          <li>Letakkan jari telunjuk pada tendon triceps sebagai pemandu.</li>
+          <li>Ketuk jari telunjuk dengan palu refleks, sekitar 3 cm di atas olecranon.</li>
+          <li>Nilai adanya ekstensi lengan bawah dan kontraksi pada otot triceps, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-triceps-duduk" src="./images/refleks-triceps-duduk.jpg" alt="Pemeriksaan refleks tendon triceps pada posisi duduk" />
+          <figcaption>Refleks Tendon Triceps (duduk)</figcaption>
+        </figure>
+
+        <h3>C. Tendon Triceps (Posisi Pasien Berbaring)</h3>
+        <ol>
+          <li>Lengan bawah pasien diposisikan di atas dadanya dalam posisi rileks, dengan siku fleksi 90&deg;.</li>
+          <li>Pemeriksa memegang tangan atau pergelangan tangan pasien memfleksikannya sedikit lebih dari 90&deg;, dengan terlebih dahulu menggerakkan siku pasien fleksi-ekstensi secara pasif.</li>
+          <li>Letakkan jari telunjuk pada tendon triceps sebagai pemandu.</li>
+          <li>Ketuk jari telunjuk dengan palu refleks, sekitar 3 cm di atas olecranon.</li>
+          <li>Nilai adanya ekstensi lengan bawah dan kontraksi pada otot triceps, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-triceps-berbaring" src="./images/refleks-triceps-berbaring.jpg" alt="Pemeriksaan refleks tendon triceps pada posisi berbaring" />
+          <figcaption>Refleks Tendon Triceps (berbaring)</figcaption>
+        </figure>
+
+        <h3>D. Refleks Brachioradialis / Pergelangan Tangan (Posisi Duduk)</h3>
+        <ol>
+          <li>Posisi awal memegang lengan pasien seperti saat melakukan pemeriksaan refleks biceps.</li>
+          <li>Ketuk di daerah 1 cm di atas prosesus radiostyloid dengan palu refleks.</li>
+          <li>Nilai adanya fleksi lengan bawah dan kontraksi otot brachioradialis, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-brachioradialis-duduk" src="./images/refleks-brachioradialis-duduk.jpg" alt="Pemeriksaan refleks brachioradialis pada posisi duduk" />
+          <figcaption>Refleks Brachioradialis (duduk)</figcaption>
+        </figure>
+
+        <h3>E. Refleks Brachioradialis / Pergelangan Tangan (Posisi Berbaring)</h3>
+        <ol>
+          <li>Posisi awal memegang lengan pasien seperti saat melakukan pemeriksaan refleks biceps.</li>
+          <li>Pegang jari telunjuk pasien dengan satu tangan dan gerakkan lengan bawah dan pergelangan tangan pasien hingga otot rileks.</li>
+          <li>Ketuk di daerah 1 cm di atas prosesus radiostyloid dengan palu refleks.</li>
+          <li>Nilai adanya fleksi lengan bawah dan kontraksi otot brachioradialis, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-brachioradialis-berbaring" src="./images/refleks-brachioradialis-berbaring.jpg" alt="Pemeriksaan refleks brachioradialis pada posisi berbaring" />
+          <figcaption>Refleks Brachioradialis (berbaring)</figcaption>
+        </figure>
+
+        <h2>Refleks Fisiologi Ekstremitas Bawah</h2>
+
+        <h3>F. Patella (Posisi Berbaring)</h3>
+        <ol>
+          <li>Pemeriksa menempatkan tangannya pada salah satu lutut pasien melewati bawah lutut yang akan diperiksa.</li>
+          <li>Yakinkan tangan pemeriksa yang bebas mengecek bahwa otot quadriceps pasien dalam keadaan rileks.</li>
+          <li>Ketuk tendon quadriceps dengan palu refleks, di antara patella dan tuberositas tibial.</li>
+          <li>Nilai adanya ekstensi tungkai bawah dan kontraksi otot quadriceps, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-patella" src="./images/refleks-patella.jpg" alt="Pemeriksaan refleks patella pada posisi berbaring" />
+          <figcaption>Refleks Patella</figcaption>
+        </figure>
+
+        <h3>G. Tendon Achilles (Posisi Berbaring)</h3>
+        <ol>
+          <li>Letakkan kaki pasien dalam posisi menyilang, satu kaki di atas kaki lainnya.</li>
+          <li>Pemeriksa memegang ujung kaki pasien dan menggerakkan pergelangan kakinya fleksi-ekstensi hingga otot rileks.</li>
+          <li>Pemeriksa menekan kaki pasien sehingga kaki pasien sedikit dorsofleksi.</li>
+          <li>Ketuk tendon Achilles dengan palu refleks.</li>
+          <li>Nilai adanya fleksi dorsum pedis atau ekstensi plantar pedis, bandingkan kanan dan kiri.</li>
+        </ol>
+        <figure class="kasus-figure">
+          <img id="img-refleks-achilles" src="./images/refleks-achilles.jpg" alt="Pemeriksaan refleks tendon Achilles pada posisi berbaring" />
+          <figcaption>Refleks Achilles</figcaption>
+        </figure>
+
+        <h2>Pelaporan Hasil</h2>
+        <ul>
+          <li>Persilakan pasien untuk kembali ke meja pemeriksaan.</li>
+          <li>Cuci tangan 6 langkah WHO.</li>
+          <li>Sampaikan hasil pemeriksaan kepada penguji.</li>
+          <li>Sampaikan hasil pemeriksaan kepada pasien, RUJUK jika ada hasil abnormal.</li>
+        </ul>
+        <blockquote style="border-left: 3px solid #7B1224; padding: 0.5rem 1rem; margin: 1rem 0; background: #fbeef1; font-style: italic;">
+          &ldquo;Baik Pak/Bu/Mas/Mbak setelah saya lakukan pemeriksaan, didapatkan adanya penurunan kekuatan otot di sisi kanan dan munculnya refleks berlebih yang menandakan adanya gangguan pada pusat motorik atas Pak/Bu/Mas/Mbak. Selanjutnya, saya akan merujuk kepada dokter spesialis saraf untuk ditindak lebih lanjut.&rdquo;
+        </blockquote>
+
+        <h2>Edukasi</h2>
+        <h3>CERDIK</h3>
+        <ul>
+          <li><strong>C</strong>ek kesehatan rutin</li>
+          <li><strong>E</strong>nyahkan asap rokok</li>
+          <li><strong>R</strong>ajin aktivitas fisik</li>
+          <li><strong>D</strong>iet seimbang</li>
+          <li><strong>I</strong>stirahat cukup</li>
+          <li><strong>K</strong>elola stres</li>
+        </ul>
+
+        <h3>Edukasi Spesifik</h3>
+        <ul>
+          <li>Hindari pemicu stres.</li>
+          <li>Rutin kontrol tekanan darah.</li>
+          <li>Hindari trauma kepala dan tulang belakang.</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>&copy; MMXXVI Neuro Pet &middot; Belajar neurologi sambil membesarkan Neuro Pet-mu &middot; <a href="/">Beranda</a> &middot; <a href="/materials">Materi</a></p>
+    </footer>
+  </main>
+
+  <script src="src/brain-mascot.js" defer></script>
+</body>
+</html>

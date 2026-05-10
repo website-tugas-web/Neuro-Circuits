@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neuro Pets - Pemeriksaan Refleks Fisiologis" />
-  <title>Pemeriksaan Refleks Fisiologis - Neuro Pets</title>
+  <meta name="description" content="Neuro Pet - Pemeriksaan Refleks Fisiologis" />
+  <title>Pemeriksaan Refleks Fisiologis - Neuro Pet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,31 +12,42 @@
 </head>
 <body>
   <input type="checkbox" id="nav-toggle" aria-hidden="true" />
-  <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation">
+  <label for="nav-toggle" class="nav-burger" aria-label="Buka navigasi">
     <svg viewBox="0 0 24 24" fill="none" stroke="#7B1224" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="18" x2="20" y2="18" /></svg>
   </label>
   <label for="nav-toggle" class="nav-scrim" aria-hidden="true"></label>
 
-  <aside class="sidebar" aria-label="Primary navigation">
-    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pets baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
-    <h1 class="sidebar__title">Neuro&nbsp;Pets</h1>
+  <aside class="sidebar" aria-label="Navigasi utama">
+    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pet baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
+    <h1 class="sidebar__title">Neuro&nbsp;Pet</h1>
     <hr class="sidebar__rule" />
-    <nav class="sidebar__nav" aria-label="Section">
+    <nav class="sidebar__nav" aria-label="Bagian">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/materials">Materials</a></li>
-        <li><a href="/quiz">Interactive Quiz</a></li>
-        <li><a href="/test">Test</a></li>
+        <li><a href="/">Beranda</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 1</h2>
+      <ul>
+        <li><a href="/materials" class="is-active">Materi</a></li>
+        <li><a href="/quiz">Quiz Interaktif</a></li>
+        <li><a href="/test">Test Terstruktur</a></li>
         <li><a href="/timer">Study Timer</a></li>
-        <li><a href="/references">References</a></li>
+        <li><a href="/references">Referensi</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 2</h2>
+      <ul>
+        <li><a href="/phase-2-materials">Materi</a></li>
+        <li><a href="/phase-2-quiz">Quiz Interaktif</a></li>
+        <li><a href="/phase-2-test">Test Terstruktur</a></li>
+        <li><a href="/phase-2-timer">Study Timer</a></li>
+        <li><a href="/phase-2-references">Referensi</a></li>
       </ul>
     </nav>
-    <p class="sidebar__footnote">Est. MMXXVI · v3</p>
+    <p class="sidebar__footnote">Est. MMXXVI &middot; v4</p>
   </aside>
 
   <main class="main">
     <section class="page-hero section-with-bg" style="background-image: url('images/material-1-reflex-examination.jpg');" aria-labelledby="page-title">
-      <span class="page-hero__eyebrow">Material</span>
+      <span class="page-hero__eyebrow">Materi</span>
       <h1 class="page-hero__title" id="page-title">Pemeriksaan Refleks Fisiologis</h1>
       <p class="page-hero__lead">Menilai refleks fisiologis serta mengenali kelainannya.</p>
     </section>
@@ -48,14 +59,13 @@
     </section>
 
     <footer class="site-footer">
-      <p>&copy; MMXXVI Neuro Pets &middot; Mastering Physiological &amp; Pathophysiological Reflexes &middot; <a href="/">Home</a> &middot; <a href="/materials">Materials</a></p>
+      <p>&copy; MMXXVI Neuro Pet &middot; Belajar neurologi sambil membesarkan Neuro Pet-mu &middot; <a href="/">Beranda</a> &middot; <a href="/materials">Materi</a></p>
     </footer>
   </main>
 
   <script src="src/materials-data.js"></script>
   <script src="src/reflex-diagrams.js"></script>
   <script>
-    // Load material 1 content
     const material = MATERIALS_DATA.find(m => m.id === 1);
     if (material) {
       let html = material.content;

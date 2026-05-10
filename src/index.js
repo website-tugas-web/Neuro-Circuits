@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Serve static files from project root (one level up from src/)
-app.use(express.static(path.join(__dirname, '..')));
+// Mirror Vercel cleanUrls so /materials resolves to materials.html locally too.
+app.use(express.static(path.join(__dirname, '..'), { extensions: ['html'] }));
 
 app.get('/health', (req, res) => {
   res.status(200).json({

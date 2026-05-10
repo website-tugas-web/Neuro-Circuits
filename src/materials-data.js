@@ -1,4 +1,4 @@
-// Materials data - 7 new Bahasa Indonesia topics (NEUAAA-135)
+// Materials data - Bahasa Indonesia topics. Phase 1 exposes 5 entries (ids 1, 2, 3, 5, 7); ids 4 and 6 were removed in NEUAAA-217.
 const MATERIALS_DATA = [
   {
     id: 1,
@@ -591,63 +591,6 @@ const MATERIALS_DATA = [
     ]
   },
   {
-    id: 4,
-    titleEn: "Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick",
-    titleId: "Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick",
-    summary: "Melakukan pemeriksaan Patrick dan kontra Patrick.",
-    content: `<h1>Pemeriksaan Neurologis Lainnya: Patrick dan Kontra Patrick</h1>
-
-<h3>Tujuan</h3>
-<p>Melakukan pemeriksaan Patrick dan kontra Patrick.</p>
-
-<h3>Alat dan Bahan</h3>
-<ul>
-<li>Tidak ada</li>
-</ul>
-
-<h2>A. Teknik Pemeriksaan</h2>
-
-<h3>1. Persiapan</h3>
-<ol>
-<li>Siapkan alat dan bahan.</li>
-<li>Jelaskan kepada pasien jenis dan prosedur pemeriksaan yang dilakukan.</li>
-<li>Minta pasien berbaring di meja periksa dengan kedua tungkai diluruskan.</li>
-</ol>
-
-<h3>2. Patrick's Sign</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Pemeriksa melakukan fleksi sendi lutut, abduksi, dan internal rotasi pada salah satu tungkai pasien.</li>
-<li>Salah satu tangan pemeriksa diletakkan pada anterior superior os iliaka untuk menstabilkan panggul, sedangkan tangan lainnya diletakkan pada lutut pasien yang fleksi kemudian ditekan.</li>
-<li>Nilai adakah nyeri dan lokasinya, bandingkan tungkai kanan dan kiri.</li>
-</ol>
-
-<figure style="margin: 1.5rem 0; text-align: center;">
-<img src="images/patrick-sign.png" alt="Patrick's Sign" style="max-width: 100%; height: auto; max-width: 600px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-<figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666; font-style: italic;">Patrick's Sign</figcaption>
-</figure>
-
-<h3>3. Contra-Patrick's Sign</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Pemeriksa melakukan fleksi sendi lutut, abduksi, dan eksternal rotasi pada salah satu tungkai pasien.</li>
-<li>Salah satu tangan pemeriksa diletakkan pada anterior superior os iliaka untuk menstabilkan panggul, sedangkan tangan lainnya diletakkan pada lutut pasien yang fleksi kemudian ditekan.</li>
-<li>Nilai adakah nyeri dan lokasinya, bandingkan tungkai kanan dan kiri.</li>
-</ol>
-
-<h2>B. Analisis Hasil Pemeriksaan</h2>
-
-<h3>1. Patrick's Sign</h3>
-<p>Pemeriksaan ini dilakukan untuk mengevaluasi kelainan pada sendi panggul atau sendi sakroiliaka.</p>
-<p>Jika rasa nyeri timbul pada sisi ipsilateral anterior, maka hal ini menandakan adanya gangguan sendi panggul pada sisi ipsilateral.</p>
-<p>Jika nyeri timbul pada sisi kontralateral posterior sekitar sendi panggul, maka hal ini menandakan adanya kelainan pada sendi tersebut.</p>
-
-<h3>2. Contra-Patrick's Sign</h3>
-<p>Pemeriksaan ini merupakan kebalikan dari tindakan Patrick's sign.</p>
-<p>Bila nyeri timbul pada pemeriksaan ini, maka hal ini menandakan adanya kelainan pada sendi sakroiliaka.</p>`,
-    references: [
-      "Buckup K. <em>Clinical Test for the Musculoskeletal System: Examinations–Signs–Phenomena. 2nd ed</em>. Stuttgart: Thieme; 2008."
-    ]
-  },
-  {
     id: 5,
     titleEn: "Pemeriksaan Koordinasi",
     titleId: "Pemeriksaan Koordinasi",
@@ -721,92 +664,6 @@ const MATERIALS_DATA = [
 <ol>
 <li>Keseimbangan pasien dipengaruhi oleh fungsi cerebellum dan sistem vestibular, serta proprioseptif ekstremitas bawah, sehingga kelainan pada keseimbangan berhubungan dengan gangguan pada sistem-sistem tersebut.</li>
 <li>Pola kontak kaki-lantai. Kondisi yang berhubungan dengan N. peroneal dapat menyebabkan drop foot. Pada keadaan ini, saat berjalan bagian kaki pasien yang lebih dulu menyentuh lantai adalah jempol kaki, diikuti telapak kaki, terakhir tumit.</li>
-<li>Jarak antar langkah dapat memendek pada pasien dengan penyakit Parkinson. Pada keadaan ini juga dapat dilihat ayunan tangan berkurang saat pasien berjalan.</li>
-<li>Pada pemeriksaan Romberg, dinyatakan positif bila pasien terlihat berayun atau pemeriksa harus memegang pasien untuk mencegah pasien terjatuh.</li>
-<li>Apabila pasien terganggu koordinasinya hanya saat pasien menutup mata, maka pasien mengalami gangguan koordinasi karena proprioseptif yang tidak adekuat. Kondisi ini juga dikenal dengan ataksia sensoris.</li>
-<li>Bila gangguan koordinasi meningkat saat pasien menutup mata, maka pasien mengalami gangguan koordinasi disebabkan oleh kondisi vestibular.</li>
-<li>Bila gangguan koordinasi sama saat pasien menutup maupun membuka mata, maka gangguan koordinasi ini disebabkan oleh kondisi cerebelar.</li>
-<li>Tes telunjuk hidung tidak terganggu pada pasien dengan gangguan ekstrapiramidal, namun mungkin terdapat tremor yang hilang bila pasien diminta melakukan gerakan yang bertujuan. Namun saat berdiri dan berjalan, pasien mengalami kesulitan akibat adanya gerakan involunter yang berlebihan, seperti pada pasien Parkinson.</li>
-</ol>`,
-    references: [
-      "Bickley. <em>Bates Guide to Physical Examination and History Taking, 8th Edition</em>. 2002–08.",
-      "Duijnhoven, Bele. <em>Skills in Medicine: Neurology Examination</em>. 2009."
-    ]
-  },
-  {
-    id: 6,
-    titleEn: "Pemeriksaan Fungsi Luhur",
-    titleId: "Pemeriksaan Fungsi Luhur",
-    summary: "Menilai fungsi koordinasi.",
-    content: `<h1>Pemeriksaan Fungsi Luhur</h1>
-
-<h3>Tujuan</h3>
-<p>Menilai fungsi koordinasi.</p>
-
-<h3>Alat dan Bahan</h3>
-<ul>
-<li>Tidak ada</li>
-</ul>
-
-<h2>A. Teknik Pemeriksaan</h2>
-
-<h3>1. Persiapan</h3>
-<ol>
-<li>Jelaskan kepada pasien jenis pemeriksaan yang akan dilakukan dan prosedurnya.</li>
-</ol>
-
-<h3>2. Inspeksi Cara Berjalan (Gait)</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Minta pasien untuk berjalan melintasi ruangan beberapa kali.</li>
-<li>Amati cara berjalan pasien, pola kontak kaki dengan lantai, ayunan tangan, dan lebar langkah.</li>
-</ol>
-
-<h3>3. Pemeriksaan Tandem Gait</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Minta pasien untuk berjalan dalam satu garis lurus dengan cara ujung tumit menyentuh ujung jempol kaki di belakangnya. Bila dibutuhkan, berikan contoh kepada pasien.</li>
-<li>Amati cara berjalan pasien. Perhatikan bilamana pasien terlihat kehilangan keseimbangan.</li>
-</ol>
-
-<h3>4. Tes Romberg dan Romberg Dipertajam</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Minta pasien berdiri dengan kedua kaki dirapatkan.</li>
-<li>Pemeriksa berdiri di belakang pasien dengan posisi tangan pemeriksa berada di sisi pasien tanpa menyentuhnya.</li>
-<li>Minta pasien untuk merentangkan kedua tangannya ke depan sejajar bahu dengan posisi supinasi.</li>
-<li>Instruksikan kepada pasien untuk mempertahankan posisi kedua tangannya.</li>
-<li>Bila pasien tidak terjatuh saat dilakukan pemeriksaan dengan mata terbuka, minta pasien untuk menutup kedua matanya.</li>
-<li>Amati bila pasien kehilangan keseimbangan atau terjatuh. Nilai arah jatuh atau ayunan pasien.</li>
-</ol>
-
-<h3>5. Tes Telunjuk–Hidung</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Minta pasien menutup mata dan merentangkan tangan kanan jauh ke samping.</li>
-<li>Minta pasien menyentuh hidungnya dengan jari telunjuk kanan, ulangi beberapa kali. Lakukan prosedur yang sama terhadap tangan kiri.</li>
-<li>Nilai tanda-tanda hipermetria atau kecenderungan tremor saat pasien melakukan prosedur di atas.</li>
-<li>Bila pemeriksa menemukan tanda hipermetria atau tremor, minta pasien melakukan prosedur pemeriksaan dengan mata terbuka.</li>
-<li>Nilai apakah dengan mata terbuka pasien lebih mudah melakukan prosedur pemeriksaan. Bandingkan kanan dan kiri.</li>
-</ol>
-
-<h3>6. Tes Tumit–Lutut</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Minta pasien untuk menutup kedua matanya, kemudian menempatkan tumit kanan di atas lutut kiri.</li>
-<li>Minta pasien untuk menurunkan tumitnya menyusuri tungkai bawah kaki kiri ke bawah.</li>
-<li>Lakukan prosedur bergantian dengan kaki kiri.</li>
-<li>Nilai bila pasien menunjukkan tanda-tanda hipermetria atau ataksia, yaitu bila tumit berkali-kali terjatuh dari jalurnya pada tungkai bawah.</li>
-<li>Bila pemeriksa menemukan tanda hipermetria atau ataksia, minta pasien melakukan prosedur pemeriksaan dengan mata terbuka.</li>
-<li>Bandingkan kanan dan kiri.</li>
-</ol>
-
-<h3>7. Pemeriksaan Disdiadokokinesis</h3>
-<ol style="list-style-type: lower-alpha;">
-<li>Minta pasien melakukan perubahan gerakan misalnya gerakan tangan pronasi dan supinasi. Tangan kanan dimulai dari pronasi, tangan kiri dimulai dari supinasi, lakukan gerakan ini secepat mungkin.</li>
-<li>Bila diperlukan pemeriksa boleh memberikan contoh pemeriksaan terhadap pasien.</li>
-<li>Bandingkan kanan dan kiri.</li>
-</ol>
-
-<h2>B. Analisis Hasil Pemeriksaan</h2>
-<ol>
-<li>Keseimbangan pasien dipengaruhi oleh fungsi cerebellum dan sistem vestibular, serta proprioseptif ekstremitas bawah, sehingga kelainan pada keseimbangan berhubungan dengan gangguan pada sistem-sistem tersebut.</li>
-<li>Pola kontak kaki-lantai. Kondisi yang berhubungan dengan n. peroneal dapat menyebabkan drop foot. Pada keadaan ini, saat berjalan bagian kaki pasien yang lebih dulu menyentuh lantai adalah jempol kaki, diikuti telapak kaki, terakhir tumit.</li>
 <li>Jarak antar langkah dapat memendek pada pasien dengan penyakit Parkinson. Pada keadaan ini juga dapat dilihat ayunan tangan berkurang saat pasien berjalan.</li>
 <li>Pada pemeriksaan Romberg, dinyatakan positif bila pasien terlihat berayun atau pemeriksa harus memegang pasien untuk mencegah pasien terjatuh.</li>
 <li>Apabila pasien terganggu koordinasinya hanya saat pasien menutup mata, maka pasien mengalami gangguan koordinasi karena proprioseptif yang tidak adekuat. Kondisi ini juga dikenal dengan ataksia sensoris.</li>

@@ -4,41 +4,42 @@
   if (window.__neuroMascotLoaded) return;
   window.__neuroMascotLoaded = true;
 
+  // Persisted progress lives under v2 because the topic catalogue changed in NEUAAA-217
   var TOPICS_KEY = 'neuro-circuits:opened-topics';
   var POS_KEY = 'neuro-circuits:mascot-position';
-  var TOPIC_COUNT = 7;
+  var TOPIC_COUNT = 6;
   var DRAG_THRESHOLD = 5;
 
   var TOPICS = [
-    { id: 1, name: 'Refleks Fisiologis', href: '/material-1' },
-    { id: 2, name: 'Sistem Motorik', href: '/material-2' },
-    { id: 3, name: 'Refleks Patologis', href: '/material-3' },
-    { id: 4, name: 'Patrick & Kontra Patrick', href: '/material-4' },
-    { id: 5, name: 'Koordinasi', href: '/material-5' },
-    { id: 6, name: 'Fungsi Luhur', href: '/material-6' },
-    { id: 7, name: 'Sistem Sensorik', href: '/material-7' }
+    { id: 1, name: 'Refleks Fisiologis', href: '/material-1', match: /\/material-1(?:\.html)?$/ },
+    { id: 2, name: 'Sistem Motorik', href: '/material-2', match: /\/material-2(?:\.html)?$/ },
+    { id: 3, name: 'Refleks Patologis', href: '/material-3', match: /\/material-3(?:\.html)?$/ },
+    { id: 4, name: 'Koordinasi', href: '/material-5', match: /\/material-5(?:\.html)?$/ },
+    { id: 5, name: 'Sistem Sensorik', href: '/material-7', match: /\/material-7(?:\.html)?$/ },
+    { id: 6, name: 'Kasus OSCE Fase 1', href: '/kasus-osce-fase-1', match: /\/kasus-osce-fase-1(?:\.html)?$/ }
   ];
 
+  // 7 stages; SVG-4 (UGM freshman) is skipped to fit the new 7-stage roadmap.
+  var STAGE_SVG_INDEX = [0, 1, 2, 3, 5, 6, 7];
+
   var STAGE_LABELS = [
-    'a baby brain just starting out',
-    'a curious kid brain',
-    'a schoolkid brain with a backpack',
-    'a teen brain with reading glasses',
-    'a freshman med student in UGM almamater',
-    'a confident med student with anatomy book',
-    'a junior doctor with white coat and stethoscope',
-    'a fully fledged doctor — mission complete!'
+    'Baby Brain',
+    'Kid Brain',
+    'Schoolkid Brain',
+    'Teen Brain',
+    'Confident Med Student',
+    'Junior Doctor / Intern',
+    'Doctor'
   ];
 
   var STAGE_ENCOURAGEMENTS = [
-    'Open your first topic to start growing!',
-    'Nice start! Keep exploring.',
-    'You\'re building momentum.',
-    'Halfway to the white coat!',
-    'Almamater unlocked. Keep going.',
-    'Confidence is showing!',
-    'One more topic to graduate.',
-    'You did it — full doctor!'
+    'Buka topik pertamamu untuk mulai bertumbuh!',
+    'Awal yang bagus! Lanjutkan eksplorasi.',
+    'Momentum sedang terbangun.',
+    'Setengah jalan menuju white coat!',
+    'Tahap percaya diri. Lanjutkan!',
+    'Satu topik lagi sebelum lulus.',
+    'Selamat — kamu sudah jadi Doctor!'
   ];
 
   var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -70,10 +71,11 @@
   }
 
   function detectTopicFromPath() {
-    var m = location.pathname.match(/\/material-(\d+)(?:\.html)?$/);
-    if (!m) return null;
-    var n = parseInt(m[1], 10);
-    return (n >= 1 && n <= TOPIC_COUNT) ? n : null;
+    var p = location.pathname;
+    for (var i = 0; i < TOPICS.length; i++) {
+      if (TOPICS[i].match.test(p)) return TOPICS[i].id;
+    }
+    return null;
   }
 
   // ---- mount ----
@@ -202,13 +204,14 @@
 
   function updateAria() {
     var s = stage();
-    var label = 'Brain mascot, stage ' + s + ' of ' + TOPIC_COUNT + ' — ' + STAGE_LABELS[s] + '. ' + state.opened.size + ' of ' + TOPIC_COUNT + ' topics opened. Click to open progress panel; drag to move; arrow keys to nudge.';
+    var label = 'Mascot Neuro Pet, tahap ' + (s + 1) + ' dari ' + (TOPIC_COUNT + 1) + ' — ' + STAGE_LABELS[s] + '. ' + state.opened.size + ' dari ' + TOPIC_COUNT + ' topik dibuka. Klik untuk membuka panel progres; geser untuk memindahkan; gunakan tombol panah untuk menggeser.';
     els.mascot.setAttribute('aria-label', label);
   }
 
   function applyStage(animate) {
     var s = stage();
-    els.img.src = 'images/brain-mascot-' + s + '.svg';
+    var svgIdx = STAGE_SVG_INDEX[Math.min(s, STAGE_SVG_INDEX.length - 1)];
+    els.img.src = 'images/brain-mascot-' + svgIdx + '.svg';
     if (animate && !prefersReducedMotion) {
       els.mascot.classList.remove('grow');
       // force reflow so animation re-triggers
@@ -224,7 +227,7 @@
   function showTooltip() {
     if (state.panelOpen || state.dragging) return;
     var s = stage();
-    var msg = '<strong>' + state.opened.size + '/' + TOPIC_COUNT + ' topics</strong> — ' + STAGE_ENCOURAGEMENTS[s];
+    var msg = '<strong>' + state.opened.size + '/' + TOPIC_COUNT + ' topik</strong> — ' + STAGE_ENCOURAGEMENTS[s];
     els.tooltip.innerHTML = msg;
     var r = els.mascot.getBoundingClientRect();
     // Position above the mascot, clamped horizontally
@@ -251,10 +254,10 @@
     var panel = document.createElement('div');
     panel.id = 'nm-panel';
     panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-label', 'Topic progress');
+    panel.setAttribute('aria-label', 'Progres topik');
 
-    var header = '<h4>Your Progress</h4>' +
-      '<p class="nm-progress">' + state.opened.size + ' of ' + TOPIC_COUNT + ' topics opened — ' + STAGE_ENCOURAGEMENTS[stage()] + '</p>';
+    var header = '<h4>Progresmu</h4>' +
+      '<p class="nm-progress">' + state.opened.size + ' dari ' + TOPIC_COUNT + ' topik dibuka — ' + STAGE_ENCOURAGEMENTS[stage()] + '</p>';
 
     var ulHtml = '<ul>';
     for (var i = 0; i < TOPICS.length; i++) {
@@ -266,7 +269,7 @@
     }
     ulHtml += '</ul>';
 
-    var foot = '<div class="nm-foot"><button type="button" class="nm-reset" title="Reset progress">↻ Reset</button><button type="button" class="nm-close" aria-label="Close">×</button></div>';
+    var foot = '<div class="nm-foot"><button type="button" class="nm-reset" title="Atur ulang progres">↻ Atur Ulang</button><button type="button" class="nm-close" aria-label="Tutup">×</button></div>';
 
     panel.innerHTML = header + ulHtml + foot;
     els.root.appendChild(panel);
@@ -286,7 +289,7 @@
 
     panel.querySelector('.nm-close').addEventListener('click', closePanel);
     panel.querySelector('.nm-reset').addEventListener('click', function () {
-      if (window.confirm('Reset your progress? Your opened topics and growth stage will be cleared.')) {
+      if (window.confirm('Atur ulang progresmu? Topik yang sudah dibuka dan tahap pertumbuhan akan dihapus.')) {
         state.opened = new Set();
         writeSet(state.opened);
         applyStage(false);

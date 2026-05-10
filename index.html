@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neuro Pets - helping medical students master physiological and pathophysiological reflexes." />
-  <title>Neuro Pets - Home</title>
+  <meta name="description" content="Neuro Pet - Belajar neurologi sambil membesarkan Neuro Pet-mu." />
+  <title>Neuro Pet - Beranda</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +24,7 @@
 
   <input type="checkbox" id="nav-toggle" aria-hidden="true" />
 
-  <label for="nav-toggle" class="nav-burger" aria-label="Toggle navigation">
+  <label for="nav-toggle" class="nav-burger" aria-label="Buka navigasi">
     <svg viewBox="0 0 24 24" fill="none" stroke="#7B1224" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
       <line x1="4" y1="6" x2="20" y2="6" />
       <line x1="4" y1="12" x2="20" y2="12" />
@@ -34,24 +34,35 @@
   <label for="nav-toggle" class="nav-scrim" aria-hidden="true"></label>
 
   <!-- ===================== SIDEBAR ===================== -->
-  <aside class="sidebar" aria-label="Primary navigation">
-    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pets baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
+  <aside class="sidebar" aria-label="Navigasi utama">
+    <div class="sidebar__crest" aria-hidden="true"><img src="/images/brain-mascot-0.svg" alt="Neuro Pet baby brain mascot" width="56" height="56" class="sidebar__crest-img" /></div>
 
-    <h1 class="sidebar__title">Neuro&nbsp;Pets</h1>
+    <h1 class="sidebar__title">Neuro&nbsp;Pet</h1>
     <hr class="sidebar__rule" />
 
-    <nav class="sidebar__nav" aria-label="Section">
+    <nav class="sidebar__nav" aria-label="Bagian">
       <ul>
-        <li><a href="/" class="is-active">Home</a></li>
-        <li><a href="/materials">Materials</a></li>
-        <li><a href="/quiz">Interactive Quiz</a></li>
-        <li><a href="/test">Test</a></li>
+        <li><a href="/" class="is-active">Beranda</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 1</h2>
+      <ul>
+        <li><a href="/materials">Materi</a></li>
+        <li><a href="/quiz">Quiz Interaktif</a></li>
+        <li><a href="/test">Test Terstruktur</a></li>
         <li><a href="/timer">Study Timer</a></li>
-        <li><a href="/references">References</a></li>
+        <li><a href="/references">Referensi</a></li>
+      </ul>
+      <h2 class="sidebar__group-label">OSCE Phase 2</h2>
+      <ul>
+        <li><a href="/phase-2-materials">Materi</a></li>
+        <li><a href="/phase-2-quiz">Quiz Interaktif</a></li>
+        <li><a href="/phase-2-test">Test Terstruktur</a></li>
+        <li><a href="/phase-2-timer">Study Timer</a></li>
+        <li><a href="/phase-2-references">Referensi</a></li>
       </ul>
     </nav>
 
-    <p class="sidebar__footnote">Est. MMXXVI · v3</p>
+    <p class="sidebar__footnote">Est. MMXXVI &middot; v4</p>
   </aside>
 
   <!-- ===================== MAIN ===================== -->
@@ -60,77 +71,164 @@
     <!-- HERO -->
     <section id="home" class="hero" aria-labelledby="hero-title">
       <div class="hero__inner">
-        <div class="hero__logo" role="img" aria-label="Neuro Pets brain and neural network logo"><img src="/images/brain-mascot-0.svg" alt="Neuro Pets baby brain mascot" width="140" height="140" class="hero__logo-img" /></div>
-        <div class="hero__bold" id="hero-title">Neuro&nbsp;Pets</div>
-        <p class="hero__subtitle">Mastering Physiological &amp; Pathophysiological Reflexes</p>
+        <div class="hero__logo" role="img" aria-label="Neuro Pet baby brain mascot"><img src="/images/brain-mascot-0.svg" alt="Neuro Pet baby brain mascot" width="140" height="140" class="hero__logo-img" /></div>
+        <div class="hero__bold" id="hero-title">Selamat Datang di Neuro&nbsp;Pet</div>
+        <p class="hero__subtitle">Belajar neurologi sambil membesarkan Neuro Pet-mu!</p>
         <hr class="hero__divider" aria-hidden="true" />
-        <p class="hero__quote">&ldquo;In every reflex, the nervous system whispers its secrets.&rdquo;</p>
+        <p class="hero__quote">Neuro Pet adalah website pembelajaran interaktif untuk membantu mahasiswa kedokteran mempersiapkan OSCE terkait Somatomotor, Refleks Fisiologis, dan Refleks Patologis melalui materi, quiz interaktif, simulasi kasus, dan latihan terstruktur. Semakin banyak fitur yang kamu selesaikan, semakin berkembang Neuro Pet-mu.</p>
       </div>
 
-      <a href="#about" class="hero__chevron" aria-label="Scroll to learn more">
+      <a href="#how-it-works" class="hero__chevron" aria-label="Gulir untuk pelajari lebih lanjut">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </a>
     </section>
 
-    <!-- WHAT WE DO -->
-    <section id="about" class="section">
-      <span class="section__eyebrow">Our Mission</span>
-      <h2 class="section__heading">What We Do</h2>
-      <div class="prose">
-        <p class="lead">Neuro Pets helps medical students develop a confident, intuitive understanding of <strong>physiological</strong> and <strong>pathophysiological reflexes</strong> - the foundation of competent neurological examination.</p>
-        <p>Reflexes are dense, high-stakes content. They rarely sit at the top of a study schedule, yet they sit at the centre of every credible neurological assessment. Hyperreflexia, areflexia, and the subtler asymmetries of tone and response are often what separate a confident clinician from a hesitant one at the bedside.</p>
-        <p>We make this material approachable - without flattening its complexity. Through curated reading, interactive practice, structured testing, and guided study sessions, our platform turns rote memorisation into lasting clinical understanding.</p>
-      </div>
-    </section>
-
     <!-- HOW IT WORKS -->
-    <section class="section section--alt">
-      <span class="section__eyebrow">Method</span>
-      <h2 class="section__heading">How It Works</h2>
+    <section id="how-it-works" class="section section--alt">
+      <span class="section__eyebrow">Metode</span>
+      <h2 class="section__heading">Bagaimana Cara Kerjanya?</h2>
       <div class="feature-grid">
         <div class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 8h18a4 4 0 0 1 4 4v28H18a4 4 0 0 1-4-4V8z" />
+              <path d="M14 8a4 4 0 0 0-4 4v24" />
+              <path d="M18 36h18" />
+              <path d="M22 16h10" />
+              <path d="M22 22h10" />
+              <path d="M22 28h6" />
+            </svg>
+          </div>
           <div class="feature__numeral">I.</div>
-          <h3 class="feature__title">Foundational Materials</h3>
-          <p class="feature__body">Anatomy, technique, and pathophysiology - organised by clinical relevance, paired with palpable bedside landmarks.</p>
+          <h3 class="feature__title">Materi Dasar</h3>
+          <p class="feature__body">Pelajari pemeriksaan neurologi refleks dan konsep somatomotor yang disusun berdasarkan relevansi klinis dan kebutuhan OSCE. Materi dilengkapi panduan langkah pemeriksaan dan hallmark penting yang sering digunakan saat skills lab.</p>
         </div>
         <div class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="26,4 10,28 22,28 18,44 38,20 26,20" fill="currentColor" stroke="none" opacity="0.85" />
+            </svg>
+          </div>
           <div class="feature__numeral">II.</div>
           <h3 class="feature__title">Interactive Quiz</h3>
-          <p class="feature__body">Self-paced practice on reflex pathways and lesion localisation. Immediate feedback, spaced repetition, no penalties for curiosity.</p>
+          <p class="feature__body">Latihan interaktif berbasis kasus dan alur OSCE nyata. Jawab pertanyaan, pilih langkah pemeriksaan, dan latih clinical reasoning.</p>
         </div>
         <div class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="12" y="8" width="24" height="34" rx="3" />
+              <path d="M18 6h12v6H18z" />
+              <path d="M18 20h12" />
+              <path d="M18 26h12" />
+              <path d="M18 32h8" />
+              <circle cx="36" cy="38" r="6" fill="currentColor" stroke="none" opacity="0.85" />
+              <path d="M36 35v3l2 2" stroke="#fff" />
+            </svg>
+          </div>
           <div class="feature__numeral">III.</div>
           <h3 class="feature__title">Structured Test</h3>
-          <p class="feature__body">Timed assessments mirroring the form and rhythm of real OSCE stations - calibrated to surface gaps before they become exam day surprises.</p>
+          <p class="feature__body">Kerjakan simulasi ujian terstruktur dengan timer seperti OSCE asli.</p>
         </div>
         <div class="feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="26" r="16" />
+              <path d="M24 16v10l7 4" />
+              <path d="M18 4h12" />
+              <path d="M24 4v4" />
+            </svg>
+          </div>
           <div class="feature__numeral">IV.</div>
           <h3 class="feature__title">Study Timer</h3>
-          <p class="feature__body">A focus tool built around evidence-based study cadences. Quiet, minimal, designed for long evenings before clinical postings.</p>
+          <p class="feature__body">Gunakan study timer fokus 10 menit dan 14 menit untuk membantu kamu latihan OSCE sesuai batas waktu.</p>
         </div>
       </div>
     </section>
 
-    <!-- WHY REFLEXES -->
-    <section class="section">
-      <span class="section__eyebrow">Clinical Relevance</span>
-      <h2 class="section__heading">Why Reflexes Matter</h2>
+    <!-- PET EVOLUTION -->
+    <section id="pet-evolution" class="section">
+      <span class="section__eyebrow">Pet Evolution</span>
+      <h2 class="section__heading">Tumbuhkan Neuro Pet-mu!</h2>
       <div class="prose">
-        <p>A reflex is the simplest experiment a clinician can run on a patient - input, integration, output. When the result deviates, the deviation localises. A brisk patellar with an upgoing toe is a different conversation than the same finding with a downgoing toe.</p>
-        <p>Mastering this language costs time, and the cost is paid up front. Once paid, however, it returns interest for the rest of a clinical career: in the ER, in the ward, in the consult room. <em>Neuro Pets</em> is built to make that initial investment worthwhile - and, as much as possible, even a little bit elegant.</p>
+        <p class="lead" style="text-align: center;">Setiap materi, quiz, dan test yang kamu selesaikan akan membantu Neuro Pet berkembang ke bentuk berikutnya.</p>
       </div>
+
+      <ol class="roadmap" aria-label="Tahap evolusi Neuro Pet">
+        <li class="roadmap__stage roadmap__stage--current" data-stage="1">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-0.svg" alt="Baby Brain" /></div>
+          <span class="roadmap__num">Stage 1</span>
+          <span class="roadmap__label">Baby Brain</span>
+        </li>
+        <li class="roadmap__stage roadmap__stage--locked" data-stage="2">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-1.svg" alt="Kid Brain" /></div>
+          <span class="roadmap__num">Stage 2</span>
+          <span class="roadmap__label">Kid Brain</span>
+        </li>
+        <li class="roadmap__stage roadmap__stage--locked" data-stage="3">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-2.svg" alt="Schoolkid Brain" /></div>
+          <span class="roadmap__num">Stage 3</span>
+          <span class="roadmap__label">Schoolkid Brain</span>
+        </li>
+        <li class="roadmap__stage roadmap__stage--locked" data-stage="4">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-3.svg" alt="Teen Brain" /></div>
+          <span class="roadmap__num">Stage 4</span>
+          <span class="roadmap__label">Teen Brain</span>
+        </li>
+        <li class="roadmap__stage roadmap__stage--locked" data-stage="5">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-5.svg" alt="Confident Med Student" /></div>
+          <span class="roadmap__num">Stage 5</span>
+          <span class="roadmap__label">Confident Med Student</span>
+        </li>
+        <li class="roadmap__stage roadmap__stage--locked" data-stage="6">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-6.svg" alt="Junior Doctor / Intern" /></div>
+          <span class="roadmap__num">Stage 6</span>
+          <span class="roadmap__label">Junior Doctor / Intern</span>
+        </li>
+        <li class="roadmap__stage roadmap__stage--locked" data-stage="7">
+          <div class="roadmap__bubble"><img src="/images/brain-mascot-7.svg" alt="Doctor" /></div>
+          <span class="roadmap__num">Stage 7</span>
+          <span class="roadmap__label">Doctor</span>
+        </li>
+      </ol>
     </section>
 
     <!-- FOOTER -->
     <footer class="site-footer">
-      <p>&copy; MMXXVI Neuro Pets &middot; Mastering Physiological &amp; Pathophysiological Reflexes &middot; <a href="/">Home</a> &middot; Made by Estrella Kyara Pangkahila Febian</p>
+      <p>&copy; MMXXVI Neuro Pet &middot; Belajar neurologi sambil membesarkan Neuro Pet-mu &middot; <a href="/">Beranda</a> &middot; Made by Estrella Kyara Pangkahila Febian</p>
     </footer>
 
   </main>
 
   <script src="app.js"></script>
   <script src="src/brain-mascot.js" defer></script>
+  <script>
+    // Reflect actual progress on the homepage roadmap
+    (function () {
+      function paint() {
+        try {
+          var raw = localStorage.getItem('neuro-circuits:opened-topics');
+          var arr = raw ? JSON.parse(raw) : [];
+          var opened = Array.isArray(arr) ? arr.length : 0;
+          var stages = document.querySelectorAll('.roadmap__stage');
+          stages.forEach(function (el, idx) {
+            el.classList.remove('roadmap__stage--locked', 'roadmap__stage--current', 'roadmap__stage--complete');
+            if (idx < opened) {
+              el.classList.add('roadmap__stage--complete');
+            } else if (idx === opened) {
+              el.classList.add('roadmap__stage--current');
+            } else {
+              el.classList.add('roadmap__stage--locked');
+            }
+          });
+        } catch (e) {}
+      }
+      paint();
+      window.addEventListener('storage', function (ev) {
+        if (ev.key === 'neuro-circuits:opened-topics') paint();
+      });
+    })();
+  </script>
 </body>
 </html>

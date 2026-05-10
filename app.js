@@ -17,12 +17,12 @@ const app = {
     patientFaceState: 'normal',
     pomodoroMode: 'focus',
     pomodoroDurations: {
-      focus: 25 * 60,
+      focus: 10 * 60,
       shortBreak: 5 * 60,
       longBreak: 10 * 60,
-      deep: 50 * 60
+      deep: 14 * 60
     },
-    pomodoroTimeRemaining: 25 * 60,
+    pomodoroTimeRemaining: 10 * 60,
     pomodoroRunning: false,
     pomodoroSession: 1
   },
@@ -314,7 +314,7 @@ const app = {
     const title = document.createElement('h4');
     title.style.margin = '0 0 0.5rem 0';
     title.style.color = isCorrect ? '#2e7d32' : '#c62828';
-    title.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
+    title.textContent = isCorrect ? '✓ Benar!' : '✗ Salah';
     explanationDiv.appendChild(title);
 
     const text = document.createElement('p');
@@ -332,7 +332,7 @@ const app = {
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn-pill';
-    nextBtn.textContent = 'Next Question';
+    nextBtn.textContent = 'Soal Berikutnya';
     nextBtn.style.marginTop = '1.5rem';
     nextBtn.style.width = '100%';
     nextBtn.style.padding = '12px 24px';
@@ -415,15 +415,15 @@ const app = {
         requirement.classList.add('met');
         requirement.classList.remove('not-met');
         requirement.innerHTML = `
-          <strong>✓ Unlocked!</strong> You've completed ${completed} exams and unlocked diagnosis.
+          <strong>✓ Terbuka!</strong> Kamu sudah menyelesaikan ${completed} pemeriksaan dan membuka diagnosis.
           <br><em>${exams.join(', ')}</em>
         `;
       } else {
         requirement.classList.add('not-met');
         requirement.classList.remove('met');
         requirement.innerHTML = `
-          <strong>${completed}/3</strong> exams completed. ${3 - completed} more needed for diagnosis.
-          <br><em>${exams.length > 0 ? 'Completed: ' + exams.join(', ') : 'No exams completed yet'}</em>
+          <strong>${completed}/3</strong> pemeriksaan selesai. Butuh ${3 - completed} lagi untuk diagnosis.
+          <br><em>${exams.length > 0 ? 'Selesai: ' + exams.join(', ') : 'Belum ada pemeriksaan diselesaikan'}</em>
         `;
       }
     }
@@ -434,8 +434,8 @@ const app = {
         diagnosisMsg.classList.remove('locked');
         diagnosisMsg.classList.add('unlocked');
         diagnosisMsg.innerHTML = `
-          <strong>✓ Diagnosis Unlocked!</strong> You've completed enough reflex exams.
-          <br>Review your results below for detailed diagnosis information.
+          <strong>✓ Diagnosis Terbuka!</strong> Kamu sudah menyelesaikan cukup pemeriksaan refleks.
+          <br>Tinjau hasilmu di bawah untuk informasi diagnosis lengkap.
         `;
       }
     }
@@ -454,11 +454,11 @@ const app = {
 
     if (messageEl) {
       if (percentage >= 80) {
-        messageEl.textContent = 'Excellent! You have a strong understanding of medical reflexes.';
+        messageEl.textContent = 'Luar biasa! Pemahamanmu tentang refleks medis sangat kuat.';
       } else if (percentage >= 60) {
-        messageEl.textContent = 'Good job! Review the areas where you need improvement.';
+        messageEl.textContent = 'Kerja bagus! Tinjau kembali bagian yang perlu diperbaiki.';
       } else {
-        messageEl.textContent = 'Keep practicing to improve your reflex knowledge!';
+        messageEl.textContent = 'Terus berlatih untuk meningkatkan pengetahuan refleksmu!';
       }
     }
   },
@@ -469,10 +469,10 @@ const app = {
     if (!container) return;
 
     const modes = [
-      { id: 'focus', label: 'Focus', duration: 25 },
-      { id: 'shortBreak', label: 'Short Break', duration: 5 },
-      { id: 'longBreak', label: 'Long Break', duration: 10 },
-      { id: 'deep', label: 'Deep Focus', duration: 50 }
+      { id: 'focus', label: 'OSCE 10m', duration: 10 },
+      { id: 'shortBreak', label: 'Istirahat Pendek', duration: 5 },
+      { id: 'longBreak', label: 'Istirahat Panjang', duration: 10 },
+      { id: 'deep', label: 'OSCE 14m', duration: 14 }
     ];
 
     container.innerHTML = '';
@@ -540,9 +540,9 @@ const app = {
     if (timerEl) timerEl.textContent = timeStr;
     if (labelEl) {
       labelEl.textContent =
-        this.state.pomodoroMode === 'focus' ? 'Focus' :
-        this.state.pomodoroMode === 'shortBreak' ? 'Short Break' :
-        this.state.pomodoroMode === 'longBreak' ? 'Long Break' : 'Deep Focus';
+        this.state.pomodoroMode === 'focus' ? 'OSCE 10m' :
+        this.state.pomodoroMode === 'shortBreak' ? 'Istirahat Pendek' :
+        this.state.pomodoroMode === 'longBreak' ? 'Istirahat Panjang' : 'OSCE 14m';
     }
 
     const totalDuration = this.state.pomodoroDurations[this.state.pomodoroMode];
@@ -561,7 +561,7 @@ const app = {
       this.state.pomodoroSession++;
     }
     this.savePomodoroState();
-    alert(`${this.state.pomodoroMode} session complete!`);
+    alert(`Sesi ${this.state.pomodoroMode} selesai!`);
   },
 
   savePomodoroState() {
@@ -641,12 +641,12 @@ const app = {
       patientFaceState: 'normal',
       pomodoroMode: 'focus',
       pomodoroDurations: {
-        focus: 25 * 60,
+        focus: 10 * 60,
         shortBreak: 5 * 60,
         longBreak: 10 * 60,
-        deep: 50 * 60
+        deep: 14 * 60
       },
-      pomodoroTimeRemaining: 25 * 60,
+      pomodoroTimeRemaining: 10 * 60,
       pomodoroRunning: false,
       pomodoroSession: 1
     };
