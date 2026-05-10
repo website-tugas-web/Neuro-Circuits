@@ -18,8 +18,6 @@ const app = {
     pomodoroMode: 'focus',
     pomodoroDurations: {
       focus: 10 * 60,
-      shortBreak: 5 * 60,
-      longBreak: 10 * 60,
       deep: 14 * 60
     },
     pomodoroTimeRemaining: 10 * 60,
@@ -470,8 +468,6 @@ const app = {
 
     const modes = [
       { id: 'focus', label: 'OSCE 10m', duration: 10 },
-      { id: 'shortBreak', label: 'Istirahat Pendek', duration: 5 },
-      { id: 'longBreak', label: 'Istirahat Panjang', duration: 10 },
       { id: 'deep', label: 'OSCE 14m', duration: 14 }
     ];
 
@@ -535,15 +531,8 @@ const app = {
     const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 
     const timerEl = document.getElementById('pomodoro-timer');
-    const labelEl = document.getElementById('session-label');
 
     if (timerEl) timerEl.textContent = timeStr;
-    if (labelEl) {
-      labelEl.textContent =
-        this.state.pomodoroMode === 'focus' ? 'OSCE 10m' :
-        this.state.pomodoroMode === 'shortBreak' ? 'Istirahat Pendek' :
-        this.state.pomodoroMode === 'longBreak' ? 'Istirahat Panjang' : 'OSCE 14m';
-    }
 
     const totalDuration = this.state.pomodoroDurations[this.state.pomodoroMode];
     const elapsedPercent = (totalDuration - this.state.pomodoroTimeRemaining) / totalDuration;
@@ -582,7 +571,7 @@ const app = {
 
     try {
       const state = JSON.parse(saved);
-      this.state.pomodoroMode = state.mode;
+      this.state.pomodoroMode = this.state.pomodoroDurations[state.mode] ? state.mode : 'focus';
       this.state.pomodoroSession = state.session || 1;
 
       if (state.running && state.startTime && state.initialTime) {
@@ -642,8 +631,6 @@ const app = {
       pomodoroMode: 'focus',
       pomodoroDurations: {
         focus: 10 * 60,
-        shortBreak: 5 * 60,
-        longBreak: 10 * 60,
         deep: 14 * 60
       },
       pomodoroTimeRemaining: 10 * 60,
