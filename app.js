@@ -58,7 +58,7 @@ const app = {
 
         return {
           id: q.id,
-          text: q.vignette + '\n\n' + q.question,
+          text: (q.vignette && q.vignette.trim()) ? q.vignette + '\n\n' + q.question : q.question,
           examType: 'mcq',
           options: shuffledOptions.map(opt => opt.text),
           correctAnswer: newCorrectIndex,
