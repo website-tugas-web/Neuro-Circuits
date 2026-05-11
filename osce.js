@@ -1,11 +1,18 @@
 // OSCE Simulator Engine — Fase 2 only, single-pick redesign (NEUAAA-258).
 // 9-step OSCE Phase 2 visual novel with 3 randomised cases (Tetanus, TIA,
 // Stroke). Pembukaan and Inform Consent are dialogue-only (Doctor Brain
-// speaks, player presses Continue). All other steps are single MCQs with
-// distractor-parity rules: player picks ONE option, the choice locks
-// immediately, the next step renders, and the wrong/right verdict is held
-// back until the final feedback card. No mid-quiz highlighting, no hints,
-// no parentheses, no dashes in option copy.
+// speaks, player presses Continue). All MCQ steps follow distractor-parity
+// rules: player picks ONE option, the choice locks immediately, the next
+// step renders, and the wrong/right verdict is held back until the final
+// feedback card. No mid-quiz highlighting, no hints, no parentheses, no
+// dashes in option copy.
+//
+// Anamnesis is the deliberate exception: the player can ask multiple
+// questions, each picked question is removed from the choice list, and a
+// persistent "Lanjut ke Inform Consent" button is offered alongside the
+// remaining questions so the player decides when to proceed. Each wrong
+// question still records a mistake; correctness for the step is judged on
+// whether at least one of the picked questions was the key anamnesis Q.
 
 // ============================================================
 // 1. CONSTANTS
@@ -410,6 +417,98 @@ window.pickChoice = function (stepId, choiceId) {
 };
 
 // ============================================================
+// 8b. ANAMNESIS STEP (multi-pick: ask more or proceed)
+// ============================================================
+
+function renderAnamnesisStep() {
+  var cfg = getStepConfig('anamnesis') || {};
+  var allChoices = getStepChoices('anamnesis');
+  var asked = osceState.picks.anamnesis || [];
+
+  var askedSet = {};
+  for (var i = 0; i < asked.length; i++) askedSet[asked[i]] = true;
+
+  // Build "remaining" choices in shuffled order, minus what's been asked.
+  var remaining = [];
+  for (var j = 0; j < allChoices.length; j++) {
+    if (!askedSet[allChoices[j].id]) remaining.push(allChoices[j]);
+  }
+
+  // Doctor framing: if the player has already asked at least one question,
+  // surface the most recent one as the doctor's speech bubble so the player
+  // can see "I just asked this". Otherwise show the framing prompt.
+  if (asked.length > 0) {
+    var lastId = asked[asked.length - 1];
+    var lastLabel = '';
+    for (var k = 0; k < allChoices.length; k++) {
+      if (allChoices[k].id === lastId) { lastLabel = allChoices[k].label; break; }
+    }
+    osceState.doctorSpeech = lastLabel || cfg.doctorPrompt || cfg.prompt || '';
+  } else {
+    osceState.doctorSpeech = cfg.doctorPrompt || cfg.prompt || '';
+  }
+  osceState.doctorMascot = MASCOT.anamnesis;
+  osceState.patientFace = 'normal';
+  osceState.patientSpeech = '';
+
+  var prompt = cfg.prompt || '';
+
+  var askedHtml = '';
+  if (asked.length > 0) {
+    askedHtml = '<div class="vn-anamnesis-asked"><div class="vn-anamnesis-asked__label">Sudah ditanyakan</div><ol>';
+    for (var a = 0; a < asked.length; a++) {
+      var aid = asked[a];
+      var alabel = '';
+      for (var x = 0; x < allChoices.length; x++) {
+        if (allChoices[x].id === aid) { alabel = allChoices[x].label; break; }
+      }
+      askedHtml += '<li>' + escapeHtml(alabel) + '</li>';
+    }
+    askedHtml += '</ol></div>';
+  }
+
+  var btns = '';
+  for (var r = 0; r < remaining.length; r++) {
+    var ch = remaining[r];
+    btns += '<button class="vn-choice" onclick="pickAnamnesis(\'' + ch.id + '\')">' +
+      escapeHtml(ch.label) +
+    '</button>';
+  }
+
+  // Persistent "proceed" button — the player chooses when to move on.
+  var proceedBtn = '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' +
+    nextStepLabel(osceState.stepIdx) + '</button></div>';
+
+  return renderScene() +
+    '<div class="vn-prompt"><strong>' + escapeHtml(prompt) + '</strong></div>' +
+    askedHtml +
+    '<div class="vn-choices">' + btns + '</div>' +
+    proceedBtn;
+}
+
+window.pickAnamnesis = function (choiceId) {
+  if (!osceState.picks.anamnesis) osceState.picks.anamnesis = [];
+  // Idempotent — can't re-pick the same question.
+  for (var i = 0; i < osceState.picks.anamnesis.length; i++) {
+    if (osceState.picks.anamnesis[i] === choiceId) return;
+  }
+  var cfg = getStepConfig('anamnesis');
+  if (!cfg) return;
+  var choices = getStepChoices('anamnesis');
+  var ch = null;
+  for (var j = 0; j < choices.length; j++) if (choices[j].id === choiceId) { ch = choices[j]; break; }
+  if (!ch) return;
+
+  osceState.picks.anamnesis.push(choiceId);
+
+  if (!ch.correct) {
+    recordMistake(stepLabel(osceState.stepIdx), ch.label, ch.consequence || cfg.wrongConsequence || '');
+  }
+
+  renderOSCE();
+};
+
+// ============================================================
 // 9. ADVANCE / FINISH
 // ============================================================
 
@@ -449,9 +548,20 @@ function renderResult() {
     var s = STEPS[i];
     if (s.id === 'intro' || s.id === 'consent') continue;
     totalSteps++;
+    var choices = (c && c.dialogueScript && c.dialogueScript[s.id] && c.dialogueScript[s.id].choices) || [];
+    if (s.id === 'anamnesis') {
+      var aPicks = osceState.picks.anamnesis || [];
+      var hit = false;
+      for (var p = 0; p < aPicks.length && !hit; p++) {
+        for (var q = 0; q < choices.length; q++) {
+          if (choices[q].id === aPicks[p] && choices[q].correct) { hit = true; break; }
+        }
+      }
+      if (hit) correctSteps++;
+      continue;
+    }
     var pickId = osceState.picks[s.id];
     if (!pickId) continue;
-    var choices = (c && c.dialogueScript && c.dialogueScript[s.id] && c.dialogueScript[s.id].choices) || [];
     for (var j = 0; j < choices.length; j++) {
       if (choices[j].id === pickId && choices[j].correct) { correctSteps++; break; }
     }
@@ -555,9 +665,10 @@ function renderOSCE() {
     body = renderResult();
   } else {
     var stepId = STEPS[osceState.stepIdx].id;
-    if (stepId === 'intro')        body = renderDialogueStep('intro', 'introLineIdx');
-    else if (stepId === 'consent') body = renderDialogueStep('consent', 'consentLineIdx');
-    else                           body = renderMcqStep(stepId);
+    if (stepId === 'intro')          body = renderDialogueStep('intro', 'introLineIdx');
+    else if (stepId === 'consent')   body = renderDialogueStep('consent', 'consentLineIdx');
+    else if (stepId === 'anamnesis') body = renderAnamnesisStep();
+    else                             body = renderMcqStep(stepId);
   }
 
   el.innerHTML = renderHeader() + '<div class="osce-step-body">' + body + '</div>';
