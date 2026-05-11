@@ -1,4 +1,4 @@
-/* Floating Brain Mascot — 6-section OSCE evolution (NEUAAA-234)
+/* Floating Brain Mascot — 6-section OSCE evolution (NEUAAA-260)
    Self-contained, vanilla JS. Injects its own styles + DOM.
    Pet evolves one stage per section completion (6 sections → 6 evolutions).
 */
@@ -6,20 +6,21 @@
   if (window.__neuroMascotLoaded) return;
   window.__neuroMascotLoaded = true;
 
-  // v3 — data model changed from "topics opened" to "sections completed" (NEUAAA-234)
-  var SECTIONS_KEY = 'neuro-pet:sections-completed:v3';
-  var MATERIALS_KEY = 'neuro-pet:materials-visited:v3';
+  // v4 — section set updated (NEUAAA-260): drop quiz-fase-1, add composite study-timer.
+  var SECTIONS_KEY = 'neuro-pet:sections-completed:v4';
+  var MATERIALS_KEY = 'neuro-pet:materials-visited:v4';
+  var TIMERS_KEY = 'neuro-pet:timers-completed:v4';
   var POS_KEY = 'neuro-circuits:mascot-position';
   var DRAG_THRESHOLD = 5;
 
   // Six OSCE learning sections; completing one advances the pet by exactly one stage.
   var SECTIONS = [
-    { id: 'materi-fase-1', name: 'Materi — Fase 1' },
-    { id: 'quiz-fase-1', name: 'Quiz Interaktif — Fase 1' },
-    { id: 'test-fase-1', name: 'Test Terstruktur — Fase 1' },
-    { id: 'materi-fase-2', name: 'Materi — Fase 2' },
-    { id: 'quiz-fase-2', name: 'Quiz Interaktif — Fase 2' },
-    { id: 'test-fase-2', name: 'Test Terstruktur — Fase 2' }
+    { id: 'materi-fase-1', name: 'Materi OSCE Fase 1' },
+    { id: 'test-fase-1', name: 'Test Terstruktur OSCE Fase 1' },
+    { id: 'materi-fase-2', name: 'Materi OSCE Fase 2' },
+    { id: 'quiz-fase-2', name: 'Quiz Interaktif OSCE Fase 2' },
+    { id: 'test-fase-2', name: 'Test Terstruktur OSCE Fase 2' },
+    { id: 'study-timer', name: 'Study Timer (Fase 1 + Fase 2)' }
   ];
   var SECTION_COUNT = SECTIONS.length;
 
@@ -28,6 +29,9 @@
     'materi-fase-1': ['material-1', 'material-2'],
     'materi-fase-2': ['material-3', 'material-5', 'material-7']
   };
+
+  // Study-timer phases that must BOTH complete before the study-timer section fires.
+  var TIMER_PHASES = ['fase-1', 'fase-2'];
 
   // 7 visible stages: stage 0 (no completions) through stage 6 (all six sections done).
   // brain-mascot-4.svg (UGM freshman) is skipped to keep the same 7-step roadmap as v2.
@@ -92,6 +96,7 @@
   var state = {
     completed: readSet(SECTIONS_KEY),
     materialsVisited: readSet(MATERIALS_KEY),
+    timersCompleted: readSet(TIMERS_KEY),
     pos: null,
     dragging: false,
     moved: false,
@@ -216,10 +221,34 @@
     els.mascot.setAttribute('aria-label', label);
   }
 
-  function applyStage(animate) {
+  function currentSpriteIndex() {
     var s = stage();
-    var svgIdx = STAGE_SVG_INDEX[Math.min(s, STAGE_SVG_INDEX.length - 1)];
-    els.img.src = 'images/brain-mascot-' + svgIdx + '.svg';
+    return STAGE_SVG_INDEX[Math.min(s, STAGE_SVG_INDEX.length - 1)];
+  }
+
+  function spriteUrl(svgIdx, abs) {
+    // Floating mascot pages live at /something.html so a relative path works,
+    // but the sidebar crest is used with an absolute /images/... reference too.
+    return (abs ? '/' : '') + 'images/brain-mascot-' + svgIdx + '.svg';
+  }
+
+  // Paint the floating mascot AND any in-page surfaces that show the pet
+  // (sidebar crest, home hero) so the user's current evolution shows everywhere.
+  function paintEvolvedSprites() {
+    var svgIdx = currentSpriteIndex();
+    var crests = document.querySelectorAll('.sidebar__crest-img, .hero__logo-img');
+    for (var i = 0; i < crests.length; i++) {
+      var el = crests[i];
+      el.setAttribute('src', spriteUrl(svgIdx, true));
+      el.setAttribute('data-neuro-stage', String(stage()));
+    }
+  }
+
+  function applyStage(animate) {
+    var svgIdx = currentSpriteIndex();
+    var s = stage();
+    els.img.src = spriteUrl(svgIdx, false);
+    paintEvolvedSprites();
     if (animate && !prefersReducedMotion && s > state.lastStage) {
       els.mascot.classList.remove('grow');
       // force reflow so animation re-triggers
@@ -434,13 +463,28 @@
     });
   }
 
+  // Fired when the user finishes a study-timer session for a given phase.
+  // The study-timer SECTION only completes once BOTH phases ('fase-1' AND
+  // 'fase-2') have completed at least once.
+  function markTimerCompleted(phase) {
+    if (TIMER_PHASES.indexOf(phase) === -1) return false;
+    if (state.timersCompleted.has(phase)) return false;
+    state.timersCompleted.add(phase);
+    writeSet(TIMERS_KEY, state.timersCompleted);
+    var allDone = TIMER_PHASES.every(function (p) { return state.timersCompleted.has(p); });
+    if (allDone) markSectionComplete('study-timer');
+    return true;
+  }
+
   function getStage() { return stage(); }
 
   function resetProgress() {
     state.completed = new Set();
     state.materialsVisited = new Set();
+    state.timersCompleted = new Set();
     writeSet(SECTIONS_KEY, state.completed);
     writeSet(MATERIALS_KEY, state.materialsVisited);
+    writeSet(TIMERS_KEY, state.timersCompleted);
     state.lastStage = 0;
     if (mounted) applyStage(false);
   }
@@ -487,8 +531,10 @@
   window.NeuroPet = {
     markSectionComplete: markSectionComplete,
     markMaterialVisited: markMaterialVisited,
+    markTimerCompleted: markTimerCompleted,
     getStage: getStage,
     getCompletedSections: function () { return Array.from(state.completed); },
+    getCompletedTimers: function () { return Array.from(state.timersCompleted); },
     reset: resetProgress,
     SECTIONS: SECTIONS.slice()
   };
@@ -539,6 +585,8 @@
         if (state.panelOpen) { closePanel(); openPanel(); }
       } else if (ev.key === MATERIALS_KEY) {
         state.materialsVisited = readSet(MATERIALS_KEY);
+      } else if (ev.key === TIMERS_KEY) {
+        state.timersCompleted = readSet(TIMERS_KEY);
       } else if (ev.key === POS_KEY) {
         state.pos = readPosition() || defaultPosition();
         applyPosition();

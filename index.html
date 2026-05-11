@@ -199,29 +199,36 @@
   <script src="app.js"></script>
   <script src="src/brain-mascot.js" defer></script>
   <script>
-    // Reflect actual progress on the homepage roadmap
+    // Reflect actual Neuro Pet progress on the homepage roadmap (NEUAAA-260).
+    // Stage 0 (Baby Brain) = no sections completed; each completed section
+    // advances exactly one stage, up to stage 6 (Doctor).
     (function () {
-      function paint() {
+      var KEY = 'neuro-pet:sections-completed:v4';
+      function readCompletedCount() {
         try {
-          var raw = localStorage.getItem('neuro-circuits:opened-topics');
-          var arr = raw ? JSON.parse(raw) : [];
-          var opened = Array.isArray(arr) ? arr.length : 0;
-          var stages = document.querySelectorAll('.roadmap__stage');
-          stages.forEach(function (el, idx) {
-            el.classList.remove('roadmap__stage--locked', 'roadmap__stage--current', 'roadmap__stage--complete');
-            if (idx < opened) {
-              el.classList.add('roadmap__stage--complete');
-            } else if (idx === opened) {
-              el.classList.add('roadmap__stage--current');
-            } else {
-              el.classList.add('roadmap__stage--locked');
-            }
-          });
-        } catch (e) {}
+          var raw = localStorage.getItem(KEY);
+          if (!raw) return 0;
+          var arr = JSON.parse(raw);
+          return Array.isArray(arr) ? arr.length : 0;
+        } catch (e) { return 0; }
+      }
+      function paint() {
+        var stageIdx = readCompletedCount(); // 0..6
+        var stages = document.querySelectorAll('.roadmap__stage');
+        stages.forEach(function (el, idx) {
+          el.classList.remove('roadmap__stage--locked', 'roadmap__stage--current', 'roadmap__stage--complete');
+          if (idx < stageIdx) {
+            el.classList.add('roadmap__stage--complete');
+          } else if (idx === stageIdx) {
+            el.classList.add('roadmap__stage--current');
+          } else {
+            el.classList.add('roadmap__stage--locked');
+          }
+        });
       }
       paint();
       window.addEventListener('storage', function (ev) {
-        if (ev.key === 'neuro-circuits:opened-topics') paint();
+        if (ev.key === KEY) paint();
       });
     })();
   </script>

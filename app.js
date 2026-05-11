@@ -546,11 +546,25 @@ const app = {
 
   pomodoroComplete() {
     this.state.pomodoroRunning = false;
-    if (this.state.pomodoroMode === 'focus') {
+    clearInterval(this.pomodoroTimerId);
+    const finishedMode = this.state.pomodoroMode;
+    if (finishedMode === 'focus') {
       this.state.pomodoroSession++;
     }
+    // Reset the visible countdown so the next session can start fresh.
+    this.state.pomodoroTimeRemaining = this.state.pomodoroDurations[finishedMode];
+    this.updatePomodoroDisplay();
     this.savePomodoroState();
-    alert(`Sesi ${this.state.pomodoroMode} selesai!`);
+
+    // NEUAAA-260: finishing a full timer (focus=10m → Fase 1, deep=14m → Fase 2)
+    // contributes to the Study Timer evolution trigger. The pet only evolves
+    // once BOTH phases have completed at least once.
+    if (window.NeuroPet && typeof window.NeuroPet.markTimerCompleted === 'function') {
+      const phase = finishedMode === 'deep' ? 'fase-2' : 'fase-1';
+      window.NeuroPet.markTimerCompleted(phase);
+    }
+
+    alert(`Sesi ${finishedMode} selesai!`);
   },
 
   savePomodoroState() {
