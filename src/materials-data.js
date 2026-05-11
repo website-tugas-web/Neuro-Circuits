@@ -115,15 +115,12 @@ const MATERIALS_DATA = [
 <li><strong>Hiporefleksia:</strong> refleks menurun pada kelainan lower motor neuron.</li>
 <li><strong>Arefleksia.</strong> Dapat disebabkan oleh:
   <ul>
-  <li>Lesi yang melibatkan saraf tepi (jalur aferen dan/atau eferen lengkung refleks)</li>
-  <li>Lesi pada bagian sentral (spinal root) dari lengkung refleks, seperti syringomalasia</li>
   <li>Fase akut dari cedera spinal</li>
   <li>Koma dalam</li>
   <li>Arefleksia kongenital, biasanya pada tungkai</li>
   </ul>
 </li>
 <li><strong>Hiperefleksia:</strong> refleks meningkat pada gangguan yang melibatkan upper motor neuron.</li>
-<li><strong>Adanya klonus</strong> merupakan tanda patologis dan indikasi adanya lesi pada central motor neuron (CML) di atas refleks cabang spinal. Pada bayi baru lahir atau pasien dengan refleks yang sangat cepat, klonus bertahan selama 3–4 ketukan didapatkan di kedua sisi.</li>
 </ol>`,
     references: [
       "Bickley. <em>Bates Guide to Physical Examination and History Taking, 8th Edition</em>. 2002–08.",
