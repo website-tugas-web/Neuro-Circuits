@@ -34,13 +34,14 @@ const { chromium } = require('playwright');
     }
   }
 
-  // Confirm we are on anamnesis with the new UI.
+  // Confirm we are on anamnesis with the new UI and an expanded pool.
   const initialChoiceCount = await page.locator('.vn-choices button.vn-choice').count();
   const hasProceedBtn = await page.locator('.vn-advance button.btn-pill:has-text("Lanjut ke Inform Consent")').count();
-  if (initialChoiceCount < 2) throw new Error('Expected multiple anamnesis choices, got ' + initialChoiceCount);
+  if (initialChoiceCount < 8) throw new Error('Expected expanded anamnesis pool (>=8), got ' + initialChoiceCount);
   if (!hasProceedBtn) throw new Error('Expected persistent "Lanjut ke Inform Consent" button');
 
-  // Ask the first question; verify it is removed and the asked log appears.
+  // Ask the first question; verify it is removed, the asked log appears,
+  // and the patient surfaces a case-grounded response in the speech bubble.
   await page.click('.vn-choices button.vn-choice >> nth=0');
   await page.waitForTimeout(150);
   const afterFirstPick = await page.evaluate(() => ({
@@ -49,7 +50,11 @@ const { chromium } = require('playwright');
     proceedVisible: !!document.querySelector('.vn-advance button.btn-pill'),
     stepId: STEPS[osceState.stepIdx]?.id,
     picksLen: (osceState.picks.anamnesis || []).length,
+    patientSpeech: document.querySelector('.speech-bubble:not(.doctor)')?.innerText?.trim() || '',
   }));
+  if (!afterFirstPick.patientSpeech || afterFirstPick.patientSpeech.length < 10) {
+    throw new Error('Patient did not respond after first anamnesis pick: ' + JSON.stringify(afterFirstPick));
+  }
   console.log('After 1 ask:', JSON.stringify(afterFirstPick));
   if (afterFirstPick.stepId !== 'anamnesis') throw new Error('Step auto-advanced after one pick, should stay on anamnesis');
   if (afterFirstPick.remaining !== initialChoiceCount - 1) throw new Error('Remaining choices mismatch');

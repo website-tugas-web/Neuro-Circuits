@@ -1586,6 +1586,16 @@ button:focus-visible,
   line-height: 1.45;
 }
 
+.osce-eval-key-sub {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+.osce-eval-key-sub li {
+  margin: 0.15rem 0;
+  line-height: 1.45;
+}
+
 /* Evaluation card */
 .osce-eval {
   margin: 1.5rem 0;

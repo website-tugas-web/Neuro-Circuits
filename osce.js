@@ -434,22 +434,27 @@ function renderAnamnesisStep() {
     if (!askedSet[allChoices[j].id]) remaining.push(allChoices[j]);
   }
 
-  // Doctor framing: if the player has already asked at least one question,
-  // surface the most recent one as the doctor's speech bubble so the player
-  // can see "I just asked this". Otherwise show the framing prompt.
+  // Doctor framing + patient response: when the player has asked at least
+  // one question, surface the most recent question as the doctor's speech
+  // and the matching patientResponse (with patientFace) on the patient.
+  // This is how the case reveals symptom information.
+  var lastChoice = null;
   if (asked.length > 0) {
     var lastId = asked[asked.length - 1];
-    var lastLabel = '';
     for (var k = 0; k < allChoices.length; k++) {
-      if (allChoices[k].id === lastId) { lastLabel = allChoices[k].label; break; }
+      if (allChoices[k].id === lastId) { lastChoice = allChoices[k]; break; }
     }
-    osceState.doctorSpeech = lastLabel || cfg.doctorPrompt || cfg.prompt || '';
+  }
+  if (lastChoice) {
+    osceState.doctorSpeech = lastChoice.label;
+    osceState.patientSpeech = lastChoice.patientResponse || '';
+    osceState.patientFace = lastChoice.patientFace || 'normal';
   } else {
     osceState.doctorSpeech = cfg.doctorPrompt || cfg.prompt || '';
+    osceState.patientSpeech = '';
+    osceState.patientFace = 'normal';
   }
   osceState.doctorMascot = MASCOT.anamnesis;
-  osceState.patientFace = 'normal';
-  osceState.patientSpeech = '';
 
   var prompt = cfg.prompt || '';
 
@@ -598,19 +603,30 @@ function renderResult() {
     mistakesHtml = '<p style="color:#2e7d32;margin:1rem 0;text-align:center;">Tidak ada kesalahan tercatat. Semua pilihan tepat.</p>';
   }
 
-  // Always show the correct answer per step so the player learns the key.
+  // Always show the correct answer per step. For anamnesis, several
+  // questions are clinically relevant; list them all so the player
+  // learns the full key panel rather than just the first one.
   var keyHtml = '<h4 style="margin:1.25rem 0 .5rem;color:#7B1224;">Kunci Jawaban</h4><ul class="osce-eval-key">';
   for (var s2 = 0; s2 < STEPS.length; s2++) {
     var stp = STEPS[s2];
     if (stp.id === 'intro' || stp.id === 'consent') continue;
     var ccfg = (c && c.dialogueScript && c.dialogueScript[stp.id]) || {};
     var clist = ccfg.choices || [];
-    var correctLabel = '';
+    var correctLabels = [];
     for (var cc = 0; cc < clist.length; cc++) {
-      if (clist[cc].correct) { correctLabel = clist[cc].label; break; }
+      if (clist[cc].correct) correctLabels.push(clist[cc].label);
     }
-    if (correctLabel) {
-      keyHtml += '<li><strong>' + escapeHtml(stp.label.replace(/^\d+\.\s/, '')) + ':</strong> ' + escapeHtml(correctLabel) + '</li>';
+    if (correctLabels.length === 0) continue;
+    var stepName = escapeHtml(stp.label.replace(/^\d+\.\s/, ''));
+    if (stp.id === 'anamnesis' && correctLabels.length > 1) {
+      var subItems = '';
+      for (var ll = 0; ll < correctLabels.length; ll++) {
+        subItems += '<li>' + escapeHtml(correctLabels[ll]) + '</li>';
+      }
+      keyHtml += '<li><strong>' + stepName + ':</strong>' +
+        '<ul class="osce-eval-key-sub">' + subItems + '</ul></li>';
+    } else {
+      keyHtml += '<li><strong>' + stepName + ':</strong> ' + escapeHtml(correctLabels[0]) + '</li>';
     }
   }
   keyHtml += '</ul>';
