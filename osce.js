@@ -1,24 +1,17 @@
-// OSCE Simulator Engine — Visual Novel rebuild (NEUAAA-238 + NEUAAA-241)
-// Fase-aware: 7-step canonical flow for Fase 1 (default), 9-step expanded flow
-// for Fase 2 (set window.OSCE_FASE = 2 before this script loads). Doctor Brain
-// mascot, branching dialogue, MCQ + multi-select interactions, timer,
-// checklist tracker, evaluation card.
+// OSCE Simulator Engine — Fase 2 only, single-pick redesign (NEUAAA-258).
+// 9-step OSCE Phase 2 visual novel with 3 randomised cases (Tetanus, TIA,
+// Stroke). Pembukaan and Inform Consent are dialogue-only (Doctor Brain
+// speaks, player presses Continue). All other steps are single MCQs with
+// distractor-parity rules: player picks ONE option, the choice locks
+// immediately, the next step renders, and the wrong/right verdict is held
+// back until the final feedback card. No mid-quiz highlighting, no hints,
+// no parentheses, no dashes in option copy.
 
 // ============================================================
 // 1. CONSTANTS
 // ============================================================
 
-var STEPS_FASE_1 = [
-  { id: 'intro',       label: '1. Pembukaan' },
-  { id: 'anamnesis',   label: '2. Anamnesis' },
-  { id: 'consent',     label: '3. Inform Consent' },
-  { id: 'persiapan',   label: '4. Persiapan' },
-  { id: 'pemeriksaan', label: '5. Pemeriksaan' },
-  { id: 'pelaporan',   label: '6. Pelaporan Hasil' },
-  { id: 'edukasi',     label: '7. Edukasi' }
-];
-
-var STEPS_FASE_2 = [
+var STEPS = [
   { id: 'intro',       label: '1. Pembukaan' },
   { id: 'anamnesis',   label: '2. Anamnesis' },
   { id: 'consent',     label: '3. Inform Consent' },
@@ -30,111 +23,24 @@ var STEPS_FASE_2 = [
   { id: 'edukasi',     label: '9. Edukasi' }
 ];
 
-// Active step list — reassigned by startSimulation() based on window.OSCE_FASE.
-var STEPS = STEPS_FASE_1;
-
-// Mascot frame mapping for Doctor Brain — 8 frames available (0..7).
-// Higher numbers = more mature/professional. Used for emotion/dialogue states.
+// Mascot frame mapping for Doctor Brain (0..7). Higher numbers tend toward
+// "more mature/professional" frames; used for dialogue emotion only.
 var MASCOT = {
-  intro:        6, // Junior Doctor — friendly greeting
-  anamnesis:    7, // Doctor — focused listening
-  consent:      5, // Confident med student — explanatory
-  persiapan:    6, // Junior Doctor — preparing
-  pemeriksaan:  7, // Doctor — actively examining
-  pelaporan:    6, // Junior Doctor — reporting back
-  penunjang:    7, // Doctor — ordering investigations
-  ddx:          5, // Confident med student — reasoning
-  tatalaksana:  6, // Junior Doctor — managing
-  edukasi:      5, // Confident med student — teaching
-  pass:         7, // proud Doctor
-  fail:         3, // Teen — uncertain / learning
+  intro:        6,
+  anamnesis:    7,
+  consent:      5,
+  persiapan:    6,
+  pemeriksaan:  7,
+  penunjang:    7,
+  ddx:          5,
+  tatalaksana:  6,
+  edukasi:      5,
+  pass:         7,
+  fail:         3,
   thinking:     5
 };
 
-var DURATION_FASE_1 = 600;     // 10 minutes
-var DURATION_FASE_2 = 14 * 60; // 14 minutes per Fase 2 spec
-var DEFAULT_DURATION_SECONDS = DURATION_FASE_1; // reassigned by startSimulation()
-
-// Default anamnesis question pool (case-agnostic OPQRST + RPD/RPK + lifestyle).
-var DEFAULT_ANAMNESIS_QUESTIONS = [
-  { id: 'q-onset',     label: 'Sejak kapan keluhan ini muncul?',                                relevant: true,  key: 'anam-onset',     reply: 'Beberapa hari terakhir, dok.' },
-  { id: 'q-location',  label: 'Di bagian tubuh mana keluhan dirasakan?',                        relevant: true,  key: 'anam-location',  reply: 'Seperti yang saya sampaikan tadi, dok.' },
-  { id: 'q-duration',  label: 'Apakah keluhan hilang timbul atau terus-menerus?',               relevant: true,  key: 'anam-duration',  reply: 'Terus-menerus, semakin lama semakin terasa.' },
-  { id: 'q-character', label: 'Bagaimana karakter keluhan — lemah, kebas, atau nyeri?',         relevant: true,  key: 'anam-character', reply: 'Lebih ke arah lemah dan sulit digerakkan, dok.' },
-  { id: 'q-aggrav',    label: 'Adakah faktor yang memperparah atau memperingan keluhan?',       relevant: true,  key: 'anam-aggrav',    reply: 'Lebih berat saat saya beraktivitas berat.' },
-  { id: 'q-rpd',       label: 'Riwayat penyakit dahulu — hipertensi, diabetes, stroke, trauma?', relevant: true, key: 'anam-rpd',       reply: 'Saya darah tinggi, dok. Tidak rutin minum obat.' },
-  { id: 'q-rpk',       label: 'Riwayat keluarga — apakah ada yang pernah mengalami serupa?',     relevant: true, key: 'anam-rpk',       reply: 'Bapak saya pernah stroke ringan.' },
-  { id: 'q-pola',      label: 'Bagaimana pola hidup — merokok, alkohol, olahraga?',              relevant: true, key: 'anam-pola',      reply: 'Saya merokok, dok. Olahraga jarang.' },
-  { id: 'q-irrelevant-food',   label: 'Apakah Bapak/Ibu alergi makanan laut?',                   relevant: false, reply: 'Tidak, dok... (pasien tampak bingung)',  penalty: 'Pertanyaan tidak relevan untuk keluhan neurologis.' },
-  { id: 'q-irrelevant-pet',    label: 'Apakah Bapak/Ibu memelihara hewan di rumah?',             relevant: false, reply: 'Tidak ada hubungannya, dok.',           penalty: 'Pertanyaan tidak relevan.' }
-];
-
-var DEFAULT_INTRO_CHOICES = [
-  {
-    id: 'intro-warm',
-    label: 'Selamat pagi Pak/Bu. Perkenalkan, saya dokter yang bertugas hari ini. Boleh saya tahu nama, usia, dan pekerjaan Anda?',
-    good: true,
-    key: 'intro-greeting',
-    reply: 'Selamat pagi dok. Nama saya Pak Joko, 55 tahun, sopir taksi.',
-    patientFace: 'normal'
-  },
-  {
-    id: 'intro-skip',
-    label: 'Pak/Bu, langsung saja — ada keluhan apa hari ini?',
-    good: false,
-    reply: 'Eh... iya dok. (pasien tampak agak terkejut karena tidak diperkenalkan)',
-    patientFace: 'worried',
-    penalty: 'Tidak ada salam dan perkenalan diri.'
-  }
-];
-
-var DEFAULT_CONSENT_OPTIONS = [
-  {
-    id: 'consent-good',
-    label: '"Selanjutnya saya akan melakukan pemeriksaan pergerakan otot dan refleks. Mungkin nanti sedikit kurang nyaman, tapi akan saya lakukan sebaik mungkin. Apakah Bapak/Ibu bersedia?"',
-    correct: true,
-    key: 'consent-explained',
-    reply: 'Iya dok, saya bersedia. Silakan.',
-    patientFace: 'normal'
-  },
-  {
-    id: 'consent-curt',
-    label: '"Pak/Bu, saya periksa sekarang ya."',
-    correct: false,
-    reply: 'Eh... iya dok. (pasien terlihat ragu)',
-    patientFace: 'worried',
-    penalty: 'Tidak menjelaskan prosedur dengan jelas.'
-  },
-  {
-    id: 'consent-skip',
-    label: '(Langsung memeriksa tanpa meminta persetujuan)',
-    correct: false,
-    reply: '(pasien terlihat tidak nyaman)',
-    patientFace: 'worried',
-    penalty: 'Pelanggaran etika — tidak ada inform consent.'
-  }
-];
-
-var DEFAULT_PREP_ITEMS = [
-  { id: 'prep-handwash', label: 'Cuci tangan 6 langkah WHO',                       correct: true, key: 'prep-handwash', reply: 'Baik, dok.' },
-  { id: 'prep-tools',    label: 'Siapkan palu refleks dan alcuta',                 correct: true, key: 'prep-tools',    reply: 'Saya tunggu, dok.' },
-  { id: 'prep-position', label: 'Atur posisi pasien (berbaring di bed pemeriksaan)', correct: true, key: 'prep-position', reply: 'Iya dok. (berbaring)' },
-  { id: 'prep-skip',     label: 'Mulai pemeriksaan tanpa cuci tangan',             correct: false, penalty: 'Tidak cuci tangan — risiko infeksi nosokomial.', patientFace: 'worried', reply: '(pasien terlihat khawatir)' }
-];
-
-var DEFAULT_REPORT_PATIENT = [
-  { id: 'rep-clear',  label: 'Sampaikan hasil pemeriksaan kepada pasien dengan bahasa awam dan rencana rujukan jika perlu', correct: true, key: 'rep-patient', reply: 'Baik dok, terima kasih atas penjelasannya.', patientFace: 'normal' },
-  { id: 'rep-tech',   label: 'Sampaikan istilah medis penuh (UMN/LMN/etc) tanpa penjelasan',                                correct: false, reply: 'Dok, saya tidak mengerti...',          patientFace: 'worried', penalty: 'Bahasa terlalu teknis untuk pasien.' },
-  { id: 'rep-vague',  label: 'Bilang "Bapak/Ibu sehat saja" walaupun ada hasil abnormal',                                   correct: false, reply: '(pasien lega tetapi tidak mendapat tindak lanjut)', patientFace: 'normal', penalty: 'Hasil abnormal tidak dilaporkan — pasien terlewat rujukan.' }
-];
-
-var DEFAULT_EDU_ITEMS = [
-  { id: 'edu-cerdik',   label: 'Edukasi CERDIK (Cek kesehatan, Enyahkan rokok, Rajin aktivitas, Diet seimbang, Istirahat, Kelola stres)', correct: true, key: 'edu-cerdik' },
-  { id: 'edu-control',  label: 'Anjurkan kontrol rutin ke dokter spesialis saraf',     correct: true, key: 'edu-control' },
-  { id: 'edu-trauma',   label: 'Hindari trauma kepala dan tulang belakang',            correct: true, key: 'edu-trauma' },
-  { id: 'edu-bp',       label: 'Kontrol tekanan darah secara rutin',                   correct: true, key: 'edu-bp' },
-  { id: 'edu-bad-noctrl',label: 'Pasien tidak perlu kontrol selama tidak ada keluhan', correct: false, penalty: 'Edukasi salah — kontrol tetap dibutuhkan.' }
-];
+var DURATION_SECONDS = 14 * 60;
 
 // ============================================================
 // 2. STATE
@@ -148,34 +54,19 @@ function initialState() {
   return {
     phase: 'start',
     stepIdx: 0,
-    introChosenId: null,
-    anamnesisAskedIds: [],
-    consentChosenId: null,
-    prepSelectedIds: [],
-    examinedIds: [],
-    examLastFinding: '',
-    examLastWrong: '',
-    diagnosisChosenId: null,
-    reportChosenId: null,
-    penunjangSelectedIds: [],
-    tatalaksanaSelectedIds: [],
-    eduSelectedIds: [],
+    introLineIdx: 0,
+    consentLineIdx: 0,
+    picks: {},          // { stepId: choiceId } single-pick per step
+    mistakes: [],       // [{ step, choice, consequence }]
     patientFace: 'normal',
     patientSpeech: '',
     doctorSpeech: '',
     doctorMascot: MASCOT.intro,
-    checklistDone: {},
-    checklistMissed: [],
-    penalties: [],
-    score: 0,
-    timeLeft: DEFAULT_DURATION_SECONDS,
+    timeLeft: DURATION_SECONDS,
     timeUp: false,
     finished: false,
-    diagnosisCorrect: false,
-    _checklistTotal: 0,
-    _checklistDoneCount: 0,
-    shuffledExams: [],
-    shuffledDiagnoses: []
+    // Per-case shuffled option pools (computed at startCase()).
+    shuffled: {}
   };
 }
 
@@ -183,11 +74,10 @@ function initialState() {
 // 3. HELPERS
 // ============================================================
 
-function isFase2() { return typeof window !== 'undefined' && window.OSCE_FASE === 2; }
-
 function activeCases() {
-  if (isFase2() && typeof window.OSCE_CASES_FASE_2 !== 'undefined') return window.OSCE_CASES_FASE_2;
-  if (typeof OSCE_CASES !== 'undefined') return OSCE_CASES;
+  if (typeof window !== 'undefined' && window.OSCE_CASES_FASE_2) {
+    return window.OSCE_CASES_FASE_2;
+  }
   return [];
 }
 
@@ -197,14 +87,8 @@ function getCurrentCase() {
   return cases[currentCase];
 }
 
-function getScript(stepKey) {
-  var c = getCurrentCase();
-  if (!c || !c.dialogueScript) return null;
-  return c.dialogueScript[stepKey] || null;
-}
-
 function shuffle(arr) {
-  var copy = arr.slice();
+  var copy = (arr || []).slice();
   for (var i = copy.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
     var t = copy[i]; copy[i] = copy[j]; copy[j] = t;
@@ -228,22 +112,26 @@ function fmtTime(seconds) {
   return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
 }
 
-function addPenalty(label, points) {
-  osceState.penalties.push({ step: STEPS[osceState.stepIdx].label, label: label, points: points });
-}
-
-function tickChecklist(key) {
-  if (!key) return;
-  osceState.checklistDone[key] = true;
-}
-
 function nextStepLabel(currentIdx) {
   if (currentIdx + 1 >= STEPS.length) return 'Selesaikan Kasus →';
   return 'Lanjut ke ' + STEPS[currentIdx + 1].label.replace(/^\d+\.\s/, '') + ' →';
 }
 
+function recordMistake(stepLabel, choiceLabel, consequence) {
+  osceState.mistakes.push({
+    step: stepLabel || '',
+    choice: choiceLabel || '',
+    consequence: consequence || ''
+  });
+}
+
+function stepLabel(idx) {
+  if (idx < 0 || idx >= STEPS.length) return '';
+  return STEPS[idx].label.replace(/^\d+\.\s/, '');
+}
+
 // ============================================================
-// 4. MASCOT + SCENE RENDERING
+// 4. SCENE RENDERING (patient + Doctor Brain)
 // ============================================================
 
 function patientSVG(face, speech) {
@@ -368,7 +256,7 @@ function stopTimer() {
 }
 
 // ============================================================
-// 6. HEADER (timer + checklist)
+// 6. HEADER (timer + step tracker, no per-stage verdict)
 // ============================================================
 
 function renderHeader() {
@@ -393,33 +281,96 @@ function renderHeader() {
 }
 
 // ============================================================
-// 7. STEP RENDERERS
+// 7. DIALOGUE-ONLY STEPS (Pembukaan + Inform Consent)
 // ============================================================
 
-function renderIntroStep() {
+function renderDialogueStep(stepId, lineIdxKey) {
   var c = getCurrentCase();
-  var script = getScript('intro');
-  var choices = (script && script.choices) ? script.choices : DEFAULT_INTRO_CHOICES;
-  var prompt = (script && script.prompt) ? script.prompt : 'Bagaimana Anda akan membuka pertemuan dengan pasien?';
-
-  if (osceState.introChosenId === null && !osceState.patientSpeech) {
-    osceState.patientSpeech = c.complaint || '';
-    osceState.patientFace = 'normal';
-    osceState.doctorMascot = MASCOT.intro;
-    osceState.doctorSpeech = (script && script.doctorOpening) || '';
+  var script = (c && c.dialogueScript && c.dialogueScript[stepId]) || {};
+  var lines = script.lines || [];
+  if (lines.length === 0) {
+    // Defensive default if a case forgets to supply dialogue lines.
+    lines = [{ doctor: 'Selamat pagi. Saya dokter yang bertugas hari ini.', patient: '' }];
   }
 
+  var idx = Math.min(osceState[lineIdxKey] || 0, lines.length - 1);
+  var line = lines[idx];
+
+  osceState.doctorSpeech = line.doctor || '';
+  osceState.patientSpeech = line.patient || '';
+  osceState.patientFace = line.patientFace || 'normal';
+  osceState.doctorMascot = (stepId === 'intro') ? MASCOT.intro : MASCOT.consent;
+
+  var isLast = idx >= lines.length - 1;
+  var buttonLabel = isLast ? nextStepLabel(osceState.stepIdx) : 'Lanjut →';
+  var buttonHandler = isLast
+    ? 'advanceStep()'
+    : 'advanceDialogue(\'' + lineIdxKey + '\')';
+
+  return renderScene() +
+    '<div class="vn-dialogue-progress">Dialog ' + (idx + 1) + ' dari ' + lines.length + '</div>' +
+    '<div class="vn-advance"><button class="btn-pill" onclick="' + buttonHandler + '">' + buttonLabel + '</button></div>';
+}
+
+window.advanceDialogue = function (lineIdxKey) {
+  osceState[lineIdxKey] = (osceState[lineIdxKey] || 0) + 1;
+  renderOSCE();
+};
+
+// ============================================================
+// 8. SINGLE-PICK MCQ STEP (anamnesis, persiapan, pemeriksaan,
+//     penunjang, ddx, tatalaksana, edukasi)
+// ============================================================
+
+function getStepConfig(stepId) {
+  var c = getCurrentCase();
+  if (!c || !c.dialogueScript) return null;
+  return c.dialogueScript[stepId] || null;
+}
+
+function getStepChoices(stepId) {
+  // Shuffled pool is computed at startCase() so the same order is shown
+  // across renders within a case.
+  if (osceState.shuffled && osceState.shuffled[stepId]) {
+    return osceState.shuffled[stepId];
+  }
+  var cfg = getStepConfig(stepId);
+  return (cfg && cfg.choices) ? cfg.choices : [];
+}
+
+function renderMcqStep(stepId) {
+  var cfg = getStepConfig(stepId) || {};
+  var choices = getStepChoices(stepId);
+  var prompt = cfg.prompt || '';
+  var picked = osceState.picks[stepId] || null;
+
+  // Set doctor framing (the question), patient quiet.
+  osceState.doctorSpeech = cfg.doctorPrompt || prompt;
+  osceState.doctorMascot = MASCOT[stepId] || MASCOT.thinking;
+  if (!picked) {
+    osceState.patientFace = 'normal';
+    osceState.patientSpeech = '';
+  }
+
+  // Render options — neutral styling, no verdict markers, no highlighting.
   var btns = '';
   for (var i = 0; i < choices.length; i++) {
     var ch = choices[i];
-    var sel = osceState.introChosenId === ch.id;
-    btns += '<button class="vn-choice' + (sel ? ' is-selected' : '') + '" onclick="chooseIntro(\'' + ch.id + '\')"' +
-      (osceState.introChosenId !== null ? ' disabled' : '') + '>' + escapeHtml(ch.label) + '</button>';
+    var disabled = picked !== null ? ' disabled' : '';
+    btns += '<button class="vn-choice' + (picked === ch.id ? ' is-selected' : '') + '"' +
+      ' onclick="pickChoice(\'' + stepId + '\', \'' + ch.id + '\')"' + disabled + '>' +
+      escapeHtml(ch.label) +
+    '</button>';
   }
 
-  var advanceBtn = (osceState.introChosenId !== null)
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '';
+  // No mid-quiz feedback. After a pick, an Auto Continue button advances
+  // (the pick handler also auto-advances via setTimeout so the player has
+  // a beat to see their selection).
+  var advanceBtn = '';
+  if (picked !== null) {
+    advanceBtn = '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' +
+      nextStepLabel(osceState.stepIdx) + '</button></div>';
+  }
 
   return renderScene() +
     '<div class="vn-prompt"><strong>' + escapeHtml(prompt) + '</strong></div>' +
@@ -427,553 +378,39 @@ function renderIntroStep() {
     advanceBtn;
 }
 
-window.chooseIntro = function (id) {
-  if (osceState.introChosenId !== null) return;
-  var script = getScript('intro');
-  var choices = (script && script.choices) ? script.choices : DEFAULT_INTRO_CHOICES;
+window.pickChoice = function (stepId, choiceId) {
+  if (osceState.picks[stepId]) return; // lock — no retry, no changing
+  var cfg = getStepConfig(stepId);
+  if (!cfg) return;
+  var choices = getStepChoices(stepId);
   var ch = null;
-  for (var i = 0; i < choices.length; i++) if (choices[i].id === id) { ch = choices[i]; break; }
+  for (var i = 0; i < choices.length; i++) if (choices[i].id === choiceId) { ch = choices[i]; break; }
   if (!ch) return;
 
-  osceState.introChosenId = id;
-  osceState.doctorSpeech = ch.label;
-  osceState.patientSpeech = ch.reply || '';
-  osceState.patientFace = ch.patientFace || 'normal';
-  osceState.doctorMascot = ch.good ? MASCOT.intro : MASCOT.fail;
-  if (ch.good) tickChecklist(ch.key || 'intro-greeting');
-  if (!ch.good && ch.penalty) addPenalty(ch.penalty, 5);
-  renderOSCE();
-};
+  osceState.picks[stepId] = choiceId;
 
-function renderAnamnesisStep() {
-  var script = getScript('anamnesis');
-  var pool = (script && script.questions) ? script.questions : DEFAULT_ANAMNESIS_QUESTIONS;
-  var minRelevant = (script && script.minRelevant) || 4;
+  // Patient reaction is muted — keep their face/speech neutral so the
+  // verdict is not visually telegraphed. Only the final feedback card
+  // reveals what was correct.
+  osceState.patientSpeech = '';
+  osceState.patientFace = 'normal';
 
-  var relevantAsked = 0;
-  for (var i = 0; i < osceState.anamnesisAskedIds.length; i++) {
-    for (var j = 0; j < pool.length; j++) {
-      if (pool[j].id === osceState.anamnesisAskedIds[i] && pool[j].relevant) { relevantAsked++; break; }
-    }
+  if (!ch.correct) {
+    recordMistake(stepLabel(osceState.stepIdx), ch.label, ch.consequence || cfg.wrongConsequence || '');
   }
-  var canAdvance = relevantAsked >= minRelevant;
-
-  var btns = '';
-  for (var k = 0; k < pool.length; k++) {
-    var q = pool[k];
-    var asked = osceState.anamnesisAskedIds.indexOf(q.id) !== -1;
-    var cls = 'vn-mcq';
-    if (asked) cls += q.relevant ? ' is-correct' : ' is-wrong';
-    btns += '<button class="' + cls + '" onclick="askAnamnesis(\'' + q.id + '\')"' + (asked ? ' disabled' : '') + '>' +
-      (asked ? (q.relevant ? '✓ ' : '✗ ') : '') + escapeHtml(q.label) + '</button>';
-  }
-
-  var hint = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Tanyakan minimal <strong>' + minRelevant + '</strong> pertanyaan yang relevan untuk melanjutkan (saat ini ' + relevantAsked + '/' + minRelevant + ').</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>Pilih pertanyaan anamnesis:</strong></div>' +
-    '<div class="vn-mcq-grid">' + btns + '</div>' +
-    hint;
-}
-
-window.askAnamnesis = function (id) {
-  var script = getScript('anamnesis');
-  var pool = (script && script.questions) ? script.questions : DEFAULT_ANAMNESIS_QUESTIONS;
-  var q = null;
-  for (var i = 0; i < pool.length; i++) if (pool[i].id === id) { q = pool[i]; break; }
-  if (!q || osceState.anamnesisAskedIds.indexOf(id) !== -1) return;
-
-  osceState.anamnesisAskedIds.push(id);
-  osceState.doctorSpeech = q.label;
-  osceState.patientSpeech = q.reply || '...';
-  osceState.patientFace = q.patientFace || (q.relevant ? 'normal' : 'worried');
-  osceState.doctorMascot = q.relevant ? MASCOT.anamnesis : MASCOT.thinking;
-  if (q.relevant && q.key) tickChecklist(q.key);
-  if (!q.relevant && q.penalty) addPenalty(q.penalty, 3);
-  renderOSCE();
-};
-
-function renderConsentStep() {
-  var script = getScript('consent');
-  var options = (script && script.options) ? script.options : DEFAULT_CONSENT_OPTIONS;
-  var prompt = (script && script.prompt) || 'Pilih cara terbaik menyampaikan inform consent:';
-
-  if (osceState.consentChosenId === null && !osceState.doctorSpeech) {
-    osceState.doctorSpeech = (script && script.doctorIntro) || 'Saya perlu menjelaskan prosedur dan meminta persetujuan terlebih dahulu.';
-    osceState.patientFace = 'normal';
-    osceState.patientSpeech = '';
-    osceState.doctorMascot = MASCOT.consent;
-  }
-
-  var btns = '';
-  for (var i = 0; i < options.length; i++) {
-    var op = options[i];
-    var sel = osceState.consentChosenId === op.id;
-    btns += '<button class="vn-choice' + (sel ? ' is-selected' : '') + '" onclick="chooseConsent(\'' + op.id + '\')"' +
-      (osceState.consentChosenId !== null ? ' disabled' : '') + '>' + escapeHtml(op.label) + '</button>';
-  }
-
-  var advance = (osceState.consentChosenId !== null)
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>' + escapeHtml(prompt) + '</strong></div>' +
-    '<div class="vn-choices">' + btns + '</div>' +
-    advance;
-}
-
-window.chooseConsent = function (id) {
-  if (osceState.consentChosenId !== null) return;
-  var script = getScript('consent');
-  var options = (script && script.options) ? script.options : DEFAULT_CONSENT_OPTIONS;
-  var op = null;
-  for (var i = 0; i < options.length; i++) if (options[i].id === id) { op = options[i]; break; }
-  if (!op) return;
-
-  osceState.consentChosenId = id;
-  osceState.doctorSpeech = op.label;
-  osceState.patientSpeech = op.reply || '';
-  osceState.patientFace = op.patientFace || (op.correct ? 'normal' : 'worried');
-  osceState.doctorMascot = op.correct ? MASCOT.consent : MASCOT.fail;
-  if (op.correct && op.key) tickChecklist(op.key);
-  if (!op.correct && op.penalty) addPenalty(op.penalty, 5);
-  renderOSCE();
-};
-
-function renderPrepStep() {
-  var script = getScript('persiapan');
-  var items = (script && script.items) ? script.items : DEFAULT_PREP_ITEMS;
-  var minRelevant = (script && script.minRelevant) || 3;
-
-  var relevantPicked = 0;
-  for (var i = 0; i < osceState.prepSelectedIds.length; i++) {
-    for (var j = 0; j < items.length; j++) {
-      if (items[j].id === osceState.prepSelectedIds[i] && items[j].correct) { relevantPicked++; break; }
-    }
-  }
-  var canAdvance = relevantPicked >= minRelevant;
-
-  var btns = '';
-  for (var k = 0; k < items.length; k++) {
-    var it = items[k];
-    var picked = osceState.prepSelectedIds.indexOf(it.id) !== -1;
-    var cls = 'vn-mcq';
-    if (picked) cls += it.correct ? ' is-correct' : ' is-wrong';
-    btns += '<button class="' + cls + '" onclick="pickPrep(\'' + it.id + '\')"' + (picked ? ' disabled' : '') + '>' +
-      (picked ? (it.correct ? '✓ ' : '✗ ') : '') + escapeHtml(it.label) + '</button>';
-  }
-
-  var hint = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Lakukan minimal <strong>' + minRelevant + '</strong> persiapan yang benar (saat ini ' + relevantPicked + '/' + minRelevant + ').</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>Pilih langkah persiapan:</strong></div>' +
-    '<div class="vn-mcq-grid">' + btns + '</div>' +
-    hint;
-}
-
-window.pickPrep = function (id) {
-  var script = getScript('persiapan');
-  var items = (script && script.items) ? script.items : DEFAULT_PREP_ITEMS;
-  var it = null;
-  for (var i = 0; i < items.length; i++) if (items[i].id === id) { it = items[i]; break; }
-  if (!it || osceState.prepSelectedIds.indexOf(id) !== -1) return;
-
-  osceState.prepSelectedIds.push(id);
-  osceState.doctorSpeech = it.label;
-  osceState.patientSpeech = it.reply || '';
-  osceState.patientFace = it.patientFace || (it.correct ? 'normal' : 'worried');
-  osceState.doctorMascot = it.correct ? MASCOT.persiapan : MASCOT.fail;
-  if (it.correct && it.key) tickChecklist(it.key);
-  if (!it.correct && it.penalty) addPenalty(it.penalty, 5);
-  renderOSCE();
-};
-
-function renderExamStep() {
-  var c = getCurrentCase();
-  var min = c.minExamsRequired || 3;
-  var done = osceState.examinedIds.length;
-  var canAdvance = done >= min;
-  var exams = osceState.shuffledExams.length > 0 ? osceState.shuffledExams : (c.exams || []);
-
-  if (!osceState.doctorSpeech && osceState.examinedIds.length === 0) {
-    osceState.doctorSpeech = 'Saya akan melakukan pemeriksaan fisik sekarang.';
-    osceState.doctorMascot = MASCOT.pemeriksaan;
-  }
-
-  var finding = '';
-  if (osceState.examLastFinding) {
-    finding = '<div class="finding-box">' +
-      '<strong style="color:#7B1224;">Hasil Temuan:</strong>' +
-      '<p style="margin:.5rem 0 0;color:#555;">' + escapeHtml(osceState.examLastFinding) + '</p>' +
-      (osceState.examLastWrong ? '<p class="finding-explanation">' + escapeHtml(osceState.examLastWrong) + '</p>' : '') +
-    '</div>';
-  }
-
-  var btns = '';
-  for (var i = 0; i < exams.length; i++) {
-    var ex = exams[i];
-    var used = osceState.examinedIds.indexOf(ex.id) !== -1;
-    var mark = '', wrongClass = '';
-    if (used) {
-      if (ex.correct) mark = '✓ ';
-      else { mark = '✗ '; wrongClass = ' wrong'; }
-    }
-    btns += '<button class="exam-btn' + (used ? ' already' : '') + wrongClass + '" onclick="doExam(\'' + ex.id + '\')"' +
-      (used ? ' disabled' : '') + '>' + mark + escapeHtml(ex.name) + '</button>';
-  }
-
-  var advance = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Selesaikan <strong>' + (min - done) + '</strong> pemeriksaan lagi untuk melanjutkan.</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>Pilih pemeriksaan yang akan dilakukan:</strong></div>' +
-    '<div class="vn-exam-grid">' + btns + '</div>' +
-    finding +
-    '<div class="vn-progress-line">Pemeriksaan selesai: <strong>' + done + '/' + min + '</strong></div>' +
-    advance;
-}
-
-window.doExam = function (examId) {
-  var c = getCurrentCase();
-  if (!c) return;
-  if (osceState.examinedIds.indexOf(examId) !== -1) return;
-
-  var exam = null;
-  for (var i = 0; i < c.exams.length; i++) if (c.exams[i].id === examId) { exam = c.exams[i]; break; }
-  if (!exam) return;
-
-  osceState.examinedIds.push(examId);
-  osceState.doctorSpeech = exam.doctorPrompt || 'Saya periksa sekarang.';
-  osceState.patientSpeech = exam.patientSpeech || '';
-  osceState.patientFace = exam.patientFace || 'normal';
-  osceState.examLastFinding = exam.finding || '';
-  osceState.examLastWrong = '';
-  osceState.doctorMascot = exam.correct ? MASCOT.pemeriksaan : MASCOT.fail;
-
-  if (exam.correct) tickChecklist('exam-' + exam.id);
-  else if (exam.wrongExplanation) addPenalty(exam.wrongExplanation, 4);
 
   renderOSCE();
 
+  // Auto-advance after a brief pause so the lock visual reads as feedback.
   setTimeout(function () {
-    if (!exam.correct && exam.wrongExplanation) {
-      osceState.doctorSpeech = 'Hasil pemeriksaan sudah dicatat.';
-      osceState.examLastFinding = exam.finding || '-';
-      osceState.examLastWrong = exam.wrongExplanation;
-    } else {
-      osceState.doctorSpeech = 'Saya temukan: ' + (exam.finding || '-');
-      osceState.examLastWrong = '';
+    if (osceState && !osceState.finished && osceState.picks[stepId] === choiceId) {
+      advanceStep();
     }
-    if (exam.patientFace === 'pain') {
-      osceState.patientFace = 'normal';
-      osceState.patientSpeech = '';
-    }
-    renderOSCE();
-  }, 600);
-};
-
-// ---- Fase 1: Pelaporan (combined diagnosis + report) ----
-function renderReportStep() {
-  var c = getCurrentCase();
-  var script = getScript('pelaporan');
-  var options = (script && script.reportOptions) ? script.reportOptions : DEFAULT_REPORT_PATIENT;
-  var diagnoses = osceState.shuffledDiagnoses.length > 0 ? osceState.shuffledDiagnoses : (c.diagnoses || []);
-
-  if (!osceState.doctorSpeech) {
-    osceState.doctorSpeech = c.doctorDiagnosisCue || 'Sekarang saya akan melaporkan hasil pemeriksaan.';
-    osceState.doctorMascot = MASCOT.pelaporan;
-    osceState.patientFace = 'normal';
-    osceState.patientSpeech = '';
-  }
-
-  var dxBtns = '';
-  for (var i = 0; i < diagnoses.length; i++) {
-    var dx = diagnoses[i];
-    var sel = osceState.diagnosisChosenId === dx.id;
-    dxBtns += '<button class="vn-choice dx-choice' + (sel ? ' is-selected' : '') + '" onclick="pickDiagnosis(\'' + dx.id + '\')">' +
-      escapeHtml(dx.name) + '</button>';
-  }
-
-  var repBtns = '';
-  for (var j = 0; j < options.length; j++) {
-    var op = options[j];
-    var rsel = osceState.reportChosenId === op.id;
-    repBtns += '<button class="vn-choice' + (rsel ? ' is-selected' : '') + '" onclick="pickReport(\'' + op.id + '\')"' +
-      (osceState.reportChosenId !== null ? ' disabled' : '') + '>' + escapeHtml(op.label) + '</button>';
-  }
-
-  var canAdvance = (osceState.diagnosisChosenId !== null) && (osceState.reportChosenId !== null);
-  var advance = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Pilih diagnosis dan cara melaporkan ke pasien untuk melanjutkan.</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>A. Apa diagnosis kerja Anda?</strong></div>' +
-    '<div class="vn-choices">' + dxBtns + '</div>' +
-    '<div class="vn-prompt" style="margin-top:1.5rem;"><strong>B. Bagaimana Anda menyampaikan hasil ke pasien?</strong></div>' +
-    '<div class="vn-choices">' + repBtns + '</div>' +
-    advance;
-}
-
-window.pickDiagnosis = function (id) {
-  if (osceState.diagnosisChosenId === id) {
-    osceState.diagnosisChosenId = null;
-  } else {
-    osceState.diagnosisChosenId = id;
-  }
-  renderOSCE();
-};
-
-window.pickReport = function (id) {
-  if (osceState.reportChosenId !== null) return;
-  var script = getScript('pelaporan');
-  var options = (script && script.reportOptions) ? script.reportOptions : DEFAULT_REPORT_PATIENT;
-  var op = null;
-  for (var i = 0; i < options.length; i++) if (options[i].id === id) { op = options[i]; break; }
-  if (!op) return;
-
-  osceState.reportChosenId = id;
-  osceState.doctorSpeech = op.label;
-  osceState.patientSpeech = op.reply || '';
-  osceState.patientFace = op.patientFace || (op.correct ? 'normal' : 'worried');
-  osceState.doctorMascot = op.correct ? MASCOT.pelaporan : MASCOT.fail;
-  if (op.correct && op.key) tickChecklist(op.key);
-  if (!op.correct && op.penalty) addPenalty(op.penalty, 4);
-  renderOSCE();
-};
-
-// ---- Fase 2: Pemeriksaan Penunjang (multi-select investigations) ----
-function renderPenunjangStep() {
-  var c = getCurrentCase();
-  var pen = c.penunjang || {};
-  var items = pen.items || [];
-  var minRelevant = pen.minRelevant || 1;
-  var prompt = pen.prompt || 'Pilih pemeriksaan penunjang yang tepat:';
-
-  if (!osceState.doctorSpeech) {
-    osceState.doctorSpeech = pen.doctorIntro || 'Saya akan tentukan pemeriksaan penunjang yang relevan.';
-    osceState.doctorMascot = MASCOT.penunjang;
-    osceState.patientFace = 'normal';
-    osceState.patientSpeech = '';
-  }
-
-  var relevantPicked = 0;
-  for (var i = 0; i < osceState.penunjangSelectedIds.length; i++) {
-    for (var j = 0; j < items.length; j++) {
-      if (items[j].id === osceState.penunjangSelectedIds[i] && items[j].correct) { relevantPicked++; break; }
-    }
-  }
-  var canAdvance = relevantPicked >= minRelevant;
-
-  var btns = '';
-  for (var k = 0; k < items.length; k++) {
-    var it = items[k];
-    var picked = osceState.penunjangSelectedIds.indexOf(it.id) !== -1;
-    var cls = 'vn-mcq';
-    if (picked) cls += it.correct ? ' is-correct' : ' is-wrong';
-    btns += '<button class="' + cls + '" onclick="pickPenunjang(\'' + it.id + '\')"' + (picked ? ' disabled' : '') + '>' +
-      (picked ? (it.correct ? '✓ ' : '✗ ') : '') + escapeHtml(it.label) + '</button>';
-  }
-
-  var hint = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Pilih minimal <strong>' + minRelevant + '</strong> pemeriksaan penunjang yang tepat (saat ini ' + relevantPicked + '/' + minRelevant + ').</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>' + escapeHtml(prompt) + '</strong></div>' +
-    '<div class="vn-mcq-grid">' + btns + '</div>' +
-    hint;
-}
-
-window.pickPenunjang = function (id) {
-  var c = getCurrentCase();
-  var items = (c.penunjang && c.penunjang.items) || [];
-  var it = null;
-  for (var i = 0; i < items.length; i++) if (items[i].id === id) { it = items[i]; break; }
-  if (!it || osceState.penunjangSelectedIds.indexOf(id) !== -1) return;
-
-  osceState.penunjangSelectedIds.push(id);
-  osceState.doctorSpeech = it.label;
-  osceState.patientSpeech = it.reply || '';
-  osceState.patientFace = it.patientFace || (it.correct ? 'normal' : 'worried');
-  osceState.doctorMascot = it.correct ? MASCOT.penunjang : MASCOT.fail;
-  if (it.correct && it.key) tickChecklist(it.key);
-  if (!it.correct && it.penalty) addPenalty(it.penalty, 4);
-  renderOSCE();
-};
-
-// ---- Fase 2: Diagnosis Banding (single-select diagnosis kerja) ----
-function renderDdxStep() {
-  var c = getCurrentCase();
-  var diagnoses = osceState.shuffledDiagnoses.length > 0 ? osceState.shuffledDiagnoses : (c.diagnoses || []);
-
-  if (!osceState.doctorSpeech) {
-    osceState.doctorSpeech = c.doctorDiagnosisCue || 'Berdasarkan temuan pemeriksaan dan penunjang, apa diagnosis kerja Anda?';
-    osceState.doctorMascot = MASCOT.ddx;
-    osceState.patientFace = 'normal';
-    osceState.patientSpeech = '';
-  }
-
-  var dxBtns = '';
-  for (var i = 0; i < diagnoses.length; i++) {
-    var dx = diagnoses[i];
-    var sel = osceState.diagnosisChosenId === dx.id;
-    dxBtns += '<button class="vn-choice dx-choice' + (sel ? ' is-selected' : '') + '" onclick="pickDiagnosis(\'' + dx.id + '\')">' +
-      escapeHtml(dx.name) + '</button>';
-  }
-
-  // Show explanation for the picked dx (right or wrong) so it's a learning moment.
-  var explain = '';
-  if (osceState.diagnosisChosenId) {
-    var picked = null;
-    for (var j = 0; j < diagnoses.length; j++) if (diagnoses[j].id === osceState.diagnosisChosenId) { picked = diagnoses[j]; break; }
-    if (picked) {
-      if (picked.correct) {
-        explain = '<div class="finding-box"><strong style="color:#2e7d32;">✓ Diagnosis kerja tepat.</strong></div>';
-      } else if (picked.wrongExplanation) {
-        explain = '<div class="finding-box"><strong style="color:#c62828;">✗ Kurang tepat.</strong>' +
-          '<p class="finding-explanation">' + escapeHtml(picked.wrongExplanation) + '</p></div>';
-      }
-    }
-  }
-
-  var canAdvance = osceState.diagnosisChosenId !== null;
-  var advance = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Pilih satu diagnosis kerja untuk melanjutkan ke tatalaksana.</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>Apa diagnosis kerja Anda?</strong></div>' +
-    '<div class="vn-choices">' + dxBtns + '</div>' +
-    explain +
-    advance;
-}
-
-// ---- Fase 2: Tatalaksana & Farmakoterapi (multi-select management) ----
-function renderTatalaksanaStep() {
-  var c = getCurrentCase();
-  var tx = c.tatalaksana || {};
-  var items = tx.items || [];
-  var minRelevant = tx.minRelevant || 3;
-  var prompt = tx.prompt || 'Pilih langkah tatalaksana dan farmakoterapi yang tepat:';
-
-  if (!osceState.doctorSpeech) {
-    osceState.doctorSpeech = tx.doctorIntro || 'Saya akan menentukan rencana tatalaksana.';
-    osceState.doctorMascot = MASCOT.tatalaksana;
-    osceState.patientFace = 'normal';
-    osceState.patientSpeech = '';
-  }
-
-  var relevantPicked = 0;
-  for (var i = 0; i < osceState.tatalaksanaSelectedIds.length; i++) {
-    for (var j = 0; j < items.length; j++) {
-      if (items[j].id === osceState.tatalaksanaSelectedIds[i] && items[j].correct) { relevantPicked++; break; }
-    }
-  }
-  var canAdvance = relevantPicked >= minRelevant;
-
-  var btns = '';
-  for (var k = 0; k < items.length; k++) {
-    var it = items[k];
-    var picked = osceState.tatalaksanaSelectedIds.indexOf(it.id) !== -1;
-    var cls = 'vn-mcq';
-    if (picked) cls += it.correct ? ' is-correct' : ' is-wrong';
-    btns += '<button class="' + cls + '" onclick="pickTatalaksana(\'' + it.id + '\')"' + (picked ? ' disabled' : '') + '>' +
-      (picked ? (it.correct ? '✓ ' : '✗ ') : '') + escapeHtml(it.label) + '</button>';
-  }
-
-  var hint = canAdvance
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">' + nextStepLabel(osceState.stepIdx) + '</button></div>'
-    : '<div class="vn-helper">Pilih minimal <strong>' + minRelevant + '</strong> langkah tatalaksana yang tepat (saat ini ' + relevantPicked + '/' + minRelevant + ').</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>' + escapeHtml(prompt) + '</strong></div>' +
-    '<div class="vn-mcq-grid">' + btns + '</div>' +
-    hint;
-}
-
-window.pickTatalaksana = function (id) {
-  var c = getCurrentCase();
-  var items = (c.tatalaksana && c.tatalaksana.items) || [];
-  var it = null;
-  for (var i = 0; i < items.length; i++) if (items[i].id === id) { it = items[i]; break; }
-  if (!it || osceState.tatalaksanaSelectedIds.indexOf(id) !== -1) return;
-
-  osceState.tatalaksanaSelectedIds.push(id);
-  osceState.doctorSpeech = it.label;
-  osceState.patientSpeech = it.reply || '';
-  osceState.patientFace = it.patientFace || (it.correct ? 'normal' : 'worried');
-  osceState.doctorMascot = it.correct ? MASCOT.tatalaksana : MASCOT.fail;
-  if (it.correct && it.key) tickChecklist(it.key);
-  if (!it.correct && it.penalty) addPenalty(it.penalty, 5);
-  renderOSCE();
-};
-
-function renderEduStep() {
-  var script = getScript('edukasi');
-  var items = (script && script.items) ? script.items : DEFAULT_EDU_ITEMS;
-  var minRelevant = (script && script.minRelevant) || 3;
-
-  if (!osceState.doctorSpeech) {
-    osceState.doctorSpeech = 'Sebelum pulang, saya berikan edukasi singkat.';
-    osceState.doctorMascot = MASCOT.edukasi;
-    osceState.patientFace = 'normal';
-    osceState.patientSpeech = '';
-  }
-
-  var relevantPicked = 0;
-  for (var i = 0; i < osceState.eduSelectedIds.length; i++) {
-    for (var j = 0; j < items.length; j++) {
-      if (items[j].id === osceState.eduSelectedIds[i] && items[j].correct) { relevantPicked++; break; }
-    }
-  }
-  var canFinish = relevantPicked >= minRelevant;
-
-  var btns = '';
-  for (var k = 0; k < items.length; k++) {
-    var it = items[k];
-    var picked = osceState.eduSelectedIds.indexOf(it.id) !== -1;
-    var cls = 'vn-mcq';
-    if (picked) cls += it.correct ? ' is-correct' : ' is-wrong';
-    btns += '<button class="' + cls + '" onclick="pickEdu(\'' + it.id + '\')"' + (picked ? ' disabled' : '') + '>' +
-      (picked ? (it.correct ? '✓ ' : '✗ ') : '') + escapeHtml(it.label) + '</button>';
-  }
-
-  var finishBtn = canFinish
-    ? '<div class="vn-advance"><button class="btn-pill" onclick="advanceStep()">Selesaikan Kasus →</button></div>'
-    : '<div class="vn-helper">Berikan minimal <strong>' + minRelevant + '</strong> edukasi yang tepat (saat ini ' + relevantPicked + '/' + minRelevant + ').</div>';
-
-  return renderScene() +
-    '<div class="vn-prompt"><strong>Pilih poin edukasi yang relevan:</strong></div>' +
-    '<div class="vn-mcq-grid">' + btns + '</div>' +
-    finishBtn;
-}
-
-window.pickEdu = function (id) {
-  var script = getScript('edukasi');
-  var items = (script && script.items) ? script.items : DEFAULT_EDU_ITEMS;
-  var it = null;
-  for (var i = 0; i < items.length; i++) if (items[i].id === id) { it = items[i]; break; }
-  if (!it || osceState.eduSelectedIds.indexOf(id) !== -1) return;
-
-  osceState.eduSelectedIds.push(id);
-  osceState.doctorSpeech = it.label;
-  osceState.patientFace = it.patientFace || (it.correct ? 'normal' : 'worried');
-  osceState.patientSpeech = it.reply || '';
-  osceState.doctorMascot = it.correct ? MASCOT.edukasi : MASCOT.fail;
-  if (it.correct && it.key) tickChecklist(it.key);
-  if (!it.correct && it.penalty) addPenalty(it.penalty, 3);
-  renderOSCE();
+  }, 650);
 };
 
 // ============================================================
-// 8. ADVANCE / FINISH
+// 9. ADVANCE / FINISH
 // ============================================================
 
 window.advanceStep = function () {
@@ -985,177 +422,103 @@ window.advanceStep = function () {
   renderOSCE();
 };
 
-function hasStep(id) {
-  for (var i = 0; i < STEPS.length; i++) if (STEPS[i].id === id) return true;
-  return false;
-}
-
 function finishCase() {
   if (osceState.finished) return;
   osceState.finished = true;
   stopTimer();
 
-  var c = getCurrentCase();
-  if (!c) { renderOSCE(); return; }
-
-  // Build the master expected-checklist for the case (depends on STEPS shape).
-  var expected = [];
-  expected.push({ key: 'intro-greeting', label: 'Salam, perkenalan diri' });
-
-  var anamPool = (function () { var s = getScript('anamnesis'); return (s && s.questions) ? s.questions : DEFAULT_ANAMNESIS_QUESTIONS; })();
-  var anamMin = (function () { var s = getScript('anamnesis'); return (s && s.minRelevant) || 4; })();
-  var anamCnt = 0;
-  for (var i = 0; i < anamPool.length && anamCnt < anamMin; i++) {
-    if (anamPool[i].relevant && anamPool[i].key) {
-      expected.push({ key: anamPool[i].key, label: 'Anamnesis: ' + anamPool[i].label });
-      anamCnt++;
-    }
-  }
-  expected.push({ key: 'consent-explained', label: 'Inform consent dijelaskan dan disetujui' });
-  expected.push({ key: 'prep-handwash', label: 'Cuci tangan' });
-  expected.push({ key: 'prep-tools', label: 'Siapkan alat' });
-  expected.push({ key: 'prep-position', label: 'Atur posisi pasien' });
-
-  var exams = c.exams || [];
-  for (var k = 0; k < exams.length; k++) {
-    if (exams[k].correct) expected.push({ key: 'exam-' + exams[k].id, label: 'Pemeriksaan: ' + exams[k].name });
-  }
-
-  if (hasStep('penunjang') && c.penunjang && c.penunjang.items) {
-    var penMin = c.penunjang.minRelevant || 1;
-    var penCnt = 0;
-    for (var p = 0; p < c.penunjang.items.length && penCnt < penMin; p++) {
-      var pi = c.penunjang.items[p];
-      if (pi.correct && pi.key) {
-        expected.push({ key: pi.key, label: 'Penunjang: ' + pi.label });
-        penCnt++;
-      }
-    }
-  }
-
-  if (hasStep('pelaporan')) {
-    expected.push({ key: 'rep-patient', label: 'Pelaporan ke pasien dengan bahasa awam' });
-  }
-
-  if (hasStep('tatalaksana') && c.tatalaksana && c.tatalaksana.items) {
-    var txMin = c.tatalaksana.minRelevant || 3;
-    var txCnt = 0;
-    for (var t = 0; t < c.tatalaksana.items.length && txCnt < txMin; t++) {
-      var ti = c.tatalaksana.items[t];
-      if (ti.correct && ti.key) {
-        expected.push({ key: ti.key, label: 'Tatalaksana: ' + ti.label });
-        txCnt++;
-      }
-    }
-  }
-
-  var eduPool = (function () { var s = getScript('edukasi'); return (s && s.items) ? s.items : DEFAULT_EDU_ITEMS; })();
-  var eduMin = (function () { var s = getScript('edukasi'); return (s && s.minRelevant) || 3; })();
-  var eduCnt = 0;
-  for (var m = 0; m < eduPool.length && eduCnt < eduMin; m++) {
-    if (eduPool[m].correct && eduPool[m].key) {
-      expected.push({ key: eduPool[m].key, label: 'Edukasi: ' + eduPool[m].label });
-      eduCnt++;
-    }
-  }
-
-  var doneCount = 0;
-  var missed = [];
-  for (var n = 0; n < expected.length; n++) {
-    if (osceState.checklistDone[expected[n].key]) doneCount++;
-    else missed.push(expected[n]);
-  }
-  osceState.checklistMissed = missed;
-  osceState._checklistTotal = expected.length;
-  osceState._checklistDoneCount = doneCount;
-
-  var diagCorrect = false;
-  if (osceState.diagnosisChosenId) {
-    var diags = c.diagnoses || [];
-    for (var d = 0; d < diags.length; d++) {
-      if (diags[d].id === osceState.diagnosisChosenId) { diagCorrect = !!diags[d].correct; break; }
-    }
-  }
-  osceState.diagnosisCorrect = diagCorrect;
-
-  var checklistPct = expected.length > 0 ? (doneCount / expected.length) : 0;
-  var diagPct = diagCorrect ? 1 : 0;
-  var timeBonus = osceState.timeUp ? 0 : Math.min(1, osceState.timeLeft / DEFAULT_DURATION_SECONDS);
-  var raw = checklistPct * 60 + diagPct * 30 + timeBonus * 10;
-  var penaltySum = 0;
-  for (var pp = 0; pp < osceState.penalties.length; pp++) penaltySum += osceState.penalties[pp].points;
-  raw = Math.max(0, raw - penaltySum);
-  osceState.score = Math.round(raw);
-
   osceState.phase = 'result';
   renderOSCE();
 
   if (window.NeuroPet && typeof window.NeuroPet.markSectionComplete === 'function') {
-    window.NeuroPet.markSectionComplete(isFase2() ? 'quiz-fase-2' : 'quiz-fase-1');
+    window.NeuroPet.markSectionComplete('quiz-fase-2');
   }
 }
 
 // ============================================================
-// 9. RESULT CARD
+// 10. RESULT CARD (single place where verdicts surface)
 // ============================================================
 
 function renderResult() {
-  var pass = osceState.score >= 70 && osceState.diagnosisCorrect;
+  var c = getCurrentCase();
+  var totalSteps = 0;
+  var correctSteps = 0;
+
+  // Count correctness per MCQ step (skip dialogue-only intro/consent).
+  for (var i = 0; i < STEPS.length; i++) {
+    var s = STEPS[i];
+    if (s.id === 'intro' || s.id === 'consent') continue;
+    totalSteps++;
+    var pickId = osceState.picks[s.id];
+    if (!pickId) continue;
+    var choices = (c && c.dialogueScript && c.dialogueScript[s.id] && c.dialogueScript[s.id].choices) || [];
+    for (var j = 0; j < choices.length; j++) {
+      if (choices[j].id === pickId && choices[j].correct) { correctSteps++; break; }
+    }
+  }
+
+  var pct = totalSteps > 0 ? Math.round((correctSteps / totalSteps) * 100) : 0;
+  if (osceState.timeUp) pct = Math.max(0, pct - 10);
+  var pass = pct >= 70 && osceState.mistakes.length === 0
+    ? true
+    : (pct >= 70 && osceState.mistakes.length <= 1);
+
   var bg = pass ? '#e8f5e9' : '#ffebee';
   var col = pass ? '#4caf50' : '#f44336';
   var headline = osceState.timeUp ? 'Waktu Habis' : (pass ? 'Kasus Selesai — Kompeten' : 'Kasus Selesai — Perlu Perbaikan');
 
-  // Set scene face based on result for evaluation card.
-  osceState.patientFace = pass ? 'happy' : (osceState.timeUp ? 'worried' : 'worried');
+  osceState.patientFace = pass ? 'happy' : 'worried';
   osceState.doctorMascot = pass ? MASCOT.pass : MASCOT.fail;
   osceState.doctorSpeech = pass ? 'Kerja yang baik!' : 'Mari kita tinjau kembali bersama.';
   osceState.patientSpeech = '';
 
-  var dxLine = osceState.diagnosisChosenId
-    ? (osceState.diagnosisCorrect
-        ? '<p style="color:#2e7d32;margin:.25rem 0;">✓ Diagnosis tepat.</p>'
-        : '<p style="color:#c62828;margin:.25rem 0;">✗ Diagnosis kurang tepat.</p>')
-    : '<p style="color:#c62828;margin:.25rem 0;">✗ Tidak ada diagnosis dipilih.</p>';
-
-  var missedHtml = '';
-  if (osceState.checklistMissed && osceState.checklistMissed.length > 0) {
-    missedHtml += '<h4 style="margin:1.25rem 0 .5rem;color:#7B1224;">Item Checklist yang Terlewat</h4><ul class="osce-eval-missed">';
-    for (var i = 0; i < osceState.checklistMissed.length; i++) {
-      missedHtml += '<li>' + escapeHtml(osceState.checklistMissed[i].label) + '</li>';
+  var mistakesHtml = '';
+  if (osceState.mistakes.length > 0) {
+    mistakesHtml += '<h4 style="margin:1.25rem 0 .5rem;color:#7B1224;">Catatan Pilihan yang Kurang Tepat</h4>' +
+      '<ul class="osce-eval-penalty">';
+    for (var k = 0; k < osceState.mistakes.length; k++) {
+      var m = osceState.mistakes[k];
+      mistakesHtml += '<li>' +
+        '<strong>' + escapeHtml(m.step) + ':</strong> ' + escapeHtml(m.choice) +
+        (m.consequence ? '<div class="finding-explanation">' + escapeHtml(m.consequence) + '</div>' : '') +
+      '</li>';
     }
-    missedHtml += '</ul>';
+    mistakesHtml += '</ul>';
   } else {
-    missedHtml = '<p style="color:#2e7d32;margin:1rem 0;">Semua item checklist OSCE diselesaikan!</p>';
+    mistakesHtml = '<p style="color:#2e7d32;margin:1rem 0;text-align:center;">Tidak ada kesalahan tercatat. Semua pilihan tepat.</p>';
   }
 
-  var penHtml = '';
-  if (osceState.penalties.length > 0) {
-    penHtml += '<h4 style="margin:1.25rem 0 .5rem;color:#7B1224;">Catatan Kesalahan</h4><ul class="osce-eval-penalty">';
-    for (var j = 0; j < osceState.penalties.length; j++) {
-      var pn = osceState.penalties[j];
-      penHtml += '<li><strong>' + escapeHtml(pn.step) + ':</strong> ' + escapeHtml(pn.label) + ' <em>(-' + pn.points + ')</em></li>';
+  // Always show the correct answer per step so the player learns the key.
+  var keyHtml = '<h4 style="margin:1.25rem 0 .5rem;color:#7B1224;">Kunci Jawaban</h4><ul class="osce-eval-key">';
+  for (var s2 = 0; s2 < STEPS.length; s2++) {
+    var stp = STEPS[s2];
+    if (stp.id === 'intro' || stp.id === 'consent') continue;
+    var ccfg = (c && c.dialogueScript && c.dialogueScript[stp.id]) || {};
+    var clist = ccfg.choices || [];
+    var correctLabel = '';
+    for (var cc = 0; cc < clist.length; cc++) {
+      if (clist[cc].correct) { correctLabel = clist[cc].label; break; }
     }
-    penHtml += '</ul>';
+    if (correctLabel) {
+      keyHtml += '<li><strong>' + escapeHtml(stp.label.replace(/^\d+\.\s/, '')) + ':</strong> ' + escapeHtml(correctLabel) + '</li>';
+    }
   }
-
-  var penaltySum = 0;
-  for (var x = 0; x < osceState.penalties.length; x++) penaltySum += osceState.penalties[x].points;
+  keyHtml += '</ul>';
 
   return renderScene() +
     '<div class="osce-eval">' +
-      '<h3 style="color:#7B1224;text-align:center;margin:0 0 .5rem;">' + headline + '</h3>' +
+      '<h3 style="color:#7B1224;text-align:center;margin:0 0 .5rem;">' + escapeHtml(headline) + '</h3>' +
+      '<p style="text-align:center;margin:.25rem 0 1rem;color:#555;">Kasus: <strong>' + escapeHtml(c.material || c.id || '') + '</strong></p>' +
       '<div class="osce-eval__score" style="background:' + bg + ';">' +
-        '<div style="font-size:3rem;font-weight:bold;color:' + col + ';margin-bottom:.5rem;">' + osceState.score + '%</div>' +
+        '<div style="font-size:3rem;font-weight:bold;color:' + col + ';margin-bottom:.5rem;">' + pct + '%</div>' +
         '<div class="osce-eval__breakdown">' +
-          '<span>Checklist: ' + osceState._checklistDoneCount + '/' + osceState._checklistTotal + '</span>' +
-          '<span>Diagnosis: ' + (osceState.diagnosisCorrect ? 'Benar' : 'Salah') + '</span>' +
+          '<span>Pilihan tepat: ' + correctSteps + '/' + totalSteps + '</span>' +
           '<span>Sisa waktu: ' + fmtTime(osceState.timeLeft) + '</span>' +
-          '<span>Penalti: -' + penaltySum + '</span>' +
+          '<span>Catatan: ' + osceState.mistakes.length + '</span>' +
         '</div>' +
-        dxLine +
       '</div>' +
-      missedHtml +
-      penHtml +
+      mistakesHtml +
+      keyHtml +
       '<div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">' +
         '<button class="btn-pill" onclick="restartCase()">Coba Lagi</button>' +
         '<button class="btn-pill" onclick="nextCase()" style="background:transparent;color:#7B1224;border:2px solid #7B1224;">Kasus Berikutnya</button>' +
@@ -1164,7 +527,7 @@ function renderResult() {
 }
 
 // ============================================================
-// 10. MAIN RENDER
+// 11. MAIN RENDER
 // ============================================================
 
 function renderOSCE() {
@@ -1174,15 +537,11 @@ function renderOSCE() {
   if (!osceState) osceState = initialState();
 
   if (osceState.phase === 'start') {
-    var faseLabel = isFase2() ? 'Fase 2' : 'Fase 1';
-    var stepCount = isFase2() ? 9 : 7;
-    var stepList = isFase2()
-      ? 'Pembukaan, Anamnesis, Inform Consent, Persiapan, Pemeriksaan, Pemeriksaan Penunjang, Diagnosis Banding, Tatalaksana &amp; Farmakoterapi, dan Edukasi'
-      : 'Pembukaan, Anamnesis, Inform Consent, Persiapan, Pemeriksaan, Pelaporan Hasil, dan Edukasi';
-    var minutes = Math.round((isFase2() ? DURATION_FASE_2 : DURATION_FASE_1) / 60);
+    var stepList = 'Pembukaan, Anamnesis, Inform Consent, Persiapan, Pemeriksaan, Pemeriksaan Penunjang, Diagnosis Banding, Tatalaksana &amp; Farmakoterapi, dan Edukasi';
+    var minutes = Math.round(DURATION_SECONDS / 60);
     el.innerHTML = '<div class="osce-start">' +
-      '<h2 class="osce-start__title">Simulasi OSCE ' + faseLabel + '</h2>' +
-      '<p class="osce-start__lead">Visual novel interaktif — ' + stepCount + ' langkah OSCE: ' + stepList + '. Anda berperan sebagai dokter (Doctor Brain) dengan waktu ' + minutes + ' menit per kasus.</p>' +
+      '<h2 class="osce-start__title">Simulasi OSCE Fase 2</h2>' +
+      '<p class="osce-start__lead">Visual novel interaktif: 9 langkah OSCE (' + stepList + '). Kasus dipilih acak dari Tetanus, TIA, atau Stroke. Waktu ' + minutes + ' menit per kasus.</p>' +
       '<button class="btn-pill" onclick="startSimulation()">Mulai Kasus</button>' +
     '</div>';
     return;
@@ -1196,90 +555,60 @@ function renderOSCE() {
     body = renderResult();
   } else {
     var stepId = STEPS[osceState.stepIdx].id;
-    if      (stepId === 'intro')       body = renderIntroStep();
-    else if (stepId === 'anamnesis')   body = renderAnamnesisStep();
-    else if (stepId === 'consent')     body = renderConsentStep();
-    else if (stepId === 'persiapan')   body = renderPrepStep();
-    else if (stepId === 'pemeriksaan') body = renderExamStep();
-    else if (stepId === 'pelaporan')   body = renderReportStep();
-    else if (stepId === 'penunjang')   body = renderPenunjangStep();
-    else if (stepId === 'ddx')         body = renderDdxStep();
-    else if (stepId === 'tatalaksana') body = renderTatalaksanaStep();
-    else if (stepId === 'edukasi')     body = renderEduStep();
+    if (stepId === 'intro')        body = renderDialogueStep('intro', 'introLineIdx');
+    else if (stepId === 'consent') body = renderDialogueStep('consent', 'consentLineIdx');
+    else                           body = renderMcqStep(stepId);
   }
 
   el.innerHTML = renderHeader() + '<div class="osce-step-body">' + body + '</div>';
 }
 
 // ============================================================
-// 11. LIFECYCLE
+// 12. LIFECYCLE
 // ============================================================
 
-function applyFaseConfig() {
-  if (isFase2()) {
-    STEPS = STEPS_FASE_2;
-    DEFAULT_DURATION_SECONDS = DURATION_FASE_2;
-  } else {
-    STEPS = STEPS_FASE_1;
-    DEFAULT_DURATION_SECONDS = DURATION_FASE_1;
+function startCase() {
+  osceState = initialState();
+  osceState.phase = 'playing';
+  var c = getCurrentCase();
+  if (!c) return;
+
+  // Pre-shuffle every MCQ pool so option order varies per attempt but is
+  // stable within a render cycle.
+  var mcqSteps = ['anamnesis', 'persiapan', 'pemeriksaan', 'penunjang', 'ddx', 'tatalaksana', 'edukasi'];
+  for (var i = 0; i < mcqSteps.length; i++) {
+    var sid = mcqSteps[i];
+    var cfg = c.dialogueScript && c.dialogueScript[sid];
+    if (cfg && cfg.choices) osceState.shuffled[sid] = shuffle(cfg.choices);
   }
+  startTimer();
+  renderOSCE();
 }
 
 window.startSimulation = function () {
-  applyFaseConfig();
   var cases = activeCases();
   if (cases && cases.length > 0) {
     currentCase = Math.floor(Math.random() * cases.length);
   }
-  osceState = initialState();
-  osceState.phase = 'playing';
-  var c = getCurrentCase();
-  if (c) {
-    osceState.shuffledExams = shuffle(c.exams || []);
-    osceState.shuffledDiagnoses = shuffle(c.diagnoses || []);
-  }
-  startTimer();
-  renderOSCE();
+  startCase();
 };
 
 window.restartCase = function () {
-  applyFaseConfig();
   stopTimer();
-  osceState = initialState();
-  osceState.phase = 'playing';
-  var c = getCurrentCase();
-  if (c) {
-    osceState.shuffledExams = shuffle(c.exams || []);
-    osceState.shuffledDiagnoses = shuffle(c.diagnoses || []);
-  }
-  startTimer();
-  renderOSCE();
+  startCase();
 };
 
 window.nextCase = function () {
-  applyFaseConfig();
   var cases = activeCases();
-  if (!cases || cases.length <= 1) {
-    alert('Tidak ada kasus lagi.');
-    return;
-  }
+  if (!cases || cases.length <= 1) { alert('Tidak ada kasus lagi.'); return; }
   var prev = currentCase;
   while (currentCase === prev) {
     currentCase = Math.floor(Math.random() * cases.length);
   }
   stopTimer();
-  osceState = initialState();
-  osceState.phase = 'playing';
-  var c = getCurrentCase();
-  if (c) {
-    osceState.shuffledExams = shuffle(c.exams || []);
-    osceState.shuffledDiagnoses = shuffle(c.diagnoses || []);
-  }
-  startTimer();
-  renderOSCE();
+  startCase();
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  applyFaseConfig();
   if (document.getElementById('osceApp')) renderOSCE();
 });

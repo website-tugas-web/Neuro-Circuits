@@ -13,8 +13,13 @@
       "permanent": true
     },
     {
+      "source": "/quiz",
+      "destination": "/materials",
+      "permanent": true
+    },
+    {
       "source": "/quiz.html",
-      "destination": "/quiz",
+      "destination": "/materials",
       "permanent": true
     },
     {
