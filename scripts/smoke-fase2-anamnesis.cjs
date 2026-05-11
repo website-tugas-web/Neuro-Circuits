@@ -13,7 +13,8 @@ const { chromium } = require('playwright');
   page.on('pageerror', e => errors.push('pageerror: ' + e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push('console.error: ' + m.text()); });
 
-  await page.goto('http://localhost:8765/phase-2-quiz.html', { waitUntil: 'networkidle' });
+  const target = process.env.OSCE_URL || 'http://localhost:8765/phase-2-quiz.html';
+  await page.goto(target, { waitUntil: 'networkidle' });
 
   await page.click('button.btn-pill:has-text("Mulai Kasus")');
   await page.waitForTimeout(300);
